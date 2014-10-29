@@ -1,0 +1,200 @@
+HTML {
+    font-family: "����";
+    font-size: 10px
+}
+
+BODY {
+    background-color: #f5f2f1;
+    font-size: 1.2em;
+    _height: 100%
+}
+
+.cf:before {
+    display: table;
+    content: ""
+}
+
+.cf:after {
+    display: table;
+    content: ""
+}
+
+.cf:after {
+    clear: both
+}
+
+.cf {
+    zoom: 1
+}
+
+.clearfix {
+    clear: both
+}
+
+A {
+    text-decoration: none
+}
+
+INPUT {
+    outline-style: none
+}
+
+.autoLayout {
+    width: 100%;
+    zoom: 1
+}
+
+.autoLayout .rightDiv {
+    width: 100%;
+    float: left
+}
+
+.autoLayout .rightContent {
+    margin-left: 168px
+}
+
+.autoLayout .leftContent {
+    width: 168px;
+    float: left;
+    margin-left: -100%
+}
+
+.autoLayoutL .leftDiv {
+    width: 100%;
+    float: left
+}
+
+.autoLayoutL .rightContent {
+    float: left
+}
+
+.logoSearch_L2 .search A.button {
+    background-image: url(../Images/search_btn.png);
+}
+
+.logoSearch_L2 .search A.button:hover {
+    background-image: url(../Images/search_btn_click.png);
+}
+
+.logo {
+    margin-top: 0px;
+}
+
+.logoSearch {
+    width: 100%;
+    height: 275px;
+    background-image: url(../Images/01.png);
+}
+
+.logoSearch_L2 {
+    margin: auto;
+    width: 1006px
+}
+
+.logoSearch_L2 .logo {
+    float: left;
+    padding-top: 18px;
+    height: 75px;
+}
+
+.logoSearch_L2 .search {
+    width: 1006px;
+    height: 199px;
+    padding-top: 60px;
+    background-image: url(../Images/02.png);
+    background-repeat: repeat-x;
+}
+
+.logoSearch_L2 .search .text {
+    border-bottom: #e2c7b9 1px solid;
+    border-left: #e2c7b9 1px solid;
+    padding-bottom: 10px;
+    line-height: 15px;
+    background-color: #ffffff;
+    padding-left: 8px;
+    width: 580px;
+    padding-right: 8px;
+    float: left;
+    height: 15px;
+    color: #000000;
+    border-top: #e2c7b9 1px solid;
+    border-right: #e2c7b9 1px;
+    padding-top: 10px;
+    margin-left: 90px;
+    
+    vertical-align: middle;
+    font-size:15px;
+}
+
+@media Unknown {
+    .logoSearch_L2 .search .text {
+        line-height: 25px
+    }
+}
+
+.logoSearch_L2 .search A.button {
+    width: 168px;
+    display: inline-block;
+    background-image: url(../Images/search_btn.png);
+    backgound-position: 0px 0px;
+    float: left;
+    height: 37px;
+}
+
+.logoSearch_L2 .search A.button:hover {
+    background-image: url(../Images/search_btn_click.png);
+}
+
+.checkboxes {
+    margin: auto;
+    padding-left: 92px;
+    color: #866938;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "΢���ź�";
+}
+
+
+.UnderSearchBarTabs2 {
+    margin: 0 auto;
+    width: 1006px;
+    text-align: center;
+}
+
+#example {
+    width: 1006px;
+    height: 335px;
+    position: relative;
+    background-color: #fff;
+}
+
+#slides {
+    position: absolute;
+    z-index: 100;
+}
+
+#slides .next,#slides .prev {
+    position: absolute;
+    top: 107px;
+    left: -24px;
+    width: 24px;
+    height: 43px;
+    display: block;
+    z-index: 101;
+}
+
+.slides_container {
+    width: 1006px;
+    height: 270px;
+    overflow: hidden;
+    position: relative;
+}
+
+#slides .next {
+    left: 1006px;
+}
+
+.pagination {
+    margin: 26px auto 0;
+    width: 100px;
+}

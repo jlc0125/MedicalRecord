@@ -1,0 +1,74 @@
+HTML {
+    font-family: "宋体"; font-size: 10px
+}
+BODY {
+    background-color: #f5f2f1; font-size: 1.2em; _height: 100%
+}
+.cf:before {
+    display: table; content: ""
+}
+.cf:after {
+    display: table; content: ""
+}
+.cf:after {
+    clear: both
+}
+.cf {
+    zoom: 1
+}
+.clearfix {
+    clear: both
+}
+A {
+    text-decoration: none
+}
+
+.autoLayout {
+    width: 100%; zoom: 1
+}
+.autoLayout .rightDiv {
+    width: 100%; float: left
+}
+.autoLayout .rightContent {
+    margin-left: 168px
+}
+.autoLayout .leftContent {
+    width: 168px; float: left; margin-left: -100%
+}
+.autoLayoutL .leftDiv {
+    width: 100%; float: left
+}
+.autoLayoutL .rightContent {
+    float: left
+}
+.logoSearch_L2 .search A.button {
+    background-image:url(../Images/search_btn.png); 
+}
+.logoSearch_L2 .search A.button:hover {
+    background-image:url(../Images/search_btn_click.png); 
+}
+.logo{
+    margin-top:0px;
+}
+
+.logoSearch {
+    WIDTH: 100%; HEIGHT: 93px; background-image:url(../Images/top_back.png); background-repeat:repeat-x
+}
+.logoSearch_L2 {
+    MARGIN: auto; width:1006px
+}
+.logoSearch_L2 .logo {
+    FLOAT: left; PADDING-TOP: 18px; height:75px
+}
+
+
+
+#example {
+    width:1006px;
+    height:335px;
+    position:relative;
+    background-color: #fff;
+    margin-top:300px;
+}
+
+

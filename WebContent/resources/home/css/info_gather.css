@@ -1,0 +1,552 @@
+@CHARSET "UTF-8";
+body{
+	font-family: "微软雅黑";
+}
+#panel_part a:focus {
+    outline: none;
+}
+
+#panel_part #panel {
+    display: none;
+    background: url(../Images/search_back.png) repeat-x;
+    /* margin-top:-10px; */
+    overflow: hidden;
+}
+
+#panel_part .slide {
+    margin: 0;
+    background: url(../Images/btn.png) no-repeat center top;
+}
+
+#panel_part .btn-slide {
+   /*  background: url(../Images/white-arrow.gif) no-repeat right -50px; */
+    text-align: center;
+    width: 144px;
+    height: 31px;
+    padding: 10px 10px 0 0;
+    margin: 0 auto;
+    display: block;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-decoration: none;
+}
+
+#panel_part .active {
+    background-position: right 12px;
+}
+
+#search_part {
+    width: 1006px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+#search_btn {
+    height: 42px;
+    width: 150px;
+}
+
+#search_part .text {
+    border-bottom: #e2c7b9 1px solid;
+    border-left: #e2c7b9 1px solid;
+    padding-bottom: 10px;
+    line-height: 15px;
+    background-color: #ffffff;
+    padding-left: 8px;
+    width: 580px;
+    padding-right: 8px;
+    float: left;
+    height: 15px;
+    color: #000000;
+    border-top: #e2c7b9 1px solid;
+    border-right: #e2c7b9 1px;
+    padding-top: 10px;
+    margin-left: 90px;
+    
+    vertical-align: middle;
+    font-size:15px;
+}
+
+#search_input_tip {
+    color: #FF0000;
+    font-size: 14px;
+    vertical-align: bottom;
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    
+}
+
+#search_part A.button {
+    width: 168px;
+    display: inline-block;
+    background-image: url(../Images/search_btn.png);
+    backgound-position: 0px 0px;
+    float: left;
+    height: 37px;
+}
+
+#middler {
+    width: 100%;
+    overflow: auto;
+}
+
+#middler_main {
+    width: 1006px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+#middler_top {
+    width: 100%;
+    overflow: auto;
+}
+
+#middler_menu {
+    height: 22px;
+    line-height: 22px;
+}
+
+#middler_menu ul {
+    margin-left: 0;
+}
+
+#middler_menu li {
+    float: left;
+    list-style: none;
+    display: inline;
+    font-size: 20px;
+}
+
+#middler_menu li a:visited {
+    color: #9d752a;
+}
+
+#middler_menu li a {
+    text-decoration: none;
+}
+
+#middler_menu li a:link {
+    color: #9d752a;
+    color:#000;
+}
+
+#middler_menu li a:hover {
+    color: #9d752a;
+}
+
+.line_hr {
+    margin: 5px auto;
+}
+
+#middler_sub_menu {
+    overflow: auto;
+    border-bottom: 1px solid #9d752a;
+}
+
+#sub_menu_txt {
+    height: 30px;
+    line-height: 30px;
+    width: 140px;
+    background-color: #9d752a;
+    text-align: center;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+#middler_content {
+    width: 100%;
+    overflow: auto;
+    background:#FFFFFF;
+}
+
+#content_left {
+    width: 160px;
+    float: left;
+    overflow: auto;
+}
+
+#left_top {
+    width: 100%;
+    font-size: 16px;
+    padding-top: 30px;
+    text-indent: 40px;
+    color: #9d752a;
+    overflow: auto;
+}
+
+#left_bottom {
+    width: 100%;
+}
+
+#content_right {
+    width: 845px;
+    float: right;
+    overflow: auto;
+}
+
+#right_reslut {
+    width: 824px;
+    min-height:650px;
+    border-left:1px #ddd dashed;
+    padding-left:20px;
+}
+
+#right_pagination {
+	margin-top:30px;
+	margin-bottom:30px;
+    width: 100%;
+}
+
+.left_top_qa_txt {
+    color: red;
+}
+
+.left_top_qa_div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.menu_div{
+	width:120px;
+	height:50px;
+	line-height: 50px;
+	text-align:center;
+}
+#right_top_blank{
+	height:20px;
+	width:100%;
+}
+
+/**********************AQ**************************/
+.table_AQtitle {
+    width: 750px;
+    height: 50px;
+}
+
+#right_reslut a {
+    text-decoration: none;
+}
+
+#right_reslut a:hover {
+    color: #ddbb36;
+}
+
+#right_reslut ul {
+    margin: 0;
+}
+
+#right_reslut li {
+    list-style: none;
+    text-decoration: none;
+}
+
+#right_reslut .table_AQtitle_R {
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+#right_reslut .table_AQtitle_R li a:link {
+    background-color: #D4D4D4;
+    padding: 3px 3px 3px 3px;
+}
+
+#right_reslut .table_AQtitle_R li a:hover {
+    color: #FFF;
+    background-color: #666;
+    padding: 3px 3px 3px 3px;
+}
+
+#right_reslut .table_AQ_label {
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    font-family: "微软雅黑";
+}
+
+#right_reslut .table_AQ_label li a:link {
+    background-color: #D4D4D4;
+    padding: 7px 3px 7px 3px;
+}
+
+#right_reslut .table_AQ_label li a:hover {
+    color: #FFF;
+    background-color: #666;
+    padding: 7px 3px 7px 3px;
+}
+
+#right_reslut .table_AQdetail {
+    width: 550px;
+    height: 70px;
+    line-height: 30px;
+}
+
+#right_reslut .table_AQdetail li a {
+    font-size: 14px;
+}
+
+#right_reslut .table_AQdetail li a:link {
+    background-color: #D4D4D4;
+    padding: 3px 3px 3px 3px;
+}
+
+#right_reslut .table_AQdetail li a:hover {
+    color: #FFF;
+    background-color: #666;
+    padding: 3px 3px 3px 3px;
+    text-decoration: none;
+}
+
+#right_reslut .table_Timetitle {
+    width: 250px;
+    font-size: 14px;
+    text-align: right;
+}
+
+#right_reslut .table_user {
+    vertical-align: bottom;
+    text-align: right;
+}
+
+#right_reslut .title {
+    font-size: 18px;
+    font-family: "微软雅黑";
+    color: #9d752a;
+}
+
+.part_list {
+    font-size: 14px;
+    text-align: left;
+    width: 120px;
+}
+
+#left_top  ul {
+    margin: 0;
+}
+
+.part_list li {
+    list-style: none;
+}
+
+.part_list li a {
+    text-decoration: none;
+}
+
+.part_list li a:link {
+    background-color: #D4D4D4;
+    padding: 3px 3px 3px 3px;
+}
+
+.part_list li a:hover {
+    color: #FFF;
+    background-color: #666;
+    padding: 3px 3px 3px 3px;
+}
+
+/******************************AQ ENDS******************/
+
+/*basic*/
+.basic_left_top_submenu {
+    margin-top: 10px;
+    overflow: auto;
+    min-height: 25px;
+}
+
+.submenu_a_selected {
+    font-weight: bold;
+    border-bottom: 2px solid #9d752a;
+}
+
+.basic_result_item {
+    width: 820px;
+}
+
+.item_table {
+    width: 800px;
+   
+}
+
+.name_td {
+    width: 200px;
+    padding-left: 50px;
+    color: #9d752a;
+    font-weight: bold;
+    font-size: 16px;
+    
+}
+
+.intro_td {
+    width: 300px;
+    font-size: 14px;
+}
+
+.img_td {
+    width: 250px;
+    text-align: center;
+}
+
+.journal_result_item {
+    width: 100%;
+    min-height: 180px;
+    overflow-y: auto;
+    border-bottom: 2px solid #d4be9e;
+}
+
+.journal_result_item_table {
+    width: 750px;
+}
+
+/*journal*/
+.blue {
+    color: #0066cc;
+}
+
+.journal_result_item {
+    font-size: 16px;
+    color: #663300;
+    margin-top: 10px;
+}
+
+.journal_title {
+    font-weight: bold;
+}
+
+.journal_publish_date {
+    color: #999;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: right;
+}
+
+.journal_author {
+    margin: 0px 20px 0px 25px;
+    line-height: 25px;
+    width: 100px;
+    vertical-align:top;
+}
+
+.journal_author_list {
+    color: #000000;
+}
+.journal_abstract{
+	vertical-align:top;
+}
+
+.journal_abstract_content {
+    color: #000000;
+}
+
+.journal_key_list {
+    color: #000000;
+}
+
+.journal_smart {
+    text-align: right;
+}
+/*net*/
+.net_submenu_a_selected {
+    font-weight: bold;
+    border-bottom: 2px solid #9d752a;
+}
+
+.net_item_title {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.net_item_abstract {
+    margin-right: 10px;
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.net_item {
+    margin-top: 5px;
+    font-size: 14px;
+}
+/*patent*/
+.patent_tb {
+    margin-top: 10px;
+    border: 1px solid #9d752a;
+}
+
+.patent_tb td {
+    border: 1px solid #9d752a;
+}
+
+.patent_item_tb_order {
+    font-size: 18px;
+    width: 40px;
+    text-align: center;
+    color: #9d752a;
+}
+
+.patent_item_tb_name {
+    font-size: 18px;
+    width: 120px;
+    text-align: center;
+    color: #9d752a;
+}
+
+.patent_item_tb_owner {
+    font-size: 18px;
+    width: 80px;
+    text-align: center;
+    color: #9d752a;
+}
+
+.patent_item_tb_abstract {
+    font-size: 18px;
+    width: 450px;
+    text-align: center;
+    color: #9d752a;
+}
+
+.patent_item_tb_scan {
+    font-size: 18px;
+    width: 60px;
+    text-align: center;
+    color: #9d752a;
+}
+
+.patent_tb_tr_order {
+    text-align: center;
+}
+
+.patent_tb_tr_name {
+    color: #9d752a;
+}
+
+.patent_tb_tr_inventor {
+    padding-left: 10px;
+}
+
+.patent_tb_tr_scan {
+    text-align: center;
+}
+#simple_pagination ul li a:hover{
+	color: #F2CE51;
+}
+#simple_pagination ul li a{
+    color: #9d752a;
+}
+/*book*/
+.book_result_item{
+	width: 824px;
+	
+	
+}
+.book_result_item_left{
+	float: left;
+	width: 150px;
+	height:134px;
+	text-align:center;
+}
+.book_result_item_right{
+    float: left;
+    width: 674px;
+    height:134px;
+    font-size: 14px;
+}

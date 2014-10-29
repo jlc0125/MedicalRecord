@@ -1,0 +1,138 @@
+
+#href_A{
+	width: 160px; 
+	height: 281px;
+	background-image:url(../images/jczs_off.png); 
+	float: left; 
+	display:block;
+}
+a#href_A:hover{
+	background-image:url(../images/jczs_on.png);
+}
+
+#href_B{
+	width: 160px; 
+	height: 281px;
+	background-image:url(../images/sjyd_off.png);
+	float: left; 
+	display:block;
+}
+a#href_B:hover{
+	background-image:url(../images/sjyd_on.png);
+}
+
+#href_C{
+	width: 160px; 
+	height: 281px;
+	background-image:url(../images/qkwx_off.png); 
+	float: left; 
+	display:block;
+}
+a#href_C:hover{
+	background-image:url(../images/qkwx_on.png);
+}
+
+#href_D{
+	width: 160px; 
+	height: 281px;
+	background-image:url(../images/xgzl_off.png); 
+	float: left; 
+	display:block;
+}
+a#href_D:hover{
+	background-image:url(../images/xgzl_on.png);
+}
+
+#href_E{
+	width: 160px; 
+	height: 281px;
+	background-image:url(../images/zswd_off.png); 
+	float: left; 
+	display:block;
+}
+a#href_E:hover{
+	background-image:url(../images/zswd_on.png);
+}
+
+#href_F{
+	width: 160px; 
+	height: 281px;
+	background-image:url(../images/wlbk_off.png); 
+	float: left; 
+	display:block;
+}
+a#href_F:hover{
+	background-image:url(../images/wlbk_on.png);
+}
+
+.UnderSearchBarTabs1{
+margin:auto;
+margin-top:-1px;
+
+width:1006px;
+	text-align:center;
+	
+}
+
+#background{
+    width: 100%;
+    padding-bottom:40px;
+    margin:0 auto;
+}
+
+#sidebar-tab{
+	width:1006px;
+	margin:0 auto;
+	overflow-y:auto;
+}
+ 
+
+#information{
+	margin:0 auto;
+	width:1006px;
+	height:335px;
+	margin-top:60px
+}
+	
+#detail{
+	clear:both;
+	margin-left:25px;
+	height:275px;
+	width:955px;
+	float:left;
+	background-image:url(../images/banner_border.png);
+	background-repeat:no-repeat;
+	padding-top:7px;
+	padding-left:7px;
+	}
+	
+.information_contain{
+	float:left;
+height:259;
+width:940;
+}
+
+#img_nav_ul{
+	margin-left:10px;
+}
+
+#img_ul{
+	background-image:url(../images/banner_border_small.png);
+	width:250;
+	height:130;
+}
+
+#img_ul ul li{
+	float:left;
+}	
+#img_ul ul{
+	margin-left:6px;
+	margin-top:6px;
+}
+
+#simple_pagincation ul li a:hover{
+    color: #F2CE51;
+}
+#simple_pagincation ul li a{
+    color: #9d752a;
+}

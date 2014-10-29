@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+html {
+	height: 100%;
+	overflow-y: auto;
+}
+
+body {
+	background-color: #f5f2f1;
+	font-size: 1.2em;
+	font-family: "微软雅黑";
+	height: 100%;
+}
+
+#main {
+	width: 1006px;
+	min-height: 80%;
+	overflow-y: auto;
+	background-color: #ffffff;
+	margin: 50px auto;
+}
+
+#main_left {
+	background-color: #ebf1f4;
+	min-height: 500px;
+	font-size: 14px;
+	
+}
+#edit_label{
+	margin-top: 20px;
+}
+#edit_label a {
+	color: #0068b7;
+	cursor: pointer;
+	
+	text-decoration: none;
+	
+	width:56px;
+	height:20px;
+	display:inline-block;
+	
+}
+
+#main_right {
+	min-height: 600px;
+}
+
+#sticker {
+	width: 100%;
+	height: 140px;
+	text-align: center;
+}
+
+.basic_info_a {
+	padding-left: 20px;
+}

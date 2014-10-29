@@ -1,0 +1,104 @@
+#news-display {
+    width: 1006px;
+    margin: 0px auto 26px auto;
+    min-height: 274px;
+    border: none;
+    background: #eee;
+    overflow: hidden;
+}
+
+#news-display-content {
+    width: 900px;
+    min-height: 224px;
+    overflow: hidden;
+    float: left;
+    margin-left: 27px;
+    margin-top: 12px;
+    font-family: "宋体", "微软雅黑";
+    font-size: 16px;
+    color: #333333;
+}
+
+#news-display-content tr {
+    display: block;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.news-date {
+    width: 125px;
+    background: #ccc;
+    font-weight: bold;
+    padding-left: 25px;
+}
+
+.news-single-pre {
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 22px;
+    border-bottom: 1px dotted #666666;
+}
+
+#five-banners {
+    height: 345px;
+    width: 1006px;
+    overflow: hidden;
+    margin: 0px auto ;
+}
+
+.single-banner {
+    width: 200px;
+    float: left;
+    cursor: pointer;
+    
+    text-align:center;
+}
+
+.single-pd-study-research {
+    height: 117px;
+    width: 457px;
+    float: left;
+    margin: 0px 0px 20px 30px;
+    border: 1px #888 solid;
+    overflow: hidden;
+}
+
+.single-pd-study-research:hover {
+    border: 1px #C66739 solid;
+}
+
+.pd-study-research-list {
+    display: block;
+    width: 250px;
+    float: right;
+}
+
+.pd-study-research-list a li {
+    font-size: 14px;
+    line-height: 20px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.list-title {
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color: #F90;
+    line-height: 28px;
+}
+
+body {
+    background: #333;
+    background-image: url(../Images/body-bg.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+#search_input_tip{
+	color:red;
+	vertical-align: bottom;
+	display: block;
+	height:37px;
+	padding-top: 10px;
+}

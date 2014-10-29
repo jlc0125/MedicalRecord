@@ -1,0 +1,23 @@
+/*.logoSearch_L2 .search .author_search_result .bg_author1{border:none;background:url(../images/author_search_button.png);width:131px; height:29px; position:relative;left:-38px; }
+.logoSearch_L2 .search .author_navi_search .bg_author{border:none;background:url(../images/author_search_button.png);width:131px; height:29px; position:relative; left:-20px; }
+.logoSearch_L2 .search .bg_paper{border:none;background:url(../images/paper_button.png);width:131px; height:29px; position:relative;left:-105px; }
+.logoSearch_L2 .search .bg_tendency{border:none;background:url(../images/tendency_search_button.png);width:131px; height:29px; position:relative;left:-105px; }*/
+
+.search_area{width: 100%; height: 270px; background-image:url(../images/top_back.png); background-repeat:repeat-x;}
+.search_area .logo_block .logo_center{width:960px;margin:0 auto;}
+.search_area .logo_block .logo{float: left; padding-top: 18px; height:75px;/* padding-left:240px; */}
+.search_area .logo_block .clearfix{clear:both;}
+.search_area .search_block{width: 100%; height: 150px;background-image:url(../images/search_area_bg.png); background-repeat:repeat-x;}
+.search_area .search_block .search_inner_block{width:500px;margin:0 auto;padding-top:40px;}
+.search_area .search_block .current_location{padding-top: 5px;width: 500px;}
+.search_area .search_block .search_input_box{width: 460px;height: 30px;}
+.search_area .search_block .search_input_box .input_text{width: 319px;height: 29px;line-height: 30px;font-size:14px;float:left;}
+.search_area .search_block .select_input_box{width:460px;}
+.search_area .search_block .select_input_box input{margin-right:1px;margin-top:9px;float:left;}
+.search_area .search_block .select_input_box span{display:block;color:#785830;margin:5px 60px 0 5px;font-size:14px;float:left;}
+
+.search_area .result_title_block{width: 100%; height: 150px;background-image:url(../images/search_area_bg.png); background-repeat:repeat-x;} 
+.search_area .result_title_block .result_title_inner_block {width:960px;margin:0 auto;padding-top:1px;}
+.search_area .result_title_block .result_title_inner_block .desc {width:960px;margin:0 auto;padding-top:1px;}
+.search_area .result_title_block .result_title_inner_block .desc .desc_left{width:120px;height:120px;float:left;}
+.search_area .result_title_block .result_title_inner_block .desc .desc_right{margin-left:35px;width:800px;height:120px;float:left;}

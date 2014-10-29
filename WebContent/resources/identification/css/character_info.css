@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+.character_herb_midd{
+	width:840px;
+	vertical-align:middle;
+}
+
+.character_herb_left{
+	padding-left:110px;
+	padding-right:90px;
+}
+.character_text_herb_left{
+	text-align:center;
+	vertical-align:middle;
+	width:80px;
+	padding:12px 20px 12px 20px;
+	font-size:18px;
+	font-family:"微软雅黑";
+	color:#604F2B;
+}

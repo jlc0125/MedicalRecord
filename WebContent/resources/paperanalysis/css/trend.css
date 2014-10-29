@@ -1,0 +1,25 @@
+.trend_navi{
+	width:660px;
+	overflow:auto;
+	text-align:center;
+	margin:0 auto;
+}
+
+.trend-top{
+	margin:0 auto;
+	width:1006px;
+}
+
+
+#tooltip span{
+	display: block;
+	width: 200px;
+	margin: 0 auto 20px auto;
+	font-size: 12px;
+	border: dashed 1px black;
+	text-align: center;
+}
+
+.tendency_search{
+	width:1006px;margin:0 auto;position:relative;top:-20px;left:-100px;
+}

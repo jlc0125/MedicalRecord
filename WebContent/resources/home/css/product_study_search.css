@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+html {
+	height:100%;
+}
+body{
+	height: 100%;
+}
+#main{
+	width:1006px;
+	min-height:100%;
+	margin:0 auto;
+	
+	background-color: #FFFFFF;
+}
+.tab-choice{
+	width:20%;
+}
+.tab-right{
+	width:80%;
+}
+.university_nav{
+	margin-top:80px;
+}

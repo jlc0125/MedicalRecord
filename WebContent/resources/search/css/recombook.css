@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+#recom_book_nav{
+	width:175px;
+	text-align:center;
+	margin:0px;
+	border:none;
+}
+
+#recom_book_nav>li{
+	color:#9d752a;
+	font-size:18px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:20px;
+}
+
+#recom_book_list{
+	width:725px;
+	float:right;
+	padding-left:50px;
+	margin:0px;
+	border-left:1px solid #ddd;
+	margin-bottom:40px;
+	min-height:600px;
+}
+
+.nav-tabs li{
+	margin-top:5px;
+}
+
+#recom_book_nav_list a{
+	font-size:15px;
+}
+
+#recom_book_list thead{
+	padding:30px;
+}
+
+.recom_book{
+	height:160px;
+	border-bottom:solid #ddd 1px;
+}
+
+#recom_book_container{
+	margin-top:10px;
+	margin-right:10px;
+	/*border-top:solid 1px #715616;*/ 
+}
+.recom_book_pic{
+	float:left;
+	margin-left:20px;
+	width:120px;
+	height:160px;
+}
+.recom_book_pic img{
+	padding:10px;
+	width:100px;
+	height:140px;
+}
+
+.recom_book_detail{
+	padding:15px;
+	margin-left:150px;
+	height:130px;
+}
+
+.recom_book_row1{
+	margin-top:15px;
+	margin-bottom:10px;
+	color:#715616;
+	font-size:20px;
+}
+.recom_book_row2{
+	margin:5px;
+	margin-left:15px;
+}
+.recom_book_row3{
+	margin:5px;
+	margin-left:15px;
+}
+.recom_book_row4{
+	margin:5px;
+	margin-left:15px;
+}

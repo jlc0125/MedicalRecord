@@ -1,0 +1,54 @@
+.content2{
+	clear:both;
+	width:900px;
+	margin:auto;
+	padding-bottom:00px;
+	margin-top:10px;
+	height:200px
+}
+.word{
+	padding-left:0px;
+	padding-top:0px;
+	color:#866938;
+	font-size:20px;
+	font-family:"微软雅黑";
+	text-align:left;
+	font-weight:bold;
+	text-align:center
+}
+
+.fjbutton{
+	display:block;
+	width:168px;
+	height:37px;
+	background-image:url(../Images/fjdb_btn.png);
+	margin-left:40px;
+	margin-top:25px;
+}
+
+.fjbutton:hover{
+	display:block;
+	width:168px;
+	height:37px;
+	background-image:url(../Images/fjdb_btn_click.png);
+	margin-left:40px;
+	margin-top:25px;
+}
+
+.select_book{
+	width:200px;
+	height:28px;
+}
+
+.select_book2{
+	width:204px;
+	height:30px;
+}
+
+.fj{
+	display:inline-block;
+	margin-left:0px;
+	margin-top:30px;
+	height:100px;
+	width:200px
+}

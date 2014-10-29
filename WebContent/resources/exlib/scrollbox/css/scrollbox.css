@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+.scroll-img {
+  border: 1px solid red;
+  width: 680px;
+  height: 250px;
+  overflow: hidden;
+  font-size: 0;
+}
+.scroll-img ul {
+  width: 700px;
+  margin: 0;
+}
+.scroll-img ul li {
+  display: inline-block;
+  margin: 10px 0 10px 10px;
+}

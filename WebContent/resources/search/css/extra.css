@@ -1,0 +1,179 @@
+.container-fluid,.search_list_table{
+    /*background-image:url(../Images/content_bg_03.jpg);*/
+    font-family:"微软雅黑";
+	font-size:15px;
+	background-repeat:repeat-y;
+	width:960px;
+	min-height:660px;
+	margin:0 auto;
+	/*margin-left:160px;
+	margin-bottom:60px;*/
+}
+
+.container-fluid-docinfo,.search_list_table{
+    /*background-image:url(../Images/content_bg_03.jpg);*/
+    font-family:"寰蒋闆呴粦";
+	font-size:15px;
+	background-repeat:repeat-y;
+	width:960px;
+	min-height:100px;
+	margin:0 auto;
+	/*margin-left:160px;
+	margin-bottom:60px;*/
+}
+
+#front_search_table{
+	min-width:860px
+}
+
+.null_info{
+	font-size:20px;
+	font-weight:bold;
+	color:#9d752a;
+}
+
+.preview_pic{
+	width:180px;
+	height:100px
+}
+
+.med_info_pic{
+	width:160px;
+	height:160px;
+	margin-bottom:20px;
+	border:1px solid #000000;
+}
+
+.med_info_pic_div{
+	margin-right:50px;
+	text-align:center
+}
+
+
+.c-right-iframe{
+	width:400px;
+	height:300px;
+}
+
+.c-right-iframe-large{
+	width:750px;
+	height:550px;
+}
+
+.rs_pagincation{
+  text-align:center;
+  margin-bottom:20px
+}
+.table{
+	margin-left:0
+}
+.front_tab{
+	margin-right:45px
+}
+
+.med_info_tab{
+	margin-left:30px
+}
+.info_tab_3{
+	margin-left:100px
+}
+#front_menu{
+	float:left;
+	margin-left:80px
+}
+.senior_rs_tab{
+	float:left;
+	margin-left:80px;
+	font-size:18px;
+}
+
+.success{
+	color:#555555;
+	font-size:18px;
+	padding-bottom:80px;
+	vertical-align: middle;
+}
+
+.nav-tabs li{
+	margin-top:30px	
+}
+
+.nav-tabs li a{
+	color:#9d752a;
+	font-size:17px;
+	font-weight:bold;
+}
+
+.table thead tr{
+	margin-top:20px;
+	height:100px;
+
+} 
+.tabs-left{
+	background-color:#ffffff
+}
+
+.table thead tr th{
+	vertical-align: middle;
+	text-align:center
+} 
+
+.table th{
+	width:100px;	
+
+} 
+.table tbody tr{
+	height:100px
+} 
+.table tbody td{
+  line-height: 20px;
+  vertical-align: middle;
+  text-align:center;
+  font-size:15px;
+} 
+
+.list_field1{
+	width:20px;
+	
+}
+.list_field1 a{
+	color:#715616
+}
+
+.main-table td{
+  line-height: 25px;
+  vertical-align: top;
+  padding-bottom:25px
+}
+
+#chem_info_extra_table tr td{
+	height:30px;
+	width:180px;
+	vertical-align:middle;
+	font-size:15px;
+	line-height: 0px;
+	text-align:center;
+	padding-bottom:0
+}
+#chem_info_extra_table tr{
+	height:30px;
+	width:180px;
+	vertical-align:middle;
+	font-size:15px;
+	line-height: 0px;
+	text-align:center
+}
+
+#t-content{
+	float:left
+}
+
+.container-fluid>.row-fluid>.span12>.tabbable.tabs-left>.tab-content.span8{
+	width:770px;
+}
+
+.gmap3{
+  border: 1px dashed #C0C0C0;
+  width: 750px;
+  height: 500px;
+}

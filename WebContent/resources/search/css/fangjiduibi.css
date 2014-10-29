@@ -1,0 +1,302 @@
+@charset "utf-8";
+/* CSS Document */
+
+#sub_nav{
+	margin:auto;
+	margin-bottom:10px;
+	height:150px;
+	margin-top:20px;
+	text-align:center;
+}
+
+
+#nav_pwfx{
+	background-image:url(../../analysis/images/pwfx_off_sub.png);
+	display:inline-block;
+}
+
+#nav_xsyfx{
+	background-image:url(../../analysis/images/xsyfx_off_sub.png);
+	display:inline-block;
+}
+
+#nav_fjdb{
+	background-image:url(../../analysis/images/fjdb_on_sub.png);
+	display:inline-block;
+}
+
+#nav_yfbzfx{
+	background-image:url(../../analysis/images/jbfjfx_off_sub.png);
+	display:inline-block;
+}
+
+#space{
+	width:120px;
+	height:47px;
+	display:inline-block;
+}
+
+.space{
+	height:37px;
+	display:inline-block;
+}
+
+.space2{
+	width:150px;
+	height:37px;
+	display:inline-block;
+}
+
+.space3{
+	height:30px;
+	display:inline-block;
+}
+
+.content{
+	clear:both;
+	width:900px;
+	background-color:#FFF;
+	margin:auto;
+	padding-bottom:20px;
+	margin-top:00px;
+}
+
+/*.content2{
+	clear:both;
+	width:900px;
+	margin:auto;
+	padding-bottom:00px;
+	margin-top:10px;
+}*/
+
+.sub_search_bar{
+	clear:both;
+	margin:auto;
+	margin-top:30px;
+	width: 1006px; 
+	height: 37px; 
+	display:inline-block;	
+}
+
+.sub_search{ 
+	border-bottom: #542808 1px solid; 
+	border-left: #542808 1px solid; 
+	padding-bottom: 0px; 
+	line-height: 35px; 
+	background-color: #ffffff; 
+	padding-left: 8px; 
+	width: 480px; 
+	padding-right: 8px; 
+	height: 35px; 
+	color: #000000; 
+	VERTICAL-ALIGN: middle; 
+	border-top: #542808 1px solid; 
+	border-right: #542808 1px; 
+	padding-top: 0px; 
+	margin-left:90px;
+	float:left;
+	clear:both;
+}
+
+.sub_search_button{
+	width: 168px; 
+	display: inline-block; 
+	background-image:url(../../analysis/images/search_btn_fx.png);
+	backgound-position: 0px 0px; 
+	height: 37px; 
+	clear:both;
+}
+
+
+.ft_jian{
+	width:20px;
+	height:21px;
+	display:inline-block;
+}
+
+.ft_jian2{
+	width:20px;
+	height:16px;
+	display:inline-block;
+}
+
+.search_nav{
+	margin:auto;
+	padding-top:30px;
+	margin-bottom:20px;
+	margin-left:40px;
+	font-size:16px;
+	color:#772200;
+	font-family:"微软雅黑";
+}
+
+.search_result_title{
+	margin:auto;
+	margin-top:10px;
+	margin-bottom:0px;
+	margin-left:40px;
+	font-size:16px;
+	color:#772200;
+	font-family:"微软雅黑";
+}
+
+.div_line{
+	background-image:url(../../analysis/images/div_line.png);
+	background-repeat:repeat-x;
+	display:inline-block;
+	height:16px;
+}
+
+.xiangsiyao_detail_content{
+	width:802px;
+	margin-top:30px;
+	padding-left:0px;
+	margin-bottom:30px;
+}
+
+.result_table_title{
+	clear:both;
+	margin-left:10px;
+	width:700px;
+	height:30px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	color:#996600;
+	font-weight:bold;
+	margin-top:50px;
+}
+
+.search_result_content{
+	clear:both;
+	margin-left:120px;
+	width:700px;
+	font-family:"微软雅黑";
+	margin-bottom:50px;
+}
+
+
+.underline_down{
+	margin-left:15px;
+	clear:both;
+	background-image:url(../../analysis/images/noselect.png);
+	height:1px;
+	width:600px;
+	background-repeat:repeat-x;
+	display:inline-block;
+}
+
+
+/*.word{
+	padding-left:0px;
+	padding-top:0px;
+	color:#866938;
+	font-size:20px;
+	font-family:"微软雅黑";
+	text-align:left;
+	font-weight:bold;
+}*/
+
+/*.fjbutton{
+	display:block;
+	width:168px;
+	height:37px;
+	background-image:url(../../analysis/images/fjdb_btn.png);
+	margin-left:40px;
+	margin-top:8px;
+}
+
+.fjbutton:hover{
+	display:block;
+	width:168px;
+	height:37px;
+	background-image:url(../../analysis/images/fjdb_btn_click.png);
+	margin-left:40px;
+	margin-top:8px;
+}*/
+
+.select_book{
+	width:200px;
+	height:28px;
+}
+
+.select_book2{
+	width:204px;
+	height:30px;
+}
+
+/*.fj{
+	display:inline-block;
+	margin-left:0px;
+	margin-top:30px;
+	height:100px;
+}*/
+.result_container > div.info_composimg{
+
+	border-bottom:none;
+	
+}
+div.result_container{
+	margin-top:0px;
+	margin-right: auto;
+	margin-left:60px;
+	padding-top:0px;
+	background-image:url(../../analysis/images/rst_bg.jpg);
+	background-repeat:repeat-y;
+	overflow:hidden;
+	border:none;
+	width:800px;
+	font-weight: bold;
+	color:#666;
+	text-align:center;
+	
+}
+.result_container > div{
+	
+	font-size:15px;
+	width:800px;
+	margin-top:0px;
+
+	float:left;
+	border-bottom:#999999 1px dashed;
+	
+}	
+.result_container > div.name{
+	background-image:url(../../analysis/images/rst_name.jpg);
+	overflow:hidden;	
+	
+}	
+.result_container > div.name > div.context{
+	width:400px;
+
+	color:#FFF;
+	
+}
+.result_container > div > div.content_other{
+	text-align:left;
+	padding-left:20px;
+	padding-right:20px;
+	width:320px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.result_container > div > div{
+	float:left;
+	width:80px;
+}
+
+
+.result_container > div > div.context{
+	width:360px;
+	text-align: center;
+	margin-top:10px;
+	margin-bottom:10px;
+
+
+
+}	
+
+.result_container > div > div{
+	float:left;
+	width:80px;
+}

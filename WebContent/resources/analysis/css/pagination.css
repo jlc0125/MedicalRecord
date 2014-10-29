@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+
+.page{
+	height:39px;
+	width:800px;
+	margin-top:20px;
+	margin-left:8px;
+	clear:both;
+}
+
+.page ul{
+	clear:both;
+	text-align:center;
+	margin-right:12px;}
+
+.page li{
+	float:left;
+	margin-right:6px;
+	margin-top:8px;
+}
+
+.page li a{
+	display:block;background:#9d752a;
+	padding:4px 6px;color:#fff;
+	text-decoration:none;
+}
+
+.page li a:hover{
+	background:#666;
+}
+
+li{
+	display:block;
+	margin:0;
+	list-style:none;
+}
+
+.page_inn{
+	border:solid 1px #b4b4b4;
+	padding:3px 5px;
+	background:#fff;
+}
+
+.page span{
+	display:block;
+	height:39px;
+	line-height:39px;
+	float:right;
+	margin-right:12px;
+	color:#5e5e5e;
+}

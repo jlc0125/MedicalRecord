@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+    <!-- 
+    Smart developers always View Source. 
+    
+    This application was built using Adobe Flex, an open source framework
+    for building rich Internet applications that get delivered via the
+    Flash Player or to desktops via Adobe AIR. 
+    
+    Learn more about Flex at http://flex.org 
+    // -->
+    <head>
+        <title></title>
+        <meta name="google" value="notranslate" />         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
+             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
+             if JavaScript disabled.
+        -->
+        <style type="text/css" media="screen"> 
+            html, body  { height:550px; width:750px }
+            body { margin:0; padding:0; overflow:auto; text-align:center; }   
+            object:focus { outline:none; }
+            #flashContent { display:none; }
+        </style>
+        
+        <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+        <!-- BEGIN Browser History required section -->
+        <link rel="stylesheet" type="text/css" href="history/history.css" />
+        <script type="text/javascript" src="history/history.js"></script>
+        <!-- END Browser History required section -->  
+            
+        <script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript" src="../jQuery/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="../dwrJs/relation.js"></script>
+        <script type="text/javascript">     
+            // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+            var swfVersionStr = "10.2.0";
+            // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+            var xiSwfUrlStr = "playerProductInstall.swf";
+            var flashvars = {};
+            var params = {};
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "always";
+            params.allowfullscreen = "true";
+            params.wmode = "transparent"
+            //params.wmode = "opaque"
+            var attributes = {};
+            attributes.id = "zyy";
+            attributes.name = "zyy";
+            attributes.align = "middle";
+            swfobject.embedSWF(
+                "zyy.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+    </head>
+    <body>
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+             when JavaScript is disabled.
+        -->
+
+		
+
+		<script type="text/javascript"> 
+		
+			var map1;
+
+function getXMLTagValue(xmlDoc, tag, tagIndex)
+{
+    return xmlDoc.getElementsByTagName(tag)[tagIndex].childNodes[0].nodeValue;
+}			
+
+
+			function getParam(paramName){
+				paramValue = "";
+				isFound = false;
+				if (decodeURIComponent(this.location.search).indexOf("?") == 0 && decodeURIComponent(this.location.search).indexOf("=")>1)
+				{
+					arrSource = unescape(decodeURIComponent(this.location.search)).substring(1,decodeURIComponent(this.location.search).length).split("&");
+					i = 0;
+					while (i < arrSource.length && !isFound)
+					{
+						if (arrSource[i].indexOf("=") > 0)
+						{
+							 if (arrSource[i].split("=")[0].toLowerCase()==paramName.toLowerCase())
+							 {
+								paramValue = arrSource[i].split("=")[1];
+								isFound = true;
+							 }
+						}
+						i++;
+					}   
+				}
+			   return paramValue;
+			}
+			
+			
+			function initMap(){
+
+				if (getParam("parm") == "mark"){
+				
+					window.parent.markMap();
+					markGhostLocation();
+					
+				}				
+
+			}
+
+function loadXMLString(text) 
+{
+    try{
+        //Internet Explorer
+        xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.async="false";
+        xmlDoc.loadXML(text);
+
+    }
+    catch(e){
+        try{
+            //Firefox, Mozilla, Opera, etc.
+            parser=new DOMParser();
+            xmlDoc=parser.parseFromString(text,"text/xml");
+        }
+        catch(e) {alert(e.message)}
+
+    }
+    
+    try{
+        return(xmlDoc);
+
+    }
+    catch(e) {alert(e.message)}
+    
+    return(null);
+
+}
+			
+			var locationNameSet= new Array("湖南","辽宁","内蒙古","浙江","黑龙江","陕西","台湾","广西","安徽","湖北","贵州","福建","山西","西藏","河南","江西","海南","山东","江苏","云南","北京","广东","天津","上海","新疆","青海","吉林","河北","四川","重庆","甘肃","宁夏");
+			
+			function markGhostLocation(){
+			
+				for(var i=0; i<locationNameSet.length; i++){
+				
+					
+					locationToMedicineObj.getMedicineByLocation(locationNameSet[i],markGhostLocationCallback);
+				
+				}
+						
+			
+			}
+			
+			function markGhostLocationCallback(data){
+				
+				var xmlDoc;
+				xmlDoc = loadXMLString(data);
+				
+
+				var tmpInfo=getXMLTagValue(xmlDoc, "产地", 0)+"盛产的药材为：";
+				for(var i=0; i<getXMLTagValue(xmlDoc, "药材数量", 0); i++){
+				
+					tmpInfo=tmpInfo+getXMLTagValue(xmlDoc, "药材名称", i)+" ";
+				
+				
+				}
+				markGhostLocationEx(getXMLTagValue(xmlDoc, "经度", 0),getXMLTagValue(xmlDoc, "纬度", 0),tmpInfo);
+											
+			
+			}
+			
+			
+			function isReady(){
+				return true;
+			}
+		
+			function cacheMap(){
+			
+				if (navigator.appName.indexOf('Microsoft') != -1)
+				{
+					map1=window['zyy'];
+				} 
+				else 
+				{
+					map1=document['zyy'];
+				}
+			
+			}
+		
+			function test(){
+				requestData(120,30,"");
+			
+			}
+		
+            function requestData(x,y,info)
+			{
+				var map;
+				if (navigator.appName.indexOf('Microsoft') != -1)
+				{
+					map=window['zyy'];
+				} 
+				else 
+				{
+					map=document['zyy'];
+				}
+
+				//map.addCustomMarkerCoord(x,y,"","assets/images/poi03.png",info,200,80);
+				map.addCustomMarkerCoord("100","30","","assets/images/poi-red.png",info,200,80);
+			}
+			
+            function markGLocation(x,y,info)
+			{
+				var map;
+				if (navigator.appName.indexOf('Microsoft') != -1)
+				{
+					map=window['zyy'];
+				} 
+				else 
+				{
+					map=document['zyy'];
+				}
+
+				map.addCustomMarkerCoord(x,y,"","assets/images/poi-red.png",info,200,80);
+				//map.addCustomMarkerCoord(84.87,41.36,"","assets/images/transparent.png","麻黄，矮陀陀，人参",200,80);
+			}
+			
+            function markGhostLocationEx(x,y,info)
+			{
+				var map;
+				if (navigator.appName.indexOf('Microsoft') != -1)
+				{
+					map=window['zyy'];
+				} 
+				else 
+				{
+					map=document['zyy'];
+				}
+
+				map.addCustomMarkerCoord(x,y,"","assets/images/transparent.png",info,200,80);
+			}
+			
+			
+
+
+            function markLocation(x,y,info)
+			{
+				var map;
+				if (navigator.appName.indexOf('Microsoft') != -1)
+				{
+					map=window['zyy'];
+				} 
+				else 
+				{
+					map=document['zyy'];
+				}
+
+				map.addCustomMarkerCoord(x,y,"","assets/images/poi03.png",info,200,80,info,"hehe");
+
+			}
+			
+			function hehe(data){
+			// alert(data);
+			}
+			
+			
+			function cancelData()
+			{
+				var map;
+				if (navigator.appName.indexOf('Microsoft') != -1)
+				{
+					map=window['zyy'];
+				} 
+				else 
+				{
+					map=document['zyy'];
+				}
+				
+
+				map.clearFeatures();
+				
+
+			}
+			
+			function getURL(){
+			//return "http://10.15.62.103:7687/geoserver/wms";
+			return "http://localhost:9999/geoserver/xiandai/wms";
+			//return "http://www.udms.org/geoserver/wms";
+			//return "http://10.15.62.32:9999/geoserver/xiandai/wms";
+			
+			}
+			
+			function getZoom(){
+				return 4;
+			}
+			
+			function getLayerName(){
+				return "bou2_4p";
+			}
+			
+			function getX(){
+			 return 105;
+			}
+			
+			function getY(){
+			return 36;
+			}			
+
+        </script>
+		
+        <div id="flashContent">
+
+
+        </div>
+        
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="zyy">
+                <param name="movie" value="zyy.swf" />
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="#ffffff" />
+                <param name="allowScriptAccess" value="always" />
+                <param name="allowFullScreen" value="true" />
+                <param name="wmode" value="transparent" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="zyy.swf" width="100%" height="100%">
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="allowScriptAccess" value="always" />
+                    <param name="allowFullScreen" value="true" />
+                    <param name="wmode" value="transparent" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                    <p> 
+                        Either scripts and active content are not permitted to run or Adobe Flash Player version
+                        10.2.0 or greater is not installed.
+                    </p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </noscript>     
+   </body>
+</html>

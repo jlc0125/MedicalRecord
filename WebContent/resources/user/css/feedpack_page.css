@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+html,body {
+    height:100%;
+}
+input{
+	height:30px;
+}
+
+#mid_part{
+    min-height:306px;
+    vertical-align:middle;
+    overflow-y:auto;
+    
+    width:1006px;
+    margin:0 auto;
+
+}
+.feedback_title{
+	width: 470px; 
+}
+
+.feedback_content{
+	margin: 0px; 
+	width: 470px; 
+	height: 159px;
+}
