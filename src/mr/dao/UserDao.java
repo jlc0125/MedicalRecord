@@ -28,19 +28,18 @@ public class UserDao {
 		jdbcTemplate.query(sqlStr, new Object[] { userName },
 				new RowCallbackHandler() {
 					public void processRow(ResultSet rs) throws SQLException {
-						user.setUserId(rs.getInt("user_id"));
+						user.setUserId(rs.getLong("user_id"));
 						user.setUserName(userName);
-						user.setCredits(rs.getInt("credits"));
 					}
 				});
 		return user;
 	}
 
 	public void updateLoginInfo(User user) {
-		String sqlStr = " UPDATE t_user SET last_visit=?,last_ip=?,credits=? "
+		String sqlStr = " UPDATE t_user SET last_visit=?,last_ip=? "
 				+ " WHERE user_id =?";
 		jdbcTemplate.update(sqlStr, new Object[] { user.getLastVisit(),
-				user.getLastIp(),user.getCredits(),user.getUserId()});
+				user.getLastIp(),user.getUserId()});
 	}
 
 }

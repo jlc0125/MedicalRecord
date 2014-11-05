@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class LoginLog implements Serializable{
 	private int loginLogId;
-	private int userId;
+	private Long userId;
 	private String ip;
 	private Date loginDate;
 	public int getLoginLogId() {
@@ -14,11 +14,11 @@ public class LoginLog implements Serializable{
 	public void setLoginLogId(int loginLogId) {
 		this.loginLogId = loginLogId;
 	}
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(Long long1) {
+		this.userId = long1;
 	}
 	public String getIp() {
 		return ip;
