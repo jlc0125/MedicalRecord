@@ -36,10 +36,15 @@ public class MedicalRecordService {
 	
 	//医案对关键字的相关程度排序，返回医案id的列表
 	public List<Integer> similaritySort(String[] words){
-		int[] wordIds=new int[words.length];
+		List<Integer> wordIds=new ArrayList<Integer>();
 		for (int i=0;i<words.length;i++){
-			wordIds[i]=wordDao.indexOfWord(words[i]);
-			System.out.println(wordIds[i]);
+			Integer id=wordDao.indexOfWord(words[i]);
+			if (id!=-1){
+				wordIds.add(id);
+				System.out.println(id);
+				System.out.println(words[i]);
+			}
+			
 		}
 		List<HashMap<Integer,Double>> allTfidf=mrDao.allTfidf();
 		List<simWithId> simList=new ArrayList<simWithId>();
@@ -74,6 +79,15 @@ public class MedicalRecordService {
 			result.add(mrDao.recordByIndex(simSort.get(i)));
 		}
 		return result;
+	}
+	
+	public List<MedicalRecord> recommend(MedicalRecord mr){
+		//推荐医案
+		return null;
+	}
+	
+	public MedicalRecord getRecordById(int id){
+		return mrDao.recordByIndex(id);
 	}
 	
 	

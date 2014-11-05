@@ -4,17 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-	private int userId;
+	private Long userId;
 	private String userName;
 	private String password;
-	private int credits;
+	private Integer[] collection;
 	private String lastIp;
 	private Date lastVisit;
 	
-	public int getUserId() {
+	public Integer[] getCollection() {
+		return collection;
+	}
+	public void setCollection(Integer[] collection) {
+		this.collection = collection;
+	}
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -29,12 +35,7 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getCredits() {
-		return credits;
-	}
-	public void setCredits(int credits) {
-		this.credits = credits;
-	}
+	
 	public String getLastIp() {
 		return lastIp;
 	}
