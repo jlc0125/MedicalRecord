@@ -76,5 +76,11 @@ public class MedicalRecordService {
 		return result;
 	}
 	
+	public MedicalRecord recordByIndex(final int index){
+		return mrDao.recordByIndex(index);
+	}
 	
+	public List recordByCategory(String secCateName){
+		return mrDao.recordByCategory(secCateName);
+	}
 }
