@@ -35,9 +35,12 @@ public class BZNaiveBayesDao {
 						result.setWord(rs.getString("word"));
 						result.setPrior(rs.getFloat("prior"));
 						result.setLikelihood(rs.getString("likelihood"));
+						result.setRecords(rs.getString("records"));
 						}
 		});
 		return result;
 	}
+	
+	
 	
 }

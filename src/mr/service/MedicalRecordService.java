@@ -81,11 +81,11 @@ public class MedicalRecordService {
 		return result;
 	}
 	
-<<<<<<< HEAD
+
 	public MedicalRecord recordByIndex(final int index){
 		return mrDao.recordByIndex(index);
 	}
-=======
+
 	public List<MedicalRecord> recommend(MedicalRecord mr){
 		//推荐医案
 		return null;
@@ -95,7 +95,7 @@ public class MedicalRecordService {
 		return mrDao.recordByIndex(id);
 	}
 	
->>>>>>> b6bcdde083dc60e5b31b1667cf8ea5f2a241d0b3
+
 	
 	public List recordByCategory(String secCateName){
 		return mrDao.recordByCategory(secCateName);

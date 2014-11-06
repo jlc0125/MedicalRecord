@@ -1,17 +1,17 @@
 package mr.service;
 
 import static org.junit.Assert.*;
-import mr.domain.Med;
-import mr.domain.MedicalRecord;
 
 import org.junit.Test;
 
 
 
 
-import java.util.List;
 
-import org.junit.Test;
+
+import java.util.Map;
+import java.util.Set;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,7 +26,7 @@ public class TestBZNaiveBayesService {
 	
 	@Test
 	public void freqUsedMedsTest(){
-		List<Med> meds=bs.freqUsedMeds("血虚");
-		assertEquals(10, meds.size());
+		Map<String,Float> meds=bs.freqUsedMeds("血虚");
+		assertTrue(meds.containsKey("当归"));
 	}
 }
