@@ -45,8 +45,6 @@ public class BZNaiveBayesService {
 			cover+=pList.get(i).likelihood;
 			if (cover<threshold) result.put(mDao.getMedById(pList.get(i).medId).getName(),pList.get(i).likelihood);
 			else break;
-			System.out.println(mDao.getMedById(pList.get(i).medId).getName());
-			System.out.println(pList.get(i).likelihood);
 		}
 		
 		

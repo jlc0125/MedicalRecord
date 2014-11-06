@@ -1,6 +1,7 @@
 package mr.web;
 
 import java.util.List;
+import java.util.Map;
 
 import mr.domain.Med;
 import mr.domain.MedicalRecord;
@@ -26,7 +27,7 @@ public class AnalysisController {
 	@RequestMapping(value="bz")
 	public ModelAndView bz(@RequestParam("wd") String wd){
 		ModelAndView mav=new ModelAndView("analysisResult");
-		List<Med> meds=bzs.freqUsedMeds(wd);
+		Map<String,Float> meds=bzs.freqUsedMeds(wd);
 		mav.addObject(meds);
 		List<MedicalRecord> records=bzs.containRecords(wd);
 		mav.addObject(records);
