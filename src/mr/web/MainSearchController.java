@@ -56,5 +56,11 @@ public class MainSearchController {
 		return "searchResult";
 	}
 	
-	
+	@RequestMapping("/search")
+	@ResponseBody
+	public List getRecord(@RequestParam("categoryword") String cw,@RequestParam("pageno") int pn){
+		List recList = mrs.recordByCategory(cw);
+		System.out.println(cw + pn);		
+		return recList;
+	}
 }

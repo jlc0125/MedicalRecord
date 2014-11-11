@@ -75,7 +75,7 @@ public class MedicalRecordDao {
 		Category cate = cgDao.getSecCategory(secCateName);
 		int start = cate.getStartRecId();
 		int end = start + cate.getRecNum()-1;
-		String sql="select * from medicalrecord where recordId between "+ start+" and "+end;
+		String sql="select recordTitle,content from medicalrecord where recordId between "+ start+" and "+end;
 		List RecordList = jdbcTemplate.queryForList(sql);
 		return RecordList;
 	}
