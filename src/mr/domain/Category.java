@@ -18,7 +18,6 @@ public class Category {
 	public void setRecNum(int recNum) {
 		RecNum = recNum;
 	}
-
 	
 	public String getCateId() {
 		return CateId;
