@@ -23,7 +23,9 @@ public class MainSearchController {
 	@ResponseBody
 	public List<MedicalRecord> getRecords(@RequestParam("wd") String wd,@RequestParam("pageNo") int pageNo,
 			@RequestParam("pageSize") int pageSize,@RequestParam("type") String type){
-		if (type=="record"){
+		
+		if (type.equals("record")){
+			System.out.println("keyword="+wd);
 			String[] words=IKAnalizer.IKAnalysis(wd).trim().split(" ");
 			for(String word : words){
 				System.out.println(word);
@@ -49,7 +51,7 @@ public class MainSearchController {
 		
 	}
 	
-	@RequestMapping(value="")
+	@RequestMapping(value="result")
 	public String searchPage(){
 		return "searchResult";
 	}

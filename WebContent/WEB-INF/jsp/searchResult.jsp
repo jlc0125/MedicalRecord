@@ -33,6 +33,134 @@ String contextPath=request.getContextPath();
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
 						
 	</head>
+	<script type="text/javascript">
+
+	$(function() {
+
+		var checkBox = document.getElementsByName("option");
+		for ( var k = 0; k < checkBox.length; k++)
+			checkBox[k].checked = false;
+
+		
+
+		$('#front_btn').live(
+				'click',
+				function() {
+					var keyword = $('#front_input').val();
+					var range = "";
+					var typeIndex = -1;
+					for ( var k = 0; k < checkBox.length; k++) {
+						if (checkBox[k].checked == true) {
+							if (typeIndex == -1)
+								typeIndex = k;
+							range += "1";
+						} else
+							range += "0";
+					}
+					if (typeIndex == -1) {
+						typeIndex = 0;
+						range = "10"
+					}
+					window.location.href = "./frontsearch?keyword=" + keyword
+							+ "&range=" + range + "&pageno=1" + "&type="
+							+ typeEnMap[typeIndex];
+				});
+
+		window.location.hash = "#home_type_nav";
+	});
+
+	function initFront() {
+		getFrontList();
+	}
+
+
+	function getFrontList() {
+		
+		var type = decodeURI(getUrlParam("type"));
+		var dataJson = {
+			"wd" : decodeURI(getUrlParam("wd")),
+			"type" : type,
+			"pageNo" : parseInt(getUrlParam("pageNo")),
+			"pageSize" : parseInt(getUrlParam("pageSize")),
+		};
+		var url = "./retval";
+		$.ajax({
+			  type: 'POST',
+			  url: url,
+			  data: dataJson,
+			  success: getFrontListSuccessCB,
+			  error:getFrontErrorCB,
+			  dataType:'text'
+			});
+	}
+
+
+
+	function getFrontListSuccessCB(data,textStatus,jqXHR) {
+		var type = decodeURI(getUrlParam("type"));
+		console.log(data);
+	    data=eval('(' + data + ')');
+	    console.log(data);
+	    var thead= getTableTitle(type);
+		var tbody = getTableBody(data,type);
+		
+		$("#front_search_list_title").html(thead);
+		$("#front_search_list_info").html(tbody);
+		console.log(tbody);
+		if (parseInt(data.count) <= pageSize)
+		{
+			$("#front_search_pagincation").hide();
+			if(parseInt(data.count)==0)
+				getFrontErrorCB();
+		}
+		else
+			$("#front_search_pagincation").pagination(
+					{
+						items : 100,
+						itemsOnPage : pageSize,
+						cssStyle : 'light-theme',
+						hrefTextPrefix : '#',
+						onPageClick : function(pageNumber, event) {
+							window.location.href = "./result?wd="
+									+decodeURI(getUrlParam("wd"))+"&type="+getUrlParam("type")+"&pageNo="
+									+pageNumber+"&pageSize="+getUrlParam("pageSize");
+
+						},
+						prevText : "上一页",
+						nextText : "下一页",
+						currentPage : getUrlParam("pageNo")
+					});
+	}
+
+	function getFrontErrorCB(){
+		
+		window.location.href = "./error";
+	}
+	
+	function getTableTitle(type){
+		var prefix = "<tr class='success'><th>";
+		var suffix = "</th></tr>";
+		if(type == "record") 
+			return prefix + "医生姓名</th><th>病例名称" + suffix;
+	}
+	
+	function getTableBody(data,type){
+		var tbody="";
+		for(var i=0;i<data.length;i++){
+			if (type=="record"){
+				tbody+="<tr><td><a href='#'>"+data[i].doctorName +"</a></td><td><a href='#'>"+data[i].recordTitle+"</a></td></tr>";
+			}
+			if (type=="doctor"){
+				
+			}
+		}
+		return tbody;
+	}
+	</script>
+	
+	
+	
+	
 	<body onload="initFront()">
 	     <div>
 	        
