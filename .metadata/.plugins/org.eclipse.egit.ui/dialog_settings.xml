@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="670" key="DIALOG_WIDTH"/>
+	<item value="E:\MedicalCase\.git" key="GitSelectRepositoryPage.lastRepository"/>
+	<item value="8" key="DIALOG_Y_ORIGIN"/>
+	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
+	<item value="556" key="DIALOG_HEIGHT"/>
+	<item value="356" key="DIALOG_X_ORIGIN"/>
+	<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="file:///E:\MedicalCase"/>
+		<item value="Invalid%20project%20description.%0a%20%20E:\MedicalCase overlaps the workspace location: E:\MedicalCase"/>
+	</list>
+	<section name="GitImportWizard">
+		<item value="true" key="GitProjectsImportPage.STORE_NESTED_PROJECTS"/>
+	</section>
+</section>

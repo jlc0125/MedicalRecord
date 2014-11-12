@@ -35,7 +35,7 @@ public class TestUserService {
 	@Test
 	public void testAddLoginLog() {
 		User user = userService.findUserByUserName("admin");
-		user.setUserId(1);
+		user.setUserId(1L);
 		user.setUserName("admin");
 		user.setLastIp("192.168.12.7");
 		user.setLastVisit(new Date());

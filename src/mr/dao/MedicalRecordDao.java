@@ -6,16 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.jdbc.core.RowCallbackHandler;
-
+import mr.domain.Category;
 import mr.domain.MedicalRecord;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.stereotype.Repository;
 @Repository
 public class MedicalRecordDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private CategoryDao cgDao;
 	
 	public MedicalRecord recordByIndex(final int index){
 		final MedicalRecord medicalRecord=new MedicalRecord();
@@ -65,5 +68,15 @@ public class MedicalRecordDao {
 		});
 		
 		return result;
+	}
+	
+	//根据第二分类名称获得医案集
+	public List recordByCategory(String secCateName){
+		Category cate = cgDao.getSecCategory(secCateName);
+		int start = cate.getStartRecId();
+		int end = start + cate.getRecNum()-1;
+		String sql="select recordTitle,content from medicalrecord where recordId between "+ start+" and "+end;
+		List RecordList = jdbcTemplate.queryForList(sql);
+		return RecordList;
 	}
 }

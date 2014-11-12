@@ -4,12 +4,14 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 
 
@@ -24,14 +26,25 @@ public class TestMedicalRecordDao {
 	private MedicalRecordDao mrDao;
 	@Test
 	public void testRecordByIndex() {
-		MedicalRecord medicalRecord=new MedicalRecord();
-		medicalRecord=mrDao.recordByIndex(1);
-		assertEquals(medicalRecord.getRecordTitle(), "犯二");
+	
+		MedicalRecord medicalRecord = mrDao.recordByIndex(1);
+		
 	}
 	@Test
 	public void testAllTfidf(){
 		List<HashMap<Integer,Double>> allTfidf=mrDao.allTfidf();
 		assertNotNull(allTfidf);
 	}
-
+	
+	@Test
+	public void testRecordByCategory(){
+		List recordList = mrDao.recordByCategory("中毒");
+		int i;
+		for(i=0;i<recordList.size();i++){
+		//	Map userMap=(Map) recordList.get(i);
+		//	System.out.println(userMap.get("tfidf")+" ");
+		}
+		assertEquals(i,60);
+	}
+	
 }
