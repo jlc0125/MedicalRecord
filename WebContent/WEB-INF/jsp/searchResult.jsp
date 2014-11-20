@@ -13,9 +13,7 @@ String contextPath=request.getContextPath();
 		<!-- js -->
 		<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>		
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
 		<script src="<%=contextPath%>/resources/search/js/csrf.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/home.js"></script>
 	
 		<!-- exlib -->
 		<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
@@ -34,49 +32,26 @@ String contextPath=request.getContextPath();
 						
 	</head>
 	<script type="text/javascript">
-
-	$(function() {
-
-		var checkBox = document.getElementsByName("option");
-		for ( var k = 0; k < checkBox.length; k++)
-			checkBox[k].checked = false;
-
-		
-
-		$('#front_btn').live(
-				'click',
-				function() {
-					var keyword = $('#front_input').val();
-					var range = "";
-					var typeIndex = -1;
-					for ( var k = 0; k < checkBox.length; k++) {
-						if (checkBox[k].checked == true) {
-							if (typeIndex == -1)
-								typeIndex = k;
-							range += "1";
-						} else
-							range += "0";
-					}
-					if (typeIndex == -1) {
-						typeIndex = 0;
-						range = "10"
-					}
-					window.location.href = "./frontsearch?keyword=" + keyword
-							+ "&range=" + range + "&pageno=1" + "&type="
-							+ typeEnMap[typeIndex];
-				});
-
-		window.location.hash = "#home_type_nav";
-	});
-
-	function initFront() {
+	
+	var pageSize;
+	var pageNo;
+	var type;
+	$(function(){
+		type=getUrlParam("type");
 		getFrontList();
-	}
+		//显示结果排序，与医案相关度排序冲突，暂不实现
+		/*
+		$(".head").live(
+			'click',
+			function(){
+				order=$(this).attr("name");
+		});
+		*/
+	});
 
 
 	function getFrontList() {
 		
-		var type = decodeURI(getUrlParam("type"));
 		var dataJson = {
 			"wd" : decodeURI(getUrlParam("wd")),
 			"type" : type,
@@ -97,17 +72,20 @@ String contextPath=request.getContextPath();
 
 
 	function getFrontListSuccessCB(data,textStatus,jqXHR) {
-		var type = decodeURI(getUrlParam("type"));
-		console.log(data);
+		pageSize=parseInt(getUrlParam("pageSize"));
+		pageNo=parseInt(getUrlParam("pageNo"));
 	    data=eval('(' + data + ')');
 	    console.log(data);
-	    var thead= getTableTitle(type);
-		var tbody = getTableBody(data,type);
+	    showData(data);
+	}
+
+	function showData(data){
+		var thead= getTableTitle();
+		var tbody = getTableBody(data);
 		
 		$("#front_search_list_title").html(thead);
 		$("#front_search_list_info").html(tbody);
-		console.log(tbody);
-		if (parseInt(data.count) <= pageSize)
+		if (data.length <= pageSize)
 		{
 			$("#front_search_pagincation").hide();
 			if(parseInt(data.count)==0)
@@ -116,14 +94,14 @@ String contextPath=request.getContextPath();
 		else
 			$("#front_search_pagincation").pagination(
 					{
-						items : 100,
+						items : data.length,
 						itemsOnPage : pageSize,
 						cssStyle : 'light-theme',
 						hrefTextPrefix : '#',
 						onPageClick : function(pageNumber, event) {
 							window.location.href = "./result?wd="
-									+decodeURI(getUrlParam("wd"))+"&type="+getUrlParam("type")+"&pageNo="
-									+pageNumber+"&pageSize="+getUrlParam("pageSize");
+									+decodeURI(getUrlParam("wd"))+"&type="+type+"&pageNo="
+									+pageNumber+"&pageSize="+pageSize;
 
 						},
 						prevText : "上一页",
@@ -131,28 +109,22 @@ String contextPath=request.getContextPath();
 						currentPage : getUrlParam("pageNo")
 					});
 	}
-
+	
 	function getFrontErrorCB(){
 		
 		window.location.href = "./error";
 	}
 	
-	function getTableTitle(type){
-		var prefix = "<tr class='success'><th>";
-		var suffix = "</th></tr>";
-		if(type == "record") 
-			return prefix + "医生姓名</th><th>病例名称" + suffix;
+	function getTableTitle(){
+		return "<tr class='success'><th class='head' name='doctorName'>医生姓名</th><th class='head' name='recordTitle'>医案名称</th><th class='head' name='reference'>医案出处</th></tr>" ;
 	}
 	
-	function getTableBody(data,type){
+	function getTableBody(data){
 		var tbody="";
-		for(var i=0;i<data.length;i++){
-			if (type=="record"){
-				tbody+="<tr><td><a href='#'>"+data[i].doctorName +"</a></td><td><a href='#'>"+data[i].recordTitle+"</a></td></tr>";
-			}
-			if (type=="doctor"){
-				
-			}
+		for(var i=(pageNo-1)*pageSize;i<pageNo*pageSize&&i<data.length;i++){
+			tbody+="<tr><td><a href='#'>"+data[i].doctorName +"</a></td>"+
+			"<td><a href='/MedicalRecord/record_detail?recordId="+data[i].recordId+"'>"+data[i].recordTitle+"</a></td>"+
+			"<td><a href='#'>"+data[i].reference+"</a></td></tr>";
 		}
 		return tbody;
 	}
@@ -161,7 +133,7 @@ String contextPath=request.getContextPath();
 	
 	
 	
-	<body onload="initFront()">
+	<body>
 	     <div>
 	        
 

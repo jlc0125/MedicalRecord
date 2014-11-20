@@ -54,6 +54,11 @@ String contextPath=request.getContextPath();
 <script type="text/javascript">
 
 var pie;
+var dataAll;
+var pageNo=1;
+var pageSize=10;
+var pageIndex;
+
 $(function(){
 	$("#btn").live(
 			'click',
@@ -71,12 +76,51 @@ $(function(){
 					  dataType:"text"
 					});
 			});
+	$(window).scroll(function(){
+		if(dataAll){
+			if($("#records").offset().top+$("#records").height()-window.pageYOffset-$(window).height()<100){
+				pageNo+=1;
+				data=dataAll[pageIndex];
+				records=data.records;
+				showRecords(records,pageNo,pageSize);
+				
+			}
+		}
+	});
 });
 
 function success(data,textStatus,jqXHR){
+	dataAll=eval('(' + data + ')');
+	console.log(dataAll);
+	var list="";
+	for(var i=0;i<dataAll.length;i++){
+		if(i==0) list+="<li class='active'><a id='nav"+i+"' onclick='init("+i+")'>"+dataAll[i].word+"</a></li>";
+		else list+="<li><a id='nav"+i+"' onclick='init("+i+")'>"+dataAll[i].word+"</a></li>";
+	}
+	console.log(list);
+	$("#nav").html(list);
+	init(0);
+}
+
+function error(){
+	alert("error");
+}
+
+function showRecords(records,pageNo,pageSize){
+	tbody="";
+	for(var i=(pageNo-1)*pageSize;i<pageNo*pageSize;i++){
+		tbody+="<tr><th>"+records[i].recordTitle+"</th><th>"+records[i].doctorName+"</th><th>"+records[i].reference+"</th></tr>";
+	}
+	$("#records_body").append(tbody);
+}
+
+function init(index){
+	pageNo=1;
+	pageIndex=index;
 	$("#pieChart").empty();
-	data=eval('(' + data + ')');
-	console.log(data);
+	$("#records_body").empty();
+	data=dataAll[index];
+	console.log(index);
 	var color = d3.scale.category20();
 	var meds=data.meds;
 	var records=data.records;
@@ -105,19 +149,12 @@ function success(data,textStatus,jqXHR){
 	
 	paintPie(pieData);
 	
-	var recordsTable="<table id='records_table' class='table'><thead><tr><th>医案名称</th>\
-	<th>医生姓名</th><th>医案出处</th></tr><tbody>";
-	for(var i=0;i<10;i++){
-		recordsTable+="<tr><th>"+records[i].recordTitle+"</th></tr>";
-	}
-	recordsTable+="</tbody>";
+	var recordsHead="<tr><th>医案名称</th><th>医生姓名</th><th>医案出处</th></tr>";
 	$("#records_info").html("相关医案");
-	$("#records").html(recordsTable);
+	$("#records_head").html(recordsHead);
+	showRecords(records,pageNo,pageSize);
 }
 
-function error(){
-	alert("error");
-}
 
 function paintPie(data){
 	pie = new d3pie("pieChart", {
@@ -232,6 +269,7 @@ function paintPie(data){
 			</div>
 			
 			<div class="container" style="background-color: white;">
+				<ul id="nav" class="nav nav-tabs"></ul>
 				<div class="info"><h1 id="meds_info"></h1>
 				</div>
 				<div class="row">
@@ -246,7 +284,11 @@ function paintPie(data){
 				</div>
 				<div class="row">
 					<div class="span12">
-						<div id="records"  >
+						<div id="records">
+							<table id="records_table" class="table">
+								<thead id="records_head"></thead>
+								<tbody id="records_body"></tbody>
+							</table>
 						</div>
 					</div>
 				</div>

@@ -85,6 +85,15 @@ public class MedicalRecordService {
 	public MedicalRecord recordByIndex(final int index){
 		return mrDao.recordByIndex(index);
 	}
+	
+	//医生医案
+	public List<MedicalRecord> recordByDoctor(String doctorName){
+		return mrDao.recordByDoctor(doctorName);
+	}
+	
+	public List<MedicalRecord> recordByReference(String reference){
+		return mrDao.recordByReference(reference);
+	}
 
 	public List<MedicalRecord> recommend(MedicalRecord mr){
 		//推荐医案

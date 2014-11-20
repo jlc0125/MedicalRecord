@@ -28,7 +28,7 @@ public class BZNaiveBayesService {
 	public Map<String,Float> freqUsedMeds(String word){
 		Map<String,Float> result=new HashMap<String,Float>();
 		Long id=bDao.indexOf(word);
-		if (id==-1) return null;
+		if (id==-1) return result;
 		BZNaiveBayes bz=bDao.getById(id);
 		String pStr=bz.getLikelihood();
 		String[] pArray=pStr.split(" ");
@@ -42,9 +42,9 @@ public class BZNaiveBayesService {
 		float threshold=0.9f;
 		float cover=0.0f;
 		for(int i=pList.size()-1;i>=0;i--){
-			cover+=pList.get(i).likelihood;
 			if (cover<threshold) result.put(mDao.getMedById(pList.get(i).medId).getName(),pList.get(i).likelihood);
 			else break;
+			cover+=pList.get(i).likelihood;
 		}
 		
 		
@@ -70,11 +70,15 @@ public class BZNaiveBayesService {
 	}
 	
 	public List<MedicalRecord> containRecords(String word){
-		Long id=bDao.indexOf(word);
-		if (id==-1) return null;
 		List<MedicalRecord> records=new ArrayList<MedicalRecord>();
+		Long id=bDao.indexOf(word);
+		if (id==-1) return records;
 		BZNaiveBayes bz=bDao.getById(id);
-		String[] recordsStr=bz.getRecords().split(" ");
+		String recordsCol=bz.getRecords();
+		if(recordsCol==null||recordsCol==""){
+			return records;
+		}
+		String[] recordsStr=recordsCol.split(" ");
 		for(String idStr:recordsStr){
 			records.add(mrs.getRecordById(Integer.parseInt(idStr)));
 		}

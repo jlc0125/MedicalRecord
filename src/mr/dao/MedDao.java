@@ -46,4 +46,11 @@ public class MedDao {
 		});
 		return result;
 	}
+	
+	public boolean isMed(String word){
+		String sqlStr="select count(*) from med_vocab where word=?";
+		int count=jdbcTemplate.queryForInt(sqlStr, new Object[]{word});
+		if(count>0) return true;
+		else return false;
+	}
 }

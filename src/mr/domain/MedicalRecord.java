@@ -9,6 +9,20 @@ public class MedicalRecord {
 	private int doctorId;
 	private String doctorName;
 	private HashMap<Integer,Double> tfidf;
+	private String category;
+	private String reference;
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getReference() {
+		return reference;
+	}
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 	public int getRecordId() {
 		return recordId;
 	}

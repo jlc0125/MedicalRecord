@@ -32,6 +32,8 @@ public class MedicalRecordDao {
 						medicalRecord.setDoctorName(rs.getString("doctorName"));
 						medicalRecord.setRecordId(index);
 						medicalRecord.setRecordTitle(rs.getString("recordTitle"));
+						medicalRecord.setReference(rs.getString("reference"));
+						medicalRecord.setCategory(rs.getString("category"));
 						String tfidfStr=rs.getString("tfidf");
 						HashMap<Integer,Double> tfidfMap=new HashMap<Integer,Double>();
 						//String转map，待处理
@@ -78,5 +80,45 @@ public class MedicalRecordDao {
 		String sql="select recordTitle,content from medicalrecord where recordId between "+ start+" and "+end;
 		List RecordList = jdbcTemplate.queryForList(sql);
 		return RecordList;
+	}
+	
+	public List<MedicalRecord> recordByDoctor(String doctorName){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where doctorName like ?";
+		jdbcTemplate.query(sqlStr,new Object[] {"%"+doctorName+"%"},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
+	}
+	
+	public List<MedicalRecord> recordByReference(String reference){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where reference like ?";
+		jdbcTemplate.query(sqlStr,new Object[] {"%"+reference+"%"},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
 	}
 }

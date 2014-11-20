@@ -19,7 +19,7 @@ public class IKAnalizer {
 		InputStream ip = new ByteArrayInputStream(bt);
 		Reader read = new InputStreamReader(ip);
 
-		IKSegmenter iks = new IKSegmenter(read,true);
+		IKSegmenter iks = new IKSegmenter(read,false);
 		Lexeme t;
 		while ((t = iks.next()) != null ) {
 			if (t.getLexemeText().length()>1) {
