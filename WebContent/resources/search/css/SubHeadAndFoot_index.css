@@ -69,6 +69,7 @@ INPUT {
 	height: 199px; 
 	padding-top: 30px; 
 }
+
 .logoSearch_L2 .search .text {
     border-bottom: #e2c7b9 1px solid;
     border-left: #e2c7b9 1px solid;
@@ -87,8 +88,6 @@ INPUT {
     margin-left: 90px;
     vertical-align: middle;
     font-size: 15px;
-}
-
 }
 
 
