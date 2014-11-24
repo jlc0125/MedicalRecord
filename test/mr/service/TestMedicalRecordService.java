@@ -23,15 +23,22 @@ public class TestMedicalRecordService {
 	MedicalRecordService mrs;
 	
 	String[] words={"咳嗽","失眠"};
-	@Test
+	//@Test
 	public void testSimilaritySort(){
 		List<Integer> tmp=mrs.similaritySort(words);
 		assertNotNull(tmp);
 	}
 	
-	@Test
+	//@Test
 	public void testRelRecords(){
 		List<MedicalRecord> tmp=mrs.relRecords(words);
 		assertNotNull(tmp);
 	}
+	
+	@Test
+	public void testRecordByDoctor(){
+		List<MedicalRecord> tmp=mrs.recordByDoctor("");
+		assertEquals("赵", tmp.get(0).getDoctorName());
+	}
+	
 }

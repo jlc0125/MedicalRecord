@@ -13,9 +13,7 @@ String contextPath=request.getContextPath();
 		<!-- js -->
 		<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>		
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
 		<script src="<%=contextPath%>/resources/search/js/csrf.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/home.js"></script>
 	
 		<!-- exlib -->
 		<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
@@ -33,7 +31,109 @@ String contextPath=request.getContextPath();
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
 						
 	</head>
-	<body onload="initFront()">
+	<script type="text/javascript">
+	
+	var pageSize;
+	var pageNo;
+	var type;
+	$(function(){
+		type=getUrlParam("type");
+		getFrontList();
+		//显示结果排序，与医案相关度排序冲突，暂不实现
+		/*
+		$(".head").live(
+			'click',
+			function(){
+				order=$(this).attr("name");
+		});
+		*/
+	});
+
+
+	function getFrontList() {
+		
+		var dataJson = {
+			"wd" : decodeURI(getUrlParam("wd")),
+			"type" : type,
+			"pageNo" : parseInt(getUrlParam("pageNo")),
+			"pageSize" : parseInt(getUrlParam("pageSize")),
+		};
+		var url = "./retval";
+		$.ajax({
+			  type: 'POST',
+			  url: url,
+			  data: dataJson,
+			  success: getFrontListSuccessCB,
+			  error:getFrontErrorCB,
+			  dataType:'text'
+			});
+	}
+
+
+
+	function getFrontListSuccessCB(data,textStatus,jqXHR) {
+		pageSize=parseInt(getUrlParam("pageSize"));
+		pageNo=parseInt(getUrlParam("pageNo"));
+	    data=eval('(' + data + ')');
+	    console.log(data);
+	    showData(data);
+	}
+
+	function showData(data){
+		var thead= getTableTitle();
+		var tbody = getTableBody(data);
+		
+		$("#front_search_list_title").html(thead);
+		$("#front_search_list_info").html(tbody);
+		if (data.length <= pageSize)
+		{
+			$("#front_search_pagincation").hide();
+			if(parseInt(data.count)==0)
+				getFrontErrorCB();
+		}
+		else
+			$("#front_search_pagincation").pagination(
+					{
+						items : data.length,
+						itemsOnPage : pageSize,
+						cssStyle : 'light-theme',
+						hrefTextPrefix : '#',
+						onPageClick : function(pageNumber, event) {
+							window.location.href = "./result?wd="
+									+decodeURI(getUrlParam("wd"))+"&type="+type+"&pageNo="
+									+pageNumber+"&pageSize="+pageSize;
+
+						},
+						prevText : "上一页",
+						nextText : "下一页",
+						currentPage : getUrlParam("pageNo")
+					});
+	}
+	
+	function getFrontErrorCB(){
+		
+		window.location.href = "./error";
+	}
+	
+	function getTableTitle(){
+		return "<tr class='success'><th class='head' name='doctorName'>医生姓名</th><th class='head' name='recordTitle'>医案名称</th><th class='head' name='reference'>医案出处</th></tr>" ;
+	}
+	
+	function getTableBody(data){
+		var tbody="";
+		for(var i=(pageNo-1)*pageSize;i<pageNo*pageSize&&i<data.length;i++){
+			tbody+="<tr><td><a href='#'>"+data[i].doctorName +"</a></td>"+
+			"<td><a href='/MedicalRecord/record_detail?recordId="+data[i].recordId+"'>"+data[i].recordTitle+"</a></td>"+
+			"<td><a href='#'>"+data[i].reference+"</a></td></tr>";
+		}
+		return tbody;
+	}
+	</script>
+	
+	
+	
+	
+	<body>
 	     <div>
 	        
 

@@ -5,6 +5,13 @@ public class ZZNaiveBayes {
 	private String word;
 	private Float prior;
 	private String likelihood;
+	private String records;
+	public String getRecords() {
+		return records;
+	}
+	public void setRecords(String records) {
+		this.records = records;
+	}
 	public Long getId() {
 		return id;
 	}

@@ -1,23 +1,28 @@
 package mr.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mr.domain.Med;
 import mr.domain.MedicalRecord;
 import mr.service.BZNaiveBayesService;
+import mr.service.ZZNaiveBayesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/Analysis")
 public class AnalysisController {
 	@Autowired
 	BZNaiveBayesService bzs;
+	@Autowired
+	ZZNaiveBayesService zzs;
+	
 	
 	@RequestMapping(value="")
 	public String anaPage(){
@@ -25,13 +30,50 @@ public class AnalysisController {
 	}
 	
 	@RequestMapping(value="bz")
-	public ModelAndView bz(@RequestParam("wd") String wd){
-		ModelAndView mav=new ModelAndView("analysisResult");
-		Map<String,Float> meds=bzs.freqUsedMeds(wd);
-		mav.addObject(meds);
-		List<MedicalRecord> records=bzs.containRecords(wd);
-		mav.addObject(records);
-		return mav;
+	@ResponseBody
+	public List<Map<String,Object>> bz(@RequestParam("wd") String wd){
+		List<Map<String,Object>> result=new ArrayList<Map<String,Object>>();
+		
+		String[] words=IKAnalizer.IKAnalysis(wd).trim().split(" ");
+		for(String word:words){
+			System.out.println("word="+word);
+			Map<String,Object> map=new HashMap<String,Object>();
+			Map<String,Float> meds=bzs.freqUsedMeds(word);
+			List<MedicalRecord> records=bzs.containRecords(word);
+			map.put("meds",meds.keySet());
+			map.put("likelihood", meds.values());
+			map.put("records",records);
+			map.put("word", word);
+			result.add(map);
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="zz")
+	@ResponseBody
+	public List<Map<String,Object>> zz(@RequestParam("wd") String wd){
+		List<Map<String,Object>> result=new ArrayList<Map<String,Object>>();
+		
+		String[] words=IKAnalizer.IKAnalysis(wd).trim().split(" ");
+		for(String word:words){
+			System.out.println("word="+word);
+			Map<String,Object> map=new HashMap<String,Object>();
+			Map<String,Float> meds=zzs.freqUsedMeds(word);
+			List<MedicalRecord> records=zzs.containRecords(word);
+			map.put("meds",meds.keySet());
+			map.put("likelihood", meds.values());
+			map.put("records",records);
+			map.put("word", word);
+			result.add(map);
+		}
+		return result;
+	}
+	
+	
+	
+	@RequestMapping(value="Result")
+	public String resultPage(){
+		return "analysisResult";
 	}
 	
 }

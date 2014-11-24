@@ -15,24 +15,14 @@ String contextPath=request.getContextPath();
 <!-- js -->
 <script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>
 <script src="<%=contextPath%>/resources/common/ajax.js"></script>
-<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
-<script src="<%=contextPath%>/resources/search/js/csrf.js"></script>
-<script src="<%=contextPath%>/resources/search/js/home.js"></script>
 <!-- exlib -->
 <script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-<script
-	src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
-<script
-	src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
-
-
+<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
 <!-- css -->
 <link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
 <link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
 <link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/search/css/common.css">
 <link rel=stylesheet type=text/css
@@ -73,27 +63,21 @@ String contextPath=request.getContextPath();
 			</div>
 		</div>
 	</div>
-
+	
+	
+	
+	
 	<div class="bg_heise">
-		<div class="clearfix">
-			<div class="imgFrame2">
-				<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
-			</div>
-		</div>
-
-		<div class="floatTOP">
-			<div class="UnderSearchBarTabs1">
-				<a id="href_A" href="front"></a> <a id="href_B" href="classifybrowse"></a>
-				<a id="href_C" href="graph"></a>
-			</div>
-			<div class="logoSearch_L2">
-				<div class="clearfix"></div>
-				<div id="search_cf" class="search cf" id="home_type_nav">
-					<input id="front_input" class=text maxLength=20 name=q/> 
-					<A class=button id="front_btn" href="#"></A>
-				</div>
-			</div>
-		</div>
+		
+	  <div class="row-fluid" >
+	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">疾病分析</button></div>
+	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">辩证分析</button></div>
+	  </div>
+	  <div class="row-fluid" >
+	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">治则分析</button></div>
+	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">关联分析</button></div>
+	  </div>
+		
 	</div>
 
 	<!-- footer -->

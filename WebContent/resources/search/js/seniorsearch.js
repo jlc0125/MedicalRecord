@@ -128,34 +128,23 @@ function initClassify(){
 	
 	var type = decodeURI(getUrlParam("type"));
 	
-	if(type == "dis" || type == "null")
-		getDisSearchType();
+	if(type == "wordfrequency" || type == "null")
+	{
+		getWFSearchType();
+	}
 	
-	else if(type == "ther")
-		getTherSearchType();
-	
-	else if(type == "disc")
-		getDiscSearchType();
-	
-	else if(type == "other")
-		getOtherSearchType();
+	else if(type == "medicalclassify")
+		getMCSearchType();
 	
 	
 
 	
 	$('#classify_dis').live('click', function () {
-		window.location.href = "./Browse?type=dis";
+		window.location.href = "./Browse?type=wordfrequency";
 	});	
-	
-	$('#classify_ther').live('click', function () {
-		window.location.href = "./Browse?type=ther";
 		
-	});	
-	$('#classify_disc').live('click', function () {
-		window.location.href = "./Browse?type=disc";
-	});	
 	$('#classify_other').live('click', function () {
-		window.location.href = "./Browse?type=other";
+		window.location.href = "./Browse?type=medicalclassify";
 	});	
 	
 	
@@ -165,11 +154,9 @@ function initClassify(){
 
 /*生成疾病标签*/
 
-function getDisSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;疾病&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_ther">&nbsp;治则&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_disc">&nbsp;辩证&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_other">&nbsp;其他&nbsp;</a></li></ul>';
+function getWFSearchType(){
+	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;按词频浏览&nbsp;</a></li>' 
+		   + '<li><a href="#" id="classify_other">&nbsp;按医学分类浏览&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("胃脘","胁痛","痛经","痹证","咳嗽","癃闭","不孕","闭经","遗尿","脑炎","痿证","胃痛",
@@ -183,15 +170,25 @@ function getDisSearchType(){
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
+	tempArray = new Array("湿热","气滞","气虚","脾虚","阴虚","寒湿","淤血","肾虚","风邪","少阳","阳虚","冲任","血虚","风寒","郁热","虚寒","寒邪","三焦","中焦","津液","内热","血亏","风湿","无力","炽盛","寒热","心包","肝火","郁滞","中气","入营","心悸","肾亏","生风","肾阳虚","肾阴虚");
+	table += "<tr><td  class='c-left-text'>辩证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	table += "<tr><td  class='c-left-text'>治则:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("seniorsearch?disname=" + $(this).text() + "&type=dis&pageno=1");
+		window.open("search?disname=" + $(this).text() + "&pageno=1");
 	});
 	
 	$("#mian-table").html(table + "</table>");
 }
 /*生成辩证的标签*/
-
+/*
 function getDiscSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;疾病&nbsp;</a></li>' 
 		   + '<li><a href="#" id="classify_ther">&nbsp;治则&nbsp;</a></li>'
@@ -235,12 +232,10 @@ function getTherSearchType(){
 	
 	$("#mian-table").html(table + "</table>");
 }
-
-function getOtherSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;疾病&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_ther">&nbsp;治则&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_disc">&nbsp;辩证&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_other">&nbsp;其他&nbsp;</a></li></ul>';
+*/
+function getMCSearchType(){
+	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;按词频浏览&nbsp;</a></li>' 
+		   + '<li><a href="#" id="classify_other">&nbsp;按医学分类浏览&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("外感病","肺系病","脾胃病证","肾系病","心系病","肝胆病证","气血津液病证","经络肢体病证","中毒","杂病");

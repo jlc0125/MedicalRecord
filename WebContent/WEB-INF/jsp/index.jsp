@@ -10,6 +10,7 @@ String contextPath=request.getContextPath();
 
 <html dir="ltr" xml:lang="en-gb" xmlns="http://www.w3.org/1999/xhtml"
 	lang="en-gb">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>中草药基础知识搜索系统</title>
 <!-- js -->
@@ -41,7 +42,45 @@ String contextPath=request.getContextPath();
 	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
 <link rel=stylesheet type=text/csz 
 	href="<%=contextPath%>/resources/search/css/jichushousuo.css">
-</HEAD>
+	
+<script type="text/javascript">
+	$(function(){
+		//checkbox只能单选
+		$(".option").each(function(){
+			$(this).click(function(){
+				$(".option").each(function(){
+					$(this)[0].checked=false;
+				});
+				$(this)[0].checked=true;
+			});
+		});
+		
+		$("#main_search_btn").live(
+			"click",
+			function(){
+				var type;
+				if($("#content_opt")[0].checked){
+					type="content";
+				}
+				else if($("#doctor_opt")[0].checked){
+					type="doctor";
+				}
+				else if($("#reference_opt")[0].checked){
+					type="reference";
+				}
+				else{
+					//提示未勾选
+				}
+				
+				var wd=$("#main_search_input").val();
+				window.location.href="./search/result?wd="+wd+"&type="+type+"&pageNo=1&pageSize=10";
+			}
+		);
+	});
+</script>	
+	
+	
+</head>
 
 <BODY>
 	<div class=top>
@@ -83,20 +122,21 @@ String contextPath=request.getContextPath();
 
 		<div class="floatTOP">
 			<div class="UnderSearchBarTabs1">
-				<a id="href_A" href="front"></a> <a id="href_B" href="Browse"></a>
-				<a id="href_C" href="graph"></a>
+				<a id="href_A" href="MainSearch"></a> <a id="href_B" href="Browse"></a>
+				<a id="href_C" href="Analysis"></a>
 			</div>
 			<div class="logoSearch_L2">
 				<div class="clearfix"></div>
-				<div id="search_cf" class="search cf" id="home_type_nav">
-					<INPUT id="front_input" class=text maxLength=20 name=q> 
-					<A class=button id="front_btn" href="#"></A> <br>
+				<div id="search_cf" class="search cf">
+					<INPUT id="main_search_input" class=text maxLength=20 name=q> 
+					<A class=button id="main_search_btn" href="#"></A> <br>
 					<br>
 					<br>
 					<br>
 					<div class="checkboxes2" id="option">搜索选项：&nbsp; 
-						<input type="checkbox" name="option" id="doctor">医生&nbsp;&nbsp;
-						<input type="checkbox" name="option" id="other">医案&nbsp;&nbsp;
+						<input type="checkbox" class="option" id="content_opt">医案内容&nbsp;&nbsp;
+						<input type="checkbox" class="option" id="doctor_opt">医生&nbsp;&nbsp;
+						<input type="checkbox" class="option" id="reference_opt">医案出处&nbsp;&nbsp;
 					</div>
 				</div>
 			</div>

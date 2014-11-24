@@ -23,7 +23,9 @@ public class MainSearchController {
 	@ResponseBody
 	public List<MedicalRecord> getRecords(@RequestParam("wd") String wd,@RequestParam("pageNo") int pageNo,
 			@RequestParam("pageSize") int pageSize,@RequestParam("type") String type){
-		if (type=="record"){
+		
+		if (type.equals("content")){
+			System.out.println("keyword="+wd);
 			String[] words=IKAnalizer.IKAnalysis(wd).trim().split(" ");
 			for(String word : words){
 				System.out.println(word);
@@ -35,22 +37,27 @@ public class MainSearchController {
 				result.add(top100Records.get(i));
 			}
 			
-			return result;
+			return top100Records;
 		}
-		else if(type=="doctor"){
-			//搜索医生
-			return null;
+		else if(type.equals("doctor")){
+			return mrs.recordByDoctor(wd);
 		} 
+		else if(type.equals("reference")){
+			return mrs.recordByReference(wd);
+		}
 		else{
 			//未勾选，错误页面
 			return null;
-			
 		}
 				
 		
 	}
 	
-
+	@RequestMapping(value="result")
+	public String searchPage(){
+		return "searchResult";
+	}
+	
 	@RequestMapping("/search")
 	@ResponseBody
 	public List getRecord(@RequestParam("categoryword") String cw,@RequestParam("pageno") int pn){
@@ -58,11 +65,4 @@ public class MainSearchController {
 		System.out.println(cw + pn);		
 		return recList;
 	}
-	
-	@RequestMapping(value="")
-	public String searchPage(){
-		return "searchResult";
-	}
-	
-	
 }

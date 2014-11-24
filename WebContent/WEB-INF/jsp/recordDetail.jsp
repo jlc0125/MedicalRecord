@@ -16,71 +16,55 @@ String contextPath=request.getContextPath();
 		
 		
 		<script type="text/javascript">
-		
-		function initFront() {
-			getCaseDetail();
-		}
-		
-		function getCaseDetail()
-		{
+		$(function(){
 			var dataJson = {
-				"casename" : decodeURI(getUrlParam("casename")),
-				"pageno" : parseInt(getUrlParam("pageno"))
-				};
-			var methodType = "POST";
-			var url = "./casedetailinfo";
-			var contentType = "application/json;charset=utf-8";
+					"recordId" : getUrlParam("recordId")
+					};
+			
 			$.ajax({
 				type: 'POST',
-				url: url,
+				url: "./record_detail/record",
 				data: dataJson,
-				success: getCaseDetailSuccessCB,
-				error: getCaseDetailErrorCB,
+				success: getRecordSuccess,
+				error: getRecordError,
 				dataType:'text'
 			});
-		}
+			
+			$.ajax({
+				type:"POST",
+				url:"./record_detail/med",
+				data:dataJson,
+				success:getMedSuccess,
+				error:getMedError
+			});
+		});
 		
-		function getCaseDetailSuccessCB(data,textStatus,jqXHR)
-		{
+		function getRecordSuccess(data,textStatus,jqXHR){
 			data=eval('(' + data + ')');
-			if (parseInt(data.count) == 1)
-			{
-				$("#front_search_pagincation").hide();
-				if(parseInt(data.count)==0)
-					getCaseDetailErrorCB();
-			}
-			else
-				$("#front_search_pagincation").pagination(
-						{
-							items : parseInt(data.count),
-							itemsOnPage : 1,
-							cssStyle : 'light-theme',
-							onPageClick : function(pageNumber, event) {
-								window.location.href = "./casedetail?casename="
-										+ decodeURI(getUrlParam("casename")) + "&pageno="
-										+ pageNumber;
-		
-							},
-							prevText : "上一页",
-							nextText : "下一页",
-							currentPage : getUrlParam("pageno")
-						});
-			var table='';
-			table += "<tr><td class='list_field' id='casedetail_list'>标题</td><td class='list_field' id='casedetail_list'>"+decodeURI(getUrlParam("casename"))+"</td></tr>";
-			for(var i=1;i<data.list.length;i++)
-			{
-				var index = data.list[i].indexOf("：");
-				if(index!=-1)
-					table += "<tr><td class='list_field' id='casedetail_list'>"+data.list[i].substring(0,index)+"</td><td class='list_field' id='casedetail_list'>"+data.list[i].substring(index+1)+"</td></tr>";
-			}
-			$("#case_detail_list_info").html(table);
+			console.log(data);
+			var thead="<tr><th>医案名称</th><th>"+data.recordTitle+"</th></tr>";
+			var tbody="<tr><th>医案正文</th><th>"+data.content+"</th></tr>";
+				tbody+="<tr><th>医案出处</th><th>"+data.reference+"</th></tr>";
+			$("#case_detail_title").html(thead);
+			$("#case_detail_content").html(tbody);
 		}
 		
-		function getCaseDetailErrorCB()
-		{
-			alert("Error");
+		function getRecordError(){
+			alert("error");
 		}
 		
+		function getMedSuccess(data,textStatus,jqXHR){
+			console.log(data);
+			var meds="";
+			for(var i=0;i<data.length;i++){
+				meds+=data[i]+" ";
+			} 
+			var tbody="<tr><th>中药</th><th>"+meds+"</th></tr>";
+			$("#case_detail_content").append(tbody);
+		}
+		function getMedError(){
+			alert("MedError");
+		}
 		</script>
 		
 		
@@ -102,7 +86,7 @@ String contextPath=request.getContextPath();
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
 						
 	</head>
-	<body onload="initFront()">
+	<body>
 	     <div>
 	        
 
@@ -168,9 +152,9 @@ String contextPath=request.getContextPath();
 						<div class="tabbable tabs-left">
 							<div class="tab-content span9">
 								<div class="tab-pane active" id="case_detail_list">
-									<table class="table " id="case_detail_table">
-										<thead id="case_detail_list_title"></thead>
-										<tbody id="case_detail_list_info"></tbody>
+									<table class="table" id="case_detail_table">
+										<thead id="case_detail_title"></thead>
+										<tbody id="case_detail_content"></tbody>
 									</table>
 								</div>
 	
