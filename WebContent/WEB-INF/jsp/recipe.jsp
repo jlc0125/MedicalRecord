@@ -51,7 +51,34 @@
 						return "childlink";
 				})
 				.attr("d", diagonal);
+				
+				if(selectStr == "#component #graph"){
+					link.append("title").text(function(d){
+						if(d.source.depth == 0)
+							return "组成关系";
+						else
+							return "共生关系";
+					});
+				}
+				else if(selectStr == "#attending #graph"){
+					link.append("title").text(function(d){
+						if(d.source.depth == 0)
+							return "主治关系";
+						else
+							return "伴随关系";
+					});
+				}
+				else{
+					link.append("title").text("相似关系");
+				}
 
+				link.on("mouseover", function(){
+					d3.select(this).style("stroke-width", 5);
+				})
+				.on("mouseout", function(){
+					d3.select(this).style("stroke-width", 2.5);
+				});
+				
 				var rootNode = svg.append("g")
 				.attr("class", "rootnode");
 				
@@ -112,9 +139,11 @@
 					return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)";
 				})
 				.text(function(d) { return d.name; });
-
+				
 				node.append("title")
-				.text("点击查看相关医案");
+				.text(function(d){
+					return "点击查看  " + d.parent.name + " 和  " + d.name +  " 相关的医案";
+				});
 			}
 			
 			$("#front_btn").click(function(){
