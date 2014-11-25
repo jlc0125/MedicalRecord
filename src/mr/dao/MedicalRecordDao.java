@@ -28,7 +28,7 @@ public class MedicalRecordDao {
 				new RowCallbackHandler(){
 					public void processRow(ResultSet rs) throws SQLException{
 						medicalRecord.setContent(rs.getString("content"));
-						medicalRecord.setDoctorId(rs.getInt("doctorId"));
+						medicalRecord.setDoctorId(rs.getLong("doctorId"));
 						medicalRecord.setDoctorName(rs.getString("doctorName"));
 						medicalRecord.setRecordId(index);
 						medicalRecord.setRecordTitle(rs.getString("recordTitle"));
@@ -91,6 +91,7 @@ public class MedicalRecordDao {
 					public void processRow(ResultSet rs) throws SQLException {
 						MedicalRecord record=new MedicalRecord();
 						record.setContent(rs.getString("content"));
+						record.setDoctorId(rs.getLong("doctorId"));
 						record.setDoctorName(rs.getString("doctorName"));
 						record.setRecordId(rs.getInt("recordId"));
 						record.setRecordTitle(rs.getString("recordTitle"));
@@ -111,6 +112,28 @@ public class MedicalRecordDao {
 					public void processRow(ResultSet rs) throws SQLException {
 						MedicalRecord record=new MedicalRecord();
 						record.setContent(rs.getString("content"));
+						record.setDoctorId(rs.getLong("doctorId"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
+	}
+	
+	public List<MedicalRecord> recordByDoctorId(Long doctorId){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where doctorId=?";
+		jdbcTemplate.query(sqlStr,new Object[] {doctorId},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorId(rs.getLong("doctorId"));
 						record.setDoctorName(rs.getString("doctorName"));
 						record.setRecordId(rs.getInt("recordId"));
 						record.setRecordTitle(rs.getString("recordTitle"));

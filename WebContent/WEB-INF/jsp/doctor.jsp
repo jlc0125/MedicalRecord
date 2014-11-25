@@ -1,10 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String contextPath=request.getContextPath();
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String contextPath=request.getContextPath();
 %>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -13,7 +12,113 @@ String contextPath=request.getContextPath();
 		<!-- js -->
 		<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>		
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/csrf.js"></script>
+		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
+		<style>
+		img{
+			max-width:60%;
+		}
+		.info th:nth-child(2){
+			padding-top:10%;
+			padding-bottom:10%;
+			padding-left:5%;
+			padding-right:5%;
+		}
+		.info th:nth-child(1){
+			padding-top:5%;
+			padding-bottom:5%;
+			padding-left:10%;
+			padding-right:10%;
+		}
+		.record th{
+			text-align: center !important;
+			vertical-align: middle !important;
+		}
+		</style>
+		
+		<script type="text/javascript">
+			var dataGlobal;
+			$(function(){
+				$.ajax({
+					type: 'POST',
+					url: "./doctor/data",
+					data: {id:getUrlParam("id")},
+					success: getDoctorSuccess,
+					error: getDoctorError,
+					dataType:'text'
+				});
+				
+				$("#doctor_info").live("click",function(){
+					$(this).attr("class","active");
+					$("#doctor_record").removeClass("active");
+					showData(dataGlobal,"info");
+				});
+				
+				$("#doctor_record").live("click",function(){
+					$(this).attr("class","active");
+					$("#doctor_info").removeClass("active");
+					showData(dataGlobal,"record");
+				});
+			});
+			
+			function getDoctorSuccess(data){
+				data=eval('(' + data + ')');
+				dataGlobal=data;
+				$("#doctor_info").html("<a href='#'>"+data.name+"信息</a>")
+				$("#doctor_record").html("<a href='#'>"+data.name+"医案</a>")
+				showData(data,"info");
+			}
+			
+			function getDoctorError(){
+				console.log("error");
+			}
+			function showData(data,type){
+				var thead="";
+				var tbody="";
+				if(type=="info"){
+					console.log($("#doctor_body"));
+					$("#doctor_body").addClass("info");
+					$("#doctor_body").removeClass("record");
+					thead="<tr><th>肖像</th><th>个人简介</th></tr>";
+					tbody+="<tr><th><img src='<%=contextPath%>/resources/"+data.picture+"'/></th><th>"+data.introduction+"</th></tr>";
+					$("#doctor_head").html(thead);
+					$("#doctor_body").html(tbody);
+					
+				}
+				else if(type=="record"){
+					$("#doctor_body").addClass("record");
+					$("#doctor_body").removeClass("info");
+					thead="<tr><th>医案名称</th><th>医案出处</th></tr>";
+					$.ajax({
+						type: 'POST',
+						url: "./search/retval",
+						data: {
+							wd:data.name,
+							type:"doctor"
+							},
+						success: success,
+						error: error,
+						dataType:'text'
+					});
+					
+					function success(data){
+						data=eval('(' + data + ')');
+						for(var i=0;i<data.length;i++){
+							tbody+="<tr><th class='record_list_th'><a href='/MedicalRecord/record_detail?recordId="+data[i].recordId+"'>"+data[i].recordTitle+"</th><th><a href='/MedicalRecord/search/result?wd="+data[i].reference+"&type=reference'>"+data[i].reference+"</a></th></tr>"
+						}
+						$("#doctor_head").html(thead);
+						$("#doctor_body").html(tbody);
+					}
+					
+					function error(){
+						console.log("recordListError");
+					}
+				}
+				
+			}
+		</script>
+		
+		
+		
 	
 		<!-- exlib -->
 		<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
@@ -26,127 +131,10 @@ String contextPath=request.getContextPath();
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/common.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/Peiwu_analyse.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
 						
 	</head>
-	<script type="text/javascript">
-	
-	var pageSize=10;
-	var pageNo=1;
-	var type;
-	var dataGlobal;
-	$(function(){
-		type=getUrlParam("type");
-		getFrontList();
-		//显示结果排序，与医案相关度排序冲突，暂不实现
-		if (type!="content"){
-			$(".head").live(
-				'click',
-				function(){
-					order=$(this).attr("name");
-					bubbleSort(dataGlobal,order);
-					showData(dataGlobal);
-				
-			});
-		}
-	});
-	
-	function bubbleSort(data,key){
-	    for(var i=0;i<data.length;i++){
-	        for(var j=i;j<data.length;j++){
-	            if(data[i][key]<data[j][key]){
-	                var temp=data[i];
-	                data[i]=data[j];
-	                data[j]=temp;
-	            }
-	        }
-	    }
-	}
-
-	function getFrontList() {
-		
-		var dataJson = {
-			"wd" : decodeURI(getUrlParam("wd")),
-			"type" : type,
-		};
-		var url = "./retval";
-		$.ajax({
-			  type: 'POST',
-			  url: url,
-			  data: dataJson,
-			  success: getFrontListSuccessCB,
-			  error:getFrontErrorCB,
-			  dataType:'text'
-			});
-	}
-
-
-
-	function getFrontListSuccessCB(data,textStatus,jqXHR) {
-	    data=eval('(' + data + ')');
-	    console.log(data);
-	    dataGlobal=data;
-	    showData(data);
-	}
-
-	function showData(data){
-		var thead= getTableTitle();
-		var tbody = getTableBody(data);
-		
-		$("#front_search_list_title").html(thead);
-		if(type!="content"){
-			$("#sort_help").html("点击表头将搜索结果按照相应字段排序");
-			$(".head").css("cursor","pointer");
-		}
-		$("#front_search_list_info").html(tbody);
-		if (data.length <= pageSize)
-		{
-			$("#front_search_pagincation").hide();
-			if(parseInt(data.count)==0)
-				getFrontErrorCB();
-		}
-		else
-			$("#front_search_pagincation").pagination(
-					{
-						items : data.length,
-						itemsOnPage : pageSize,
-						cssStyle : 'light-theme',
-						hrefTextPrefix : '#',
-						onPageClick : function(pageNumber, event) {
-							pageNo=pageNumber;
-							showData(data);
-						},
-						prevText : "上一页",
-						nextText : "下一页",
-						currentPage : pageNo
-					});
-	}
-	
-	function getFrontErrorCB(){
-		
-		window.location.href = "./error";
-	}
-	
-	function getTableTitle(){
-		return "<tr class='success'><th class='head' name='doctorName'>医生姓名</th><th class='head' name='recordTitle'>医案名称</th><th class='head' name='reference'>医案出处</th></tr>" ;
-	}
-	
-	function getTableBody(data){
-		var tbody="";
-		for(var i=(pageNo-1)*pageSize;i<pageNo*pageSize&&i<data.length;i++){
-			tbody+="<tr><td><a href='/MedicalRecord/doctor?id="+data[i].doctorId+"'>"+data[i].doctorName +"</a></td>"+
-			"<td><a href='/MedicalRecord/record_detail?recordId="+data[i].recordId+"'>"+data[i].recordTitle+"</a></td>"+
-			"<td><a href='/MedicalRecord/search/result?wd="+data[i].reference+"&type=reference'>"+data[i].reference+"</a></td></tr>";
-		}
-		return tbody;
-	}
-	</script>
-	
-	
-	
-	
 	<body>
 	     <div>
 	        
@@ -193,7 +181,7 @@ String contextPath=request.getContextPath();
 				<a href="front"><span id="nav_qwss" class="sub_nav_span"></span></a>
 				<a href="classifybrowse"><span id="nav_flll" class="sub_nav_span"></span></a>
 				<a href="graph"><span id="nav_zhcx" class="sub_nav_span"></span></a>
-		    </div>          
+		    </div>
 	    </div>
 		
 		<div class="clearfix"></div>
@@ -204,32 +192,31 @@ String contextPath=request.getContextPath();
 		</div>
 		
 		<div class="clearfix"></div>
-		<div id="underline"></div>
 		<div class="clearfix"></div>
 		
 		<div class="container-fluid ">
 				<div class="row-fluid">
 					<div class="span12">
-						<div class="tabbable tabs-left">
-							<div class="tab-content span9">
-								<div class="tab-pane active" id="front_search_list">
-										<h2 id="sort_help"></h2>
-										<table class="table " id="front_search_table">
-											<thead id="front_search_list_title"></thead>
-											<tbody id="front_search_list_info"></tbody>
-										</table>
-								</div>
-	
-							</div>
+					<ul class="nav nav-tabs">
+					  <li class="active" id="doctor_info">
+					  </li>
+					  <li id="doctor_record"></li>
+					</ul>
+						<div id="content_container" class="container-fluid" style="background-color:white">
+							<table class="table">
+								<thead id="doctor_head">
+								</thead>
+								<tbody id="doctor_body">
+								</tbody>
+							</table>
 						</div>
-						<div id="front_search_pagincation" class="rs_pagincation"></div>
 					</div>
 				</div>
 		</div>		
+		
 
 <!-- footer -->
      <div>
-          
 	
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">

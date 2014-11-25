@@ -104,6 +104,10 @@ public class MedicalRecordService {
 		return mrDao.recordByIndex(id);
 	}
 	
+	public List<MedicalRecord> recordByDoctorId(Long id){
+		return mrDao.recordByDoctorId(id);
+	}
+	
 
 	
 	public List recordByCategory(String secCateName){

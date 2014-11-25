@@ -6,7 +6,7 @@ public class MedicalRecord {
 	private int recordId;
 	private String recordTitle;
 	private String content;
-	private int doctorId;
+	private Long doctorId;
 	private String doctorName;
 	private HashMap<Integer,Double> tfidf;
 	private String category;
@@ -41,10 +41,10 @@ public class MedicalRecord {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getDoctorId() {
+	public Long getDoctorId() {
 		return doctorId;
 	}
-	public void setDoctorId(int doctorId) {
+	public void setDoctorId(Long doctorId) {
 		this.doctorId = doctorId;
 	}
 	public String getDoctorName() {
