@@ -31,7 +31,7 @@
 		p:dataSource-ref="dataSource" />
 	
 	<bean id="mongoClient" class="com.mongodb.MongoClient">
-	    <constructor-arg name="host" value="localhost"/>
+	    <constructor-arg name="host" value="127.0.0.1"/>
 	    <constructor-arg name="port" value="27017"/>
 	</bean>
 		

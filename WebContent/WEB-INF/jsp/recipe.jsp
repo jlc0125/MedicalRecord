@@ -8,9 +8,12 @@
 	<title>中草药基础知识搜索系统</title>
 	
 	<!-- js -->
+	<script type="text/javascript" src="resources/d3js/d3.min.js"></script>
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
-	<script type="text/javascript" src="resources/D3JS/d3.min.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#container').easyTabs({defaultContent:1});
@@ -28,6 +31,7 @@
 			});
 			
 			function graph(selectStr, root){
+				$(selectStr + " svg").remove();
 				var svg = d3.select(selectStr).append("svg")
 				.attr("width", diameter)
 				.attr("height", diameter)
@@ -81,7 +85,22 @@
 					d3.select(this).attr("r", 4.5);
 				})
 				.on("click", function(d){
-					alert(d.parent.name + " , " + d.name);
+					var url = "search/relate?wd1=" + d.parent.name + "&wd2=" + d.name;
+					$.get(url, function(data, status){
+						var txt = "";
+						for(var i=0; i<data.length; i++){
+							txt += '<li><a href="record_detail?recordId=' + data[i].id + '" target="_blank">' + data[i].title + '</a></li>';
+						}
+						$(".alt_content").html(txt);
+						
+						$('.alt_container').pajinate({
+							items_per_page : 10,
+							num_page_links_to_display : 4,
+							item_container_id : '.alt_content',
+							nav_panel_id : '.alt_page_navigation',
+							nav_info_id : '.alt_info_text'
+		                });
+					});
 				});
 
 				node.append("text")
@@ -111,19 +130,29 @@
 				return false;
 			});
 			
+			$("#front_input").autocomplete({
+				autoFocus: true,
+				minLength: 1,
+				source: function(request, response) {
+					var url = "recipe/hint?q=" + request.term;
+					$.get(url, function(data, status){
+						response(data);
+					});
+				 }
+			});
+			
         });
 	</script>
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
-
-
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
 </head>
 
-<BODY>
+<body>
 	<div class=top>
 		<div id="common_nav">
 			<div class="cf" id="common_nav_L2">
@@ -162,9 +191,9 @@
 		
 		<div id="container">
 			<ul class="tabs">
-				<li><a href="#component">中药关联</a></li>
-		  	<li><a href="#attending">疾病关联</a></li>
-		  	<li><a href="#similar">方剂关联</a></li>
+				<li><a href="#component">主要成分</a></li>
+		  	<li><a href="#attending">主治疾病</a></li>
+		  	<li><a href="#similar">相似方剂</a></li>
 		 </ul>
 	
     <div id="main_content">
@@ -184,12 +213,12 @@
 			</div>
     </div>
     <div id="sidebar">
-    	<h2>相关医案</h2>
-    	<ul>
-    		<li>1</li>
-      <li>2</li>
-      <li>3</li>
-     </ul>
+    	<div class="alt_container">
+				<h2>相关医案</h2>
+				<div class="alt_page_navigation"></div>	
+				<div class="alt_info_text"></div>
+				<ul class="alt_content"></ul>
+			</div>    
     </div>
     <div class="clearfix"></div>
    </div>
@@ -268,5 +297,5 @@
            </div>
        </div>
 	</div>
-</BODY>
-</HTML>
+</body>
+</html>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,19 @@ public class MedicalRecordService {
 		return result;
 	}
 	
+	public List<Map<String, String>> relRecordSimple(String[] words, int n){
+		List<Integer> simSort = similaritySort(words);
+		List<Map<String, String>> result = new ArrayList<Map<String, String>>();
+		MedicalRecord temp;
+		for(int i=0;i<n;i++){
+			Map<String, String> elem = new HashMap<String, String>();
+			temp = mrDao.recordByIndex(simSort.get(i));
+			elem.put("id", String.valueOf(temp.getRecordId()));
+			elem.put("title", temp.getRecordTitle());
+			result.add(elem);
+		}
+		return result;
+	}
 
 	public MedicalRecord recordByIndex(final int index){
 		return mrDao.recordByIndex(index);

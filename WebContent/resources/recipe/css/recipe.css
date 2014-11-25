@@ -190,3 +190,52 @@ body {
 	stroke: #ccc;
 	stroke-width: 2.5px;
 }
+
+.alt_container{
+	width: 222px;
+	margin: 5px 0;
+}
+
+.alt_container h2{
+	text-align: center;
+	font-style: italic;
+	font-size: 16px;
+}
+
+.alt_page_navigation{
+	padding: 10px 0 10px 7px;
+}
+
+.alt_page_navigation a{
+	padding:2px 5px;
+	margin:1px;
+	color:white;
+	text-decoration:none;
+	float: left;
+	font-family: Tahoma;
+	font-size: 12px;
+	background-color:#DB5C04;
+}
+
+.active_page{
+	background-color:white !important;
+	color:black !important;
+}	
+
+.alt_content{
+	color: black;
+	border: 1px solid #DB5C04;
+}
+
+.alt_content li{
+	padding: 8px 5px;
+}
+
+.alt_info_text {
+	padding: 20px 0 10px;
+	text-align: center;
+}
+
+.alt_content li:nth-child(odd) {
+	background: #FFD9BF;
+}
