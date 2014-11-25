@@ -134,17 +134,25 @@ function initClassify(){
 	}
 	
 	else if(type == "medicalclassify")
+	{
 		getMCSearchType();
+	}
+	else if(type == "discriminate")
+	{
+		getDiscSearchType();
+	}
 	
 	
-
-	
-	$('#classify_dis').live('click', function () {
+	$('#classify_wordfrequency').live('click', function () {
 		window.location.href = "./Browse?type=wordfrequency";
 	});	
 		
-	$('#classify_other').live('click', function () {
+	$('#classify_medicalclassify').live('click', function () {
 		window.location.href = "./Browse?type=medicalclassify";
+	});	
+	
+	$('#classify_discriminate').live('click', function () {
+		window.location.href = "./Browse?type=discriminate";
 	});	
 	
 	
@@ -152,11 +160,12 @@ function initClassify(){
 	
 }
 
-/*生成疾病标签*/
+/*生成按词频浏览标签*/
 
 function getWFSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;按词频浏览&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_other">&nbsp;按医学分类浏览&nbsp;</a></li></ul>';
+	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按医学分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;辨证&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("胃脘","胁痛","痛经","痹证","咳嗽","癃闭","不孕","闭经","遗尿","脑炎","痿证","胃痛",
@@ -175,6 +184,7 @@ function getWFSearchType(){
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
+	tempArray = new Array("清热","益气","健脾","活血","化痰","通络","养血","解毒","滋阴","疏肝","熄风","补肾","温阳","理气","止血","宣肺","开窍","祛风","利水","止痛","安神","散结","补气","补血","除湿","养心","生津","温中","补益","解郁","消肿","降火","止咳","止痒","利尿","活血化瘀","清热解毒","疏肝理气","平肝潜阳","行气活血","");
 	table += "<tr><td  class='c-left-text'>治则:</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
@@ -182,35 +192,72 @@ function getWFSearchType(){
 	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("search?disname=" + $(this).text() + "&pageno=1");
-	});
-	
-	$("#mian-table").html(table + "</table>");
-}
-/*生成辩证的标签*/
-/*
-function getDiscSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;疾病&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_ther">&nbsp;治则&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_disc">&nbsp;辩证&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_other">&nbsp;其他&nbsp;</a></li></ul>';
-	$("#navcontainer").html(string);
-	//
-	tempArray = new Array("湿热","气滞","气虚","脾虚","阴虚","寒湿","淤血","肾虚","风邪","少阳","阳虚","冲任","血虚","风寒","郁热","虚寒","寒邪","三焦","中焦","津液","内热","血亏","风湿","无力","炽盛","寒热","心包","肝火","郁滞","中气","入营","心悸","肾亏","生风","肾阳虚","肾阴虚");
-	table = "";
-	table += "<table id='mian-table'><th class='c-left'></th><th class='c-right'></th>"
-		  +	"<tr><td  class='c-left-text'>辩证:</td><td class='c-right-text'>";
-	for(var i = 0 ; i < tempArray.length; i++)
-		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
-	
-	table += "</td></tr>";
-	$('.dis_type_list').live('click', function () {			
-		window.open("seniorsearch?discword=" + $(this).text() + "&type=disc&pageno=1");
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=wordfrequency&pageNo=1&pageSize=10");
 	});
 	
 	$("#mian-table").html(table + "</table>");
 }
 
+
+/*生成辩证的标签*/
+function getDiscSearchType(){
+	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按医学分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;辨证&nbsp;</a></li></ul>';
+    $("#navcontainer").html(string);
+    //
+    tempArray = new Array("表里辨证","寒热辨证","虚实辨证","阴阳辨证");
+	table = "";
+	table += "<table id='mian-table'><th class='c-left'></th><th class='c-right'></th>"
+		  +	"<tr><td  class='c-left-text'>八纲辨证：</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("心与小肠病辨证","肺与大肠病辨证","脾与胃病辨证","肝与胆病辨证","肾与膀胱病辨证","脏腑兼证辨证");
+	table += "<tr><td  class='c-left-text'>脏腑辨证：</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("太阳病辨证","阳明病辨证","少阳病辨证","太阴病辨证","少阴病辨证","厥阴病辨证")
+	table += "<tr><td  class='c-left-text'>六经辨证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("卫分证辨证","气分证辨证","营分证辨证","血分证辨证","三焦辨证")
+	table += "<tr><td  class='c-left-text'>卫气营血辨证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("上焦病辨证","中焦病辨证","下焦病辨证")
+	table += "<tr><td  class='c-left-text'>三焦辨证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("气病辨证","血病辨证","气血同病辨证","津液病辨证")
+	table += "<tr><td  class='c-left-text'>气血津液辨证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("六淫病辨证","疫疠病辨证","七情病辨证","饮食劳伤辨证","外伤辨证")
+	table += "<tr><td  class='c-left-text'>病因辨证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("发热","恶寒","头痛","眩晕","烦躁","失眠","心悸","喘","哮鸣","咳血","呕吐","腹泻","便血","心下痞","胃脘痛","皮肤发黄","便秘","腹满腹痛","咽喉痛","吐血","小便不利","骨关节痛","手足逆冷","汗出")
+	table += "<tr><td  class='c-left-text'>症状辨证:</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	table += "</td></tr>";
+	$('.dis_type_list').live('click', function () {			
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=discriminate&pageNo=1&pageSize=10");
+	});
+	
+	$("#mian-table").html(table + "</table>");
+    
+    
+}
+/*
 function getTherSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;疾病&nbsp;</a></li>' 
 		   + '<li><a href="#" id="classify_ther">&nbsp;治则&nbsp;</a></li>'
@@ -234,8 +281,9 @@ function getTherSearchType(){
 }
 */
 function getMCSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;按词频浏览&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_other">&nbsp;按医学分类浏览&nbsp;</a></li></ul>';
+	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按医学分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;辨证&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("外感病","肺系病","脾胃病证","肾系病","心系病","肝胆病证","气血津液病证","经络肢体病证","中毒","杂病");
@@ -273,7 +321,7 @@ function getMCSearchType(){
 	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("search?categoryword=" + $(this).text() +"&pageno=1");
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=medicalclassify&pageNo=1&pageSize=10");
 	});
 	
 	$("#mian-table").html(table + "</table>");

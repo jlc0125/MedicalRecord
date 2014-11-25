@@ -110,7 +110,12 @@ public class MedicalRecordService {
 	
 
 	
-	public List recordByCategory(String secCateName){
+	public List<MedicalRecord> recordByCategory(String secCateName){
 		return mrDao.recordByCategory(secCateName);
 	}
+	
+	public List<MedicalRecord> recordByDisc(String discriminate){
+		return mrDao.recordyDisc(discriminate);
+	}
 }
+

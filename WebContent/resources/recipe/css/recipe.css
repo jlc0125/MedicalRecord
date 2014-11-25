@@ -1,0 +1,192 @@
+@CHARSET "UTF-8";
+
+html {
+	font-family: "宋体"; 
+	font-size: 10px;
+}
+
+body {
+	background-color: #f5f2f1; 
+	font-size: 1.2em; 
+	height: 100%;
+}
+
+.cf:before {
+	display: table; 
+	content: "";
+}
+.cf:after {
+	display: table; 
+	content: "";
+}
+.cf:after { clear: both; }
+.cf { zoom: 1; }
+
+.clearfix { clear: both; }
+
+.bg_heise{ background-color:#f5f2f1; }
+
+.imgFrame {
+	margin:auto;
+	width:960px;
+}
+
+.logo { margin-top:0px; }
+
+.logoSearch {
+	width: 100%; 
+	height: 93px; 
+	background-image:url(../image/top_back.png); 
+	background-repeat:repeat-x
+}
+
+.logoSearch_L2 {
+	margin: auto; 
+	width:960px
+}
+.logoSearch_L2 .logo {
+	float: left; 
+	padding-top: 18px; 
+	height:75px
+}
+
+.logoSearch_L2 .search {
+	width: 1006px; 
+	height: 75px; 
+	padding-top: 10px; 
+}
+
+.logoSearch_L2 .search .text {
+    border-bottom: #e2c7b9 1px solid;
+    border-left: #e2c7b9 1px solid;
+    padding-bottom: 10px;
+    line-height: 15px;
+    background-color: #ffffff;
+    padding-left: 8px;
+    width: 580px;
+    padding-right: 8px;
+    float: left;
+    height: 15px;
+    color: #000000;
+    border-top: #e2c7b9 1px solid;
+    border-right: #e2c7b9 1px;
+    padding-top: 10px;
+    margin-left: 90px;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.logoSearch_L2 .search A.button {
+	width: 168px; 
+	display: inline-block; 
+	background-image:url(../image/fx_btn.png); 
+	backgound-position: 0px 0px; 
+	float: left; 
+	height: 37px; 
+}
+
+.logoSearch_L2 .search A.button:hover {
+	background-image:url(../image/fx_btn_click.png); 
+}
+
+#container {
+	width: 960px;
+	margin: 0px auto;
+}
+
+#main_content {
+	background-color: #fff;
+	float: left;
+	padding: 20px;
+}
+
+.tabs {
+	width: 857px;
+	height: 35px;
+	background-color: rgba(64, 64, 64, 0.05);
+}
+.tabs li {
+	float:  left;
+	margin: 0;
+	overflow: hidden;
+	background-color: #444;
+}
+.tabs li a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font: bold 13px/15px 'Arial';
+	text-transform: uppercase;
+	padding: 10px 15px;
+	border-right: 1px solid #fff;
+}
+
+.tabs li a:hover {
+		background-color: #00b3ff;
+
+}
+
+.tabs li.active a {
+	color:  #000;
+	background-color: #fff;
+}
+
+#graph {
+	margin-left: 15px;
+	margin-bottom: 18px; 
+	width: 560px;
+	height: 560px;
+	text-align:center;
+}
+
+#sidebar  {
+	padding: 10px; 
+	margin-top: 10px;
+	margin-bottom: 18px; 
+	float: left;
+	width: 222px;
+	height: 600px;
+	background: #eee; 
+}
+
+.rootnode circle {
+	fill: #fff;
+	stroke: rgb(20, 93, 114);
+	stroke-width: 2.5px;
+}
+
+.rootnode {
+	font: 16px sans-serif;
+ }
+        
+.childnode circle {
+	fill: #fff;
+	stroke: steelblue;
+	stroke-width: 1.5px;
+}
+
+.childnode {
+	font: 10px sans-serif;
+ }
+        
+.grandchildnode circle {
+	fill: #fff;
+	stroke: #26cead;
+	stroke-width: 1.5px;
+ }
+
+.grandchildnode {
+	font: 10px sans-serif;
+}
+
+.rootlink {
+	fill: none;
+	stroke: #c9c26f;
+	stroke-width: 2.5px;
+ }
+        
+.childlink {
+	fill: none;
+	stroke: #ccc;
+	stroke-width: 2.5px;
+}

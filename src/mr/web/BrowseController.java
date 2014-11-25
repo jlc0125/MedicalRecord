@@ -1,15 +1,48 @@
 package mr.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import mr.domain.MedicalRecord;
+import mr.service.MedicalRecordService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/Browse")
 public class BrowseController {
 	
+	@Autowired
+	private MedicalRecordService mrs;
+	
 	@RequestMapping(value="")
 	public String browsePage(){
 		return "browse";
+	}
+	
+	@RequestMapping(value="/retval")
+	@ResponseBody
+	public List<MedicalRecord> getRecord(@RequestParam("wd") String wd,@RequestParam("type") String type,@RequestParam("pageNo") int pn,@RequestParam("pageSize") int ps){
+		List<MedicalRecord> recList =new ArrayList<MedicalRecord>();
+		if(type.equals("medicalclassify")){
+			recList = mrs.recordByCategory(wd);
+		}
+		else if(type.equals("discriminate")||type.equals("wordfrequency")){
+			recList = mrs.recordByDisc(wd.replaceAll("辨证", ""));
+		}
+		System.out.println(wd + pn);		
+		return recList;
+	}
+	
+	
+	
+	@RequestMapping(value="result")
+	public String searchPage(){
+		return "searchResult";
 	}
 	
 }

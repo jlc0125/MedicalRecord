@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+html, body, div, p, a, img,
+form, label, input,
+ol, ul, li,
+dl, dt, dd, 
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+ul, ol   { list-style: none; }
+
+input { outline-style: none; }
+
+a { text-decoration: none; }
+a:link { color:#9d752a; }      /* 未访问的链接 */
+a:visited { color: #9d752a; }  /* 已访问的链接 */
+a:hover { color:#F2CE51; }     /* 当有鼠标悬停在链接上 */
+a:active { color:#9d752a; }    /* 被选择的链接 */
