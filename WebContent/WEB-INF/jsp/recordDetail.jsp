@@ -13,7 +13,30 @@ String contextPath=request.getContextPath();
 		<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>		
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
 		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
+		<style>
+		#doctor{
+			font-size:14px;
+			line-height:18px;
+			font-family: inherit;
+			font-weight: bold;
+		}
+		#content{
+			padding-left: 25%;
+			padding-top: 10%;
+		}
+		#title{
+			padding-left: 25%;
+			padding-top: 5%;
+		}
+		#reference{
+			padding-left: 25%;
+		}
 		
+		#content_container{
+			background-color:white;
+			width:80%;
+		}
+		</style>
 		
 		<script type="text/javascript">
 		$(function(){
@@ -30,41 +53,29 @@ String contextPath=request.getContextPath();
 				dataType:'text'
 			});
 			
-			$.ajax({
-				type:"POST",
-				url:"./record_detail/med",
-				data:dataJson,
-				success:getMedSuccess,
-				error:getMedError
-			});
+			
 		});
 		
 		function getRecordSuccess(data,textStatus,jqXHR){
 			data=eval('(' + data + ')');
 			console.log(data);
-			var thead="<tr><th>医案名称</th><th>"+data.recordTitle+"</th></tr>";
-			var tbody="<tr><th>医案正文</th><th>"+data.content+"</th></tr>";
-				tbody+="<tr><th>医案出处</th><th>"+data.reference+"</th></tr>";
-			$("#case_detail_title").html(thead);
-			$("#case_detail_content").html(tbody);
+			var body="";
+			body+="<p id='doctor'><a target='_blank' href='/MedicalRecord/doctor?id="+data.doctorId+"'>"+data.doctorName+"</a></p>";
+			body+="<p>"+data.content+"</p>";
+			var reference="<br/><br/><a href='/MedicalRecord/search/result?wd="+data.reference+"&type=reference'><h4>出自"+data.reference+"</h4></a><br/><br/>"
+			var title="";
+			title+="<h2>"+data.recordTitle+"</h2>";
+			$("#title").html(title);
+			$("#content").html(body);
+			$("#reference").html(reference);
+			
+
 		}
 		
 		function getRecordError(){
 			alert("error");
 		}
 		
-		function getMedSuccess(data,textStatus,jqXHR){
-			console.log(data);
-			var meds="";
-			for(var i=0;i<data.length;i++){
-				meds+=data[i]+" ";
-			} 
-			var tbody="<tr><th>中药</th><th>"+meds+"</th></tr>";
-			$("#case_detail_content").append(tbody);
-		}
-		function getMedError(){
-			alert("MedError");
-		}
 		</script>
 		
 		
@@ -81,7 +92,6 @@ String contextPath=request.getContextPath();
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/common.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/Peiwu_analyse.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
 						
@@ -132,7 +142,7 @@ String contextPath=request.getContextPath();
 				<a href="front"><span id="nav_qwss" class="sub_nav_span"></span></a>
 				<a href="classifybrowse"><span id="nav_flll" class="sub_nav_span"></span></a>
 				<a href="graph"><span id="nav_zhcx" class="sub_nav_span"></span></a>
-		    </div>          
+		    </div>
 	    </div>
 		
 		<div class="clearfix"></div>
@@ -149,18 +159,14 @@ String contextPath=request.getContextPath();
 		<div class="container-fluid ">
 				<div class="row-fluid">
 					<div class="span12">
-						<div class="tabbable tabs-left">
-							<div class="tab-content span9">
-								<div class="tab-pane active" id="case_detail_list">
-									<table class="table" id="case_detail_table">
-										<thead id="case_detail_title"></thead>
-										<tbody id="case_detail_content"></tbody>
-									</table>
-								</div>
-	
+						<div id="content_container" class="container-fluid">
+							<div id="title">
+							</div>
+							<div id="content">
+							</div>
+							<div id="reference">
 							</div>
 						</div>
-						<div id="front_search_pagincation" class="rs_pagincation"></div>
 					</div>
 				</div>
 		</div>		

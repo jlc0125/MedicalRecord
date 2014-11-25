@@ -28,7 +28,7 @@ public class MedicalRecordDao {
 				new RowCallbackHandler(){
 					public void processRow(ResultSet rs) throws SQLException{
 						medicalRecord.setContent(rs.getString("content"));
-						medicalRecord.setDoctorId(rs.getInt("doctorId"));
+						medicalRecord.setDoctorId(rs.getLong("doctorId"));
 						medicalRecord.setDoctorName(rs.getString("doctorName"));
 						medicalRecord.setRecordId(index);
 						medicalRecord.setRecordTitle(rs.getString("recordTitle"));
@@ -73,13 +73,28 @@ public class MedicalRecordDao {
 	}
 	
 	//根据第二分类名称获得医案集
-	public List recordByCategory(String secCateName){
+	public List<MedicalRecord> recordByCategory(String secCateName){
 		Category cate = cgDao.getSecCategory(secCateName);
-		int start = cate.getStartRecId();
-		int end = start + cate.getRecNum()-1;
-		String sql="select recordTitle,content from medicalrecord where recordId between "+ start+" and "+end;
-		List RecordList = jdbcTemplate.queryForList(sql);
-		return RecordList;
+		String cateId = cate.getCateId();
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sql="select * from medicalrecord where category=?";
+		jdbcTemplate.query(sql,new Object[] {cateId},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
+		//	jdbcTemplate.queryForList(sql);
+	//	return RecordList;
 	}
 	
 	public List<MedicalRecord> recordByDoctor(String doctorName){
@@ -91,6 +106,7 @@ public class MedicalRecordDao {
 					public void processRow(ResultSet rs) throws SQLException {
 						MedicalRecord record=new MedicalRecord();
 						record.setContent(rs.getString("content"));
+						record.setDoctorId(rs.getLong("doctorId"));
 						record.setDoctorName(rs.getString("doctorName"));
 						record.setRecordId(rs.getInt("recordId"));
 						record.setRecordTitle(rs.getString("recordTitle"));
@@ -106,6 +122,48 @@ public class MedicalRecordDao {
 		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
 		String sqlStr="select * from medicalrecord where reference like ?";
 		jdbcTemplate.query(sqlStr,new Object[] {"%"+reference+"%"},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorId(rs.getLong("doctorId"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
+	}
+	
+	public List<MedicalRecord> recordByDoctorId(Long doctorId){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where doctorId=?";
+		jdbcTemplate.query(sqlStr,new Object[] {doctorId},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorId(rs.getLong("doctorId"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
+	}
+	
+	public List<MedicalRecord> recordyDisc(String discriminate){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where content like ?";
+		jdbcTemplate.query(sqlStr,new Object[] {"%"+discriminate+"%"},
 				new RowCallbackHandler(){
 					@Override
 					public void processRow(ResultSet rs) throws SQLException {

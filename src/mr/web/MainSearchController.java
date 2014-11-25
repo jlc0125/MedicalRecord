@@ -22,8 +22,7 @@ public class MainSearchController {
 	
 	@RequestMapping(value="/retval")
 	@ResponseBody
-	public List<MedicalRecord> getRecords(@RequestParam("wd") String wd,@RequestParam("pageNo") int pageNo,
-			@RequestParam("pageSize") int pageSize,@RequestParam("type") String type){
+	public List<MedicalRecord> getRecords(@RequestParam("wd") String wd,@RequestParam("type") String type){
 		
 		if (type.equals("content")){
 			System.out.println("keyword="+wd);
@@ -33,10 +32,6 @@ public class MainSearchController {
 			}
 			
 			List<MedicalRecord> top100Records=mrs.relRecords(words);
-			List<MedicalRecord> result=new ArrayList<MedicalRecord>();
-			for(int i=(pageNo-1)*pageSize;i<pageNo*pageSize;i++){
-				result.add(top100Records.get(i));
-			}
 			
 			return top100Records;
 		}
@@ -45,6 +40,9 @@ public class MainSearchController {
 		} 
 		else if(type.equals("reference")){
 			return mrs.recordByReference(wd);
+		}
+		else if(type.equals("doctor_id")){
+			return mrs.recordByDoctorId(Long.valueOf(wd));
 		}
 		else{
 			//未勾选，错误页面
@@ -65,11 +63,5 @@ public class MainSearchController {
 		return "searchResult";
 	}
 	
-	@RequestMapping("/search")
-	@ResponseBody
-	public List getRecord(@RequestParam("categoryword") String cw,@RequestParam("pageno") int pn){
-		List recList = mrs.recordByCategory(cw);
-		System.out.println(cw + pn);		
-		return recList;
-	}
+	
 }

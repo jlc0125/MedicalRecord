@@ -76,6 +76,10 @@ $(function(){
 					  dataType:"text"
 					});
 			});
+	$(".med_checkbox").live("click",function(){
+		generateLink();
+	});
+	/*
 	$(window).scroll(function(){
 		if(dataAll){
 			if($("#records").offset().top+$("#records").height()-window.pageYOffset-$(window).height()<100){
@@ -87,6 +91,7 @@ $(function(){
 			}
 		}
 	});
+	*/
 });
 
 function success(data,textStatus,jqXHR){
@@ -98,7 +103,15 @@ function success(data,textStatus,jqXHR){
 		else list+="<li><a id='nav"+i+"' onclick='init("+i+")'>"+dataAll[i].word+"</a></li>";
 	}
 	console.log(list);
+	$("#nav").show();
 	$("#nav").html(list);
+	$("#nav li").each(function(){
+		$(this).click(function(){
+			$("#nav li").removeClass("active");
+			$(this).addClass("active");
+			generateLink();
+		});
+	});
 	init(0);
 }
 
@@ -125,12 +138,12 @@ function init(index){
 	var meds=data.meds;
 	var records=data.records;
 	var likelihood=data.likelihood;
-	var medsTable="<table id='meds_table' class='table'><thead><tr><th>中药名称</th>\
+	var medsTable="<table id='meds_table' class='table'><thead><tr><th>选择中药</th><th>中药名称</th>\
 	<th>介绍</th></tr><tbody>";
 	var pieData=new Array();
 	var sum=0;
 	for(var i=0;i<meds.length;i++){
-		medsTable+="<tr><th>"+meds[i]+"</th><th>简单介绍</th></tr>";
+		medsTable+="<tr><td><input type='checkbox' class='med_checkbox'/></td><td>"+meds[i]+"</td><td>简单介绍</td></tr>";
 		sum+=likelihood[i];
 		pieData.push({
 			"label":meds[i],
@@ -148,11 +161,40 @@ function init(index){
 	$("#meds").html(medsTable);
 	
 	paintPie(pieData);
+	generateLink();
 	
+	/*
 	var recordsHead="<tr><th>医案名称</th><th>医生姓名</th><th>医案出处</th></tr>";
 	$("#records_info").html("相关医案");
 	$("#records_head").html(recordsHead);
 	showRecords(records,pageNo,pageSize);
+	*/
+}
+
+function seachForRecord(){
+	
+}
+
+function generateLink(){
+	var keywordList=getKeywordList();
+	var keyword=keywordList.join("、")
+	$("#search_link").html("查看<span style='color:red'>"+keyword+"</span>相关医案");
+	$("#search_link").attr("href","../search/result?wd="+keyword+"&type=content");
+	$("#search_link").attr("target","_blank");
+}
+
+function getKeywordList(){
+	var keyword=[];
+	$("#meds_table tbody tr").each(function(){
+		var checkBoxCol=$(this).children('td')[0];
+		var medNameCol=$(this).children('td')[1];
+		if($(checkBoxCol).children()[0].checked){
+			keyword.push($(medNameCol).text());
+		}
+	});
+	
+	keyword.push($(".nav .active a").text());
+	return keyword;
 }
 
 
@@ -269,7 +311,7 @@ function paintPie(data){
 			</div>
 			
 			<div class="container" style="background-color: white;">
-				<ul id="nav" class="nav nav-tabs"></ul>
+				<ul id="nav" class="nav nav-tabs" style="display:none"></ul>
 				<div class="info"><h1 id="meds_info"></h1>
 				</div>
 				<div class="row">
@@ -280,6 +322,10 @@ function paintPie(data){
 					<div id="pieChart" class="span3">
 					</div>
 				</div>
+				<div id="search_link_div">
+					<a id="search_link"></a>
+				</div>
+<!--			
 				<div class="info"><h1 id="records_info"></h1>
 				</div>
 				<div class="row">
@@ -292,6 +338,7 @@ function paintPie(data){
 						</div>
 					</div>
 				</div>
+-->
 			</div>
 		</div>
 	</div>
