@@ -176,8 +176,8 @@ String contextPath=request.getContextPath();
 		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">
-				<a href="front"><span id="nav_qwss" class="sub_nav_span"></span></a>
-				<a href="classifybrowse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="index.html"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
 				<a href="graph"><span id="nav_zhcx" class="sub_nav_span"></span></a>
 		    </div>          
 	    </div>

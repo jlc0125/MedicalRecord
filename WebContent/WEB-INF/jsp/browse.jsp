@@ -89,7 +89,7 @@ String contextPath=request.getContextPath();
 		</div>
 
 		<div class="UnderSearchBarTabs1" id="home_type_nav">
-			<a id="href_A" href="front"></a> <a id="href_B" href="Browse"></a>
+			<a id="href_A" href="index.html"></a> <a id="href_B" href="Browse"></a>
 			<a id="href_C" href="graph"></a>
 		</div>
 
