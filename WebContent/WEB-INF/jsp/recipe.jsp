@@ -31,7 +31,6 @@
 			});
 			
 			function graph(selectStr, root){
-				$(selectStr + " svg").remove();
 				var svg = d3.select(selectStr).append("svg")
 				.attr("width", diameter)
 				.attr("height", diameter)
@@ -118,7 +117,7 @@
 						for(var i=0; i<data.length; i++){
 							txt += '<li><a href="record_detail?recordId=' + data[i].id + '" target="_blank">' + data[i].title + '</a></li>';
 						}
-						$(".alt_content").html(txt);
+						$(".alt_content").css("border","1px solid #DB5C04").html(txt);
 						
 						$('.alt_container').pajinate({
 							items_per_page : 10,
@@ -151,9 +150,10 @@
 				if(value != ''){
 					var url = "recipe/search?q=" + value;
 					d3.json(url, function(error, root) { 
-						graph("#component #graph", root.component);
-						graph("#attending #graph", root.attending);
-						graph("#similar #graph", root.similar);		
+						$(".graph svg").remove();
+						graph("#component .graph", root.component);
+						graph("#attending .graph", root.attending);
+						graph("#similar .graph", root.similar);		
 					});
 				}
 				return false;
@@ -227,17 +227,17 @@
 	
     <div id="main_content">
     	<div id="component">
-    		<div id="graph">
+    		<div class="graph">
     		</div>
      </div>
      
      <div id="attending">
-    		<div id="graph">
+    		<div class="graph">
     		</div>
      </div>
      
      <div id="similar">
-    		<div id="graph">
+    		<div class="graph">
     		</div>
 			</div>
     </div>

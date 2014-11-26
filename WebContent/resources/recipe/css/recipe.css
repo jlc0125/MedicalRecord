@@ -131,7 +131,7 @@ body {
 	background-color: #fff;
 }
 
-#graph {
+.graph {
 	margin-left: 15px;
 	margin-bottom: 18px; 
 	width: 560px;
@@ -224,7 +224,6 @@ body {
 
 .alt_content{
 	color: black;
-	border: 1px solid #DB5C04;
 }
 
 .alt_content li{
