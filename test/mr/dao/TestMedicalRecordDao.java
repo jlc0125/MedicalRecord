@@ -47,4 +47,10 @@ public class TestMedicalRecordDao {
 		assertEquals(i,60);
 	}
 	
+	@Test
+	public void testRecordByDisc(){
+		List<MedicalRecord> list = mrDao.recordyDisc("调津液");
+		System.out.println(list.size());
+	}
+	
 }
