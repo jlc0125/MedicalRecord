@@ -26,15 +26,22 @@ public class BrowseController {
 	
 	@RequestMapping(value="/retval")
 	@ResponseBody
-	public List<MedicalRecord> getRecord(@RequestParam("wd") String wd,@RequestParam("type") String type,@RequestParam("pageNo") int pn,@RequestParam("pageSize") int ps){
+	public List<MedicalRecord> getRecord(@RequestParam("wd") String wd,@RequestParam("type") String type){
 		List<MedicalRecord> recList =new ArrayList<MedicalRecord>();
 		if(type.equals("medicalclassify")){
 			recList = mrs.recordByCategory(wd);
 		}
-		else if(type.equals("discriminate")||type.equals("wordfrequency")){
+		else if(type.equals("discriminate")){
 			recList = mrs.recordByDisc(wd.replaceAll("辨证", ""));
 		}
-		System.out.println(wd + pn);		
+		else if(type.equals("therapy")){
+			recList = mrs.recordByTher(wd);
+		}
+		else if(type.equals("wordfrequency")){
+			recList = mrs.recordByWF(wd);
+		}
+		
+		System.out.println(wd);		
 		return recList;
 	}
 	

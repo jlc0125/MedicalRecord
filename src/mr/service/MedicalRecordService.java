@@ -131,5 +131,13 @@ public class MedicalRecordService {
 	public List<MedicalRecord> recordByDisc(String discriminate){
 		return mrDao.recordyDisc(discriminate);
 	}
+	
+	public List<MedicalRecord> recordByTher(String therapy){
+		return mrDao.recordyDisc(therapy);
+	}
+	
+	public List<MedicalRecord> recordByWF(String word){
+		return mrDao.recordyDisc(word);
+	}
 }
 
