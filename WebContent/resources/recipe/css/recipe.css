@@ -42,7 +42,7 @@ body {
 
 .logoSearch_L2 {
 	margin: auto; 
-	width:960px
+	width: 960px
 }
 .logoSearch_L2 .logo {
 	float: left; 
@@ -52,7 +52,7 @@ body {
 
 .logoSearch_L2 .search {
 	width: 1006px; 
-	height: 75px; 
+	height: 45px; 
 	padding-top: 10px; 
 }
 
@@ -63,7 +63,7 @@ body {
     line-height: 15px;
     background-color: #ffffff;
     padding-left: 8px;
-    width: 580px;
+    width: 670px;
     padding-right: 8px;
     float: left;
     height: 15px;
@@ -71,12 +71,11 @@ body {
     border-top: #e2c7b9 1px solid;
     border-right: #e2c7b9 1px;
     padding-top: 10px;
-    margin-left: 90px;
     vertical-align: middle;
     font-size: 15px;
 }
 
-.logoSearch_L2 .search A.button {
+.logoSearch_L2 .search input.button {
 	width: 168px; 
 	display: inline-block; 
 	background-image:url(../image/fx_btn.png); 
@@ -85,12 +84,26 @@ body {
 	height: 37px; 
 }
 
-.logoSearch_L2 .search A.button:hover {
+.logoSearch_L2 .search input.button:hover {
 	background-image:url(../image/fx_btn_click.png); 
+}
+
+#tagscloud {
+	width: 750px;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+}
+
+#tagscloud a {
+	position: absolute;
+	text-decoration: none;
+	color: #666;
 }
 
 #container {
 	width: 960px;
+	padding-top: 10px;
 	margin: 0px auto;
 }
 

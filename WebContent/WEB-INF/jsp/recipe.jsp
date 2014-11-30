@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,12 +21,15 @@
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			tagscloud("#tagscloud");
+			
 			$('#container').easyTabs({defaultContent:1});
 			
-			$("#front_btn").click(function(){
+			$("#search_cf").submit(function(){
 				var value = $("#front_input").val();
 				if(value != ''){
 					var url = "recipe/search?q=" + value;
@@ -81,16 +84,22 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_1.png" />
+			<img src="resources/recipe/image/r_12.png" />
 		</div>
-
+		
 		<div class="logoSearch_L2">
-			<div class="clearfix"></div>
-			<div id="search_cf" class="search cf">
+			<form id="search_cf" class="search cf" >
 				<input id="front_input" class="text" type="text" maxLength="20"> 
-				<a class="button" id="front_btn" href="#"></a> <br>
-			</div>
+				<input class="button" id="front_btn" type="submit" value=""> <br>
+			</form>
+			<div id="tagscloud">
+				<ul>
+				<c:forEach var="item" items="${name}">
+					<li><a href=""><c:out value="${item}"></c:out></a></li>
+				</c:forEach>
+			</ul>
 		</div>
+	</div>
 		
 		<div id="container">
 			<ul class="tabs">
