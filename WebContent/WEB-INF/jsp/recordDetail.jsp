@@ -86,6 +86,12 @@ String contextPath=request.getContextPath();
 			$("#content").html(body);
 			$("#reference").html(reference);
 			
+			var hlFlag=getUrlParam("hlFlag");
+			if(hlFlag=="1"){
+				var hlWords=getUrlParam("hlWords");
+				hlWords=hlWords.split(" ");
+				highLight(hlWords);
+			}
 
 		}
 		

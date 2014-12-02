@@ -44,6 +44,9 @@ public class MainSearchController {
 		else if(type.equals("doctor_id")){
 			return mrs.recordByDoctorId(Long.valueOf(wd));
 		}
+		else if(type.equals("content_contain")){
+			return mrs.recordByContentContain(wd.split(" "));
+		}
 		else{
 			//未勾选，错误页面
 			return null;
