@@ -15,7 +15,7 @@
 		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
 		<style>
 		img{
-			max-width:60%;
+			max-width:90%;
 		}
 		.info th:nth-child(2){
 			padding-top:10%;
@@ -29,6 +29,10 @@
 			padding-left:10%;
 			padding-right:10%;
 		}
+		.info td{
+			text-align:left !important;
+		}
+		
 		.record th{
 			text-align: center !important;
 			vertical-align: middle !important;
@@ -79,7 +83,7 @@
 					$("#doctor_body").addClass("info");
 					$("#doctor_body").removeClass("record");
 					thead="<tr><th>肖像</th><th>个人简介</th></tr>";
-					tbody+="<tr><th><img src='<%=contextPath%>/resources/"+data.picture+"'/></th><th>"+data.introduction+"</th></tr>";
+					tbody+="<tr><td><img src='<%=contextPath%>/resources/"+data.picture+"'/></td><td>"+data.introduction+"</th></td>";
 					$("#doctor_head").html(thead);
 					$("#doctor_body").html(tbody);
 					

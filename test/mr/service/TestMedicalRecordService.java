@@ -35,10 +35,15 @@ public class TestMedicalRecordService {
 		assertNotNull(tmp);
 	}
 	
-	@Test
+	//@Test
 	public void testRecordByDoctor(){
 		List<MedicalRecord> tmp=mrs.recordByDoctor("");
 		assertEquals("赵", tmp.get(0).getDoctorName());
+	}
+	@Test
+	public void testRecordByContentContain(){
+		List<MedicalRecord> tmp=mrs.recordByContentContain(new String[]{"发热","咳嗽"});
+		assertEquals(1, tmp.size());
 	}
 	
 }

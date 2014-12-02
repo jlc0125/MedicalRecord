@@ -108,14 +108,16 @@ public class MedicalRecordService {
 		return mrDao.recordByDoctorId(id);
 	}
 	
-
-	
 	public List<MedicalRecord> recordByCategory(String secCateName){
 		return mrDao.recordByCategory(secCateName);
 	}
 	
 	public List<MedicalRecord> recordByDisc(String discriminate){
 		return mrDao.recordyDisc(discriminate);
+	}
+	
+	public List<MedicalRecord> recordByContentContain(String[] words){
+		return mrDao.reocrdByContentContain(words);
 	}
 }
 

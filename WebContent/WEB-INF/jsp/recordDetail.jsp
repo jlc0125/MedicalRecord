@@ -14,22 +14,35 @@ String contextPath=request.getContextPath();
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
 		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
 		<style>
+		p {
+			text-indent: 2em;
+			padding:5px;
+			font-size:12px;
+			margin:5px 0;
+		}
+		
 		#doctor{
+			padding-top:5%;
 			font-size:14px;
 			line-height:18px;
 			font-family: inherit;
 			font-weight: bold;
+			text-align:center;
 		}
 		#content{
-			padding-left: 25%;
-			padding-top: 10%;
+			padding-top:5%;
+			text-align:left;
 		}
 		#title{
-			padding-left: 25%;
-			padding-top: 5%;
+			padding-top:5%;
+			text-align:center;
 		}
 		#reference{
-			padding-left: 25%;
+			text-align:right;
+			font-size:14px;
+			line-height:18px;
+			font-family: inherit;
+			font-weight: bold;
 		}
 		
 		#content_container{
@@ -59,12 +72,16 @@ String contextPath=request.getContextPath();
 		function getRecordSuccess(data,textStatus,jqXHR){
 			data=eval('(' + data + ')');
 			console.log(data);
+			content=data.content.split("|").slice(0,-1);
+			var doctor="<h3><a target='_blank' href='/MedicalRecord/doctor?id="+data.doctorId+"'>"+data.doctorName+"</a></h3>";
 			var body="";
-			body+="<p id='doctor'><a target='_blank' href='/MedicalRecord/doctor?id="+data.doctorId+"'>"+data.doctorName+"</a></p>";
-			body+="<p>"+data.content+"</p>";
-			var reference="<br/><br/><a href='/MedicalRecord/search/result?wd="+data.reference+"&type=reference'><h4>出自"+data.reference+"</h4></a><br/><br/>"
+			for (var i=0;i<content.length;i++){
+				body+="<p>"+content[i]+"</p>";
+			}
+			var reference="<br/><br/><a href='/MedicalRecord/search/result?wd="+data.reference+"&type=reference'>出自"+data.reference+"</a><br/><br/>"
 			var title="";
 			title+="<h2>"+data.recordTitle+"</h2>";
+			$("#doctor").html(doctor);
 			$("#title").html(title);
 			$("#content").html(body);
 			$("#reference").html(reference);
@@ -74,6 +91,16 @@ String contextPath=request.getContextPath();
 		
 		function getRecordError(){
 			alert("error");
+		}
+		
+		function highLight(words){
+			var content=$("#content").html();
+			for(var i=0;i<words.length;i++){
+				var word=words[i];
+				var reg=new RegExp(word,"g");
+				content=content.replace(reg,"<font color='red' style='font-weight:bold' >"+word+"</font>");
+			}
+			$("#content").html(content);
 		}
 		
 		</script>
@@ -161,6 +188,8 @@ String contextPath=request.getContextPath();
 					<div class="span12">
 						<div id="content_container" class="container-fluid">
 							<div id="title">
+							</div>
+							<div id="doctor">
 							</div>
 							<div id="content">
 							</div>

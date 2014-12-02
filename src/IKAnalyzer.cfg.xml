@@ -5,5 +5,4 @@
 	<!--用户可以在这里配置自己的扩展字典 -->
 	<entry key="ext_dict">Vocabulary.txt;dis.dic;med.dic;newsym.dic;pre.dic;zhenhou.dic</entry>
 	<entry key="ext_stopwords">stopword.dic;</entry> 
-	
 </properties>

@@ -21,10 +21,8 @@ String contextPath=request.getContextPath();
 <script src="<%=contextPath%>/resources/search/js/home.js"></script>
 <!-- exlib -->
 <script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-<script
-	src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
-<script
-	src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
+<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
 
 
 <!-- css -->
@@ -73,7 +71,7 @@ String contextPath=request.getContextPath();
 				}
 				
 				var wd=$("#main_search_input").val();
-				window.location.href="./search/result?wd="+wd+"&type="+type+"&pageNo=1&pageSize=10";
+				window.location.href="./search/result?wd="+wd+"&type="+type;
 			}
 		);
 	});
@@ -134,7 +132,7 @@ String contextPath=request.getContextPath();
 					<br>
 					<br>
 					<div class="checkboxes2" id="option">搜索选项：&nbsp; 
-						<input type="checkbox" class="option" id="content_opt">医案内容&nbsp;&nbsp;
+						<input type="checkbox" class="option" id="content_opt">医案内容(包括中药、方剂、疾病、辩证、治则等)&nbsp;&nbsp;
 						<input type="checkbox" class="option" id="doctor_opt">医生&nbsp;&nbsp;
 						<input type="checkbox" class="option" id="reference_opt">医案出处&nbsp;&nbsp;
 					</div>
