@@ -1,129 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>中草药基础知识搜索系统</title>
 	
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
+	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
+	
 	<!-- js -->
+	<script type="text/javascript" src="resources/d3js/d3.min.js"></script>
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
-	<script type="text/javascript" src="resources/D3JS/d3.min.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			tagscloud("#tagscloud");
+			
 			$('#container').easyTabs({defaultContent:1});
 			
-			var diameter = 560;
-			var tree = d3.layout.tree()
-			.size([360, diameter / 2 - 60])
-			.separation(function(a, b) { 
-				return (a.parent == b.parent ? 1 : 2) / a.depth;  
-			});
-			        
-			var diagonal = d3.svg.diagonal.radial()
-			.projection(function(d) { 
-				return [d.y, d.x / 180 * Math.PI]; 
-			});
-			
-			function graph(selectStr, root){
-				var svg = d3.select(selectStr).append("svg")
-				.attr("width", diameter)
-				.attr("height", diameter)
-				.append("g")
-				.attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
-				
-				var nodes = tree.nodes(root),
-							links = tree.links(nodes);
-				
-				var link = svg.selectAll(".link")
-				.data(links)
-				.enter().append("path")
-				.attr("class", function(d){
-					if(d.source.depth == 0)
-						return "rootlink";
-					else
-						return "childlink";
-				})
-				.attr("d", diagonal);
-
-				var rootNode = svg.append("g")
-				.attr("class", "rootnode");
-				
-				rootNode.append("circle")
-				.attr("r", 7);
-
-				rootNode.append("text")
-				.attr("dy", "32")
-				.attr("text-anchor", "middle")
-				.text(nodes[0].name);
-
-				var node = svg.selectAll(".node")
-				.data(nodes.slice(1))
-				.enter().append("g")
-				.attr("class", function(d){
-					if(d.depth == 1)
-						return "childnode";
-					else
-						return "grandchildnode";
-				})
-				.attr("transform", function(d) {
-					return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; 
-				});
-
-				node.append("circle")
-				.attr("r", 4.5)
-				.on("mouseover", function(){
-					d3.select(this).attr("r", 8);
-				})
-				.on("mouseout", function(){
-					d3.select(this).attr("r", 4.5);
-				})
-				.on("click", function(d){
-					alert(d.parent.name + " , " + d.name);
-				});
-
-				node.append("text")
-				.attr("dy", ".5em")
-				.attr("text-anchor", function(d) {
-					return d.x < 180 ? "start" : "end";
-				})
-				.attr("transform", function(d) {
-					return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)";
-				})
-				.text(function(d) { return d.name; });
-
-				node.append("title")
-				.text("点击查看相关医案");
-			}
-			
-			$("#front_btn").click(function(){
+			$("#search_cf").submit(function(){
 				var value = $("#front_input").val();
 				if(value != ''){
 					var url = "recipe/search?q=" + value;
 					d3.json(url, function(error, root) { 
-						graph("#component #graph", root.component);
-						graph("#attending #graph", root.attending);
-						graph("#similar #graph", root.similar);		
+						$(".graph svg").remove();
+						graph("#component .graph", root.component);
+						graph("#attending .graph", root.attending);
+						graph("#similar .graph", root.similar);		
 					});
 				}
 				return false;
 			});
 			
+			$("#front_input").autocomplete({
+				autoFocus: true,
+				minLength: 1,
+				source: function(request, response) {
+					var url = "recipe/hint?q=" + request.term;
+					$.get(url, function(data, status){
+						response(data);
+					});
+				 }
+			});
+			
         });
 	</script>
-	
-	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
-
-
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
 </head>
 
-<BODY>
+<body>
 	<div class=top>
 		<div id="common_nav">
 			<div class="cf" id="common_nav_L2">
@@ -149,47 +84,53 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_1.png" />
+			<img src="resources/recipe/image/r_12.png" />
 		</div>
-
+		
 		<div class="logoSearch_L2">
-			<div class="clearfix"></div>
-			<div id="search_cf" class="search cf">
+			<form id="search_cf" class="search cf" >
 				<input id="front_input" class="text" type="text" maxLength="20"> 
-				<a class="button" id="front_btn" href="#"></a> <br>
-			</div>
+				<input class="button" id="front_btn" type="submit" value=""> <br>
+			</form>
+			<div id="tagscloud">
+				<ul>
+				<c:forEach var="item" items="${name}">
+					<li><a href=""><c:out value="${item}"></c:out></a></li>
+				</c:forEach>
+			</ul>
 		</div>
+	</div>
 		
 		<div id="container">
 			<ul class="tabs">
-				<li><a href="#component">中药关联</a></li>
-		  	<li><a href="#attending">疾病关联</a></li>
-		  	<li><a href="#similar">方剂关联</a></li>
+				<li><a href="#component">主要成分</a></li>
+		  	<li><a href="#attending">主治疾病</a></li>
+		  	<li><a href="#similar">相似方剂</a></li>
 		 </ul>
 	
     <div id="main_content">
     	<div id="component">
-    		<div id="graph">
+    		<div class="graph">
     		</div>
      </div>
      
      <div id="attending">
-    		<div id="graph">
+    		<div class="graph">
     		</div>
      </div>
      
      <div id="similar">
-    		<div id="graph">
+    		<div class="graph">
     		</div>
 			</div>
     </div>
     <div id="sidebar">
-    	<h2>相关医案</h2>
-    	<ul>
-    		<li>1</li>
-      <li>2</li>
-      <li>3</li>
-     </ul>
+    	<div class="alt_container">
+				<h2>相关医案</h2>
+				<div class="alt_page_navigation"></div>	
+				<div class="alt_info_text"></div>
+				<ul class="alt_content"></ul>
+			</div>    
     </div>
     <div class="clearfix"></div>
    </div>
@@ -268,5 +209,5 @@
            </div>
        </div>
 	</div>
-</BODY>
-</HTML>
+</body>
+</html>

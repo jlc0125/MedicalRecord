@@ -2,6 +2,7 @@ package mr.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import mr.domain.MedicalRecord;
 import mr.service.MedicalRecordService;
@@ -48,7 +49,13 @@ public class MainSearchController {
 			return null;
 		}
 				
-		
+	}
+	
+	@RequestMapping(value="/relate")
+	@ResponseBody
+	public List<Map<String, String>> getRecordRelate(@RequestParam("wd1") String wd1,@RequestParam("wd2") String wd2){
+		String[] words = {wd1, wd2};
+		return mrs.relRecordSimple(words, 40);
 	}
 	
 	@RequestMapping(value="result")

@@ -180,19 +180,11 @@ public class MedicalRecordDao {
 		return result;
 	}
 	
-	public List<MedicalRecord> reocrdByContentContain(String[] words){
+
+	public List<MedicalRecord> recordyTher(String therapy){
 		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
-		String sqlStr="select * from medicalrecord where (content like ?";
-		for(int i=1;i<words.length;i++){
-			sqlStr+=" and content like ?";
-		}
-		sqlStr+=")";
-		Object[] condition=new Object[words.length];
-		for(int i=0;i<words.length;i++){
-			condition[i]="%"+words[i]+"%";
-		}
-		
-		jdbcTemplate.query(sqlStr,condition,
+		String sqlStr="select * from medicalrecord where content like ?";
+		jdbcTemplate.query(sqlStr,new Object[] {"%"+therapy+"%"},
 				new RowCallbackHandler(){
 					@Override
 					public void processRow(ResultSet rs) throws SQLException {
@@ -207,6 +199,56 @@ public class MedicalRecordDao {
 			
 		});
 		return result;
+	}
+	
+	public List<MedicalRecord> recordyWF(String word){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where content like ?";
+		jdbcTemplate.query(sqlStr,new Object[] {"%"+word+"%"},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+		});
+		return result;
+	}
 		
+
+public List<MedicalRecord> reocrdByContentContain(String[] words){
+	final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+	String sqlStr="select * from medicalrecord where (content like ?";
+	for(int i=1;i<words.length;i++){
+		sqlStr+=" and content like ?";
+	}
+	sqlStr+=")";
+	Object[] condition=new Object[words.length];
+	for(int i=0;i<words.length;i++){
+		condition[i]="%"+words[i]+"%";
+	}
+	
+	jdbcTemplate.query(sqlStr,condition,
+					new RowCallbackHandler(){
+				@Override
+				public void processRow(ResultSet rs) throws SQLException {
+					MedicalRecord record=new MedicalRecord();
+					record.setContent(rs.getString("content"));
+					record.setDoctorName(rs.getString("doctorName"));
+					record.setRecordId(rs.getInt("recordId"));
+					record.setRecordTitle(rs.getString("recordTitle"));
+					record.setReference(rs.getString("reference"));
+					result.add(record);
+				}
+		
+		});
+	
+	return result;
 	}
 }

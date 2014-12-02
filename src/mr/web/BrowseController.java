@@ -31,9 +31,16 @@ public class BrowseController {
 		if(type.equals("medicalclassify")){
 			recList = mrs.recordByCategory(wd);
 		}
-		else if(type.equals("discriminate")||type.equals("wordfrequency")){
+		else if(type.equals("discriminate")){
 			recList = mrs.recordByDisc(wd.replaceAll("辨证", ""));
 		}
+		else if(type.equals("therapy")){
+			recList = mrs.recordByTher(wd);
+		}
+		else if(type.equals("wordfrequency")){
+			recList = mrs.recordByWF(wd);
+		}
+		
 		System.out.println(wd);		
 		return recList;
 	}

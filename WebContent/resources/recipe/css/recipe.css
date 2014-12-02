@@ -42,7 +42,7 @@ body {
 
 .logoSearch_L2 {
 	margin: auto; 
-	width:960px
+	width: 960px
 }
 .logoSearch_L2 .logo {
 	float: left; 
@@ -52,7 +52,7 @@ body {
 
 .logoSearch_L2 .search {
 	width: 1006px; 
-	height: 75px; 
+	height: 45px; 
 	padding-top: 10px; 
 }
 
@@ -63,7 +63,7 @@ body {
     line-height: 15px;
     background-color: #ffffff;
     padding-left: 8px;
-    width: 580px;
+    width: 670px;
     padding-right: 8px;
     float: left;
     height: 15px;
@@ -71,12 +71,11 @@ body {
     border-top: #e2c7b9 1px solid;
     border-right: #e2c7b9 1px;
     padding-top: 10px;
-    margin-left: 90px;
     vertical-align: middle;
     font-size: 15px;
 }
 
-.logoSearch_L2 .search A.button {
+.logoSearch_L2 .search input.button {
 	width: 168px; 
 	display: inline-block; 
 	background-image:url(../image/fx_btn.png); 
@@ -85,12 +84,26 @@ body {
 	height: 37px; 
 }
 
-.logoSearch_L2 .search A.button:hover {
+.logoSearch_L2 .search input.button:hover {
 	background-image:url(../image/fx_btn_click.png); 
+}
+
+#tagscloud {
+	width: 750px;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+}
+
+#tagscloud a {
+	position: absolute;
+	text-decoration: none;
+	color: #666;
 }
 
 #container {
 	width: 960px;
+	padding-top: 10px;
 	margin: 0px auto;
 }
 
@@ -131,7 +144,7 @@ body {
 	background-color: #fff;
 }
 
-#graph {
+.graph {
 	margin-left: 15px;
 	margin-bottom: 18px; 
 	width: 560px;
@@ -189,4 +202,52 @@ body {
 	fill: none;
 	stroke: #ccc;
 	stroke-width: 2.5px;
+}
+
+.alt_container{
+	width: 222px;
+	margin: 5px 0;
+}
+
+.alt_container h2{
+	text-align: center;
+	font-style: italic;
+	font-size: 16px;
+}
+
+.alt_page_navigation{
+	padding: 10px 0 10px 7px;
+}
+
+.alt_page_navigation a{
+	padding:2px 5px;
+	margin:1px;
+	color:white;
+	text-decoration:none;
+	float: left;
+	font-family: Tahoma;
+	font-size: 12px;
+	background-color:#DB5C04;
+}
+
+.active_page{
+	background-color:white !important;
+	color:black !important;
+}	
+
+.alt_content{
+	color: black;
+}
+
+.alt_content li{
+	padding: 8px 5px;
+}
+
+.alt_info_text {
+	padding: 20px 0 10px;
+	text-align: center;
+}
+
+.alt_content li:nth-child(odd) {
+	background: #FFD9BF;
 }

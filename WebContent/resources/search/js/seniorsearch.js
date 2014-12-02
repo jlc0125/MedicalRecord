@@ -141,8 +141,11 @@ function initClassify(){
 	{
 		getDiscSearchType();
 	}
-	
-	
+	else if(type == "therapy")
+	{
+		getTherSearchType();
+	}
+		
 	$('#classify_wordfrequency').live('click', function () {
 		window.location.href = "./Browse?type=wordfrequency";
 	});	
@@ -155,6 +158,10 @@ function initClassify(){
 		window.location.href = "./Browse?type=discriminate";
 	});	
 	
+	$('#classify_therapy').live('click', function () {
+		window.location.href = "./Browse?type=therapy";
+	});	
+	
 	
 	window.location.hash = "#home_type_nav";
 	
@@ -164,8 +171,9 @@ function initClassify(){
 
 function getWFSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按医学分类浏览&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_discriminate">&nbsp;辨证&nbsp;</a></li></ul>';
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("胃脘","胁痛","痛经","痹证","咳嗽","癃闭","不孕","闭经","遗尿","脑炎","痿证","胃痛",
@@ -192,7 +200,7 @@ function getWFSearchType(){
 	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("./Browse/result?wd="+ $(this).text() +"&type=wordfrequency&pageNo=1&pageSize=10");
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=wordfrequency");
 	});
 	
 	$("#mian-table").html(table + "</table>");
@@ -202,8 +210,9 @@ function getWFSearchType(){
 /*生成辩证的标签*/
 function getDiscSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按医学分类浏览&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_discriminate">&nbsp;辨证&nbsp;</a></li></ul>';
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
     $("#navcontainer").html(string);
     //
     tempArray = new Array("表里辨证","寒热辨证","虚实辨证","阴阳辨证");
@@ -250,40 +259,59 @@ function getDiscSearchType(){
 	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("./Browse/result?wd="+ $(this).text() +"&type=discriminate&pageNo=1&pageSize=10");
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=discriminate");
 	});
 	
 	$("#mian-table").html(table + "</table>");
     
     
 }
-/*
+
 function getTherSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_dis">&nbsp;疾病&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_ther">&nbsp;治则&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_disc">&nbsp;辩证&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_other">&nbsp;其他&nbsp;</a></li></ul>';
+	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
-	tempArray = new Array("清热","益气","健脾","活血","化痰","通络","养血","解毒","滋阴","疏肝","熄风","补肾","温阳","理气","止血","宣肺","开窍","祛风","利水","止痛","安神","散结","补气","补血","除湿","养心","生津","温中","补益","解郁","消肿","降火","止咳","止痒","利尿","活血化瘀","清热解毒","疏肝理气","平肝潜阳","行气活血","");
+	tempArray = new Array("标本缓急","正治","反治","同病异治","异病同治");
 	table = "";
 	table += "<table id='mian-table'><th class='c-left'></th><th class='c-right'></th>"
-		  +	"<tr><td  class='c-left-text'>治则:</td><td class='c-right-text'>";
+		  +	"<tr><td  class='c-left-text'>治病求本：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
+	tempArray = new Array("扶正","祛邪");
+	table += "<tr><td  class='c-left-text'>扶正祛邪：</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("因时制宜","因地制宜","因人制宜");
+	table += "<tr><td  class='c-left-text'>三因制宜：</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	tempArray = new Array("汗","吐","下","和","温","清","补","消");
+	table += "<tr><td  class='c-left-text'>八法：</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
+	
+	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("seniorsearch?therword=" + $(this).text() + "&type=ther&pageno=1");
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=therapy");
 	});
 	
 	$("#mian-table").html(table + "</table>");
+	
+
 }
-*/
+
 function getMCSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按医学分类浏览&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_discriminate">&nbsp;辨证&nbsp;</a></li></ul>';
+		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
+		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("外感病","肺系病","脾胃病证","肾系病","心系病","肝胆病证","气血津液病证","经络肢体病证","中毒","杂病");
@@ -321,7 +349,7 @@ function getMCSearchType(){
 	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
-		window.open("./Browse/result?wd="+ $(this).text() +"&type=medicalclassify&pageNo=1&pageSize=10");
+		window.open("./Browse/result?wd="+ $(this).text() +"&type=medicalclassify");
 	});
 	
 	$("#mian-table").html(table + "</table>");
