@@ -93,11 +93,12 @@
 			d3.select(this).attr("r", 4.5);
 		})
 		.on("click", function(d){
-			var url = "search/relate?wd1=" + d.parent.name + "&wd2=" + d.name;
+			//var url = "search/relate?wd1=" + d.parent.name + "&wd2=" + d.name;
+			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
 			$.get(url, function(data, status){
 				var txt = "";
 				for(var i=0; i<data.length; i++){
-					txt += '<li><a href="record_detail?recordId=' + data[i].id + '" target="_blank">' + data[i].title + '</a></li>';
+					txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
 				}
 				$(".alt_content").css("border","1px solid #DB5C04").html(txt);
 							

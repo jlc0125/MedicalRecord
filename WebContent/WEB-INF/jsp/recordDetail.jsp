@@ -88,7 +88,7 @@ String contextPath=request.getContextPath();
 			
 			var hlFlag=getUrlParam("hlFlag");
 			if(hlFlag=="1"){
-				var hlWords=getUrlParam("hlWords");
+				var hlWords=decodeURI(getUrlParam("hlWords"));
 				hlWords=hlWords.split(" ");
 				highLight(hlWords);
 			}
