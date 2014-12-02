@@ -33,25 +33,7 @@
 		})
 		.attr("d", diagonal);
 					
-		if(selectStr == "#component #graph"){
-			link.append("title").text(function(d){
-				if(d.source.depth == 0)
-					return "组成关系";
-				else
-					return "共生关系";
-			});
-		}
-		else if(selectStr == "#attending #graph"){
-			link.append("title").text(function(d){
-				if(d.source.depth == 0)
-					return "主治关系";
-				else
-					return "伴随关系";
-			});
-		}
-		else{
-			link.append("title").text("相似关系");
-		}
+		link.append("title").text("相关关系");
 	
 		link.on("mouseover", function(){
 			d3.select(this).style("stroke-width", 5);
@@ -93,14 +75,21 @@
 			d3.select(this).attr("r", 4.5);
 		})
 		.on("click", function(d){
-			//var url = "search/relate?wd1=" + d.parent.name + "&wd2=" + d.name;
 			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
 			$.get(url, function(data, status){
 				var txt = "";
+				var numData = 0;
 				for(var i=0; i<data.length; i++){
-					txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
+					if(data[i].recordTitle){
+						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
+						numData++;
+						if(numData >= 40)
+							break;
+					}
 				}
-				$(".alt_content").css("border","1px solid #DB5C04").html(txt);
+				$(".alt_content").html(txt);
+				if(txt)
+					$(".alt_content").css("border","1px solid #DB5C04");
 							
 				$('.alt_container').pajinate({
 					items_per_page : 10,

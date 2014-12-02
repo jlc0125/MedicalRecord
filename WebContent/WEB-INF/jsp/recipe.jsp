@@ -103,9 +103,9 @@
 		
 		<div id="container">
 			<ul class="tabs">
-				<li><a href="#component">主要成分</a></li>
-		  	<li><a href="#attending">主治疾病</a></li>
-		  	<li><a href="#similar">相似方剂</a></li>
+				<li><a href="#component">相关中药</a></li>
+		  	<li><a href="#attending">相关疾病</a></li>
+		  	<li><a href="#similar">相关方剂</a></li>
 		 </ul>
 	
     <div id="main_content">
