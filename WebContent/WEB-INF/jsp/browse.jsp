@@ -83,14 +83,13 @@ String contextPath=request.getContextPath();
 	<div class="bg_heise">
 		<div class="clearfix">
 			<div class="imgFrame2">
-				<img
-					src="./search/Images/2_08.png" />
+				<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
 			</div>
 		</div>
 
 		<div class="UnderSearchBarTabs1" id="home_type_nav">
 			<a id="href_A" href="index.html"></a> <a id="href_B" href="Browse"></a>
-			<a id="href_C" href="graph"></a>
+			<a id="href_C" href="Analysis"></a>
 		</div>
 
 		<div class="clearfix"></div>

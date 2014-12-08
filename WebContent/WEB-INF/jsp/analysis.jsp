@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String contextPath=request.getContextPath();
 %>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 
 <html dir="ltr" xml:lang="en-gb" xmlns="http://www.w3.org/1999/xhtml"
@@ -29,8 +28,8 @@ String contextPath=request.getContextPath();
 	href="<%=contextPath%>/resources/search/css/index.css">
 <link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
-<link rel=stylesheet type=text/csz 
-	href="<%=contextPath%>/resources/search/css/jichushousuo.css">
+<link rel=stylesheet type=text/css 
+	href="<%=contextPath%>/resources/search/css/yianfenxi.css">
 </HEAD>
 
 <BODY>
@@ -64,18 +63,28 @@ String contextPath=request.getContextPath();
 		</div>
 	</div>
 	
-	
-	
-	
 	<div class="bg_heise">
+		<div class="clearfix">
+			<div class="imgFrame2">
+					<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
+			</div>
+		</div>
+
+		<div class="UnderSearchBarTabs1" id="home_type_nav">
+			<a id="href_A" href="index.html"></a> <a id="href_B" href="Browse"></a>
+			<a id="href_C" href="Analysis"></a>
+		</div>
+
+		<div class="clearfix"></div>
+		<br>
+		<br>
+		<br>
+		
+	
 		
 	  <div class="row-fluid" >
-	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">疾病分析</button></div>
-	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">辩证分析</button></div>
-	  </div>
-	  <div class="row-fluid" >
-	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">治则分析</button></div>
-	     <div class="span6"><button class="btn btn-primary" style="width:100%;height:100%">关联分析</button></div>
+	     <div class="span3"><button class="btn btn-large" style="margin-right:100px;width:100%;height:100%"type="color:#33333">疾病分析</button></div>
+	     <div class="span3"><button class="btn btn-large" style="margin-left:80px;width:100%;height:100%">辩证分析</button></div>
 	  </div>
 		
 	</div>

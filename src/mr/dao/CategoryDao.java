@@ -70,4 +70,10 @@ public class CategoryDao {
 				});
 		return cate;
 	}
+	
+	public int getMatchCount(String num) {
+		String sqlStr = " SELECT count(*) FROM result2 "
+				+ " WHERE one<? or two<? or three<? or four<? or five<? or six<? or seven<? or eight<?";
+		return jdbcTemplate.queryForInt(sqlStr, new Object[] { num,num,num,num,num,num,num,num });
+	}
 }
