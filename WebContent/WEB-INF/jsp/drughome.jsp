@@ -15,30 +15,18 @@
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
 	
 	<!-- js -->
-	<script type="text/javascript" src="resources/d3js/d3.min.js"></script>
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/tagscloud_home.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "recipe");
-			
-			$('#container').easyTabs({defaultContent:1});
+			tagscloud("#tagscloud", "drug");
 			
 			$("#search_cf").submit(function(){
 				var value = $("#front_input").val();
 				if(value != ''){
-					var url = "recipe/search?q=" + value;
-					d3.json(url, function(error, root) { 
-						$(".graph svg").remove();
-						graph("#component .graph", root.component);
-						graph("#attending .graph", root.attending);
-						graph("#similar .graph", root.similar);		
-					});
 				}
 				return false;
 			});
@@ -47,7 +35,7 @@
 				autoFocus: true,
 				minLength: 1,
 				source: function(request, response) {
-					var url = "recipe/hint?q=" + request.term;
+					var url = "drug/hint?q=" + request.term;
 					$.get(url, function(data, status){
 						response(data);
 					});
@@ -84,7 +72,7 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_12.png" />
+			<img src="resources/recipe/image/r_124.png" />
 		</div>
 		
 		<div class="logoSearch_L2">
@@ -95,45 +83,16 @@
 			<div id="tagscloud">
 				<ul>
 				<c:forEach var="item" items="${name}">
-					<li><a href=""><c:out value="${item}"></c:out></a></li>
+					<li>
+						<form method="post" action="drug">
+							<input type="hidden" name="q" value="${item}">
+							<a><c:out value="${item}"></c:out></a>
+						</form>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
 	</div>
-		
-		<div id="container">
-			<ul class="tabs">
-				<li><a href="#component">相关中药</a></li>
-		  	<li><a href="#attending">相关疾病</a></li>
-		  	<li><a href="#similar">相关方剂</a></li>
-		 </ul>
-	
-    <div id="main_content">
-    	<div id="component">
-    		<div class="graph">
-    		</div>
-     </div>
-     
-     <div id="attending">
-    		<div class="graph">
-    		</div>
-     </div>
-     
-     <div id="similar">
-    		<div class="graph">
-    		</div>
-			</div>
-    </div>
-    <div id="sidebar">
-    	<div class="alt_container">
-				<h2>相关医案</h2>
-				<div class="alt_page_navigation"></div>	
-				<div class="alt_info_text"></div>
-				<ul class="alt_content"></ul>
-			</div>    
-    </div>
-    <div class="clearfix"></div>
-   </div>
 	</div>
 
 	<!-- footer -->

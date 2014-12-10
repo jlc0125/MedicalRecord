@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
@@ -9,53 +8,23 @@
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/cslider.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/home.css">
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
 	
 	<!-- js -->
-	<script type="text/javascript" src="resources/d3js/d3.min.js"></script>
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
-	
+	<script type="text/javascript" src="resources/recipe/js/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/jquery.cslider.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			tagscloud("#tagscloud", "recipe");
-			
-			$('#container').easyTabs({defaultContent:1});
-			
-			$("#search_cf").submit(function(){
-				var value = $("#front_input").val();
-				if(value != ''){
-					var url = "recipe/search?q=" + value;
-					d3.json(url, function(error, root) { 
-						$(".graph svg").remove();
-						graph("#component .graph", root.component);
-						graph("#attending .graph", root.attending);
-						graph("#similar .graph", root.similar);		
-					});
-				}
-				return false;
+			$(document).ready(function() {
+				$('#da-slider').cslider({
+					autoplay	: true,
+					bgincrement	: 450
+				});
 			});
-			
-			$("#front_input").autocomplete({
-				autoFocus: true,
-				minLength: 1,
-				source: function(request, response) {
-					var url = "recipe/hint?q=" + request.term;
-					$.get(url, function(data, status){
-						response(data);
-					});
-				 }
-			});
-			
-        });
-	</script>
+		</script>	
 </head>
 
 <body>
@@ -81,60 +50,34 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="bg_heise">
-		<div class="imgFrame">
-			<img src="resources/recipe/image/r_12.png" />
-		</div>
-		
-		<div class="logoSearch_L2">
-			<form id="search_cf" class="search cf" >
-				<input id="front_input" class="text" type="text" maxLength="20"> 
-				<input class="button" id="front_btn" type="submit" value=""> <br>
-			</form>
-			<div id="tagscloud">
-				<ul>
-				<c:forEach var="item" items="${name}">
-					<li><a href=""><c:out value="${item}"></c:out></a></li>
-				</c:forEach>
-			</ul>
-		</div>
-	</div>
-		
-		<div id="container">
-			<ul class="tabs">
-				<li><a href="#component">相关中药</a></li>
-		  	<li><a href="#attending">相关疾病</a></li>
-		  	<li><a href="#similar">相关方剂</a></li>
-		 </ul>
-	
-    <div id="main_content">
-    	<div id="component">
-    		<div class="graph">
-    		</div>
-     </div>
-     
-     <div id="attending">
-    		<div class="graph">
-    		</div>
-     </div>
-     
-     <div id="similar">
-    		<div class="graph">
-    		</div>
-			</div>
-    </div>
-    <div id="sidebar">
-    	<div class="alt_container">
-				<h2>相关医案</h2>
-				<div class="alt_page_navigation"></div>	
-				<div class="alt_info_text"></div>
-				<ul class="alt_content"></ul>
-			</div>    
-    </div>
-    <div class="clearfix"></div>
-   </div>
-	</div>
+	 <div class="container">
+				<div id="da-slider" class="da-slider">
+					<div class="da-slide">
+						<h2>方剂分析</h2>
+						<p>分析医案中方剂与中药，症状以及其他方剂的关联共生关系。</p>
+						<a href="recipe" class="da-link">点击进入</a>
+					</div>
+					<div class="da-slide">
+						<h2>处方分析</h2>
+						<p>分析医案中处方与中药，症状的关联共生关系。</p>
+						<a href="#" class="da-link">点击进入</a>
+					</div>
+					<div class="da-slide">
+						<h2>中药分析</h2>
+						<p>分析医案中中药之间的共生关系。</p>
+						<a href="drughome" class="da-link">点击进入</a>
+					</div>
+					<div class="da-slide">
+						<h2>症状分析</h2>
+						<p>分析医案中症状之间的共生关系。</p>
+						<a href="#" class="da-link">点击进入</a>
+					</div>
+					<nav class="da-arrows">
+						<span class="da-arrows-prev"></span>
+						<span class="da-arrows-next"></span>
+					</nav>
+				</div>
+	  </div>
 
 	<!-- footer -->
 	<div>

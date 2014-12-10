@@ -150,7 +150,7 @@ body {
 	margin-left: 15px;
 	margin-bottom: 18px; 
 	width: 560px;
-	height: 560px;
+	height: 450px;
 	text-align:center;
 }
 
@@ -159,7 +159,7 @@ body {
 	margin-bottom: 18px; 
 	float: left;
 	width: 222px;
-	height: 600px;
+	height: 490px;
 	background: #eee; 
 }
 
@@ -182,28 +182,12 @@ body {
 .childnode {
 	font: 10px sans-serif;
  }
-        
-.grandchildnode circle {
-	fill: #fff;
-	stroke: #26cead;
-	stroke-width: 1.5px;
- }
 
-.grandchildnode {
-	font: 10px sans-serif;
-}
-
-.rootlink {
+.link {
 	fill: none;
 	stroke: #c9c26f;
 	stroke-width: 2.5px;
  }
-        
-.childlink {
-	fill: none;
-	stroke: #ccc;
-	stroke-width: 2.5px;
-}
 
 .alt_container{
 	width: 222px;

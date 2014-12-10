@@ -38,18 +38,16 @@ function tagscloud(selectStr, tagStr){
     .click(function(){
     			var value = $(this).text();
     			$("#front_input").val(value);
+    			$(".graph").empty();	
     			d3.json(tagStr + "/search?q=" + value, function(error, root) { 
-    				$(".graph svg").remove();
-    				if(tagStr == "recipe"){
-    					graph("#component .graph", root.component);
-        		graph("#attending .graph", root.attending);
-        		graph("#similar .graph", root.similar);		
-    					}
-    				else{
-    					graph("#component .graph", root.drug);
+						if(error){
+							$(".graph .error").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						}
+						else{
+							graph("#component .graph", root.drug);
 							graph("#attending .graph", root.symptom);
 							graph("#similar .graph", root.recipe);		
-    					}
+						}
     				});
     	return false;
     });

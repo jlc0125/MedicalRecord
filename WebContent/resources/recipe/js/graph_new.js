@@ -1,5 +1,5 @@
 (function(window){
-	var diameter = 560;
+	var diameter = 450;
 	var tree = d3.layout.tree()
 	.size([360, diameter / 2 - 60])
 	.separation(function(a, b) {
@@ -25,12 +25,7 @@
 		.data(links)
 		.enter()
 		.append("path")
-		.attr("class", function(d){
-			if(d.source.depth == 0)
-				return "rootlink";
-			else
-				return "childlink";
-		})
+		.attr("class", "link")
 		.attr("d", diagonal);
 					
 		link.append("title").text("相关关系");
@@ -56,12 +51,7 @@
 		var node = svg.selectAll(".node")
 		.data(nodes.slice(1))
 		.enter().append("g")
-		.attr("class", function(d){
-			if(d.depth == 1)
-				return "childnode";
-			else
-				return "grandchildnode";
-		})
+		.attr("class", "childnode")
 		.attr("transform", function(d) {
 			return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; 
 		});
