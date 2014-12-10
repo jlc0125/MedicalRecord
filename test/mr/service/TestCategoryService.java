@@ -51,4 +51,8 @@ public class TestCategoryService {
 		Category cate = cgDao.getSecCategory("外感病");
 		assertEquals(cate.getCateId(), "0000");
 	}
+	@Test
+	public void testgetMatchCount(){
+		System.out.println(cgDao.getMatchCount("20"));
+	}
 }
