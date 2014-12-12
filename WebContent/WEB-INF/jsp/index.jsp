@@ -120,8 +120,8 @@ String contextPath=request.getContextPath();
 
 		<div class="floatTOP">
 			<div class="UnderSearchBarTabs1">
-				<a id="href_A" href="MainSearch"></a> <a id="href_B" href="Browse"></a>
-				<a id="href_C" href="Analysis"></a>
+				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
+				<a id="href_C" href="<%=contextPath%>/Analysis"></a>
 			</div>
 			<div class="logoSearch_L2">
 				<div class="clearfix"></div>

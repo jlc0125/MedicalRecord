@@ -19,12 +19,12 @@ public class LoginController{
 	@Autowired
 	private UserService userService;
     
-	@RequestMapping(value = "/index.html")
+	@RequestMapping(value = "/index")
 	public String loginPage(){
 		return "index";
 	}
 	
-	@RequestMapping(value = "/loginCheck.html")
+	@RequestMapping(value = "/loginCheck")
 	public ModelAndView loginCheck(HttpServletRequest request,LoginCommand loginCommand){
 		boolean isValidUser = 
 			   userService.hasMatchUser(loginCommand.getUserName(),

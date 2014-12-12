@@ -34,6 +34,7 @@ public class MedicalRecordDao {
 						medicalRecord.setRecordTitle(rs.getString("recordTitle"));
 						medicalRecord.setReference(rs.getString("reference"));
 						medicalRecord.setCategory(rs.getString("category"));
+						medicalRecord.setCfIndex(rs.getString("cfIndex"));
 						String tfidfStr=rs.getString("tfidf");
 						HashMap<Integer,Double> tfidfMap=new HashMap<Integer,Double>();
 						//String转map，待处理
@@ -88,6 +89,7 @@ public class MedicalRecordDao {
 						record.setRecordId(rs.getInt("recordId"));
 						record.setRecordTitle(rs.getString("recordTitle"));
 						record.setReference(rs.getString("reference"));
+						record.setCfIndex(rs.getString("cfIndex"));
 						result.add(record);
 					}
 			
