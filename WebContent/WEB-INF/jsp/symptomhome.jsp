@@ -9,7 +9,7 @@
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/home.css">
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
@@ -17,41 +17,140 @@
 	<!-- js -->
 	<script type="text/javascript" src="resources/d3js/d3.min.js"></script>
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/tagscloud_home.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "recipe");
-			
-			$('#container').easyTabs({defaultContent:1});
-			
-			$("#search_cf").submit(function(){
-				var value = $("#front_input").val();
-				if(value != ''){
-					var url = "recipe/search?q=" + value;
-					d3.json(url, function(error, root) { 
-						$(".graph svg").remove();
-						graph("#component .graph", root.component);
-						graph("#attending .graph", root.attending);
-						graph("#similar .graph", root.similar);		
-					});
-				}
-				return false;
-			});
+			tagscloud("#tagscloud", "symptom");
 			
 			$("#front_input").autocomplete({
 				autoFocus: true,
 				minLength: 1,
 				source: function(request, response) {
-					var url = "recipe/hint?q=" + request.term;
+					var url = "symptom/hint?q=" + request.term;
 					$.get(url, function(data, status){
 						response(data);
 					});
 				 }
+			});
+			
+			function page(str){
+				var url = "symptom/pinyin?q=" + str;
+				$.get(url, function(data, status){
+					var txt = "";
+					for(var i=0; i<data.length; i++){
+						txt += '<li><form method="post" action="symptom"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+					}
+					if(txt != ""){
+						$(".alt_content").html(txt);
+						$(".alt_content").css("border","1px solid #DB5C04");
+					}
+					else{
+						$(".alt_content").html('<div class="noResult">很抱歉，没有相关的中药。</div>');
+					}
+					$('.alt_container').pajinate({
+						items_per_page : 8,
+						item_container_id : '.alt_content',
+						nav_panel_id : '.alt_page_navigation',
+						nav_label_first : '<<',
+						nav_label_last : '>>',
+						nav_label_prev : '<',
+						nav_label_next : '>'
+				      });
+				});
+			}
+			
+			function page2(str){
+				var url = "symptom/pinci?q=" + str;
+				$.get(url, function(data, status){
+					var txt = "";
+					for(var i=0; i<data.length; i++){
+						txt += '<li><form method="post" action="symptom"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+					}
+					if(txt != ""){
+						$(".alt_content2").html(txt);
+						$(".alt_content2").css("border","1px solid #DB5C04");
+					}
+					else{
+						$(".alt_content2").html('<div class="noResult">很抱歉，没有相关的中药。</div>');
+					}
+					$('.alt_btns').pajinate({
+						items_per_page : 8,
+						num_page_links_to_display : 16,
+						item_container_id : '.alt_content2',
+						nav_panel_id : '.alt_page_navigation2',
+						nav_label_first : '<<',
+						nav_label_last : '>>',
+						nav_label_prev : '<',
+						nav_label_next : '>'
+				      });
+				});
+			}
+			
+			page("a");
+			
+			var label= $('.label');
+			var content= $('.content');
+			
+			$(content).hide();
+			$('.content:first').show();
+			$('.label h5').addClass('default');
+			$('.label:first h5').addClass('clicked');
+			
+			$("#label1").on("click", function(){
+				var tLabel = $(this);
+				var tLabelColor = $(this).find('h5');
+				var tContent = $(this).next('.content');
+				
+				$(content).hide();
+				$(tContent).show();
+					
+				$('.label h5').removeClass('clicked');
+				$(tLabelColor).addClass('clicked');
+				
+				page("a");
+			});
+			
+			$("#label2").on("click", function(){
+				var tLabel = $(this);
+				var tLabelColor = $(this).find('h5');
+				var tContent = $(this).next('.content');
+				
+				$(content).hide();
+				$(tContent).show();
+					
+				$('.label h5').removeClass('clicked');
+				$(tLabelColor).addClass('clicked');
+				
+				page2("0");
+			});
+			
+			$(label).hover(function(){
+				var tLabelColor = $(this).find('h5');
+				$(tLabelColor).addClass('hover');
+			}, function(){
+				$('.label h5').removeClass('hover');
+			});
+			
+			$(".wrapper_label a").click(function(){
+				$(".wrapper_label a.current").removeClass("current");
+				$(this).addClass("current");
+				page($(this).text().toLowerCase());
+				return false;
+			});
+			
+			$("#alt_button1").on("click", function(){
+				$('.alt_button').removeClass('visited');
+				$(this).addClass('visited');
+				page2("0");
+			});
+			
+			$("#alt_button2").on("click", function(){
+				$('.alt_button').removeClass('visited');
+				$(this).addClass('visited');
+				page2("1");
 			});
 			
         });
@@ -84,56 +183,88 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_12.png" />
+			<a href="analysishome"><img src="resources/recipe/image/r_125.png" /></a>
 		</div>
 		
 		<div class="logoSearch_L2">
-			<form id="search_cf" class="search cf" >
-				<input id="front_input" class="text" type="text" maxLength="20"> 
+			<form id="search_cf" class="search cf" method="post" action="symptom">
+				<input id="front_input" class="text" type="text" name="q" maxLength="20"> 
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
 			<div id="tagscloud">
 				<ul>
 				<c:forEach var="item" items="${name}">
-					<li><a href=""><c:out value="${item}"></c:out></a></li>
+					<li>
+						<form method="post" action="symptom">
+							<input type="hidden" name="q" value="${item}">
+							<a><c:out value="${item}"></c:out></a>
+						</form>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
 	</div>
-		
-		<div id="container">
-			<ul class="tabs">
-				<li><a href="#component">相关中药</a></li>
-		  	<li><a href="#attending">相关疾病</a></li>
-		  	<li><a href="#similar">相关方剂</a></li>
-		 </ul>
+	</div>
 	
-    <div id="main_content">
-    	<div id="component">
-    		<div class="graph">
+	<div id="vtabs">
+		<div class="container">
+			<div class="label" id="label1">
+      <h5>按首字母排序</h5>
+    	</div>
+    	<div class="content">
+      <div id="content_label">
+      	<div class="wrapper_label">
+	      	<a href="#" class="current">A</a>
+						<a href="#">B</a>
+						<a href="#">C</a>
+						<a href="#">D</a>
+						<a href="#">E</a>
+						<a href="#">F</a>
+						<a href="#">G</a>
+						<a href="#">H</a>
+						<a href="#">I</a>
+						<a href="#">J</a>
+						<a href="#">K</a>
+						<a href="#">L</a>
+						<a href="#">M</a>
+					</div>
+					<div class="wrapper_label">
+						<a href="#">N</a>
+						<a href="#">O</a>
+						<a href="#">P</a>
+						<a href="#">Q</a>
+						<a href="#">R</a>
+						<a href="#">S</a>
+						<a href="#">T</a>
+						<a href="#">U</a>
+						<a href="#">V</a>
+						<a href="#">W</a>
+						<a href="#">X</a>
+						<a href="#">Y</a>
+						<a href="#">Z</a>
+					</div>
+      </div>
+      <div class="alt_container">
+      	<div class="alt_head">中药名</div>
+      	<div class="alt_head">出现频次</div>
+					<ul class="alt_content"></ul>
+					<div class="alt_page_navigation"></div>
+      </div>
+    	</div>
+		</div>
+		<div class="container">
+			<div class="label" id="label2">
+      <h5>按出现频次排序</h5>
+    	</div>
+    	<div class="content">
+    		<div class="alt_btns">
+	    		<div class="alt_head"><div id="alt_button1" class="alt_button visited">降序排列</div></div>
+	      <div class="alt_head"><div id="alt_button2" class="alt_button">升序排列</div></div>
+	      <ul class="alt_content2"></ul>
+					<div class="alt_page_navigation2"></div>
     		</div>
-     </div>
-     
-     <div id="attending">
-    		<div class="graph">
-    		</div>
-     </div>
-     
-     <div id="similar">
-    		<div class="graph">
-    		</div>
-			</div>
-    </div>
-    <div id="sidebar">
-    	<div class="alt_container">
-				<h2>相关医案</h2>
-				<div class="alt_page_navigation"></div>	
-				<div class="alt_info_text"></div>
-				<ul class="alt_content"></ul>
-			</div>    
-    </div>
-    <div class="clearfix"></div>
-   </div>
+    	</div>
+		</div>
 	</div>
 
 	<!-- footer -->

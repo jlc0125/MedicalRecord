@@ -18,6 +18,11 @@ public class RecipeController{
 	@Autowired
 	private RecipeService recipeService;
 	
+	@RequestMapping("/analysishome")
+	public String index(){
+		return "analysishome";
+	}
+	
 	@RequestMapping("/recipe")
 	public String recipe(Model model){
 		String[] name = {"散偏汤",  "散痹汤",  "十宝丹",  "七液丹",  "郁金散", "豢龙汤",  "藿香正气散", 

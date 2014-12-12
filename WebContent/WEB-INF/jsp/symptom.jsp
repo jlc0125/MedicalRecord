@@ -9,7 +9,7 @@
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/detail.css">
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
@@ -20,24 +20,52 @@
 	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/graph_new.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/tagscloud_new.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "recipe");
+			tagscloud("#tagscloud", "symptom");
 			
 			$('#container').easyTabs({defaultContent:1});
 			
+			var symptomName = $("#front_input").val();
+			if(symptomName != ''){
+				var url = "symptom/search?q=" + symptomName;
+				d3.json(url, function(error, root) { 
+					if(error){
+						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+					}
+					else{
+						graph("#component .graph", root.drug);
+						graph("#attending .graph", root.symptom);
+						graph("#similar .graph", root.recipe);		
+					}
+				});
+			}
+			
 			$("#search_cf").submit(function(){
 				var value = $("#front_input").val();
+				$(".graph").empty();
 				if(value != ''){
-					var url = "recipe/search?q=" + value;
+					var url = "symptom/search?q=" + value;
 					d3.json(url, function(error, root) { 
-						$(".graph svg").remove();
-						graph("#component .graph", root.component);
-						graph("#attending .graph", root.attending);
-						graph("#similar .graph", root.similar);		
+						if(error){
+							$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						}
+						else{
+							$("#tagscloud ul").empty();
+							var drugs = root.drug.children;
+							var htl = '';
+							for(var i=0; i<drugs.length; i++){
+								htl += '<li><a href="">' + drugs[i].name + '</a></li>';
+							}
+							$("#tagscloud ul").html(htl);
+							tagscloud("#tagscloud", "symptom");
+							graph("#component .graph", root.drug);
+							graph("#attending .graph", root.symptom);
+							graph("#similar .graph", root.recipe);		
+						}
 					});
 				}
 				return false;
@@ -47,7 +75,7 @@
 				autoFocus: true,
 				minLength: 1,
 				source: function(request, response) {
-					var url = "recipe/hint?q=" + request.term;
+					var url = "symptom/hint?q=" + request.term;
 					$.get(url, function(data, status){
 						response(data);
 					});
@@ -84,12 +112,12 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_12.png" />
+			<a href="symptomhome"><img src="resources/recipe/image/r_125.png" /></a>
 		</div>
 		
 		<div class="logoSearch_L2">
 			<form id="search_cf" class="search cf" >
-				<input id="front_input" class="text" type="text" maxLength="20"> 
+				<input id="front_input" class="text" type="text" maxLength="20" value="${symptomName}"> 
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
 			<div id="tagscloud">
@@ -103,18 +131,18 @@
 		
 		<div id="container">
 			<ul class="tabs">
-				<li><a href="#component">相关中药</a></li>
 		  	<li><a href="#attending">相关疾病</a></li>
+		  	<li><a href="#component">相关中药</a></li>
 		  	<li><a href="#similar">相关方剂</a></li>
 		 </ul>
 	
     <div id="main_content">
-    	<div id="component">
+    <div id="attending">
     		<div class="graph">
     		</div>
      </div>
      
-     <div id="attending">
+    	<div id="component">
     		<div class="graph">
     		</div>
      </div>

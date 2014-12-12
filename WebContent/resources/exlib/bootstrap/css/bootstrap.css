@@ -240,7 +240,11 @@ a:hover {
   margin-left: 100px;
 }
 .row-fluid {
-  width: 100%;
+margin:auto;
+padding-left:300px;
+margin-bottom:30px;
+width:100%;
+text-align:center;
   *zoom: 1;
 }
 .row-fluid:before,

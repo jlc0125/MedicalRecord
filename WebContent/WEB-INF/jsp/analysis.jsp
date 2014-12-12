@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String contextPath=request.getContextPath();
 %>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 
 <html dir="ltr" xml:lang="en-gb" xmlns="http://www.w3.org/1999/xhtml"
@@ -45,6 +44,9 @@ String contextPath=request.getContextPath();
 		text-align:right;
 	}
 </style>	
+<link rel=stylesheet type=text/css 
+	href="<%=contextPath%>/resources/search/css/yianfenxi.css">
+</HEAD>
 
 </HEAD>
 <BODY>
@@ -77,9 +79,6 @@ String contextPath=request.getContextPath();
 			</div>
 		</div>
 	</div>
-	
-	
-	
 	
 	<div class="bg_heise">
 		<div class="clearfix">
@@ -119,9 +118,7 @@ String contextPath=request.getContextPath();
 					</div>
 				</div>
 			</div>
-	</div>
-		
-	
+					
 
 	<!-- footer -->
 	<div>

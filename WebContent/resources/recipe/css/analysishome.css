@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+html {
+	font-family: "宋体"; 
+	font-size: 10px;
+}
+
+body {
+	background-color: #f5f2f1; 
+	font-size: 1.2em; 
+	height: 100%;
+}
+
+.cf:before {
+	display: table; 
+	content: "";
+}
+.cf:after {
+	display: table; 
+	content: "";
+}
+.cf:after { clear: both; }
+.cf { zoom: 1; }
+
+.clearfix { clear: both; }
+
+.bg_heise{ background-color:#f5f2f1; }
+
+.imgFrame {
+	margin:auto;
+	width:960px;
+}
+
+.logo { margin-top:0px; }
+
+.logoSearch {
+	width: 100%; 
+	height: 93px; 
+	background-image:url(../image/top_back.png); 
+	background-repeat:repeat-x
+}
+
+.logoSearch_L2 {
+	margin: auto; 
+	width: 960px
+}
+.logoSearch_L2 .logo {
+	float: left; 
+	padding-top: 18px; 
+	height:75px
+}
+
+.container{
+	margin: 80px auto;
+	width: 616px;
+	background-image: url(../image/rh_bg.png);
+	text-align: center;
+}

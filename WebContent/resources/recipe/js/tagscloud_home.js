@@ -36,21 +36,7 @@ function tagscloud(selectStr, tagStr){
         $(this).css("color", color);
     })
     .click(function(){
-    			var value = $(this).text();
-    			$("#front_input").val(value);
-    			d3.json(tagStr + "/search?q=" + value, function(error, root) { 
-    				$(".graph svg").remove();
-    				if(tagStr == "recipe"){
-    					graph("#component .graph", root.component);
-        		graph("#attending .graph", root.attending);
-        		graph("#similar .graph", root.similar);		
-    					}
-    				else{
-    					graph("#component .graph", root.drug);
-							graph("#attending .graph", root.symptom);
-							graph("#similar .graph", root.recipe);		
-    					}
-    				});
+    			$(this).parent().submit();
     	return false;
     });
 	

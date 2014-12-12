@@ -170,7 +170,7 @@ function initClassify(){
 /*生成按词频浏览标签*/
 
 function getWFSearchType(){
-	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
+	var string = '<ul id="navlist"><li><i><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></i></li>' 
 		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
 		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
 		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
@@ -211,7 +211,7 @@ function getWFSearchType(){
 function getDiscSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
 		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
+		   + '<li><i><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></i></li>'
 		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
     $("#navcontainer").html(string);
     //
@@ -271,7 +271,7 @@ function getTherSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
 		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
 		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
-		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
+		   + '<li><i><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></i></li></ul>';
 	$("#navcontainer").html(string);
 	//
 	tempArray = new Array("标本缓急","正治","反治","同病异治","异病同治");
@@ -309,7 +309,7 @@ function getTherSearchType(){
 
 function getMCSearchType(){
 	var string = '<ul id="navlist"><li><a href="#"  id="classify_wordfrequency">&nbsp;按词频浏览&nbsp;</a></li>' 
-		   + '<li><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></li>'
+		   + '<li><i><a href="#" id="classify_medicalclassify">&nbsp;按疾病分类浏览&nbsp;</a></i></li>'
 		   + '<li><a href="#" id="classify_discriminate">&nbsp;按辨证分类浏览&nbsp;</a></li>'
 		   + '<li><a href="#" id="classify_therapy">&nbsp;按治则分类浏览&nbsp;</a></li></ul>';
 	$("#navcontainer").html(string);
