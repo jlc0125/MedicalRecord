@@ -26,4 +26,13 @@ public class DrugService {
 	public String[] relate(String name){
 		return drugDao.relate(name);
 	}
+	
+	public List abbrBeginWith(String abbr){
+		return drugDao.abbrBeginWith(abbr);
+	}
+	
+	public List pinciSearch(int freq){
+		return drugDao.pinciSearch(freq);
+	}
+	
 }

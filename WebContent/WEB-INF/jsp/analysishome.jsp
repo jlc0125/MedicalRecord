@@ -9,7 +9,7 @@
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/cslider.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/home.css">
+	<link rel="stylesheet" type="text/css" href="resources/recipe/css/analysishome.css">
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
 	

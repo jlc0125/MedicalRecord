@@ -54,6 +54,14 @@
 							$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
+							$("#tagscloud ul").empty();
+							var drugs = root.drug.children;
+							var htl = '';
+							for(var i=0; i<drugs.length; i++){
+								htl += '<li><a href="">' + drugs[i].name + '</a></li>';
+							}
+							$("#tagscloud ul").html(htl);
+							tagscloud("#tagscloud", "drug");
 							graph("#component .graph", root.drug);
 							graph("#attending .graph", root.symptom);
 							graph("#similar .graph", root.recipe);		

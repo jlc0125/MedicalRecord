@@ -14,13 +14,14 @@ function tagscloud(selectStr, tagStr){
             stepping = -0.02;
 	});
 	
-    var num = element.length / 4;
+    var num = Math.ceil(element.length / 4);
     var angleStep = Math.PI * 2 / num;
 	for (var i = 0; i < num; i++){
 		element[i].elemAngle = i * angleStep;
         element[i+num].elemAngle = element[i].elemAngle;
         element[i+num*2].elemAngle = element[i].elemAngle;
-        element[i+num*3].elemAngle = element[i].elemAngle;
+        if(i+num*3 < element.length)
+        	element[i+num*3].elemAngle = element[i].elemAngle;
 	}
 	
 	var id = setInterval(render, 20);
@@ -44,6 +45,14 @@ function tagscloud(selectStr, tagStr){
 							$(".graph .error").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
+							$("#tagscloud ul").empty();
+							var drugs = root.drug.children;
+							var htl = '';
+							for(var i=0; i<drugs.length; i++){
+								htl += '<li><a href="">' + drugs[i].name + '</a></li>';
+							}
+							$("#tagscloud ul").html(htl);
+							tagscloud("#tagscloud", "drug");
 							graph("#component .graph", root.drug);
 							graph("#attending .graph", root.symptom);
 							graph("#similar .graph", root.recipe);		
@@ -103,12 +112,13 @@ function tagscloud(selectStr, tagStr){
 			elementCenter = $(element[i+num]).width() / 2;
 			leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
 			
-			$(element[i+num*3]).css("fontSize", size + "pt")
-			.css("opacity",size/100+ 0.6)
-			.css("zIndex" ,size)
-			.css("left" ,leftValue)
-			.css("top", y + "%")
-			.css("color", "#442513");
+			if(i+num*3 < element.length)
+				$(element[i+num*3]).css("fontSize", size + "pt")
+				.css("opacity",size/100+ 0.6)
+				.css("zIndex" ,size)
+				.css("left" ,leftValue)
+				.css("top", y + "%")
+				.css("color", "#442513");
 
 		}
 		offset1 += stepping;

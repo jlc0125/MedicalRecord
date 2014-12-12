@@ -2,6 +2,7 @@ package mr.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,29 +57,6 @@ public class DrugDao {
 		return res;
 	}
 	
-	public List<DBObject> searchBeginWith2(String name){
-		DB db = mongoClient.getDB("medrecord");
-		DBCollection coll = db.getCollection("drug");
-		BasicDBObject cond = new BasicDBObject();
-		Pattern pattern = Pattern.compile("^"+name+".*$");
-		cond.put("name", pattern);
-		DBObject field = new BasicDBObject();
-		field.put("_id", false);
-		field.put("name", true);
-		DBCursor cur = coll.find(cond, field).limit(10);
-		
-		List<DBObject> res= new ArrayList<DBObject>();
-		DBObject tmp;
-		while(cur.hasNext()){
-			DBObject doc = new BasicDBObject();
-			tmp = cur.next();
-			doc.put("label", tmp.get("name"));
-			doc.put("name", tmp.get("name"));
-			res.add(doc);
-		}
-		return res;
-	}
-	
 	public String[] relate(String name){
 		String[] res = null;
 		String sql = "select drug from drug where name=?";
@@ -87,6 +65,18 @@ public class DrugDao {
 			res = tmp.split(" ");
 		}
 		return res;
+	}
+	
+	public List abbrBeginWith(String abbr){
+		String sql = "select name,pinci from drug where abbr like '" + abbr + "%' order by abbr";
+		return jdbcTemplate.queryForList(sql); 
+	}
+	
+	public List pinciSearch(int freq){
+		String sql = "select name,pinci from drug order by pinci";
+		if(freq == 0)
+			sql += " DESC";
+		return jdbcTemplate.queryForList(sql); 
 	}
 	
 }

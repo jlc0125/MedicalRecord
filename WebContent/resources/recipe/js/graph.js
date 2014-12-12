@@ -18,8 +18,12 @@
 		.append("g")
 		.attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 					
-		var nodes = tree.nodes(root),
-					links = tree.links(nodes);
+		var nodes = tree.nodes(root);
+		if(nodes.length == 2){
+			nodes[0].x = 180;
+			nodes[1].x = 90;
+        }
+		vra links = tree.links(nodes);
 					
 		var link = svg.selectAll(".link")
 		.data(links)

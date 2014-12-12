@@ -201,7 +201,8 @@ body {
 }
 
 .alt_page_navigation{
-	padding: 10px 0 10px 7px;
+	padding: 10px 0 0;
+	text-align: center;
 }
 
 .alt_page_navigation a{
@@ -209,7 +210,6 @@ body {
 	margin:1px;
 	color:white;
 	text-decoration:none;
-	float: left;
 	font-family: Tahoma;
 	font-size: 12px;
 	background-color:#DB5C04;
@@ -229,7 +229,7 @@ body {
 }
 
 .alt_info_text {
-	padding: 20px 0 10px;
+	padding: 10px 0 10px;
 	text-align: center;
 }
 

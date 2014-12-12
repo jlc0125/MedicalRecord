@@ -1,5 +1,6 @@
 package mr.web;
 
+import java.util.Arrays;
 import java.util.List;
 
 import mr.service.DrugService;
@@ -39,7 +40,7 @@ public class DrugController {
 				drugName = new String(drugName.getBytes("iso-8859-1"), "UTF-8");
 				String[] temp = drugService.relate(drugName);
 				if(temp != null)
-					name = temp;
+					name =  temp;
 				model.addAttribute("drugName", drugName);
 			} catch (Exception e) {
 				model.addAttribute("error", 1);
@@ -61,6 +62,18 @@ public class DrugController {
 	@RequestMapping("/drug/hint")
 	public List<DBObject> hint(@RequestParam(value="q", required=false)String drugName){
 		return drugService.searchBeginWith(drugName);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/drug/pinyin")
+	public List pinyin(@RequestParam(value="q", required=false)String abbr){
+		return drugService.abbrBeginWith(abbr);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/drug/pinci")
+	public List pinci(@RequestParam(value="q", required=false)int freq){
+		return drugService.pinciSearch(freq);
 	}
 	
 }
