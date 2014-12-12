@@ -18,10 +18,12 @@ function tagscloud(selectStr, tagStr){
     var angleStep = Math.PI * 2 / num;
 	for (var i = 0; i < num; i++){
 		element[i].elemAngle = i * angleStep;
-        element[i+num].elemAngle = element[i].elemAngle;
-        element[i+num*2].elemAngle = element[i].elemAngle;
-        if(i+num*3 < element.length)
-        	element[i+num*3].elemAngle = element[i].elemAngle;
+		if(i+num < element.length)
+			element[i+num].elemAngle = element[i].elemAngle;
+   if(i+num*2 < element.length)
+	   element[i+num*2].elemAngle = element[i].elemAngle;
+   if(i+num*3 < element.length)
+	   element[i+num*3].elemAngle = element[i].elemAngle;
 	}
 	
 	var id = setInterval(render, 20);
@@ -77,49 +79,53 @@ function tagscloud(selectStr, tagStr){
 			.css("top", y + "%")
 			.css("color", "#8462ec");
             
-			angle = element[i+num].elemAngle + offset2;
-			x = 80 + Math.sin(angle) * radiusX;
-			y = 25 + Math.cos(angle) * radiusY;
-			size = Math.round(fontSize - Math.sin(angle) * fontSize);
-			elementCenter = $(element[i+num]).width() / 2;
-			leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
-			
-			$(element[i+num]).css("fontSize", size + "pt")
-			.css("opacity",size/100+ 0.6)
-			.css("zIndex" ,size)
-			.css("left" ,leftValue)
-			.css("top", y + "%")
-			.css("color", "#d074f3");
-            
-			angle = element[i+num].elemAngle + offset2;
-			x = 120 + Math.sin(angle) * radiusX;
-			y = 25 + Math.cos(angle) * radiusY;
-			size = Math.round(fontSize - Math.sin(angle) * fontSize);
-			elementCenter = $(element[i+num]).width() / 2;
-			leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
-			
-			$(element[i+num*2]).css("fontSize", size + "pt")
-			.css("opacity",size/100+ 0.6)
-			.css("zIndex" ,size)
-			.css("left" ,leftValue)
-			.css("top", y + "%")
-			.css("color", "#6b3dba");
-            
-			angle = element[i+num].elemAngle + offset1;
-			x = 160 + Math.sin(angle) * radiusX;
-			y = 25 + Math.cos(angle) * radiusY;
-			size = Math.round(fontSize - Math.sin(angle) * fontSize);
-			elementCenter = $(element[i+num]).width() / 2;
-			leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
-			
-			if(i+num*3 < element.length)
-				$(element[i+num*3]).css("fontSize", size + "pt")
-				.css("opacity",size/100+ 0.6)
-				.css("zIndex" ,size)
-				.css("left" ,leftValue)
-				.css("top", y + "%")
-				.css("color", "#442513");
-
+			if(i+num < element.length){
+					angle = element[i+num].elemAngle + offset2;
+					x = 80 + Math.sin(angle) * radiusX;
+					y = 25 + Math.cos(angle) * radiusY;
+					size = Math.round(fontSize - Math.sin(angle) * fontSize);
+					elementCenter = $(element[i+num]).width() / 2;
+					leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
+					
+					$(element[i+num]).css("fontSize", size + "pt")
+					.css("opacity",size/100+ 0.6)
+					.css("zIndex" ,size)
+					.css("left" ,leftValue)
+					.css("top", y + "%")
+					.css("color", "#d074f3");
+					
+					if(i+num*2 < element.length){
+						angle = element[i+num].elemAngle + offset2;
+						x = 120 + Math.sin(angle) * radiusX;
+						y = 25 + Math.cos(angle) * radiusY;
+						size = Math.round(fontSize - Math.sin(angle) * fontSize);
+						elementCenter = $(element[i+num]).width() / 2;
+						leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
+						
+						$(element[i+num*2]).css("fontSize", size + "pt")
+						.css("opacity",size/100+ 0.6)
+						.css("zIndex" ,size)
+						.css("left" ,leftValue)
+						.css("top", y + "%")
+						.css("color", "#6b3dba");
+						
+						if(i+num*3 < element.length){
+							angle = element[i+num].elemAngle + offset1;
+							x = 160 + Math.sin(angle) * radiusX;
+							y = 25 + Math.cos(angle) * radiusY;
+							size = Math.round(fontSize - Math.sin(angle) * fontSize);
+							elementCenter = $(element[i+num]).width() / 2;
+							leftValue = ((list.width()/2) * x / 100 - elementCenter) + "px";
+							
+							$(element[i+num*3]).css("fontSize", size + "pt")
+							.css("opacity",size/100+ 0.6)
+							.css("zIndex" ,size)
+							.css("left" ,leftValue)
+							.css("top", y + "%")
+							.css("color", "#442513");
+						}
+					}
+			}
 		}
 		offset1 += stepping;
 		offset2 += stepping;

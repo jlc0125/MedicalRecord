@@ -112,7 +112,7 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_124.png" />
+			<a href="drughome"><img src="resources/recipe/image/r_124.png" /></a>
 		</div>
 		
 		<div class="logoSearch_L2">

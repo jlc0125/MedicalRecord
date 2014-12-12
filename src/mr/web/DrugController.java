@@ -1,6 +1,5 @@
 package mr.web;
 
-import java.util.Arrays;
 import java.util.List;
 
 import mr.service.DrugService;
