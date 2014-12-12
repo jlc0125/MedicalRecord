@@ -20,12 +20,12 @@ public class MedDao {
 	
 	public List<Med> allMeds(){
 		final List<Med> medVocab=new ArrayList<Med>();
-		final Med tmpMed=new Med();
 		String sqlStr="select * from med_vocab order by id desc";
 		
 		jdbcTemplate.query(sqlStr,
 				new RowCallbackHandler(){
 					public void processRow(ResultSet rs) throws SQLException{
+						Med tmpMed=new Med();
 						tmpMed.setId(rs.getLong("id"));
 						tmpMed.setName(rs.getString("word"));
 						medVocab.add(tmpMed);

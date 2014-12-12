@@ -23,15 +23,32 @@ String contextPath=request.getContextPath();
 <link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/common.css">
-<link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/search/css/index.css">
 <link rel=stylesheet type=text/css
 	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
+<link rel=stylesheet type=text/csz 
+	href="<%=contextPath%>/resources/search/css/jichushousuo.css">
+	
+<style>
+	.analysis_info{
+		padding-top:10%;
+	}
+	.analysis_title{
+		text-align:center;
+	}
+	.analysis_content{
+		text-align:center;
+		line-height:10em;
+	}
+	.analysis_link{
+		text-align:right;
+	}
+</style>	
 <link rel=stylesheet type=text/css 
 	href="<%=contextPath%>/resources/search/css/yianfenxi.css">
 </HEAD>
 
+</HEAD>
 <BODY>
 	<div class=top>
 		<div>
@@ -66,28 +83,42 @@ String contextPath=request.getContextPath();
 	<div class="bg_heise">
 		<div class="clearfix">
 			<div class="imgFrame2">
-					<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
+				<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
 			</div>
 		</div>
-
-		<div class="UnderSearchBarTabs1" id="home_type_nav">
-			<a id="href_A" href="index.html"></a> <a id="href_B" href="Browse"></a>
-			<a id="href_C" href="Analysis"></a>
+		<div class="floatTOP">
+			<div class="UnderSearchBarTabs1">
+				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
+				<a id="href_C" href="<%=contextPath%>/Analysis"></a>
+			</div>
 		</div>
-
-		<div class="clearfix"></div>
-		<br>
-		<br>
-		<br>
-		
-	
-		
-	  <div class="row-fluid" >
-	     <div class="span3"><button class="btn btn-large" style="margin-right:100px;width:100%;height:100%"type="color:#33333">疾病分析</button></div>
-	     <div class="span3"><button class="btn btn-large" style="margin-left:80px;width:100%;height:100%">辩证分析</button></div>
-	  </div>
-		
-	</div>
+			<div class="container">
+				<div class="row-fluid" >
+					<div class="span6">
+						<div class="analysis_info">
+						  <h3 class="analysis_title">中药分析</h3>
+						  <p class="analysis_content">根据所有收录的医案，根据辩证或治则来分析与之对应的最常用中药</p>
+						  <p class="analysis_link">
+						    <a class="btn btn-primary btn-large">
+						      进入
+						    </a>
+						  </p>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="analysis_info">
+						  <h3 class="analysis_title">方剂分析</h3>
+						  <p class="analysis_content">Tagline</p>
+						  <p class="analysis_link">
+						    <a class="btn btn-primary btn-large">
+						      Learn more
+						    </a>
+						  </p>
+						</div>
+					</div>
+				</div>
+			</div>
+					
 
 	<!-- footer -->
 	<div>

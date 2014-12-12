@@ -11,6 +11,13 @@ public class MedicalRecord {
 	private HashMap<Integer,Double> tfidf;
 	private String category;
 	private String reference;
+	private String cfIndex;
+	public String getCfIndex() {
+		return cfIndex;
+	}
+	public void setCfIndex(String cfIndex) {
+		this.cfIndex = cfIndex;
+	}
 	public String getCategory() {
 		return category;
 	}

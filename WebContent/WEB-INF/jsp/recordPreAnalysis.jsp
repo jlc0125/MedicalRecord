@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String contextPath=request.getContextPath();
 %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -12,123 +13,7 @@ String contextPath=request.getContextPath();
 		<!-- js -->
 		<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>		
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
-		<style>
-		.chufang{
-			background-color:rgb(220, 234, 247);
-			cursor:pointer;
-		}
-		p {
-			text-indent: 2em;
-			padding:5px;
-			font-size:12px;
-			margin:5px 0;
-		}
-		
-		#doctor{
-			padding-top:5%;
-			font-size:14px;
-			line-height:18px;
-			font-family: inherit;
-			font-weight: bold;
-			text-align:center;
-		}
-		#content{
-			padding-top:5%;
-			text-align:left;
-		}
-		#title{
-			padding-top:5%;
-			text-align:center;
-		}
-		#reference{
-			text-align:right;
-			font-size:14px;
-			line-height:18px;
-			font-family: inherit;
-			font-weight: bold;
-		}
-		
-		#content_container{
-			background-color:white;
-			width:80%;
-		}
-		</style>
-		
-		<script type="text/javascript">
-		var dataGlobal;
-		$(function(){
-			var dataJson = {
-					"recordId" : getUrlParam("recordId")
-					};
-			
-			$.ajax({
-				type: 'POST',
-				url: "./record_detail/record",
-				data: dataJson,
-				success: getRecordSuccess,
-				error: getRecordError,
-				dataType:'text'
-			});
-			
-		});
-		
-		function getRecordSuccess(data,textStatus,jqXHR){
-			data=eval('(' + data + ')');
-			dataGlobal=data;
-			console.log(data);
-			content=data.content.split("|").slice(0,-1);
-			var cfIndex=data.cfIndex.split(" ");
-			for(var i=0;i<cfIndex.length;i++){
-				cfIndex[i]=parseInt(cfIndex[i]);
-			}
-			console.log(cfIndex);
-			var doctor="<h3><a target='_blank' href='/MedicalRecord/doctor?id="+data.doctorId+"'>"+data.doctorName+"</a></h3>";
-			var body="";
-			for (var i=0;i<content.length;i++){
-				if(cfIndex.indexOf(i)!=-1) body+="<p class='chufang'>"+content[i]+"</p>";
-				else body+="<p>"+content[i]+"</p>";
-			}
-			var reference="<br/><br/><a href='/MedicalRecord/search/result?wd="+data.reference+"&type=reference'>出自"+data.reference+"</a><br/><br/>"
-			var title="";
-			title+="<h2>"+data.recordTitle+"</h2>";
-			$("#doctor").html(doctor);
-			$("#title").html(title);
-			$("#content").html(body);
-			$("#reference").html(reference);
-			
-			var hlFlag=getUrlParam("hlFlag");
-			if(hlFlag=="1"){
-				var hlWords=decodeURI(getUrlParam("hlWords"));
-				hlWords=hlWords.split(" ");
-				highLight(hlWords);
-			}
-			
-			$(".chufang").live("click",function(){
-				var url="/MedicalRecord/pre_analysis?pre="+$(this).text()+"&recordId="+dataGlobal["recordId"]+"&recordTitle="+dataGlobal["recordTitle"]
-				window.open(url);
-			});
-
-		}
-		
-		function getRecordError(){
-			alert("error");
-		}
-		
-		function highLight(words){
-			var content=$("#content").html();
-			for(var i=0;i<words.length;i++){
-				var word=words[i];
-				var reg=new RegExp(word,"g");
-				content=content.replace(reg,"<font color='red' style='font-weight:bold' >"+word+"</font>");
-			}
-			$("#content").html(content);
-		}
-		
-		</script>
-		
-		
-		
+		<script src="<%=contextPath%>/resources/search/js/csrf.js"></script>
 	
 		<!-- exlib -->
 		<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
@@ -139,12 +24,124 @@ String contextPath=request.getContextPath();
 		<!-- css -->	
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
-		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/Peiwu_analyse.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
+		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/common.css">
 						
 	</head>
+	<style>
+		.sub, .add{
+		cursor:pointer;
+		height:15px;
+		width:15px;
+		display:inline !important  ;
+		}
+		.table td,.table th{
+			text-align:center !important;
+			vertical-align: middle;
+			font-size:18px;
+		}
+		.header{
+			font-size: 22px !important;
+			font-weight: bold !important;
+			text-align: center !important;
+			line-height: 5em !important;
+ 		}
+	</style>
+	
+	<script type="text/javascript">
+	jQuery(function(){
+		var pageSize=6;
+		var pre=decodeURI(getUrlParam("pre"));
+		var url="./pre_analysis/retval";
+		var dataJson={
+				pre:pre,
+		};
+		jQuery.ajax({
+			type: "GET",
+			url: url,
+			data: dataJson,
+			success:successCB,
+			error:errorCB		
+		});
+		
+		jQuery("#adjust_search").live("click",function(){
+			keyword="";
+			jQuery(".med").each(function(){
+				keyword+=jQuery(this).html();
+			});
+			window.location.href = "./result?keyword=" + keyword
+			+ "&pageNo=1" + "&pageSize="+pageSize;
+		});
+		jQuery("#searchbox").remove();
+	});
+
+	function successCB(data){
+		console.log(data);
+		var recordId=getUrlParam("recordId");
+		var recordTitle=decodeURI(getUrlParam("recordTitle"));
+		var pre=decodeURI(getUrlParam("pre"));
+		var recordBody="<tr><th>医案名称</th><td><a href='/MedicalRecord/record_detail?recordId="+recordId+"'>"+recordTitle+"</a></td></tr>";
+		recordBody+="<tr><th>处方</th><td>"+pre+"</td></tr>";
+		jQuery("#record_header").html("医案信息");
+		jQuery("#record_body").html(recordBody);
+		
+		var adjustTableBody="<tr>";
+		for(var i=0;i<data["中草药"].length;i++){
+			adjustTableBody+="<td><span class='med'>"+data["中草药"][i]+"</span><img src='/MedicalRecord/resources/image/icon/sub.jpg'  class='sub' ></td>";
+		}
+		adjustTableBody+="<td><span>加方</span><img src='/MedicalRecord/resources/image/icon/add.jpg' class='add'/></td>";
+		jQuery("#adjust_pre_header").html("加减方");
+		jQuery("#adjust_pre_body").html(adjustTableBody);
+		
+		jQuery("#adjust_pre").after("<input id='adjust_search' type='button' value='检索医案'>")
+		jQuery(".sub").live("click",function (){
+			jQuery(this).parent().remove();
+		});
+		
+		jQuery(".add").live("click",function (){
+			jQuery(this).parent().children().eq(0).remove();
+			jQuery(this).before("<input type='text' class='add_med' value='请输入' size='6'/>");
+			jQuery(".add_med").live("keydown",function(event){
+				if(event.keyCode==13){
+					console.log("enter");
+					var input=jQuery(this).val();
+					var parent=jQuery(this).parent();
+					parent.empty();
+					parent.append("<span class='med'>"+input+"</span><img src='/MedicalRecord/resources/image/icon/sub.jpg'  class='sub' ></td>");
+					parent.after("<td><span>加方</span><img src='/MedicalRecord/resources/image/icon/add.jpg' class='add'/></td>");
+				}
+			});
+		});
+		
+		var classicTableHead="<tr><th>经方名称</th><th>经方组成</th></tr>";
+		var classicTableBody="<tr>";
+		for (var i=0;i<data["经方"].length;i++){
+			classicTableBody+="<td><a href='../../DocAssist/pre/prescription?id="+data["经方"][i]["prescription_id"]+"'>"+data["经方"][i]["name"]+"</a></td><td>"+data["经方"][i]["dosage"]+"</td></tr>";
+		}
+		jQuery("#classic_pre_header").html("经方分析");
+		jQuery("#classic_pre_title").html(classicTableHead);
+		jQuery("#classic_pre_body").html(classicTableBody);
+		
+		jQuery("#med_header").html("自用药");
+		var medTableBody="<tr>";
+		for (var i=0;i<data["自用药"].length;i++){
+			medTableBody+="<td>"+data["自用药"][i]+"</td>";
+		}
+		medTableBody+="</tr>";
+		
+		jQuery("#med_body").html(medTableBody);
+		
+	}
+	function errorCB(){
+		
+	}
+	
+	
+	</script>
+	
+	
+	
+	
 	<body>
 	     <div>
 	        
@@ -188,10 +185,10 @@ String contextPath=request.getContextPath();
 		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">
-				<a href="front"><span id="nav_qwss" class="sub_nav_span"></span></a>
-				<a href="classifybrowse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="index.html"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
 				<a href="graph"><span id="nav_zhcx" class="sub_nav_span"></span></a>
-		    </div>
+		    </div>          
 	    </div>
 		
 		<div class="clearfix"></div>
@@ -206,25 +203,46 @@ String contextPath=request.getContextPath();
 		<div class="clearfix"></div>
 		
 		<div class="container-fluid ">
-				<div class="row-fluid">
-					<div class="span12">
-						<div id="content_container" class="container-fluid">
-							<div id="title">
-							</div>
-							<div id="doctor">
-							</div>
-							<div id="content">
-							</div>
-							<div id="reference">
-							</div>
-						</div>
+				<div id="main-content" class="content clearfix"> 
+            	<div id="pre_info">
+            		<div class="info">
+            			<h2 id="record_header" class="header"></h2>
+						<table id="record" class="table">
+							<tbody id="record_body"></tbody>
+						</table>
 					</div>
-				</div>
+            	
+					<div class="info">
+						<h2 id="classic_pre_header" class="header"></h2>
+						<table id="classic_pre" class="table">
+							<thead id="classic_pre_title"></thead>
+							<tbody id="classic_pre_body"></tbody>
+						</table>
+					</div>
+					
+					<div class="info">
+						<h2 id="med_header" class="header"></h2>
+						<table id="med" class="table">
+							<thead id="med_title"></thead>
+							<tbody id="med_body"></tbody>
+						</table>
+					</div>
+					
+					<div class="info">
+						<h2 id="adjust_pre_header" class="header"></h2>
+						<table id="adjust_pre" class="table">
+							<thead id="adjust_pre_title"></thead>
+							<tbody id="adjust_pre_body"></tbody>
+						</table>
+						
+					</div>
+                </div>
+            </div>   
 		</div>		
-		
 
 <!-- footer -->
      <div>
+          
 	
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">
