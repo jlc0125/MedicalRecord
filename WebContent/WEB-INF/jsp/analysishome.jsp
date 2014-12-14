@@ -37,7 +37,7 @@
 					<li> <a title="帮助中心" href="javascript:void(0);" rel="nofollow">帮助中心</a> </li>
 					<li> <a title="知识中心导航" href="javascript:void(0);" rel="nofollow">知识中心导航</a> </li>
 					<li> <a title="知识中心首页" href="http://www.udms.org/ckcest/" rel="nofollow">知识中心首页</a> </li>
-					<li> <a class="current" title="中草药系统首页"  href="/tcm" rel="nofollow">中草药系统首页</a> </li>
+					<li> <a class="current" title="中医医案系统首页"  href="/MedicalRecord/index" rel="nofollow">中医医案系统首页</a> </li>
 				</ul>
 			</div>
 		</div>
@@ -70,8 +70,14 @@
 					<div class="da-slide">
 						<h2>疾病分析</h2>
 						<p>分析医案中疾病与中药，疾病和方剂之间的共生关系。</p>
-						<a href="symptomhome" class="da-link">点击进入</a>
+						<a href="/MedicalRecord/Analysis/Result?type=bz" class="da-link">点击进入</a>
 					</div>
+					<div class="da-slide">
+						<h2>辩证治则分析</h2>
+						<p>在指定辩证和治则下，分析得出经常使用的中药。</p>
+						<a href="/MedicalRecord/Analysis/Result" class="da-link">点击进入</a>
+					</div>
+					
 					<nav class="da-arrows">
 						<span class="da-arrows-prev"></span>
 						<span class="da-arrows-next"></span>

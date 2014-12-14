@@ -29,6 +29,12 @@ String contextPath=request.getContextPath();
 						
 	</head>
 	<style>
+		#adjust_search{
+			margin-left: 90%;
+			font-size: 18px;
+			line-height: 1.2;
+			margin-bottom: 20px;
+		}
 		.sub, .add{
 		cursor:pointer;
 		height:15px;
@@ -45,6 +51,16 @@ String contextPath=request.getContextPath();
 			font-weight: bold !important;
 			text-align: center !important;
 			line-height: 5em !important;
+ 		}
+ 		
+ 		.info{
+ 			border: 1px solid;
+			border-radius: 15px;
+			margin-top: 15px;
+			margin-bottom:30px;
+ 		}
+ 		table{
+ 			margin-left:0% !important;
  		}
 	</style>
 	
@@ -69,10 +85,10 @@ String contextPath=request.getContextPath();
 			jQuery(".med").each(function(){
 				keyword+=jQuery(this).html();
 			});
-			window.location.href = "./result?keyword=" + keyword
-			+ "&pageNo=1" + "&pageSize="+pageSize;
+			
+			window.location.href = "/MedicalRecord/search/result?wd=" + keyword
+			+ "&type=content";
 		});
-		jQuery("#searchbox").remove();
 	});
 
 	function successCB(data){
@@ -93,7 +109,7 @@ String contextPath=request.getContextPath();
 		jQuery("#adjust_pre_header").html("加减方");
 		jQuery("#adjust_pre_body").html(adjustTableBody);
 		
-		jQuery("#adjust_pre").after("<input id='adjust_search' type='button' value='检索医案'>")
+		jQuery("#adjust_pre").after("<button id='adjust_search' type='button' class='btn' >检索医案</button>")
 		jQuery(".sub").live("click",function (){
 			jQuery(this).parent().remove();
 		});

@@ -52,6 +52,7 @@ String contextPath=request.getContextPath();
 				$(this)[0].checked=true;
 			});
 		});
+		if(!$("#doctor_opt")[0].checked && !$("#reference_opt")[0].checked) $("#content_opt")[0].checked=true;
 		
 		$("#main_search_btn").live(
 			"click",
@@ -67,7 +68,8 @@ String contextPath=request.getContextPath();
 					type="reference";
 				}
 				else{
-					//提示未勾选
+					alert("请勾选搜索选项");
+					return;
 				}
 				
 				var wd=$("#main_search_input").val();
@@ -121,7 +123,7 @@ String contextPath=request.getContextPath();
 		<div class="floatTOP">
 			<div class="UnderSearchBarTabs1">
 				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
-				<a id="href_C" href="<%=contextPath%>/Analysis"></a>
+				<a id="href_C" href="<%=contextPath%>/analysishome"></a>
 			</div>
 			<div class="logoSearch_L2">
 				<div class="clearfix"></div>

@@ -89,7 +89,7 @@ String contextPath=request.getContextPath();
 
 		<div class="UnderSearchBarTabs1">
 				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
-				<a id="href_C" href="<%=contextPath%>/Analysis"></a>
+				<a id="href_C" href="<%=contextPath%>/analysishome"></a>
 		</div>
 
 		<div class="clearfix"></div>

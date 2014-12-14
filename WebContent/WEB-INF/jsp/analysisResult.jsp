@@ -19,6 +19,7 @@ String contextPath=request.getContextPath();
 <script src="<%=contextPath%>/resources/common/ajax.js"></script>
 <script src="<%=contextPath%>/resources/common/d3.min.js"></script>
 <script src="<%=contextPath%>/resources/common/d3pie.js"></script>
+<script src="<%=contextPath%>/resources/medicine/med.js"></script>
 
 <!-- exlib -->
 <script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
@@ -49,6 +50,13 @@ String contextPath=request.getContextPath();
 	background-color: #B8AEAB;
 	text-align:center;
 	}
+	.alert{
+		text-align:center;
+		font-size: 20px;
+		margin-left: 25%;
+		margin-right: 26%;
+		margin-top: 30px;
+	}
 </style>
 </HEAD>
 <script type="text/javascript">
@@ -60,11 +68,23 @@ var pageSize=10;
 var pageIndex;
 
 $(function(){
+	$(".option").each(function(){
+		$(this).click(function(){
+			$(".option").each(function(){
+				$(this)[0].checked=false;
+			});
+			$(this)[0].checked=true;
+		});
+	});
+	
 	$("#btn").live(
 			'click',
 			function(){
 				var keyword=$("#input").val();
-				var type=getUrlParam("type");
+				var type;
+				if($("#bz_opt")[0].checked)	type="bz";
+				else if ($("#zz_opt")[0].checked) type="zz";
+				else type="bz";
 				$.ajax({
 					  type: 'POST',
 					  url: "./"+type,
@@ -95,8 +115,18 @@ $(function(){
 });
 
 function success(data,textStatus,jqXHR){
+	
 	dataAll=eval('(' + data + ')');
 	console.log(dataAll);
+	if (dataAll[0]["meds"]==0){
+		$("#pieChart").empty();
+		$(".container").empty();
+		$(".alert").show();
+		return 
+	}
+	else{
+		$(".alert").hide();
+	}
 	var list="";
 	for(var i=0;i<dataAll.length;i++){
 		if(i==0) list+="<li class='active'><a id='nav"+i+"' onclick='init("+i+")'>"+dataAll[i].word+"</a></li>";
@@ -139,11 +169,11 @@ function init(index){
 	var records=data.records;
 	var likelihood=data.likelihood;
 	var medsTable="<table id='meds_table' class='table'><thead><tr><th>选择中药</th><th>中药名称</th>\
-	<th>介绍</th></tr><tbody>";
+	</tr><tbody>";
 	var pieData=new Array();
 	var sum=0;
 	for(var i=0;i<meds.length;i++){
-		medsTable+="<tr><td><input type='checkbox' class='med_checkbox'/></td><td>"+meds[i]+"</td><td>简单介绍</td></tr>";
+		medsTable+="<tr><td><input type='checkbox' class='med_checkbox'/></td><td class='medicine'><a>"+meds[i]+"</a></td></tr>";
 		sum+=likelihood[i];
 		pieData.push({
 			"label":meds[i],
@@ -304,12 +334,18 @@ function paintPie(data){
 	<div class="bg_heise">
 		<div id="content" >
 			<div class="logoSearch_L2" style="height:100px">
-				<div id="search" class="search cf">
+				<div id="search" class="search cf" style="height: 50px !important;">
 					<INPUT id="input" class=text  name=q> 
 					<A class=button id="btn" href="#"></A> <br>
 				</div>
+				<div class="checkboxes2" id="option">搜索选项：&nbsp; 
+						<input type="checkbox" class="option" id="bz_opt">辩证&nbsp;&nbsp;
+						<input type="checkbox" class="option" id="zz_opt">治则&nbsp;&nbsp;
+				</div>
 			</div>
-			
+			<div class="alert" style="display:none">
+			  <strong>您输入的词中不包含辩证或治则词汇，请再次输入</strong> 
+			</div>
 			<div class="container" style="background-color: white;">
 				<ul id="nav" class="nav nav-tabs" style="display:none"></ul>
 				<div class="info"><h1 id="meds_info"></h1>

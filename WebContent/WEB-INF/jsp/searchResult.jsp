@@ -188,11 +188,12 @@ String contextPath=request.getContextPath();
 		    </div>
 		</div>
 		
+		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">
-				<a href="index.html"><span id="nav_qwss" class="sub_nav_span"></span></a>
-				<a href="Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
-				<a href="graph"><span id="nav_zhcx" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/index"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
 		    </div>          
 	    </div>
 		
