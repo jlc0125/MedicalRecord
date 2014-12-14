@@ -37,9 +37,9 @@
 						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 					}
 					else{
-						graph("#component .graph", root.drug);
-						graph("#attending .graph", root.symptom);
-						graph("#similar .graph", root.recipe);		
+						graph("#component .graph", root.drug, 1);
+						graph("#attending .graph", root.symptom, 2);
+						graph("#similar .graph", root.recipe, 3);		
 					}
 				});
 			}
@@ -62,9 +62,9 @@
 							}
 							$("#tagscloud ul").html(htl);
 							tagscloud("#tagscloud", "drug");
-							graph("#component .graph", root.drug);
-							graph("#attending .graph", root.symptom);
-							graph("#similar .graph", root.recipe);		
+							graph("#component .graph", root.drug, 1);
+							graph("#attending .graph", root.symptom, 2);
+							graph("#similar .graph", root.recipe, 3);		
 						}
 					});
 				}

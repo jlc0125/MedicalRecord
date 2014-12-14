@@ -175,7 +175,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="home" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>

@@ -36,10 +36,10 @@
 						$("#graph3").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 					}
 					else{
-						graph("#graph1", root.drug, 300);
-						graph("#graph2", root.zucheng, 300);
+						graph("#graph1", root.drug, 300, 1);
+						graph("#graph2", root.zucheng, 300, 1);
 						$("#zc_chuchu").text("出自" + root.chuchu_zc);
-						graph("#graph3", root.symptom, 450);
+						graph("#graph3", root.symptom, 450, 0);
 					}
 				});
 			}
@@ -57,10 +57,10 @@
 							$("#graph3").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
-							graph("#graph1", root.drug, 300);
-							graph("#graph2", root.zucheng, 300);
+							graph("#graph1", root.drug, 300, 1);
+							graph("#graph2", root.zucheng, 300, 1);
 							$("#zc_chuchu").text("出自" + root.chuchu_zc);
-							graph("#graph3", root.symptom, 450);
+							graph("#graph3", root.symptom, 450, 0);
 						}
 					});
 				}
@@ -100,7 +100,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="index.html"><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>

@@ -11,7 +11,7 @@
 		return [d.y, d.x / 180 * Math.PI]; 
 	});
 	
-	function graph(selectStr, root){
+	function graph(selectStr, root, linkType){
 		var svg = d3.select(selectStr).append("svg")
 		.attr("width", diameter)
 		.attr("height", diameter)
@@ -43,13 +43,13 @@
 			d3.select(this).style("stroke-width", 2.5);
 		})
 		.on("click", function(d){
-			var url = "search/retval?wd=" + d.source.name+" "+d.target.name+"&type=content_contain";
+			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
 			$.get(url, function(data, status){
 				var txt = "";
 				var numData = 0;
 				for(var i=0; i<data.length; i++){
 					if(data[i].recordTitle){
-						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.source.name+" "+d.target.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
+						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
 						numData++;
 						if(numData >= 40)
 							break;
@@ -102,35 +102,12 @@
 			d3.select(this).attr("r", 4.5);
 		})
 		.on("click", function(d){
-			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
-			$.get(url, function(data, status){
-				var txt = "";
-				var numData = 0;
-				for(var i=0; i<data.length; i++){
-					if(data[i].recordTitle){
-						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
-						numData++;
-						if(numData >= 40)
-							break;
-					}
-				}
-				$(".alt_content").html(txt);
-				if(txt != ""){
-					$(".alt_content").css("border","1px solid #DB5C04");
-					
-					$('.alt_container').pajinate({
-						items_per_page : 10,
-						num_page_links_to_display : 4,
-						item_container_id : '.alt_content',
-						nav_panel_id : '.alt_page_navigation',
-						nav_info_id : '.alt_info_text',
-						nav_label_first : '<<',
-						nav_label_last : '>>',
-						nav_label_prev : '<',
-						nav_label_next : '>'
-				      });
-				}
-			});
+			if(linkType == 1)  //中药
+				window.open("http://zcy.ckcest.cn/tcm/search/med?medname="+d.name);
+			else if(linkType == 2) //疾病
+				window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name);
+			else //方剂
+				window.open("http://zcy.ckcest.cn/tcm/search/pre?prename="+d.name);
 		});
 	
 		node.append("text")

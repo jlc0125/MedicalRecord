@@ -176,7 +176,7 @@ String contextPath=request.getContextPath();
 		<div class=logo1>
 			<div class="logo1_L1">
 				<div class="logo">
-	    	    	<A href="home" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A>
+	    	    	<a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A>
 	    	    </div>
 		    </div>
 			<div class="logo1_L2">
