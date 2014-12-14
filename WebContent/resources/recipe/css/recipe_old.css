@@ -90,6 +90,19 @@ body {
 	background-image:url(../image/fx_btn_click.png); 
 }
 
+#tagscloud {
+	width: 750px;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+}
+
+#tagscloud a {
+	position: absolute;
+	text-decoration: none;
+	color: #666;
+}
+
 #container {
 	width: 960px;
 	padding-top: 10px;
@@ -137,33 +150,7 @@ body {
 	margin-left: 15px;
 	margin-bottom: 18px; 
 	width: 560px;
-	height: 600px;
-	text-align:center;
-}
-
-#graph1 {
-	height: 280px;
-}
-
-#graph2 {
-	height: 280px;
-}
-
-.graph_head, #zc_chuchu {
-	font-size: 16px;
-}
-
-#separate {
-	height: 5px;
-	background: #eee; 
-	margin-bottom: 8px; 
-}
-
-#graph3 {
-	margin-left: 15px;
-	margin-bottom: 18px; 
-	width: 560px;
-	height: 450px;
+	height: 560px;
 	text-align:center;
 }
 
@@ -172,7 +159,7 @@ body {
 	margin-bottom: 18px; 
 	float: left;
 	width: 222px;
-	height: 630px;
+	height: 600px;
 	background: #eee; 
 }
 
@@ -186,33 +173,37 @@ body {
 	font: 16px sans-serif;
  }
         
-.childnode1 circle {
-	fill: #fff;
-	stroke: red;
-	stroke-width: 1.5px;
-}
-
-.childnode circle, .childnode2 circle {
+.childnode circle {
 	fill: #fff;
 	stroke: steelblue;
 	stroke-width: 1.5px;
 }
 
-.childnode3 circle {
-	fill: #fff;
-	stroke: #add8e6;
-	stroke-width: 1.5px;
-}
-
-.childnode1, .childnode2, .childnode3 {
+.childnode {
 	font: 10px sans-serif;
  }
+        
+.grandchildnode circle {
+	fill: #fff;
+	stroke: #26cead;
+	stroke-width: 1.5px;
+ }
 
-.link {
+.grandchildnode {
+	font: 10px sans-serif;
+}
+
+.rootlink {
 	fill: none;
 	stroke: #c9c26f;
 	stroke-width: 2.5px;
  }
+        
+.childlink {
+	fill: none;
+	stroke: #ccc;
+	stroke-width: 2.5px;
+}
 
 .alt_container{
 	width: 222px;
@@ -226,8 +217,7 @@ body {
 }
 
 .alt_page_navigation{
-	padding: 10px 0 0;
-	text-align: center;
+	padding: 10px 0 10px 7px;
 }
 
 .alt_page_navigation a{
@@ -235,6 +225,7 @@ body {
 	margin:1px;
 	color:white;
 	text-decoration:none;
+	float: left;
 	font-family: Tahoma;
 	font-size: 12px;
 	background-color:#DB5C04;
@@ -254,7 +245,7 @@ body {
 }
 
 .alt_info_text {
-	padding: 10px 0 10px;
+	padding: 20px 0 10px;
 	text-align: center;
 }
 

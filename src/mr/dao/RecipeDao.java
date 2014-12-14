@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
@@ -17,11 +18,14 @@ import com.mongodb.MongoClient;
 @Repository
 public class RecipeDao {
 	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
 	private MongoClient mongoClient;
 	
 	public Object search(String name){
 		DB db = mongoClient.getDB("medrecord");
-		DBCollection coll = db.getCollection("fangji");
+		DBCollection coll = db.getCollection("recipe");
 		DBObject doc = coll.findOne(new BasicDBObject("name", name));
 		if(doc == null)
 			return null;
@@ -31,7 +35,7 @@ public class RecipeDao {
 	
 	public List<DBObject> searchBeginWith(String name){
 		DB db = mongoClient.getDB("medrecord");
-		DBCollection coll = db.getCollection("fangji");
+		DBCollection coll = db.getCollection("recipe");
 		BasicDBObject cond = new BasicDBObject();
 		Pattern pattern = Pattern.compile("^"+name+".*$");
 		cond.put("name", pattern);
@@ -51,4 +55,17 @@ public class RecipeDao {
 		}
 		return res;
 	}
+	
+	public List abbrBeginWith(String abbr){
+		String sql = "select name,pinci from recipe where abbr like '" + abbr + "%' order by abbr";
+		return jdbcTemplate.queryForList(sql); 
+	}
+	
+	public List pinciSearch(int freq){
+		String sql = "select name,pinci from recipe order by pinci";
+		if(freq == 0)
+			sql += " DESC";
+		return jdbcTemplate.queryForList(sql); 
+	}
+	
 }

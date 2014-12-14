@@ -55,7 +55,7 @@
 					<div class="da-slide">
 						<h2>方剂分析</h2>
 						<p>分析医案中方剂与中药，症状共生关系。</p>
-						<a href="recipe" class="da-link">点击进入</a>
+						<a href="recipehome" class="da-link">点击进入</a>
 					</div>
 					<div class="da-slide">
 						<h2>处方分析</h2>

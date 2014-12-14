@@ -23,13 +23,13 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "symptom");
+			tagscloud("#tagscloud", "recipe");
 			
 			$("#front_input").autocomplete({
 				autoFocus: true,
 				minLength: 1,
 				source: function(request, response) {
-					var url = "symptom/hint?q=" + request.term;
+					var url = "recipe/hint?q=" + request.term;
 					$.get(url, function(data, status){
 						response(data);
 					});
@@ -37,18 +37,18 @@
 			});
 			
 			function page(str){
-				var url = "symptom/pinyin?q=" + str;
+				var url = "recipe/pinyin?q=" + str;
 				$.get(url, function(data, status){
 					var txt = "";
 					for(var i=0; i<data.length; i++){
-						txt += '<li><form method="post" action="symptom"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+						txt += '<li><form method="post" action="recipe"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
 					}
 					if(txt != ""){
 						$(".alt_content").html(txt);
 						$(".alt_content").css("border","1px solid #DB5C04");
 					}
 					else{
-						$(".alt_content").html('<div class="noResult">很抱歉，没有相关的疾病。</div>');
+						$(".alt_content").html('<div class="noResult">很抱歉，没有相关的方剂。</div>');
 					}
 					$('.alt_container').pajinate({
 						items_per_page : 8,
@@ -63,18 +63,18 @@
 			}
 			
 			function page2(str){
-				var url = "symptom/pinci?q=" + str;
+				var url = "recipe/pinci?q=" + str;
 				$.get(url, function(data, status){
 					var txt = "";
 					for(var i=0; i<data.length; i++){
-						txt += '<li><form method="post" action="symptom"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+						txt += '<li><form method="post" action="recipe"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
 					}
 					if(txt != ""){
 						$(".alt_content2").html(txt);
 						$(".alt_content2").css("border","1px solid #DB5C04");
 					}
 					else{
-						$(".alt_content2").html('<div class="noResult">很抱歉，没有相关的疾病。</div>');
+						$(".alt_content2").html('<div class="noResult">很抱歉，没有相关的方剂。</div>');
 					}
 					$('.alt_btns').pajinate({
 						items_per_page : 8,
@@ -175,7 +175,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="home" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html"><img src="resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>
@@ -183,11 +183,11 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<a href="analysishome"><img src="resources/recipe/image/r_125.png" /></a>
+			<a href="analysishome"><img src="resources/recipe/image/r_122.png" /></a>
 		</div>
 		
 		<div class="logoSearch_L2">
-			<form id="search_cf" class="search cf" method="post" action="symptom">
+			<form id="search_cf" class="search cf" method="post" action="recipe">
 				<input id="front_input" class="text" type="text" name="q" maxLength="20"> 
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
@@ -195,7 +195,7 @@
 				<ul>
 				<c:forEach var="item" items="${name}">
 					<li>
-						<form method="post" action="symptom">
+						<form method="post" action="recipe">
 							<input type="hidden" name="q" value="${item}">
 							<a><c:out value="${item}"></c:out></a>
 						</form>
@@ -245,7 +245,7 @@
 					</div>
       </div>
       <div class="alt_container">
-      	<div class="alt_head">疾病名</div>
+      	<div class="alt_head">方剂名</div>
       	<div class="alt_head">出现频次</div>
 					<ul class="alt_content"></ul>
 					<div class="alt_page_navigation"></div>
