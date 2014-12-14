@@ -22,4 +22,13 @@ public class RecipeService {
 	public List<DBObject> searchBeginWith(String name){
 		return recipeDao.searchBeginWith(name);
 	}
+	
+	public List abbrBeginWith(String abbr){
+		return recipeDao.abbrBeginWith(abbr);
+	}
+	
+	public List pinciSearch(int freq){
+		return recipeDao.pinciSearch(freq);
+	}
+	
 }

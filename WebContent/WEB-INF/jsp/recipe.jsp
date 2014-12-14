@@ -20,24 +20,48 @@
 	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud.js"></script>
+	<script type="text/javascript" src="resources/recipe/js/graph_recipe.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "recipe");
-			
 			$('#container').easyTabs({defaultContent:1});
+			
+			var recipeName = $("#front_input").val();
+			if(recipeName != ''){
+				var url = "recipe/search?q=" + recipeName;
+				d3.json(url, function(error, root) { 
+					if(error){
+						$("#graph1").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$("#graph2").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$("#graph3").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+					}
+					else{
+						graph("#graph1", root.drug, 300);
+						graph("#graph2", root.zucheng, 300);
+						$("#zc_chuchu").text("出自" + root.chuchu_zc);
+						graph("#graph3", root.symptom, 450);
+					}
+				});
+			}
 			
 			$("#search_cf").submit(function(){
 				var value = $("#front_input").val();
+				$("svg").remove();
+				$("#zc_chuchu").empty();
 				if(value != ''){
 					var url = "recipe/search?q=" + value;
 					d3.json(url, function(error, root) { 
-						$(".graph svg").remove();
-						graph("#component .graph", root.component);
-						graph("#attending .graph", root.attending);
-						graph("#similar .graph", root.similar);		
+						if(error){
+							$("#graph1").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$("#graph2").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$("#graph3").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						}
+						else{
+							graph("#graph1", root.drug, 300);
+							graph("#graph2", root.zucheng, 300);
+							$("#zc_chuchu").text("出自" + root.chuchu_zc);
+							graph("#graph3", root.symptom, 450);
+						}
 					});
 				}
 				return false;
@@ -76,7 +100,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="home" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html"><img src="resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>
@@ -84,45 +108,38 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<img src="resources/recipe/image/r_12.png" />
+			<a href="recipehome"><img src="resources/recipe/image/r_122.png" /></a>
 		</div>
 		
 		<div class="logoSearch_L2">
 			<form id="search_cf" class="search cf" >
-				<input id="front_input" class="text" type="text" maxLength="20"> 
+				<input id="front_input" class="text" type="text" maxLength="20" value="${recipeName}"> 
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
-			<div id="tagscloud">
-				<ul>
-				<c:forEach var="item" items="${name}">
-					<li><a href=""><c:out value="${item}"></c:out></a></li>
-				</c:forEach>
-			</ul>
-		</div>
 	</div>
 		
 		<div id="container">
 			<ul class="tabs">
 				<li><a href="#component">相关中药</a></li>
 		  	<li><a href="#attending">相关疾病</a></li>
-		  	<li><a href="#similar">相关方剂</a></li>
 		 </ul>
 	
     <div id="main_content">
     	<div id="component">
     		<div class="graph">
+    			<div class="graph_head">从医案中分析出的相关关系</div>
+    			<div id="graph1"></div>
+    			<div id="separate"></div>
+    			<div class="graph_head">方剂组成成分</div>
+    			<div id="graph2"></div>
+    			<div id="zc_chuchu"></div>
     		</div>
      </div>
      
      <div id="attending">
-    		<div class="graph">
+    		<div id="graph3">
     		</div>
      </div>
-     
-     <div id="similar">
-    		<div class="graph">
-    		</div>
-			</div>
     </div>
     <div id="sidebar">
     	<div class="alt_container">
