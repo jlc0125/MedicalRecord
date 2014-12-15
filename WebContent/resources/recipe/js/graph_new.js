@@ -43,13 +43,13 @@
 			d3.select(this).style("stroke-width", 2.5);
 		})
 		.on("click", function(d){
-			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
+			var url = "search/retval?wd=" + d.source.name+" "+d.target.name+"&type=content_contain";
 			$.get(url, function(data, status){
 				var txt = "";
 				var numData = 0;
 				for(var i=0; i<data.length; i++){
 					if(data[i].recordTitle){
-						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
+						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.source.name+" "+d.target.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
 						numData++;
 						if(numData >= 40)
 							break;
