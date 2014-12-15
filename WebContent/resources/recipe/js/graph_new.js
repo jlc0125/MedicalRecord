@@ -33,7 +33,7 @@
 		.attr("d", diagonal);
 					
 		link.append("title").text(function(d){
-				return "点击查看  " + d.source.name + " 和  " + d.target.name +  " 相关的医案";
+				return '点击查看  "' + d.source.name + '" 和  "' + d.target.name +  '" 相关的医案';
 		});
 	
 		link.on("mouseover", function(){
@@ -122,7 +122,7 @@
 					
 		node.append("title")
 		.text(function(d){
-			return "点击查看  " + d.parent.name + " 和  " + d.name +  " 相关的医案";
+			return '点击查看  "' + d.name +  '" 的详细信息';
 		});
 	}
 	
