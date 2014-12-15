@@ -55,9 +55,9 @@ function tagscloud(selectStr, tagStr){
 							}
 							$("#tagscloud ul").html(htl);
 							tagscloud("#tagscloud", "drug");
-							graph("#component .graph", root.drug);
-							graph("#attending .graph", root.symptom);
-							graph("#similar .graph", root.recipe);		
+							graph("#component .graph", root.drug, 1);
+							graph("#attending .graph", root.symptom, 2);
+							graph("#similar .graph", root.recipe, 3);		
 						}
     				});
     	return false;
