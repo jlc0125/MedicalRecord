@@ -1,5 +1,5 @@
 (function(window, diameter){
-	function graph(selectStr, root, diameter){
+	function graph(selectStr, root, diameter, is_drug){
 		var tree = d3.layout.tree()
 		.size([360, diameter / 2 - 60])
 		.separation(function(a, b) {
@@ -106,35 +106,10 @@
 			d3.select(this).attr("r", 4.5);
 		})
 		.on("click", function(d){
-			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
-			$.get(url, function(data, status){
-				var txt = "";
-				var numData = 0;
-				for(var i=0; i<data.length; i++){
-					if(data[i].recordTitle){
-						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
-						numData++;
-						if(numData >= 40)
-							break;
-					}
-				}
-				$(".alt_content").html(txt);
-				if(txt != ""){
-					$(".alt_content").css("border","1px solid #DB5C04");
-					
-					$('.alt_container').pajinate({
-						items_per_page : 10,
-						num_page_links_to_display : 4,
-						item_container_id : '.alt_content',
-						nav_panel_id : '.alt_page_navigation',
-						nav_info_id : '.alt_info_text',
-						nav_label_first : '<<',
-						nav_label_last : '>>',
-						nav_label_prev : '<',
-						nav_label_next : '>'
-				      });
-				}
-			});
+			if(is_drug)
+				window.open("http://zcy.ckcest.cn/tcm/search/med?medname="+d.name);
+			else
+				window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name);
 		});
 	
 		node.append("text")

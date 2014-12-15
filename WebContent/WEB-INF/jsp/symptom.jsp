@@ -37,9 +37,9 @@
 						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 					}
 					else{
-						graph("#component .graph", root.drug);
-						graph("#attending .graph", root.symptom);
-						graph("#similar .graph", root.recipe);		
+						graph("#component .graph", root.drug, 1);
+						graph("#attending .graph", root.symptom, 2);
+						graph("#similar .graph", root.recipe, 3);		
 					}
 				});
 			}
@@ -62,9 +62,9 @@
 							}
 							$("#tagscloud ul").html(htl);
 							tagscloud("#tagscloud", "symptom");
-							graph("#component .graph", root.drug);
-							graph("#attending .graph", root.symptom);
-							graph("#similar .graph", root.recipe);		
+							graph("#component .graph", root.drug, 1);
+							graph("#attending .graph", root.symptom, 2);
+							graph("#similar .graph", root.recipe, 3);		
 						}
 					});
 				}
@@ -104,7 +104,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="home" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>
