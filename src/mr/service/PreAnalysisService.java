@@ -25,20 +25,26 @@ public class PreAnalysisService {
 	private PrescriptionDao preDao;
 	
 	public Map<String,Object> getPreMap(String[] preSeg){
+		
+		System.out.println("=========================getPreMap========================");
 		Map<String,Object> result=new HashMap<String,Object>();
 		List<Med> allMed=medDao.allMeds();
 		List<String> medVocab=new ArrayList<String>();
 		for(int i=0;i<allMed.size();i++){
 			medVocab.add(allMed.get(i).getName());
 		}
-		
+		System.out.println("medVocab.size="+medVocab.size());
 		List<String> medList=new ArrayList<String>();
 		for(String p:preSeg){
 			if(medVocab.indexOf(p)!=-1) medList.add(p);
 		}
 		
+		System.out.println("medList.size="+medList.size());
 		
 		List<Prescription> allPre=preDao.allPre();
+		
+		System.out.println("allPre.size="+allPre.size());
+		
 		List<Prescription> classicPreList=new ArrayList<Prescription>();
 		for(int i=0;i<allPre.size();i++){
 			String[] meds=allPre.get(i).getDosage().trim().split(" ");
@@ -54,7 +60,7 @@ public class PreAnalysisService {
 				classicPreList.add(allPre.get(i));
 			}
 		}
-		
+		System.out.println("classicPreList.size="+classicPreList.size());
 		Collections.sort(classicPreList, new Comparator<Prescription>() {
 			public int compare(Prescription arg0, Prescription arg1) {
 				return arg0.getMedNum().compareTo(arg1.getMedNum());
