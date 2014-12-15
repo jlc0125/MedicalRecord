@@ -107,7 +107,7 @@
 			else if(linkType == 2) //疾病
 				window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name);
 			else //方剂
-				window.open("http://zcy.ckcest.cn/tcm/search/pre?prename="+d.name);
+				window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=000100&pageno=1&type=pre");
 		});
 	
 		node.append("text")
