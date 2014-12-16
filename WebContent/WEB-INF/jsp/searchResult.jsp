@@ -87,8 +87,11 @@ String contextPath=request.getContextPath();
 	function getFrontListSuccessCB(data,textStatus,jqXHR) {
 	    data=eval('(' + data + ')');
 	    console.log(data);
-	    dataGlobal=data;
-	    showData(data);
+	    dataGlobal=[];
+	    for(var i=0;i<data.length;i++){
+	    	if (data[i].recordTitle!="") dataGlobal.push(data[i]);
+	    }
+	    showData(dataGlobal);
 	}
 
 	function showData(data){
