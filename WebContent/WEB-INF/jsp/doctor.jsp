@@ -107,6 +107,7 @@
 					function success(data){
 						data=eval('(' + data + ')');
 						for(var i=0;i<data.length;i++){
+							if(data[i].recordTitle=="") continue;
 							tbody+="<tr><th class='record_list_th'><a href='/MedicalRecord/record_detail?recordId="+data[i].recordId+"'>"+data[i].recordTitle+"</th><th><a href='/MedicalRecord/search/result?wd="+data[i].reference+"&type=reference'>"+data[i].reference+"</a></th></tr>"
 						}
 						$("#doctor_head").html(thead);
@@ -182,9 +183,9 @@
 		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">
-				<a href="front"><span id="nav_qwss" class="sub_nav_span"></span></a>
-				<a href="classifybrowse"><span id="nav_flll" class="sub_nav_span"></span></a>
-				<a href="graph"><span id="nav_zhcx" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/index"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
 		    </div>
 	    </div>
 		
