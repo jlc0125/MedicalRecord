@@ -54,7 +54,7 @@
 				<div id="da-slider" class="da-slider">
 					<div class="da-slide">
 						<h2>方剂分析</h2>
-						<p>分析医案中方剂与中药以及疾病关联关系。</p>
+						<p>分析医案中方剂与中药以及疾病之间的关联关系。</p>
 						<a href="recipehome" class="da-link">点击进入</a>
 					</div>
 					<%--
