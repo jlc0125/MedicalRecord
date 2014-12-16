@@ -33,7 +33,7 @@
 		.attr("d", diagonal);
 					
 		link.append("title").text(function(d){
-				return "点击查看  " + d.source.name + " 和  " + d.target.name +  " 相关的医案";
+				return '点击查看  "' + d.source.name + '" 和  "' + d.target.name +  '" 相关的医案';
 		});
 	
 		link.on("mouseover", function(){
@@ -43,13 +43,13 @@
 			d3.select(this).style("stroke-width", 2.5);
 		})
 		.on("click", function(d){
-			var url = "search/retval?wd=" + d.parent.name+" "+d.name+"&type=content_contain";
+			var url = "search/retval?wd=" + d.source.name+" "+d.target.name+"&type=content_contain";
 			$.get(url, function(data, status){
 				var txt = "";
 				var numData = 0;
 				for(var i=0; i<data.length; i++){
 					if(data[i].recordTitle){
-						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.parent.name+" "+d.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
+						txt += "<li><a href='record_detail?recordId=" + data[i].recordId + "&hlFlag=1&hlWords=" + d.source.name+" "+d.target.name +"'"+ " target='_blank'>" + data[i].recordTitle + '</a></li>';
 						numData++;
 						if(numData >= 40)
 							break;
@@ -107,7 +107,7 @@
 			else if(linkType == 2) //疾病
 				window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name);
 			else //方剂
-				window.open("http://zcy.ckcest.cn/tcm/search/pre?prename="+d.name);
+				window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=000100&pageno=1&type=pre");
 		});
 	
 		node.append("text")
@@ -122,7 +122,7 @@
 					
 		node.append("title")
 		.text(function(d){
-			return "点击查看  " + d.parent.name + " 和  " + d.name +  " 相关的医案";
+			return '点击查看  "' + d.name +  '" 的详细信息';
 		});
 	}
 	

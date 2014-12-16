@@ -54,24 +54,24 @@
 				<div id="da-slider" class="da-slider">
 					<div class="da-slide">
 						<h2>方剂分析</h2>
-						<p>分析医案中方剂与中药，症状共生关系。</p>
+						<p>分析医案中方剂与中药以及疾病关联关系。</p>
 						<a href="recipehome" class="da-link">点击进入</a>
 					</div>
 					<%--
 					<div class="da-slide">
 						<h2>处方分析</h2>
-						<p>分析医案中处方与中药，症状的关联共生关系。</p>
+						<p>分析医案中处方与中药，疾病的关联关系。</p>
 						<a href="#" class="da-link">点击进入</a>
 					</div>
 					--%>
 					<div class="da-slide">
 						<h2>中药分析</h2>
-						<p>分析医案中中药与中药，疾病和方剂之间的共生关系。</p>
+						<p>分析医案中中药与中药，疾病以及方剂之间的关联关系。</p>
 						<a href="drughome" class="da-link">点击进入</a>
 					</div>
 					<div class="da-slide">
 						<h2>疾病分析</h2>
-						<p>分析医案中疾病与中药，疾病和方剂之间的共生关系。</p>
+						<p>分析医案中疾病与中药，疾病以及方剂之间的关联关系。</p>
 						<a href="symptomhome" class="da-link">点击进入</a>
 					</div>
 					<div class="da-slide">

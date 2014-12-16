@@ -31,15 +31,15 @@
 				var url = "recipe/search?q=" + recipeName;
 				d3.json(url, function(error, root) { 
 					if(error){
-						$("#graph1").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-						$("#graph2").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-						$("#graph3").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 					}
 					else{
-						graph("#graph1", root.drug, 300, 1);
-						graph("#graph2", root.zucheng, 300, 1);
+						graph("#graph1", root.drug, 300, 1, 1);
+						graph("#graph2", root.zucheng, 300, 1, 0);
 						$("#zc_chuchu").text("出自" + root.chuchu_zc);
-						graph("#graph3", root.symptom, 450, 0);
+						graph("#graph3", root.symptom, 450, 0, 1);
 					}
 				});
 			}
@@ -48,13 +48,14 @@
 				var value = $("#front_input").val();
 				$("svg").remove();
 				$("#zc_chuchu").empty();
+				$(".errorhit").empty();
 				if(value != ''){
 					var url = "recipe/search?q=" + value;
 					d3.json(url, function(error, root) { 
 						if(error){
-							$("#graph1").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-							$("#graph2").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-							$("#graph3").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
 							graph("#graph1", root.drug, 300, 1);

@@ -48,16 +48,20 @@ function tagscloud(selectStr, tagStr){
 						}
 						else{
 							$("#tagscloud ul").empty();
-							var drugs = root.drug.children;
+							var drugs;
+							if(tagStr == "drug")
+								drugs = root.drug.children;
+							else if(tagStr == "symptom")
+								drugs = root.symptom.children;
 							var htl = '';
 							for(var i=0; i<drugs.length; i++){
 								htl += '<li><a href="">' + drugs[i].name + '</a></li>';
 							}
 							$("#tagscloud ul").html(htl);
-							tagscloud("#tagscloud", "drug");
-							graph("#component .graph", root.drug);
-							graph("#attending .graph", root.symptom);
-							graph("#similar .graph", root.recipe);		
+							tagscloud("#tagscloud", tagStr);
+							graph("#component .graph", root.drug, 1);
+							graph("#attending .graph", root.symptom, 2);
+							graph("#similar .graph", root.recipe, 3);		
 						}
     				});
     	return false;
