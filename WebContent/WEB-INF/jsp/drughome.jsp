@@ -109,10 +109,9 @@
 					
 				$('.label h5').removeClass('clicked');
 				$(tLabelColor).addClass('clicked');
-				
-				page("a");
 			});
 			
+			var label2_click = 0;
 			$("#label2").on("click", function(){
 				var tLabel = $(this);
 				var tLabelColor = $(this).find('h5');
@@ -124,7 +123,8 @@
 				$('.label h5').removeClass('clicked');
 				$(tLabelColor).addClass('clicked');
 				
-				page2("0");
+				if(label2_click == 0)
+					page2("0");
 			});
 			
 			$(label).hover(function(){

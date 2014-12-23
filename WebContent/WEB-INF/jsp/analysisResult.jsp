@@ -326,7 +326,7 @@ function paintPie(data){
 		</div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
-				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+				<div class="logo"><a href="/MedicalRecord/index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
