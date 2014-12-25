@@ -61,7 +61,7 @@
 							graph("#graph1", root.drug, 300, 1);
 							graph("#graph2", root.zucheng, 300, 1);
 							$("#zc_chuchu").text("出自" + root.chuchu_zc);
-							graph("#graph3", root.symptom, 450, 0);
+							graph("#graph3", root.symptom, 500, 0);
 						}
 					});
 				}
@@ -117,41 +117,65 @@
 				<input id="front_input" class="text" type="text" maxLength="20" value="${recipeName}"> 
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
-	</div>
+		</div>
 		
 		<div id="container">
 			<ul class="tabs">
 				<li><a href="#component">相关中药</a></li>
-		  	<li><a href="#attending">相关疾病</a></li>
-		 </ul>
+		  		<li><a href="#attending">相关疾病</a></li>
+		 	</ul>
 	
-    <div id="main_content">
-    	<div id="component">
-    		<div class="graph">
-    			<div class="graph_head">从医案中分析出的相关关系</div>
-    			<div id="graph1"></div>
-    			<div id="separate"></div>
-    			<div class="graph_head">方剂组成成分</div>
-    			<div id="graph2"></div>
-    			<div id="zc_chuchu"></div>
-    		</div>
-     </div>
-     
-     <div id="attending">
-    		<div id="graph3">
-    		</div>
-     </div>
-    </div>
-    <div id="sidebar">
-    	<div class="alt_container">
-				<h2>相关医案</h2>
-				<div class="alt_page_navigation"></div>	
-				<div class="alt_info_text"></div>
-				<ul class="alt_content"></ul>
-			</div>    
-    </div>
-    <div class="clearfix"></div>
-   </div>
+	    	<div id="main_content">
+		    	<div id="component">
+		    		<div class="graph">
+		    			<div class="graph_head">从医案中分析出的相关关系</div>
+		    			<div id="graph1"></div>
+		    			<div id="separate"></div>
+		    			<div class="graph_head">方剂组成成分</div>
+		    			<div id="graph2"></div>
+		    			<div id="zc_chuchu"></div>
+		    		</div>
+		    		<div id="descpt1">
+    					<div>&nbsp;&nbsp;图示说明</div>
+    					<svg height="500">
+    						<g>
+    							<circle cx="13" cy="30" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle>
+    							<text x="13" y="50" writing-mode="tb">从医案中分析与方剂相关，同时又是医学记录文献中方剂的组成的中药</text>
+    						</g>
+    						<g>
+    							<circle cx="38" cy="30" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
+    							<text x="38" y="50" writing-mode="tb">从医案中分析与方剂相关，但不是医学记录文献中方剂的组成的中药</text>
+    						</g>
+    						<g>
+    							<circle cx="63" cy="30" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle>
+    							<text x="63" y="50" writing-mode="tb">医学记录文献中方剂的组成，但在医案中暂未分析出与方剂相关的中药</text>
+    						</g>
+    					</svg>
+    				</div>
+		     	</div>
+	     
+	     		<div id="attending">
+	    			<div id="graph3"></div>
+	    			<div id="descpt2">
+    					<div>图示说明</div>
+    					<svg>
+    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
+    						<text x="45" y="29">从医案中分析与方剂相关的疾病</text>
+    					</svg>
+    				</div>
+	     		</div>
+	    	</div>
+    		
+		    <div id="sidebar">
+		    	<div class="alt_container">
+					<h2>相关医案</h2>
+					<div class="alt_page_navigation"></div>	
+					<div class="alt_info_text"></div>
+					<ul class="alt_content"></ul>
+				</div>    
+		    </div>
+	    	<div class="clearfix"></div>
+   		</div>
 	</div>
 
 	<!-- footer -->

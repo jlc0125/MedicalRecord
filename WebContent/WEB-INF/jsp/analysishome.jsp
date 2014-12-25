@@ -54,8 +54,8 @@
 				<div id="da-slider" class="da-slider">
 					<div class="da-slide">
 						<h2>方剂分析</h2>
-						<p>分析医案中方剂与中药以及疾病关联关系。</p>
-						<a href="recipehome" class="da-link">点击进入</a>
+						<p>分析医案中方剂与中药以及疾病之间的关联关系。</p>
+						<a href="recipehome" class="da-link" target=_blank>点击进入</a>
 					</div>
 					<%--
 					<div class="da-slide">
@@ -67,12 +67,12 @@
 					<div class="da-slide">
 						<h2>中药分析</h2>
 						<p>分析医案中中药与中药，疾病以及方剂之间的关联关系。</p>
-						<a href="drughome" class="da-link">点击进入</a>
+						<a href="drughome" class="da-link" target=_blank>点击进入</a>
 					</div>
 					<div class="da-slide">
 						<h2>疾病分析</h2>
 						<p>分析医案中疾病与中药，疾病以及方剂之间的关联关系。</p>
-						<a href="symptomhome" class="da-link">点击进入</a>
+						<a href="symptomhome" class="da-link" target=_blank>点击进入</a>
 					</div>
 					<div class="da-slide">
 						<h2>处方分析</h2>
@@ -82,7 +82,7 @@
 					<div class="da-slide">
 						<h2>辩证治则分析</h2>
 						<p>在指定辩证和治则下，分析得出经常使用的中药。</p>
-						<a href="/MedicalRecord/Analysis/Result" class="da-link">点击进入</a>
+						<a href="Analysis/Result" class="da-link" target=_blank>点击进入</a>
 					</div>
 					
 					<nav class="da-arrows">

@@ -148,10 +148,21 @@ body {
 
 .graph {
 	margin-left: 15px;
-	margin-bottom: 18px; 
 	width: 560px;
 	height: 450px;
 	text-align:center;
+}
+
+.descpt {
+	width: 500px;
+	height: 110px;
+	font-size: 12px;
+	background-color: #fff;
+}
+
+.descpt div {
+	margin-bottom: 2px;
+	font-size: 16px;
 }
 
 #sidebar  {
@@ -159,7 +170,7 @@ body {
 	margin-bottom: 18px; 
 	float: left;
 	width: 222px;
-	height: 490px;
+	height: 580px;
 	background: #eee; 
 }
 
