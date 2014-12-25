@@ -21,7 +21,10 @@ public class PreAnalysisController {
 		return "recordPreAnalysis";
 	}
 	
-	
+	@RequestMapping("home")
+	public String homePage(){
+		return "preAnalysis";
+	}
 	
 	@RequestMapping("retval")
 	@ResponseBody

@@ -75,6 +75,11 @@
 						<a href="symptomhome" class="da-link">点击进入</a>
 					</div>
 					<div class="da-slide">
+						<h2>处方分析</h2>
+						<p>根据病名病症、方剂、中药、辨证或治则等查询医案中的相关处方</p>
+						<a href="/MedicalRecord/pre_analysis/home" class="da-link">点击进入</a>
+					</div>
+					<div class="da-slide">
 						<h2>辩证治则分析</h2>
 						<p>在指定辩证和治则下，分析得出经常使用的中药。</p>
 						<a href="/MedicalRecord/Analysis/Result" class="da-link">点击进入</a>
