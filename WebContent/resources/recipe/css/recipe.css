@@ -135,7 +135,7 @@ body {
 
 .graph {
 	margin-bottom: 18px; 
-	width: 500px;
+	width: 480px;
 	height: 592px;
 	float: left;
 	text-align:center;
@@ -166,7 +166,7 @@ body {
 }
 
 #descpt1 {
-	width: 65px;
+	width: 85px;
 	height: 500px;
 	float: left;
 	margin-top: 80px;

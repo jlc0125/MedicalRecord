@@ -136,7 +136,7 @@
 		    			<div id="zc_chuchu"></div>
 		    		</div>
 		    		<div id="descpt1">
-    					<div>&nbsp;&nbsp;图示说明</div>
+    					<div>图示说明&nbsp;&nbsp;</div>
     					<svg height="500">
     						<g>
     							<circle cx="13" cy="30" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle>
