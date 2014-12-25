@@ -134,10 +134,10 @@ body {
 }
 
 .graph {
-	margin-left: 15px;
 	margin-bottom: 18px; 
-	width: 560px;
-	height: 600px;
+	width: 500px;
+	height: 592px;
+	float: left;
 	text-align:center;
 }
 
@@ -160,11 +160,31 @@ body {
 }
 
 #graph3 {
-	margin-left: 15px;
-	margin-bottom: 18px; 
-	width: 560px;
-	height: 450px;
+	width: 575px;
+	height: 500px;
 	text-align:center;
+}
+
+#descpt1 {
+	width: 65px;
+	height: 500px;
+	float: left;
+	margin-top: 80px;
+	margin-left: 10px;
+	text-align:center;
+	background-color: #fff;
+}
+
+#descpt2 {
+	width: 500px;
+	height: 110px;
+	font-size: 12px;
+	background-color: #fff;
+}
+
+#descpt2 div {
+	margin-bottom: 2px;
+	font-size: 16px;
 }
 
 #sidebar  {
@@ -200,7 +220,7 @@ body {
 
 .childnode3 circle {
 	fill: #fff;
-	stroke: #add8e6;
+	stroke: #008000;
 	stroke-width: 1.5px;
 }
 

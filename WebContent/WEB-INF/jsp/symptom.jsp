@@ -21,12 +21,9 @@
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/graph_new.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud_new.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "symptom");
-			
 			$('#container').easyTabs({defaultContent:1});
 			
 			var symptomName = $("#front_input").val();
@@ -54,14 +51,6 @@
 							$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
-							$("#tagscloud ul").empty();
-							var drugs = root.drug.children;
-							var htl = '';
-							for(var i=0; i<drugs.length; i++){
-								htl += '<li><a href="">' + drugs[i].name + '</a></li>';
-							}
-							$("#tagscloud ul").html(htl);
-							tagscloud("#tagscloud", "symptom");
 							graph("#component .graph", root.drug, 1);
 							graph("#attending .graph", root.symptom, 2);
 							graph("#similar .graph", root.recipe, 3);		
@@ -120,48 +109,60 @@
 				<input id="front_input" class="text" type="text" maxLength="20" value="${symptomName}"> 
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
-			<div id="tagscloud">
-				<ul>
-				<c:forEach var="item" items="${name}">
-					<li><a href=""><c:out value="${item}"></c:out></a></li>
-				</c:forEach>
-			</ul>
 		</div>
-	</div>
 		
 		<div id="container">
 			<ul class="tabs">
-		  	<li><a href="#attending">相关疾病</a></li>
-		  	<li><a href="#component">相关中药</a></li>
-		  	<li><a href="#similar">相关方剂</a></li>
-		 </ul>
+			  	<li><a href="#attending">相关疾病</a></li>
+			  	<li><a href="#component">相关中药</a></li>
+			  	<li><a href="#similar">相关方剂</a></li>
+		 	</ul>
 	
-    <div id="main_content">
-    <div id="attending">
-    		<div class="graph">
-    		</div>
-     </div>
+    		<div id="main_content">
+    			<div id="attending">
+    				<div class="graph"></div>
+    				<div class="descpt">
+    					<div>图示说明</div>
+    					<svg>
+    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
+    						<text x="45" y="29">从医案中分析与疾病相关的其他疾病</text>
+    					</svg>
+    				</div>
+     			</div>
      
-    	<div id="component">
-    		<div class="graph">
-    		</div>
-     </div>
+	    		<div id="component">
+	    			<div class="graph"></div>
+	    			<div class="descpt">
+    					<div>图示说明</div>
+    					<svg>
+    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
+    						<text x="45" y="29">从医案中分析与疾病相关的中药</text>
+    					</svg>
+    				</div>
+	     		</div>
      
-     <div id="similar">
-    		<div class="graph">
+	     		<div id="similar">
+	    			<div class="graph"></div>
+	    			<div class="descpt">
+    					<div>图示说明</div>
+    					<svg>
+    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
+    						<text x="45" y="29">从医案中分析与疾病相关的方剂</text>
+    					</svg>
+    				</div>
+				</div>
     		</div>
-			</div>
-    </div>
-    <div id="sidebar">
-    	<div class="alt_container">
-				<h2>相关医案</h2>
-				<div class="alt_page_navigation"></div>	
-				<div class="alt_info_text"></div>
-				<ul class="alt_content"></ul>
-			</div>    
-    </div>
-    <div class="clearfix"></div>
-   </div>
+    	
+	    	<div id="sidebar">
+	    		<div class="alt_container">
+					<h2>相关医案</h2>
+					<div class="alt_page_navigation"></div>	
+					<div class="alt_info_text"></div>
+					<ul class="alt_content"></ul>
+				</div>    
+	    	</div>
+	    	<div class="clearfix"></div>
+   		</div>
 	</div>
 
 	<!-- footer -->
