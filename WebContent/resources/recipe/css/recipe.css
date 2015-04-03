@@ -135,7 +135,7 @@ body {
 
 .graph {
 	margin-bottom: 18px; 
-	width: 480px;
+	width: 490px;
 	height: 592px;
 	float: left;
 	text-align:center;
@@ -149,8 +149,12 @@ body {
 	height: 280px;
 }
 
-.graph_head, #zc_chuchu {
+.graph_head {
 	font-size: 16px;
+}
+
+#zc_chuchu {
+	font-size: 12px;
 }
 
 #separate {
@@ -166,13 +170,30 @@ body {
 }
 
 #descpt1 {
-	width: 85px;
+	width: 75px;
 	height: 500px;
 	float: left;
-	margin-top: 80px;
+	margin-top: 70px;
 	margin-left: 10px;
 	text-align:center;
 	background-color: #fff;
+}
+
+#descpt1 table {
+	border:solid 1px #fff;
+}
+
+#descpt1 table td{
+	border:solid 1px #fff;
+}
+
+#descpt1 table caption {
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+#descpt1 svg {
+	width: 12px;
 }
 
 #descpt2 {

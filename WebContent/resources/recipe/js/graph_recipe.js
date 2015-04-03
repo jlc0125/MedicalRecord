@@ -30,10 +30,6 @@
 		.append("path")
 		.attr("class", "link")
 		.attr("d", diagonal);
-					
-		link.append("title").text(function(d){
-				return '点击查看  "' + d.source.name + '" 和  "' + d.target.name +  '" 相关的医案';
-		});
 	
 		link.on("mouseover", function(){
 			d3.select(this).style("stroke-width", 5);
@@ -41,7 +37,12 @@
 		.on("mouseout", function(){
 			d3.select(this).style("stroke-width", 2.5);
 		});
-		if(is_relate)
+		
+		if(is_relate){
+			link.append("title").text(function(d){
+				return '点击查看  "' + d.source.name + '" 和  "' + d.target.name +  '" 相关的医案';
+			});
+			
 			link.on("click", function(d){
 				var url = "search/retval?wd=" + d.source.name+" "+d.target.name+"&type=content_contain";
 				$.get(url, function(data, status){
@@ -73,6 +74,7 @@
 					}
 				});
 			});
+		}
 					
 		var rootNode = svg.append("g")
 		.attr("class", "rootnode");

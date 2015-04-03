@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import mr.domain.TempNode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -77,6 +79,54 @@ public class DrugDao {
 		if(freq == 0)
 			sql += " DESC";
 		return jdbcTemplate.queryForList(sql); 
+	}
+	
+	public TempNode[] symptomSearchDrug(String symptomName){
+		String sql = "select drug,drug_pinci from symptom where name= '" + symptomName + "'";
+		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
+		 if(rows.isEmpty())
+			 return null;
+		 else {
+			 Map<String, Object> res = rows.get(0);
+			 String name = (String) res.get("drug");
+			 String pinci = (String) res.get("drug_pinci");
+			 TempNode[] ret = null;
+			 if(name != null){
+				 String[] names = name.split(" ");
+				 String[] pincis = pinci.split(" ");
+				 
+				 int num = names.length > 5 ? 5 : names.length;
+				 ret = new TempNode[num];
+				 for(int i=0; i<num; i++){
+					 ret[i] = new TempNode(i+1, names[i], pincis[i]);
+				 }
+			 }
+			 return ret;
+		 }
+	}
+	
+	public TempNode[] recipeSearchDrug(String recipeName){
+		String sql = "select drug,drug_pinci from recipe where name= '" + recipeName + "'";
+		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
+		 if(rows.isEmpty())
+			 return null;
+		 else {
+			 Map<String, Object> res = rows.get(0);
+			 String name = (String) res.get("drug");
+			 String pinci = (String) res.get("drug_pinci");
+			 TempNode[] ret = null;
+			 if(name != null){
+				 String[] names = name.split(" ");
+				 String[] pincis = pinci.split(" ");
+				 
+				 int num = names.length > 5 ? 5 : names.length;
+				 ret = new TempNode[num];
+				 for(int i=0; i<num; i++){
+					 ret[i] = new TempNode(i+1, names[i], pincis[i]);
+				 }
+			 }
+			 return ret;
+		 }
 	}
 	
 }

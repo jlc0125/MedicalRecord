@@ -26,7 +26,10 @@ body {
 	clear: both;
 }
 
-.bg_heise{ background-color:#f5f2f1; }
+.bg_heise{ 
+	background-color:#f5f2f1; 
+	margin-bottom: 50px;
+}
 
 .imgFrame {
 	margin:auto;
@@ -90,17 +93,73 @@ body {
 	background-image:url(../image/fx_btn_click.png); 
 }
 
-#tagscloud {
-	width: 750px;
-	height: 100px;
-	overflow: hidden;
-	position: relative;
+.checkboxes{
+	margin:auto;
+	text-align:left;
+	color: #9d752a;
+	font-weight:bold;
+	font-size:15px;
+	font-family:"微软雅黑";
+	margin-top: 10px;
 }
 
-#tagscloud a {
-	position: absolute;
-	text-decoration: none;
-	color: #666;
+.errinfo {
+	display: inline-block;
+	margin-left: 20px;
+	color: red;
+}
+
+.relate_recipe {
+	margin: auto;
+	width: 960px;
+	margin-bottom: 30px;
+}
+
+.relate_wrap {
+	width: 855px;
+}
+
+.relate_info {
+	background-color: #B8AEAB;
+	text-align:center;
+	line-height: 36px;
+}
+
+.noResultInfo {
+	color: red;
+	text-align: center;
+	line-height: 36px;
+}
+
+.relate_table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	background-color: transparent;
+}
+
+.relate_table thead{
+	background-color: #f5f2f1;
+}
+	
+.relate_table th, .relate_table td {
+	padding: 8px;
+	line-height: 18px;
+	text-align: left;
+	vertical-align: top;
+	border-top: 1px solid #dddddd;
+}
+
+.relate_table tbody tr:hover {
+	background-color: #eedbd1;
+}
+
+.relate_table tbody td a {
+	color: #0088cc;
+}
+
+.relate_table tbody td a:hover {
+	color: #db5c04;
 }
 
 #vtabs{
@@ -122,6 +181,7 @@ body {
 	width: 140px;
 	height: 50px;
 	left: 0px;
+	background-color:#f5f2f1; 
 }
 .container:nth-child(1) .label{
 	top: 15px;

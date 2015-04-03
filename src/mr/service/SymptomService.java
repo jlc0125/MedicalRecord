@@ -3,6 +3,7 @@ package mr.service;
 import java.util.List;
 
 import mr.dao.SymptomDao;
+import mr.domain.TempNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,13 @@ public class SymptomService {
 	
 	public List pinciSearch(int freq){
 		return symptomDao.pinciSearch(freq);
+	}
+	
+	public TempNode[] drugSearchSymptom(String drugName){
+		return symptomDao.drugSearchSymptom(drugName);
+	}
+	
+	public TempNode[] recipeSearchSymptom(String recipeName){
+		return symptomDao.recipeSearchSymptom(recipeName);
 	}
 }

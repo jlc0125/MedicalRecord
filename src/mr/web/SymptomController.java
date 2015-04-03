@@ -2,6 +2,7 @@ package mr.web;
 
 import java.util.List;
 
+import mr.domain.TempNode;
 import mr.service.SymptomService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,33 +21,59 @@ public class SymptomController {
 	
 	@RequestMapping("/symptomhome")
 	public String home(Model model){
-		String[] name = {"咳嗽",  "发热",  "腹痛",  "头痛",  "口渴", "腹胀",  "呕吐", 
-				"心悸",  "自汗",  "瘀血",  "伤寒",  "神昏",  "眩晕",  "耳鸣 ",
-				"恶心",  "感冒",  "不寐",  "吐血",  "腰痛",  "出血",  "气喘", 
-				"胁痛",  "盗汗",  "内伤",  "失眠",  "肾水",  "咽痛",  "风温"};
-		model.addAttribute("name", name);
 		return "symptomhome";
 	}
 	
 	@RequestMapping("/symptom")
-	public String symptom(@RequestParam(value="q", required=false)String symptomName, Model model){
-		String[] name = {"咳嗽",  "发热",  "伤寒",   "感冒", "盗汗", 
-				"腹痛",  "头痛",  "腰痛",  "胁痛",  "咽痛",
-				"瘀血", "吐血",   "出血",  "腹胀",  "呕吐", 
-				"心悸",  "自汗",   "神昏",  "眩晕",  "耳鸣 "};
-		if(symptomName!=null && symptomName!=""){
+	public String symptom(@RequestParam(value="q", required=false)String name, int option, Model model){
+//		if(symptomName!=null && symptomName!=""){
+//			try {
+//				symptomName = new String(symptomName.getBytes("iso-8859-1"), "UTF-8");
+//				model.addAttribute("symptomName", symptomName);
+//			} catch (Exception e) {
+//				model.addAttribute("error", 1);
+//			}
+//		}
+//		return "symptom";
+		
+		if(name!=null && name!=""){
 			try {
-				symptomName = new String(symptomName.getBytes("iso-8859-1"), "UTF-8");
-				String[] temp = symptomService.relate(symptomName);
-				if(temp != null)
-					name =  temp;
-				model.addAttribute("symptomName", symptomName);
+				name = new String(name.getBytes("iso-8859-1"), "UTF-8");
+				model.addAttribute("option", option);
+				if(option == 1){
+					TempNode[] nodes = symptomService.drugSearchSymptom(name);
+					if(nodes == null){
+						model.addAttribute("noResult", 1);
+					}
+					else{
+						model.addAttribute("searchName", name);
+						model.addAttribute("nodes", nodes);
+					}
+					return "symptomhome";
+				}
+				else if(option == 2){
+					TempNode[] nodes = symptomService.recipeSearchSymptom(name);
+					if(nodes == null){
+						model.addAttribute("noResult", 1);
+					}
+					else{
+						model.addAttribute("searchName", name);
+						model.addAttribute("nodes", nodes);
+					}
+					return "symptomhome";
+				}
+				else{
+					model.addAttribute("symptomName", name);
+					return "symptom";
+				}
 			} catch (Exception e) {
 				model.addAttribute("error", 1);
+				return "symptomhome";
 			}
 		}
-		model.addAttribute("name", name);
-		return "symptom";
+		else{
+			return "symptomhome";
+		}
 	}
 	
 	@ResponseBody

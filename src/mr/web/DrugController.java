@@ -2,6 +2,7 @@ package mr.web;
 
 import java.util.List;
 
+import mr.domain.TempNode;
 import mr.service.DrugService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,33 +21,49 @@ public class DrugController {
 	
 	@RequestMapping("/drughome")
 	public String home(Model model){
-		String[] name = {"茯苓",  "白芍",  "甘草",  "当归",  "杏仁", "半夏",  "黄岑", 
-				"白术",  "桂枝",  "连翘",  "枳壳",  "赤芍",  "柴胡",  "泽泻 ",
-				"茯神",  "党参",  "竹茹",  "丹参",  "山药",  "知母",  "川芎", 
-				"砂仁",  "桔梗",  "石斛", "桑叶",  "远志",  "生姜",  "橘红"};
-		model.addAttribute("name", name);
 		return "drughome";
 	}
 	
 	@RequestMapping("/drug")
-	public String drug(@RequestParam(value="q", required=false)String drugName, Model model){
-		String[] name = {"茯苓",  "白芍",  "甘草",  "当归",  "杏仁", 
-				"白术",  "桂枝",  "连翘",   "柴胡",  "泽泻 ",
-				"茯神",   "竹茹",  "丹参",  "山药",  "知母", 
-				"砂仁",  "桔梗",  "桑叶",  "生姜",  "橘红"};
-		if(drugName!=null && drugName!=""){
+	public String drug(@RequestParam(value="q", required=false)String name,  int option, Model model){
+		if(name!=null && name!=""){
 			try {
-				drugName = new String(drugName.getBytes("iso-8859-1"), "UTF-8");
-				String[] temp = drugService.relate(drugName);
-				if(temp != null)
-					name =  temp;
-				model.addAttribute("drugName", drugName);
+				name = new String(name.getBytes("iso-8859-1"), "UTF-8");
+				model.addAttribute("option", option);
+				if(option == 1){
+					TempNode[] nodes = drugService.symptomSearchDrug(name);
+					if(nodes == null){
+						model.addAttribute("noResult", 1);
+					}
+					else{
+						model.addAttribute("searchName", name);
+						model.addAttribute("nodes", nodes);
+					}
+					return "drughome";
+				}
+				else if(option == 2){
+					TempNode[] nodes = drugService.recipeSearchDrug(name);
+					if(nodes == null){
+						model.addAttribute("noResult", 1);
+					}
+					else{
+						model.addAttribute("searchName", name);
+						model.addAttribute("nodes", nodes);
+					}
+					return "drughome";
+				}
+				else{
+					model.addAttribute("drugName", name);
+					return "drug";
+				}
 			} catch (Exception e) {
 				model.addAttribute("error", 1);
+				return "drughome";
 			}
 		}
-		model.addAttribute("name", name);
-		return "drug";
+		else{
+			return "drughome";
+		}
 	}
 	
 	@ResponseBody

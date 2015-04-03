@@ -19,17 +19,20 @@
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/tagscloud_home.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			tagscloud("#tagscloud", "recipe");
-			
 			$("#front_input").autocomplete({
 				autoFocus: true,
 				minLength: 1,
 				source: function(request, response) {
-					var url = "recipe/hint?q=" + request.term;
+					var url;
+					if($('input:radio:checked').val() == "1")
+						url = "symptom/hint?q=" + request.term;
+					else if($('input:radio:checked').val() == "2")
+						url = "drug/hint?q=" + request.term;
+					else
+						url = "recipe/hint?q=" + request.term;
 					$.get(url, function(data, status){
 						response(data);
 					});
@@ -41,7 +44,7 @@
 				$.get(url, function(data, status){
 					var txt = "";
 					for(var i=0; i<data.length; i++){
-						txt += '<li><form method="post" action="recipe"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+						txt += '<li><form method="post" action="recipe" target="_blank"><input type="hidden" name="q" value="' + data[i].name + '"><input type="hidden" name="option" value="0"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
 					}
 					if(txt != ""){
 						$(".alt_content").html(txt);
@@ -67,7 +70,7 @@
 				$.get(url, function(data, status){
 					var txt = "";
 					for(var i=0; i<data.length; i++){
-						txt += '<li><form method="post" action="recipe"><input type="hidden" name="q" value="' + data[i].name + '"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+						txt += '<li><form method="post" action="recipe" target="_blank"><input type="hidden" name="q" value="' + data[i].name + '"><input type="hidden" name="option" value="0"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
 					}
 					if(txt != ""){
 						$(".alt_content2").html(txt);
@@ -189,33 +192,124 @@
 		
 		<div class="logoSearch_L2">
 			<form id="search_cf" class="search cf" method="post" action="recipe">
-				<input id="front_input" class="text" type="text" name="q" maxLength="20"> 
-				<input class="button" id="front_btn" type="submit" value=""> <br>
+				<input id="front_input" class="text" type="text" name="q" value="${searchName}"> 
+				<input class="button" id="front_btn" type="submit" value="">
+				<div class="clearfix"></div>
+				<div class="checkboxes">搜索选项：&nbsp; 
+					<c:choose>
+						<c:when test="${option == 1}">
+							<input type="radio" name="option" value="0">方剂&nbsp;&nbsp;
+							<input type="radio" name="option" value="1"   checked>疾病&nbsp;&nbsp;
+							<input type="radio" name="option" value="2">中药&nbsp;&nbsp;
+						</c:when>
+						<c:when test="${option == 2}">
+							<input type="radio" name="option" value="0">方剂&nbsp;&nbsp;
+							<input type="radio" name="option" value="1">疾病&nbsp;&nbsp;
+							<input type="radio" name="option" value="2"  checked>中药&nbsp;&nbsp;
+						</c:when>
+						<c:otherwise>
+							<input type="radio" name="option" value="0" checked>方剂&nbsp;&nbsp;
+							<input type="radio" name="option" value="1">疾病&nbsp;&nbsp;
+							<input type="radio" name="option" value="2">中药&nbsp;&nbsp;
+						</c:otherwise>
+					</c:choose>
+					<c:if test="${error == 1}">
+	  					<div class="errinfo">抱歉，没有找到相关的方剂，请重新输入！</div>
+					</c:if>
+				</div>
 			</form>
-			<div id="tagscloud">
-				<ul>
-				<c:forEach var="item" items="${name}">
-					<li>
-						<form method="post" action="recipe">
-							<input type="hidden" name="q" value="${item}">
-							<a><c:out value="${item}"></c:out></a>
-						</form>
-					</li>
-				</c:forEach>
-			</ul>
 		</div>
 	</div>
-	</div>
-	
+
+	<c:choose>
+		<c:when test="${option == 1}">
+			<div class="relate_recipe">
+				<div class="relate_wrap">
+					<div class="relate_info">相关方剂</div>
+					<c:choose>
+						<c:when test="${noResult == 1}">
+							<div class="noResultInfo">抱歉，没有找到相关的方剂，请重新输入！</div>
+						</c:when>
+						<c:otherwise>
+							<table class="relate_table">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>方剂名称</th>
+										<th>共生频次</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="node" items="${nodes}">
+										<tr>
+											<td>${node.index}</td>
+											<td>
+												<form method="post" action="recipe" target="_blank">
+													<input type="hidden" name="q" value="${node.name}">
+													<input type="hidden" name="option" value="0">
+													<a href="#" onclick="javascript:$(this).parent().submit();return false;">${node.name}</a>
+												</form>
+											</td>
+											<td>${node.pinci}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</c:when>
+		<c:when test="${option == 2}">
+			<div class="relate_recipe">
+				<div class="relate_wrap">
+					<div class="relate_info">相关方剂</div>
+					<c:choose>
+						<c:when test="${noResult == 1}">
+							<div class="noResultInfo">抱歉，没有找到相关的方剂，请重新输入！</div>
+						</c:when>
+						<c:otherwise>
+							<table class="relate_table">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>方剂名称</th>
+										<th>共生频次</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="node" items="${nodes}">
+										<tr>
+											<td>${node.index}</td>
+											<td>
+												<form method="post" action="recipe" target="_blank">
+													<input type="hidden" name="q" value="${node.name}">
+													<input type="hidden" name="option" value="0">
+													<a href="#" onclick="javascript:$(this).parent().submit();return false;">${node.name}</a>
+												</form>
+											</td>
+											<td>${node.pinci}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</c:when>
+	</c:choose>
+
 	<div id="vtabs">
 		<div class="container">
 			<div class="label" id="label1">
-      <h5>按首字母排序</h5>
-    	</div>
-    	<div class="content">
-      <div id="content_label">
-      	<div class="wrapper_label">
-	      	<a href="#" class="current">A</a>
+      			<h5>按首字母排序</h5>
+    		</div>
+    	
+	    	<div class="content">
+	      		<div id="content_label">
+	      			<div class="wrapper_label">
+		      			<a href="#" class="current">A</a>
 						<a href="#">B</a>
 						<a href="#">C</a>
 						<a href="#">D</a>
@@ -244,27 +338,30 @@
 						<a href="#">Y</a>
 						<a href="#">Z</a>
 					</div>
-      </div>
-      <div class="alt_container">
-      	<div class="alt_head">方剂名</div>
-      	<div class="alt_head">出现频次</div>
-			<ul class="alt_content"></ul>
-			<div class="alt_page_navigation"></div>
-      </div>
-    	</div>
+				</div>
+			
+	      		<div class="alt_container">
+	      			<div class="alt_head">方剂名</div>
+	      			<div class="alt_head">出现频次</div>
+					<ul class="alt_content"></ul>
+					<div class="alt_page_navigation"></div>
+	      		</div>
+	    	</div>
 		</div>
+		
 		<div class="container">
 			<div class="label" id="label2">
-      <h5>按出现频次排序</h5>
-    	</div>
-    	<div class="content">
-    		<div class="alt_btns">
-	    		<div class="alt_head"><div id="alt_button1" class="alt_button visited">降序排列</div></div>
-	      <div class="alt_head"><div id="alt_button2" class="alt_button">升序排列</div></div>
-	      <ul class="alt_content2"></ul>
-					<div class="alt_page_navigation2"></div>
+      			<h5>按出现频次排序</h5>
     		</div>
-    	</div>
+    		
+    		<div class="content">
+    			<div class="alt_btns">
+	    			<div class="alt_head"><div id="alt_button1" class="alt_button visited">降序排列</div></div>
+	      			<div class="alt_head"><div id="alt_button2" class="alt_button">升序排列</div></div>
+	      			<ul class="alt_content2"></ul>
+					<div class="alt_page_navigation2"></div>
+    			</div>
+    		</div>
 		</div>
 	</div>
 

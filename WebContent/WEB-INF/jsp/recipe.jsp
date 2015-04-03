@@ -132,25 +132,27 @@
 		    			<div id="graph1"></div>
 		    			<div id="separate"></div>
 		    			<div class="graph_head">方剂组成成分</div>
-		    			<div id="graph2"></div>
 		    			<div id="zc_chuchu"></div>
+		    			<div id="graph2"></div>
 		    		</div>
 		    		<div id="descpt1">
-    					<div>图示说明&nbsp;&nbsp;</div>
-    					<svg height="500">
-    						<g>
-    							<circle cx="13" cy="30" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle>
-    							<text x="13" y="50" writing-mode="tb">从医案中分析与方剂相关，同时又是医学记录文献中方剂的组成的中药</text>
-    						</g>
-    						<g>
-    							<circle cx="38" cy="30" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
-    							<text x="38" y="50" writing-mode="tb">从医案中分析与方剂相关，但不是医学记录文献中方剂的组成的中药</text>
-    						</g>
-    						<g>
-    							<circle cx="63" cy="30" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle>
-    							<text x="63" y="50" writing-mode="tb">医学记录文献中方剂的组成，但在医案中暂未分析出与方剂相关的中药</text>
-    						</g>
-    					</svg>
+    					<table>
+    					 	<caption>图示说明</caption>
+    						<tbody>
+    							<tr>
+    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle></svg></td>
+    								<td>从医案中分析与方剂相关，同时又是方剂知识库中方剂的组成的中药</td>
+    							</tr>
+    							<tr>
+    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle></svg></td>
+    								<td>从医案中分析与方剂相关，但不是方剂知识库中方剂的组成的中药</td>
+    							</tr>
+    							<tr>
+    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle></svg></td>
+    								<td>方剂知识库中方剂的组成，但在医案中暂未分析出与方剂相关的中药</td>
+    							</tr>
+    						</tbody>
+    					</table>
     				</div>
 		     	</div>
 	     
