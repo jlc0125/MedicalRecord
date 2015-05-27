@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
 	
 	<!-- js -->
-	<script type="text/javascript" src="resources/d3js/d3.min.js"></script>
+	<script type="text/javascript" src="resources/common/d3.min.js"></script>
 	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>

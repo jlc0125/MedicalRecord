@@ -23,7 +23,7 @@ String contextPath=request.getContextPath();
 		
 		<!-- css -->	
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
-		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+		
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/common.css">
@@ -209,9 +209,9 @@ String contextPath=request.getContextPath();
 		
 		<div class="container-fluid ">
 				<div class="row-fluid">
-					<div class="span12">
+					<div class="span8 offset4">
 						<div class="tabbable tabs-left">
-							<div class="tab-content span9">
+							<div class="tab-content span12">
 								<div class="tab-pane active" id="front_search_list">
 										<h2 id="sort_help"></h2>
 										<table class="table " id="front_search_table">
@@ -224,6 +224,7 @@ String contextPath=request.getContextPath();
 						</div>
 						<div id="front_search_pagincation" class="rs_pagincation"></div>
 					</div>
+					
 				</div>
 		</div>		
 

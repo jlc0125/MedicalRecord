@@ -14,6 +14,17 @@ String contextPath=request.getContextPath();
 		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
 		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
 		<style>
+		.recommend_head{
+			white-space:nowrap;
+		}
+		
+		.recommend_content{
+			text-align:left;
+		}
+		.recommend_field{
+			cursor:pointer;
+		}
+		
 		.chufang{
 			background-color:rgb(220, 234, 247);
 			cursor:pointer;
@@ -71,6 +82,7 @@ String contextPath=request.getContextPath();
 				dataType:'text'
 			});
 			
+			getSimRecoreds(getUrlParam("recordId"),5);
 		});
 		
 		function getRecordSuccess(data,textStatus,jqXHR){
@@ -125,6 +137,54 @@ String contextPath=request.getContextPath();
 			$("#content").html(content);
 		}
 		
+		
+		function getSimRecoreds(recordId,size){
+			var dataJson = {
+					"recordId" : recordId,
+					"size": size
+					};
+			
+			$.ajax({
+				type: 'GET',
+				url: "./recommend/by_record_sim",
+				data: dataJson,
+				success: getSimRecordsSuccess,
+				error: getSimRecordsError,
+				dataType:'text'
+			});
+		}
+		
+		function getSimRecordsSuccess(data,textStatus,jqXHR){
+			data=eval('(' + data + ')');
+			console.log(data);
+			var html="<table class='table'><tbody><tr><td class='recommend_head'>相关医案</td>";
+			for(var i=0;i<data.length;i++){
+				var content=data[i].content.split("|").slice(0,-1);
+				html+="<td><div class='recommend_field' record_id='"+data[i].recordId+"'><p class='recommend_title'>"+data[i].recordTitle+"</p><p class='recommend_content'>";
+				for(var j=0;j<3;j++){
+					html+=content[j];
+				}
+				html+="...</br>";
+				html+="</p></div></td>";
+			}
+			html+="</tr></tbody></table>";
+			$("#recommend").html(html);
+			$(".recommend_field").live("click",function(){
+				var url="/MedicalRecord/record_detail?recordId="+$(this).attr("record_id");
+				window.open(url);
+			});
+			$(".recommend_field").mouseover(function(){
+				$(this).css("background-color","#FAFAFA");
+			});
+			$(".recommend_field").mouseout(function(){
+				$(this).css("background-color","");
+			});
+			
+		}
+		
+		function getSimRecordsError(){
+			alert("getSimRecordsError");
+		}
 		</script>
 		
 		
@@ -138,7 +198,7 @@ String contextPath=request.getContextPath();
 		
 		<!-- css -->	
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
-		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+		
 		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
 		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/Peiwu_analyse.css">
@@ -215,6 +275,11 @@ String contextPath=request.getContextPath();
 							</div>
 						</div>
 					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span12" id="recommend"></div>
+				
 				</div>
 		</div>		
 		
