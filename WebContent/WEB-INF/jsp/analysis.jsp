@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>中草药基础知识搜索系统</title>
 <!-- js -->
-<script src="{initParam.resources}/resources/common/jquery_1_8_3.js"></script>
+<script src="${initParam.resources}/resources/common/jquery_1_8_3.js"></script>
 <script src="${initParam.resources}/resources/common/ajax.js"></script>
 <!-- exlib -->
 <script src="${initParam.resources}/resources/exlib/md5/md5.js"></script>
