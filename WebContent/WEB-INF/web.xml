@@ -4,6 +4,21 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
+  
+  <context-param>
+    <param-name>resources</param-name>
+    
+    <!-- 部署时使用 -->
+    <!-- 
+    <param-value>http://zcy.ckcest.cn/zcystatic/MedicalRecord</param-value>
+    -->
+    
+    <!-- 本地开发使用 -->
+    <!--  -->
+    <param-value>/MedicalRecord</param-value>
+    <!--  -->
+  </context-param>
+  
   <listener>
     <listener-class>
 			org.springframework.web.context.ContextLoaderListener

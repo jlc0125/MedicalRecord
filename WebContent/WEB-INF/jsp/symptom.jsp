@@ -8,19 +8,19 @@
 	<title>中草药基础知识搜索系统</title>
 	
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/detail.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/recipe/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/recipe/css/detail.css">
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/recipe/css/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/nav_header.css"></link>
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/footer.css"></link>
 	
 	<!-- js -->
-	<script type="text/javascript" src="resources/common/d3.min.js"></script>
-	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph_new.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/common/d3.min.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/common/jquery_1_8_3.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/recipe/js/easyTabs.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/recipe/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/recipe/js/jquery.pajinate.min.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/recipe/js/graph_new.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -95,7 +95,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html" target=_blank><img src="${initParam.resources}/resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>
@@ -103,7 +103,7 @@
 
 	<div class="bg_heise">
 		<div class="imgFrame">
-			<a href="symptomhome"><img src="resources/recipe/image/r_125.png" /></a>
+			<a href="symptomhome"><img src="${initParam.resources}/resources/recipe/image/r_125.png" /></a>
 		</div>
 		
 		<div class="logoSearch_L2">

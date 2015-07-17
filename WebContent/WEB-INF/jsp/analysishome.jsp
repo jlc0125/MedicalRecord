@@ -7,16 +7,16 @@
 	<title>中草药基础知识搜索系统</title>
 	
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/cslider.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/analysishome.css">
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/recipe/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/recipe/css/cslider.css">
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/recipe/css/analysishome.css">
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/nav_header.css"></link>
+	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/footer.css"></link>
 	
 	<!-- js -->
-	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/modernizr.custom.28468.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery.cslider.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/common/jquery_1_8_3.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/recipe/js/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="${initParam.resources}/resources/recipe/js/jquery.cslider.js"></script>
 	<script type="text/javascript">
 			$(document).ready(function() {
 				$('#da-slider').cslider({
@@ -49,7 +49,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html" target=_blank><img src="${initParam.resources}/resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>

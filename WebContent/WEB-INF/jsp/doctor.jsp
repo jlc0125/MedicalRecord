@@ -1,18 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	String contextPath=request.getContextPath();
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>中草药基础知识搜索系统</title>
 		<!-- js -->
-		<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>		
-		<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
+		<script src="${initParam.resources}/resources/common/jquery_1_8_3.js"></script>		
+		<script src="${initParam.resources}/resources/common/ajax.js"></script>
+		<script src="${initParam.resources}/resources/search/js/search_com.js"></script>
 		<style>
 		img{
 			max-width:90%;
@@ -83,7 +79,7 @@
 					$("#doctor_body").addClass("info");
 					$("#doctor_body").removeClass("record");
 					thead="<tr><th>肖像</th><th>个人简介</th></tr>";
-					tbody+="<tr><td><img src='<%=contextPath%>/resources/"+data.picture+"'/></td><td>"+data.introduction+"</th></td>";
+					tbody+="<tr><td><img src='${initParam.resources}/resources/"+data.picture+"'/></td><td>"+data.introduction+"</th></td>";
 					$("#doctor_head").html(thead);
 					$("#doctor_body").html(tbody);
 					
@@ -126,27 +122,27 @@
 		
 	
 		<!-- exlib -->
-		<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-		<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
-		<script src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
+		<script src="${initParam.resources}/resources/exlib/md5/md5.js"></script>
+		<script src="${initParam.resources}/resources/search/js/bootstrap.min.js"></script>
+		<script src="${initParam.resources}/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
 		
 		
 		<!-- css -->	
-		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
-		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
-		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/Peiwu_analyse.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
+		<link rel=stylesheet type=text/css href="${initParam.resources}/resources/exlib/bootstrap/css/bootstrap.css">
+		<link rel=stylesheet type=text/css href="${initParam.resources}/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+		<link rel=stylesheet type=text/css href="${initParam.resources}/resources/exlib/simple_pagination/simplePagination.css">
+		<LINK rel=stylesheet type=text/css href="${initParam.resources}/resources/search/css/main.css">
+		<LINK rel=stylesheet type=text/css href="${initParam.resources}/resources/search/css/Peiwu_analyse.css">
+		<LINK rel=stylesheet type=text/css href="${initParam.resources}/resources/search/css/extra.css">
 						
 	</head>
 	<body>
 	     <div>
 	        
 
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
-    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/nav_header.css"></link>
+    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/dropdown/dropdown.css"></link>
+    <script src="${initParam.resources}/resources/commonpages/js/nav_header.js"></script>
 	<div id="common_nav">
 			    <div class="cf" id="common_nav_L2">
 			        <ul>
@@ -167,21 +163,21 @@
 		<div class=logo1>
 			<div class="logo1_L1">
 				<div class="logo">
-	    	    	<a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A>
+	    	    	<a href="index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A>
 	    	    </div>
 		    </div>
 			<div class="logo1_L2">
 				<div class="logo">
-	    	    	<A href="../" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo_huiju.png"></A>
+	    	    	<A href="../" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo_huiju.png"></A>
 	    	    </div>
 		    </div>
 		</div>
 		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">
-				<a href="<%=contextPath%>/index"><span id="nav_qwss" class="sub_nav_span"></span></a>
-				<a href="<%=contextPath%>/Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
-				<a href="<%=contextPath%>/analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
+				<a href="index"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
 		    </div>
 	    </div>
 		
@@ -219,7 +215,7 @@
 <!-- footer -->
      <div>
 	
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
+    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">
            <div class=footer_L2>
                <div class="footer_about cf">

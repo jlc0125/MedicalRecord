@@ -1,9 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String contextPath=request.getContextPath();
-%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 
@@ -12,22 +7,22 @@ String contextPath=request.getContextPath();
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>中草药基础知识搜索系统</title>
 <!-- js -->
-<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>
-<script src="<%=contextPath%>/resources/common/ajax.js"></script>
+<script src="{initParam.resources}/resources/common/jquery_1_8_3.js"></script>
+<script src="${initParam.resources}/resources/common/ajax.js"></script>
 <!-- exlib -->
-<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
+<script src="${initParam.resources}/resources/exlib/md5/md5.js"></script>
+<script src="${initParam.resources}/resources/search/js/bootstrap.min.js"></script>
 <!-- css -->
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
+	href="${initParam.resources}/resources/exlib/bootstrap/css/bootstrap.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+	href="${initParam.resources}/resources/exlib/bootstrap/css/bootstrap-responsive.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/index.css">
+	href="${initParam.resources}/resources/search/css/index.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
+	href="${initParam.resources}/resources/search/css/SubHeadAndFoot_index.css">
 <link rel=stylesheet type=text/csz 
-	href="<%=contextPath%>/resources/search/css/jichushousuo.css">
+	href="${initParam.resources}/resources/search/css/jichushousuo.css">
 	
 <style>
 	.analysis_info{
@@ -45,16 +40,16 @@ String contextPath=request.getContextPath();
 	}
 </style>	
 <link rel=stylesheet type=text/css 
-	href="<%=contextPath%>/resources/search/css/yianfenxi.css">
+	href="${initParam.resources}/resources/search/css/yianfenxi.css">
 </HEAD>
 
 </HEAD>
 <BODY>
 	<div class=top>
 		<div>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
-		    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+		    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/nav_header.css"></link>
+		    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/dropdown/dropdown.css"></link>
+		    <script src="${initParam.resources}/resources/commonpages/js/nav_header.js"></script>
 			<div id="common_nav">
 			    <div class="cf" id="common_nav_L2">
 			        <ul>
@@ -74,7 +69,7 @@ String contextPath=request.getContextPath();
 		</div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
-				<div class="logo"><A href="home" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+				<div class="logo"><A href="home" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -83,13 +78,13 @@ String contextPath=request.getContextPath();
 	<div class="bg_heise">
 		<div class="clearfix">
 			<div class="imgFrame2">
-				<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
+				<img src="${initParam.resources}/resources/search/Images/2_08.png" />
 			</div>
 		</div>
 		<div class="floatTOP">
 			<div class="UnderSearchBarTabs1">
-				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
-				<a id="href_C" href="<%=contextPath%>/Analysis"></a>
+				<a id="href_A" href="${initParam.resources}/index"></a> <a id="href_B" href="${initParam.resources}/Browse"></a>
+				<a id="href_C" href="${initParam.resources}/Analysis"></a>
 			</div>
 		</div>
 			<div class="container">
@@ -124,7 +119,7 @@ String contextPath=request.getContextPath();
 	<div>
 		
 	
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
+    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">
            <div class=footer_L2>
                <div class="footer_about cf">

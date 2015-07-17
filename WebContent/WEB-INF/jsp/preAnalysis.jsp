@@ -1,12 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false"  %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String contextPath=request.getContextPath();
-%>
-
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 
@@ -15,36 +9,36 @@ String contextPath=request.getContextPath();
 <title>中草药基础知识搜索系统</title>
 <head>
 <!-- js -->
-<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>
-<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-<script src="<%=contextPath%>/resources/common/d3.min.js"></script>
-<script src="<%=contextPath%>/resources/common/d3pie.js"></script>
-<script src="<%=contextPath%>/resources/medicine/med.js"></script>
+<script src="${initParam.resources}/resources/common/jquery_1_8_3.js"></script>
+<script src="${initParam.resources}/resources/common/ajax.js"></script>
+<script src="${initParam.resources}/resources/common/d3.min.js"></script>
+<script src="${initParam.resources}/resources/common/d3pie.js"></script>
+<script src="${initParam.resources}/resources/medicine/med.js"></script>
 
 <!-- exlib -->
-<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
+<script src="${initParam.resources}/resources/exlib/md5/md5.js"></script>
+<script src="${initParam.resources}/resources/search/js/bootstrap.min.js"></script>
+<script src="${initParam.resources}/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
 
 
 <!-- css -->
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
+	href="${initParam.resources}/resources/exlib/bootstrap/css/bootstrap.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+	href="${initParam.resources}/resources/exlib/bootstrap/css/bootstrap-responsive.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
+	href="${initParam.resources}/resources/exlib/simple_pagination/simplePagination.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/common.css">
+	href="${initParam.resources}/resources/search/css/common.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/index.css">
+	href="${initParam.resources}/resources/search/css/index.css">
 <link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
+	href="${initParam.resources}/resources/search/css/SubHeadAndFoot_index.css">
 <link rel=stylesheet type=text/csz 
-	href="<%=contextPath%>/resources/search/css/jichushousuo.css">
+	href="${initParam.resources}/resources/search/css/jichushousuo.css">
 	
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
-		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/extra.css">
+		<LINK rel=stylesheet type=text/css href="${initParam.resources}/resources/search/css/main.css">
+		<LINK rel=stylesheet type=text/css href="${initParam.resources}/resources/search/css/extra.css">
 <style type="text/css">
 	
 
@@ -138,9 +132,9 @@ function error(){
 <BODY>
 	<div class=top>
 		<div>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
-		    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+		    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/nav_header.css"></link>
+		    <link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/dropdown/dropdown.css"></link>
+		    <script src="${initParam.resources}/resources/commonpages/js/nav_header.js"></script>
 			<div id="common_nav">
 			    <div class="cf" id="common_nav_L2">
 			        <ul>
@@ -159,7 +153,7 @@ function error(){
 		</div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
-				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+				<div class="logo"><a href="index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -196,7 +190,7 @@ function error(){
 
 	<!-- footer -->
 	<div>
-    	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
+    	<link rel="stylesheet" type="text/css" href="${initParam.resources}/resources/commonpages/css/footer.css"></link>
 	    <div class="footer" style="margin-bottom:0px;">
 	           <div class=footer_L2>
 	               <div class="footer_about cf">
