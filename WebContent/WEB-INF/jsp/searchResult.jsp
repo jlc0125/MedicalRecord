@@ -172,22 +172,21 @@
 		<div class=logo1>
 			<div class="logo1_L1">
 				<div class="logo">
-	    	    	<a href="index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A>
+	    	    	<a href="../index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A>
 	    	    </div>
 		    </div>
 			<div class="logo1_L2">
 				<div class="logo">
-	    	    	<A href="../" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo_huiju.png"></A>
+	    	    	<A href="../index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo_huiju.png"></A>
 	    	    </div>
 		    </div>
 		</div>
 		
-		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">
-				<a href="index"><span id="nav_qwss" class="sub_nav_span"></span></a>
-				<a href="Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
-				<a href="analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
+				<a href="../index"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="../Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="../analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
 		    </div>          
 	    </div>
 		

@@ -32,7 +32,7 @@
 	href="${initParam.resources}/resources/search/css/index.css">
 <link rel=stylesheet type=text/css
 	href="${initParam.resources}/resources/search/css/SubHeadAndFoot_index.css">
-<link rel=stylesheet type=text/csz 
+<link rel=stylesheet type=text/css 
 	href="${initParam.resources}/resources/search/css/jichushousuo.css">
 	
 <script type="text/javascript">

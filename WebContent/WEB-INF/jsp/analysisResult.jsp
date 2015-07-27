@@ -34,7 +34,7 @@
 	href="${initParam.resources}/resources/search/css/index.css">
 <link rel=stylesheet type=text/css
 	href="${initParam.resources}/resources/search/css/SubHeadAndFoot_index.css">
-<link rel=stylesheet type=text/csz 
+<link rel=stylesheet type=text/css 
 	href="${initParam.resources}/resources/search/css/jichushousuo.css">
 <style type="text/css">
 	thead{
@@ -319,7 +319,7 @@ function paintPie(data){
 		</div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
-				<div class="logo"><a href="/MedicalRecord/index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A></div>
+				<div class="logo"><a href="index.html" target=_blank><IMG src="${initParam.resources}/resources/search/Images/logo.png"></A></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
