@@ -24,56 +24,26 @@ public class SymptomController {
 		return "symptomhome";
 	}
 	
+	@ResponseBody
 	@RequestMapping("/symptom")
-	public String symptom(@RequestParam(value="q", required=false)String name, int option, Model model){
-//		if(symptomName!=null && symptomName!=""){
-//			try {
-//				symptomName = new String(symptomName.getBytes("iso-8859-1"), "UTF-8");
-//				model.addAttribute("symptomName", symptomName);
-//			} catch (Exception e) {
-//				model.addAttribute("error", 1);
-//			}
-//		}
-//		return "symptom";
+	public TempNode[] symptom(@RequestParam(value="q", required=false)String name, int option, Model model){
 		
 		if(name!=null && name!=""){
 			try {
-				name = new String(name.getBytes("iso-8859-1"), "UTF-8");
-				model.addAttribute("option", option);
 				if(option == 1){
 					TempNode[] nodes = symptomService.drugSearchSymptom(name);
-					if(nodes == null){
-						model.addAttribute("noResult", 1);
-					}
-					else{
-						model.addAttribute("searchName", name);
-						model.addAttribute("nodes", nodes);
-					}
-					return "symptomhome";
+					return nodes;
 				}
 				else if(option == 2){
 					TempNode[] nodes = symptomService.recipeSearchSymptom(name);
-					if(nodes == null){
-						model.addAttribute("noResult", 1);
-					}
-					else{
-						model.addAttribute("searchName", name);
-						model.addAttribute("nodes", nodes);
-					}
-					return "symptomhome";
+					return nodes;
 				}
-				else{
-					model.addAttribute("symptomName", name);
-					return "symptom";
-				}
+				
 			} catch (Exception e) {
-				model.addAttribute("error", 1);
-				return "symptomhome";
+				return null;
 			}
 		}
-		else{
-			return "symptomhome";
-		}
+		return null;
 	}
 	
 	@ResponseBody

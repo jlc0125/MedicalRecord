@@ -14,75 +14,28 @@ String contextPath=request.getContextPath();
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>中草药基础知识搜索系统</title>
 <!-- js -->
-<script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>
-<script src="<%=contextPath%>/resources/common/ajax.js"></script>
-<script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
-<script src="<%=contextPath%>/resources/search/js/csrf.js"></script>
-<script src="<%=contextPath%>/resources/search/js/home.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <!-- exlib -->
-<script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
-
 
 <!-- css -->
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/common.css">
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/index.css">
-<link rel=stylesheet type=text/css
-	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
-<link rel=stylesheet type=text/csz 
-	href="<%=contextPath%>/resources/search/css/jichushousuo.css">
-	
-<script type="text/javascript">
-	$(function(){
-		//checkbox只能单选
-		$(".option").each(function(){
-			$(this).click(function(){
-				$(".option").each(function(){
-					$(this)[0].checked=false;
-				});
-				$(this)[0].checked=true;
-			});
-		});
-		if(!$("#doctor_opt")[0].checked && !$("#reference_opt")[0].checked) $("#content_opt")[0].checked=true;
-		
-		$("#main_search_btn").live(
-			"click",
-			function(){
-				var type;
-				if($("#content_opt")[0].checked){
-					type="content";
-				}
-				else if($("#doctor_opt")[0].checked){
-					type="doctor";
-				}
-				else if($("#reference_opt")[0].checked){
-					type="reference";
-				}
-				else{
-					alert("请勾选搜索选项");
-					return;
-				}
-				
-				var wd=$("#main_search_input").val();
-				window.location.href="./search/result?wd="+wd+"&type="+type;
-			}
-		);
-	});
-</script>	
-	
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href="<%=contextPath%>/resources/carousel.css" rel="stylesheet">
+
+<style type="text/css">
+  .img-circle{
+    margin-left: 25%;
+  }
+  .img-title{
+    text-align: center;
+  }
+</style>
+
+
 	
 </head>
 
-<BODY>
+<body>
 	<div class=top>
 		<div>
 		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
@@ -104,49 +57,140 @@ String contextPath=request.getContextPath();
 			    </div>
 			</div>
 		</div>
-		<div class=logoSearch>
-			<div class="logoSearch_L2">
-				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-
-	<div class="bg_heise">
-		<div class="clearfix">
-			<div class="imgFrame2">
-				<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
-			</div>
-		</div>
-
-		<div class="floatTOP">
-			<div class="UnderSearchBarTabs1">
-				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
-				<a id="href_C" href="<%=contextPath%>/analysishome"></a>
-			</div>
-			<div class="logoSearch_L2">
-				<div class="clearfix"></div>
-				<div id="search_cf" class="search cf">
-					<INPUT id="main_search_input" class=text maxLength=20 name=q> 
-					<A class=button id="main_search_btn" href="#"></A> <br>
-					<br>
-					<br>
-					<br>
-					<div class="checkboxes2" id="option">搜索选项：&nbsp; 
-						<input type="checkbox" class="option" id="content_opt">医案内容(包括中药、方剂、疾病、辩证、治则等)&nbsp;&nbsp;
-						<input type="checkbox" class="option" id="doctor_opt">医生&nbsp;&nbsp;
-						<input type="checkbox" class="option" id="reference_opt">医案出处&nbsp;&nbsp;
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- footer -->
-	<div>
 		
+	</div>
 	
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="<%=contextPath%>/resources/search/Images/newPic/search-bg.jpg"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>医案搜索</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>分类浏览</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="<%=contextPath%>/resources/search/Images/newPic/analysis-bg.jpg"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>医案分析</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="<%=contextPath%>/resources/search/Images/newPic/read-bg.jpg"/>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>医书阅读</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+    
+     <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-3">
+          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/search-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <h2 class="img-title">医案搜索</h2>
+          
+          
+        </div><!-- /.col-lg-3 -->
+        <div class="col-lg-3">
+          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <h2 class="img-title">分类浏览</h2>
+          
+        </div><!-- /.col-lg-3 -->
+        <div class="col-lg-3">
+          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <h2 class="img-title">医案分析</h2>
+          
+        </div><!-- /.col-lg-3 -->
+        <div class="col-lg-3">
+          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/read-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <h2 class="img-title">医书阅读</h2>
+          
+        </div><!-- /.col-lg-3 -->
+      </div><!-- /.row -->
+
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"><span class="text-muted">多角度搜索</span></h2>
+          <p class="lead">从中药、病症、方剂等多角度搜索相关医案</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" src="<%=contextPath%>/resources/search/Images/newPic/search-icon.png" alt="医案搜索" style="width:40%;height:40%">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading"><span class="text-muted">多层面分类</span></h2>
+          <p class="lead">医案数据按照疾病、治则、辩证和词频四方面分类</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+          <img class="featurette-image img-responsive center-block" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon.png" style="width:40%;height:40%" alt="Generic placeholder image" >
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"><span class="text-muted">多方面分析</span></h2>
+          <p class="lead">中药、疾病、方剂、辩证和治则五种角度分析医案集数据</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon.png" style="width:40%;height:40%" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+      
+      
+
+      <!-- /END THE FEATURETTES -->
+
+
+
+    </div><!-- /.container -->
+    <!-- footer -->
+     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">
            <div class=footer_L2>
                <div class="footer_about cf">
@@ -218,5 +262,5 @@ String contextPath=request.getContextPath();
            </div>
        </div>
 	</div>
-</BODY>
-</HTML>
+</body>
+</html>

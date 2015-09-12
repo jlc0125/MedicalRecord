@@ -7,6 +7,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>中草药基础知识搜索系统</title>
 	
+	<!-- js -->
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<!-- exlib -->
+
+	<!-- css -->
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/home.css">
@@ -16,147 +24,268 @@
 	
 	<!-- js -->
 	<script type="text/javascript" src="resources/common/d3.min.js"></script>
-	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
 	
+	<style type="text/css">
+		.search-div{
+			padding-top: 5%;
+			font-size: 14px;
+		}
+		.search-input{
+			line-height: 20px;
+			width: 580px;
+			padding: 10px 9px 10px 7px;
+			vertical-align: middle;
+			font-size: 16px;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+		}
+		.search-btn{
+			height: 46px;
+			line-height: 40px;
+			font-size: 16px;
+			padding: 0;
+			margin: 0;
+			width: 104px;
+		}
+		.center{
+			text-align: center
+		}
+		.search-logo{
+			padding-top: 80px;
+			padding-bottom: 50px;
+    	}
+    	
+    	
+		.right-list{
+			padding: 0 !important;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+			height: 700px;
+			overflow: auto;
+		}
+		
+		.right-list .nav li{
+			width: 50%;
+			text-align: center;
+			font-size: 18px;
+		}
+
+		.right-list ol li{
+			text-align: center;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			font-size: 16px;
+			
+		}
+		.right-list ol .odd{
+			background-color: #E5EBF1;
+		}
+
+		.table tbody td{
+			font-family: "微软雅黑";
+			line-height: 20px;
+			height:80px;
+			vertical-align: middle !important; 
+			text-align: center;
+			font-size: 15px;
+			border-top: 1px solid #dddddd;
+			padding: 8px;
+			background-color:white;
+			
+		}
+		.table thead tr th {
+			font-family: "微软雅黑";
+			vertical-align: middle;
+			text-align: center;
+			height:80px;
+			color: #555555;
+			font-size: 18px;
+			background-color:white;
+		}
+
+		.search-result{
+			padding-top: 5%;
+			padding-left: 25%;
+			padding-right: 25%;
+		}
+
+		.search-result table{
+			width: 100%;
+			box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+		}
+		
+		.search-result table th, .search-result table td{
+			text-align: center !important;
+		
+		}
+
+	</style>
+
+
+
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#front_input").autocomplete({
-				autoFocus: true,
-				minLength: 1,
-				source: function(request, response) {
-					var url;
-					if($('input:radio:checked').val() == "1")
-						url = "symptom/hint?q=" + request.term;
-					else if($('input:radio:checked').val() == "2")
-						url = "drug/hint?q=" + request.term;
-					else
-						url = "recipe/hint?q=" + request.term;
-					$.get(url, function(data, status){
-						response(data);
+		
+		function getByFrequence(order){
+			var url = "recipe/pinci?q=" + order;
+			$.get(url, function(data, status){
+				try{
+					if(!data) return;
+					var listContent = $(".right-list-content");
+					listContent.empty();
+					var count = 0;
+					data.forEach(function(recipe){
+						count +=1;
+						var label = "";
+						if(count % 2 == 0){
+							label = "even";
+						}
+						else{
+							label = "odd";
+						}
+
+						var html = "<li class='" + label + "'>" + recipe.name +"</li>";
+						
+						listContent.append(html);
 					});
-				 }
+				}
+				catch(err){
+					console.log(err);
+				}
 			});
-			
-			function page(str){
-				var url = "recipe/pinyin?q=" + str;
-				$.get(url, function(data, status){
-					var txt = "";
-					for(var i=0; i<data.length; i++){
-						txt += '<li><form method="post" action="recipe" target="_blank"><input type="hidden" name="q" value="' + data[i].name + '"><input type="hidden" name="option" value="0"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
-					}
-					if(txt != ""){
-						$(".alt_content").html(txt);
-						$(".alt_content").css("border","1px solid #DB5C04");
+		}
+
+		function getByAlphabet(str){
+			var url = "recipe/pinyin?q=" + str;
+			$.get(url, function(data, status){
+				try{
+					if(!data) return;
+					var listContent = $(".right-list-content");
+					var count = 0;
+					data.forEach(function(recipe){
+						count +=1;
+						var label = "";
+						if(count % 2 == 0){
+							label = "even";
+						}
+						else{
+							label = "odd";
+						}
+
+						var html = "<li class='" + label + "'>" + recipe.name +"</li>";
+						
+						listContent.append(html);
+					});
+				}
+				catch(err){
+					
+				}
+			});
+		}
+
+		function initAlphabet(){
+			try{
+				var listContent = $(".right-list-content");
+				listContent.empty();
+				var count = 0;
+				alphabetList=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+				alphabetList.forEach(function(alp){
+					count +=1;
+					var label = "";
+					if(count % 2 == 0){
+						label = "even";
 					}
 					else{
-						$(".alt_content").html('<div class="noResult">很抱歉，没有相关的方剂。</div>');
+						label = "odd";
 					}
-					$('.alt_container').pajinate({
-						items_per_page : 8,
-						item_container_id : '.alt_content',
-						nav_panel_id : '.alt_page_navigation',
-						nav_label_first : '<<',
-						nav_label_last : '>>',
-						nav_label_prev : '<',
-						nav_label_next : '>'
-				      });
+
+					var html = "<li class='alphabet " + label + "'>" + alp +"</li>";
+					
+					listContent.append(html);
 				});
+				$('.alphabet').click(function(event){
+					console.log(event);
+					var target = event.target;
+					listContent.empty();
+					listContent.append(target);
+					target = listContent.children()[0];
+					console.log(target);
+					$(target).click(function(event){
+						initAlphabet();
+					})
+					getByAlphabet(target.textContent);
+				})
 			}
-			
-			function page2(str){
-				var url = "recipe/pinci?q=" + str;
-				$.get(url, function(data, status){
-					var txt = "";
-					for(var i=0; i<data.length; i++){
-						txt += '<li><form method="post" action="recipe" target="_blank"><input type="hidden" name="q" value="' + data[i].name + '"><input type="hidden" name="option" value="0"><a href="#" onclick="javascript:$(this).parent().submit();return false;"><div>' + data[i].name + '</div><div>' + data[i].pinci + '</div></a></form></li>';
+			catch(err){
+				
+			}
+		}
+
+		function search(query, option){
+			var url = "recipe?q=" + query + "&option=" + option;
+			$.get(url, function(data, status){
+				$(".search-logo").css("display", "none");
+				if(!data) return;
+				console.log(data);
+				var html = "";
+				data.forEach(function(recipe){
+					html += "<tr><td>" + recipe.name + "</td><td>" + recipe.pinci + "</td></tr>";
+				});
+				$(".search-result > table > tbody").html(html);
+				$(".search-result").css("display","block");
+			})
+
+		}
+
+		$(document).ready(function(){
+
+			getByFrequence(0);
+			var nav1 = $(".right-list-nav > li:first-child");
+			var nav2 = $(".right-list-nav > li:last-child");
+			nav1.click(function(event){
+				nav2.removeClass("active");
+				nav1.addClass("active");
+				getByFrequence(0);
+			});
+
+			nav2.click(function(event){
+				nav1.removeClass("active");
+				nav2.addClass("active");
+				initAlphabet();
+			});
+
+			$(".search-btn").click(function(){
+				var query = $(".search-input").val();
+				var option;
+				if($(".analysis-checkbox > input:first-child")[0].checked){
+					option = 1;
+				}
+				else if($(".analysis-checkbox > input:last-child")[0].checked){
+					option = 2;
+				}
+				else{
+					alert("请选择“相关”搜索选项");
+				}
+				search(query,option);
+			})
+
+			$(".search-input").on("keydown",function(event){
+				if(event.keyCode == 13){
+					var query = $(".search-input").val();
+					var option;
+					if($(".analysis-checkbox > input:first-child")[0].checked){
+						option = 1;
 					}
-					if(txt != ""){
-						$(".alt_content2").html(txt);
-						$(".alt_content2").css("border","1px solid #DB5C04");
+					else if($(".analysis-checkbox > input:last-child")[0].checked){
+						option = 2;
 					}
 					else{
-						$(".alt_content2").html('<div class="noResult">很抱歉，没有相关的方剂。</div>');
+						alert("请选择“相关”搜索选项");
 					}
-					$('.alt_btns').pajinate({
-						items_per_page : 8,
-						num_page_links_to_display : 16,
-						item_container_id : '.alt_content2',
-						nav_panel_id : '.alt_page_navigation2',
-						nav_label_first : '<<',
-						nav_label_last : '>>',
-						nav_label_prev : '<',
-						nav_label_next : '>'
-				      });
-				});
-			}
-			
-			page("a");
-			
-			var label= $('.label');
-			var content= $('.content');
-			
-			$(content).hide();
-			$('.content:first').show();
-			$('.label h5').addClass('default');
-			$('.label:first h5').addClass('clicked');
-			
-			$("#label1").on("click", function(){
-				var tLabel = $(this);
-				var tLabelColor = $(this).find('h5');
-				var tContent = $(this).next('.content');
-				
-				$(content).hide();
-				$(tContent).show();
-					
-				$('.label h5').removeClass('clicked');
-				$(tLabelColor).addClass('clicked');
-			});
-			
-			var label2_click = 0;
-			$("#label2").on("click", function(){
-				var tLabel = $(this);
-				var tLabelColor = $(this).find('h5');
-				var tContent = $(this).next('.content');
-				
-				$(content).hide();
-				$(tContent).show();
-					
-				$('.label h5').removeClass('clicked');
-				$(tLabelColor).addClass('clicked');
-				
-				if(label2_click == 0)
-					page2("0");
-				label2_click++;
-			});
-			
-			$(label).hover(function(){
-				var tLabelColor = $(this).find('h5');
-				$(tLabelColor).addClass('hover');
-			}, function(){
-				$('.label h5').removeClass('hover');
-			});
-			
-			$(".wrapper_label a").click(function(){
-				$(".wrapper_label a.current").removeClass("current");
-				$(this).addClass("current");
-				page($(this).text().toLowerCase());
-				return false;
-			});
-			
-			$("#alt_button1").on("click", function(){
-				$('.alt_button').removeClass('visited');
-				$(this).addClass('visited');
-				page2("0");
-			});
-			
-			$("#alt_button2").on("click", function(){
-				$('.alt_button').removeClass('visited');
-				$(this).addClass('visited');
-				page2("1");
-			});
-			
+					search(query,option);
+				}
+			})
+
+
         });
 	</script>
 </head>
@@ -179,198 +308,77 @@
 			    </div>
 			</div>
 		
-		<div class=logoSearch>
-			<div class="logoSearch_L2">
-				<div class="logo">
-					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
-				</div>
-			</div>
-		</div>
+		
+	</div>
+	<div class="col-md-2" stype="height:100%">
+		<ul class="nav nav-pills nav-stacked">
+			<li role="presentation">
+				<div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=方剂分析');height:233px"></div>
+			</li>
+			<li role="presentation" class="active">
+				<div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=中药分析');height:233px"></div>
+			</li>
+			<li role="presentation" class="active">
+				<div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=疾病分析');height:233px"></div>
+			</li>
+		</ul>
+		
 	</div>
 
-	<div class="bg_heise">
-		<div class="imgFrame">
+	<div class="col-md-8" style="min-height:700px">
+		
+		<div class="search-logo center">
 			<a href="analysishome"><img src="resources/recipe/image/r_122.png" /></a>
 		</div>
 		
-		<div class="logoSearch_L2">
-			<form id="search_cf" class="search cf" method="post" action="recipe">
-				<input id="front_input" class="text" type="text" name="q" value="${searchName}"> 
-				<input class="button" id="front_btn" type="submit" value="">
-				<div class="clearfix"></div>
-				<div class="checkboxes">搜索选项：&nbsp; 
-					<c:choose>
-						<c:when test="${option == 1}">
-							<input type="radio" name="option" value="0">方剂&nbsp;&nbsp;
-							<input type="radio" name="option" value="1"   checked>疾病&nbsp;&nbsp;
-							<input type="radio" name="option" value="2">中药&nbsp;&nbsp;
-						</c:when>
-						<c:when test="${option == 2}">
-							<input type="radio" name="option" value="0">方剂&nbsp;&nbsp;
-							<input type="radio" name="option" value="1">疾病&nbsp;&nbsp;
-							<input type="radio" name="option" value="2"  checked>中药&nbsp;&nbsp;
-						</c:when>
-						<c:otherwise>
-							<input type="radio" name="option" value="0" checked>方剂&nbsp;&nbsp;
-							<input type="radio" name="option" value="1">疾病&nbsp;&nbsp;
-							<input type="radio" name="option" value="2">中药&nbsp;&nbsp;
-						</c:otherwise>
-					</c:choose>
-					<c:if test="${error == 1}">
-	  					<div class="errinfo">抱歉，没有找到相关的方剂，请重新输入！</div>
-					</c:if>
+		<div class="search-div center">
+			<div id="search" class="search">
+				<input id="analysis-search-input" class="text search-input" maxLength="50" > 
+				<button class="btn btn-primary search-btn" id="analysis-search-btn">分析</button>
+				<br>
+				<br>
+				<div class="analysis-checkbox" id="option">相关：&nbsp; 
+					<input type="checkbox" class="option" id="symptom-opt">疾病&nbsp;&nbsp;
+					<input type="checkbox" class="option" id="drug-opt">中药&nbsp;&nbsp;
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
 
-	<c:choose>
-		<c:when test="${option == 1}">
-			<div class="relate_recipe">
-				<div class="relate_wrap">
-					<div class="relate_info">相关方剂</div>
-					<c:choose>
-						<c:when test="${noResult == 1}">
-							<div class="noResultInfo">抱歉，没有找到相关的方剂，请重新输入！</div>
-						</c:when>
-						<c:otherwise>
-							<table class="relate_table">
-								<thead>
-									<tr>
-										<th>序号</th>
-										<th>方剂名称</th>
-										<th>共生频次</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="node" items="${nodes}">
-										<tr>
-											<td>${node.index}</td>
-											<td>
-												<form method="post" action="recipe" target="_blank">
-													<input type="hidden" name="q" value="${node.name}">
-													<input type="hidden" name="option" value="0">
-													<a href="#" onclick="javascript:$(this).parent().submit();return false;">${node.name}</a>
-												</form>
-											</td>
-											<td>${node.pinci}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-		</c:when>
-		<c:when test="${option == 2}">
-			<div class="relate_recipe">
-				<div class="relate_wrap">
-					<div class="relate_info">相关方剂</div>
-					<c:choose>
-						<c:when test="${noResult == 1}">
-							<div class="noResultInfo">抱歉，没有找到相关的方剂，请重新输入！</div>
-						</c:when>
-						<c:otherwise>
-							<table class="relate_table">
-								<thead>
-									<tr>
-										<th>序号</th>
-										<th>方剂名称</th>
-										<th>共生频次</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="node" items="${nodes}">
-										<tr>
-											<td>${node.index}</td>
-											<td>
-												<form method="post" action="recipe" target="_blank">
-													<input type="hidden" name="q" value="${node.name}">
-													<input type="hidden" name="option" value="0">
-													<a href="#" onclick="javascript:$(this).parent().submit();return false;">${node.name}</a>
-												</form>
-											</td>
-											<td>${node.pinci}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-		</c:when>
-	</c:choose>
-
-	<div id="vtabs">
-		<div class="container">
-			<div class="label" id="label1">
-      			<h5>按首字母排序</h5>
-    		</div>
-    	
-	    	<div class="content">
-	      		<div id="content_label">
-	      			<div class="wrapper_label">
-		      			<a href="#" class="current">A</a>
-						<a href="#">B</a>
-						<a href="#">C</a>
-						<a href="#">D</a>
-						<a href="#">E</a>
-						<a href="#">F</a>
-						<a href="#">G</a>
-						<a href="#">H</a>
-						<a href="#">I</a>
-						<a href="#">J</a>
-						<a href="#">K</a>
-						<a href="#">L</a>
-						<a href="#">M</a>
-					</div>
-					<div class="wrapper_label">
-						<a href="#">N</a>
-						<a href="#">O</a>
-						<a href="#">P</a>
-						<a href="#">Q</a>
-						<a href="#">R</a>
-						<a href="#">S</a>
-						<a href="#">T</a>
-						<a href="#">U</a>
-						<a href="#">V</a>
-						<a href="#">W</a>
-						<a href="#">X</a>
-						<a href="#">Y</a>
-						<a href="#">Z</a>
-					</div>
-				</div>
-			
-	      		<div class="alt_container">
-	      			<div class="alt_head">方剂名</div>
-	      			<div class="alt_head">出现频次</div>
-					<ul class="alt_content"></ul>
-					<div class="alt_page_navigation"></div>
-	      		</div>
-	    	</div>
+		<div class="search-result" style="display:none">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>相关方剂</th>
+						<th>共生频次</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					
+				</tbody>
+			</table>
 		</div>
 		
-		<div class="container">
-			<div class="label" id="label2">
-      			<h5>按出现频次排序</h5>
-    		</div>
-    		
-    		<div class="content">
-    			<div class="alt_btns">
-	    			<div class="alt_head"><div id="alt_button1" class="alt_button visited">降序排列</div></div>
-	      			<div class="alt_head"><div id="alt_button2" class="alt_button">升序排列</div></div>
-	      			<ul class="alt_content2"></ul>
-					<div class="alt_page_navigation2"></div>
-    			</div>
-    		</div>
-		</div>
+
+		
+
 	</div>
 
+	<div class="col-md-2 right-list">
+		<!--
+		<div class="fill" style="background-image:url('http://placehold.it/1000x700&amp;text=频次排序');height:700px"></div>
+		-->
+		<ul class="nav nav-tabs right-list-nav">
+			<li role="presentation" class="active"><a>常见方剂</a></li>
+			<li role="presentation"><a>字母排序</a></li>
+		</ul>
+		<ol class="right-list-content">
+			
+		</ol>
+	</div>
 	<!-- footer -->
 	<div>
-    <div class="footer" style="margin-bottom:0px;">
+    <div class="footer col-md-12" style="margin-bottom:0px;">
            <div class=footer_L2>
                <div class="footer_about cf">
                    <dl class="dlLeft">

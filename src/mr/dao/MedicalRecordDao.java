@@ -18,7 +18,7 @@ public class MedicalRecordDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
-	private CategoryDao cgDao;
+	private ClassifyBrowseDao cgDao;
 	
 	public MedicalRecord recordByIndex(final int index){
 		final MedicalRecord medicalRecord=new MedicalRecord();

@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CategoryDao {
+public class ClassifyBrowseDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	

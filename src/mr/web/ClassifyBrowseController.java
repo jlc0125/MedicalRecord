@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/Browse")
-public class BrowseController {
+public class ClassifyBrowseController {
 	
 	@Autowired
 	private MedicalRecordService mrs;

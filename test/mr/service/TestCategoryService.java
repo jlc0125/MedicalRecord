@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.Map;
 
-import mr.dao.CategoryDao;
+import mr.dao.ClassifyBrowseDao;
 import mr.domain.Category;
 
 import org.junit.Test;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations={"/applicationContext.xml"})
 public class TestCategoryService {
 	@Autowired
-	private CategoryDao cgDao;
+	private ClassifyBrowseDao cgDao;
 	
 	@Test
 	public void testgetFirCategoryList(){

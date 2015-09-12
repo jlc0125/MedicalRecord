@@ -28,47 +28,26 @@ public class RecipeController{
 	public String recipehome(Model model){
 		return "recipehome";
 	}
-	
+	@ResponseBody
 	@RequestMapping("/recipe")
-	public String recipe(@RequestParam(value="q", required=false)String name, int option, Model model){
-		if(name!=null && name!=""){
-			try {
-				name = new String(name.getBytes("iso-8859-1"), "UTF-8");
-				model.addAttribute("option", option);
-				if(option == 1){
-					TempNode[] nodes = recipeService.symptomSearchRecipe(name);
-					if(nodes == null){
-						model.addAttribute("noResult", 1);
-					}
-					else{
-						model.addAttribute("searchName", name);
-						model.addAttribute("nodes", nodes);
-					}
-					return "recipehome";
-				}
-				else if(option == 2){
-					TempNode[] nodes = recipeService.drugSearchRecipe(name);
-					if(nodes == null){
-						model.addAttribute("noResult", 1);
-					}
-					else{
-						model.addAttribute("searchName", name);
-						model.addAttribute("nodes", nodes);
-					}
-					return "recipehome";
-				}
-				else{
-					model.addAttribute("recipeName", name);
-					return "recipe";
-				}
-			} catch (Exception e) {
-				model.addAttribute("error", 1);
-				return "recipehome";
+	public TempNode[] recipe(@RequestParam(value="q", required=false)String name, int option){
+		System.out.println(option);
+		try {
+			if(option == 1){
+				System.out.println(name);
+				TempNode[] nodes = recipeService.symptomSearchRecipe(name);
+				return nodes;
 			}
+			else if(option == 2){
+				TempNode[] nodes = recipeService.drugSearchRecipe(name);
+				return nodes;
+			}
+		} catch (Exception e) {
+			return null;
 		}
-		else{
-			return "recipehome";
-		}
+		return null;
+		
+		
 	}
 	
 	@ResponseBody

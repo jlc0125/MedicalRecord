@@ -24,46 +24,27 @@ public class DrugController {
 		return "drughome";
 	}
 	
+	@ResponseBody
 	@RequestMapping("/drug")
-	public String drug(@RequestParam(value="q", required=false)String name,  int option, Model model){
+	public TempNode[] drug(@RequestParam(value="q", required=false)String name,  int option){
 		if(name!=null && name!=""){
 			try {
-				name = new String(name.getBytes("iso-8859-1"), "UTF-8");
-				model.addAttribute("option", option);
+				
+				
 				if(option == 1){
 					TempNode[] nodes = drugService.symptomSearchDrug(name);
-					if(nodes == null){
-						model.addAttribute("noResult", 1);
-					}
-					else{
-						model.addAttribute("searchName", name);
-						model.addAttribute("nodes", nodes);
-					}
-					return "drughome";
+					return nodes;
 				}
 				else if(option == 2){
 					TempNode[] nodes = drugService.recipeSearchDrug(name);
-					if(nodes == null){
-						model.addAttribute("noResult", 1);
-					}
-					else{
-						model.addAttribute("searchName", name);
-						model.addAttribute("nodes", nodes);
-					}
-					return "drughome";
+					return nodes;
 				}
-				else{
-					model.addAttribute("drugName", name);
-					return "drug";
-				}
+				
 			} catch (Exception e) {
-				model.addAttribute("error", 1);
-				return "drughome";
+				return null;
 			}
 		}
-		else{
-			return "drughome";
-		}
+		return null;
 	}
 	
 	@ResponseBody

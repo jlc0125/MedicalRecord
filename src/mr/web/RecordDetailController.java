@@ -22,7 +22,7 @@ public class RecordDetailController {
 	
 	@RequestMapping(value="")
 	public String casePage(){
-		return "recordDetail";
+		return "record_detail";
 	}
 	
 	@RequestMapping(value="record")

@@ -164,7 +164,26 @@
 			</div>
 	     </div>
 	
+		<div class=logo1>
+			<div class="logo1_L1">
+				<div class="logo">
+	    	    	<a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A>
+	    	    </div>
+		    </div>
+			<div class="logo1_L2">
+				<div class="logo">
+	    	    	<A href="../" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo_huiju.png"></A>
+	    	    </div>
+		    </div>
+		</div>
 		
+		<div class="sub_nav_bg">
+			<div id="sub_nav">
+				<a href="<%=contextPath%>/index"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
+		    </div>
+	    </div>
 		
 		<div class="clearfix"></div>
 			

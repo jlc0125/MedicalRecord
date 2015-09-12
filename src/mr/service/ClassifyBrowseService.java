@@ -2,16 +2,16 @@ package mr.service;
 
 import java.util.List;
 
-import mr.dao.CategoryDao;
+import mr.dao.ClassifyBrowseDao;
 import mr.domain.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryService {
+public class ClassifyBrowseService {
 	@Autowired
-	private CategoryDao cgDao;
+	private ClassifyBrowseDao cgDao;
 	
 	public List getFirCategoryList(){
 		return cgDao.getFirCategoryList();

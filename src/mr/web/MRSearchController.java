@@ -13,9 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/search")
-public class MainSearchController {
+public class MRSearchController {
 	@Autowired
 	MedicalRecordService mrs;
+	
+	@RequestMapping("")
+	public String searchPage(){
+		return "record_search";
+	}
 	
 	@RequestMapping(value="/retval")
 	@ResponseBody
@@ -52,8 +57,8 @@ public class MainSearchController {
 	}
 	
 	@RequestMapping(value="result")
-	public String searchPage(){
-		return "searchResult";
+	public String resultPage(){
+		return "record_search_result";
 	}
 	
 	
