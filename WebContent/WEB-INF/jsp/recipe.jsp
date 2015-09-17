@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String contextPath=request.getContextPath();
+%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
@@ -8,27 +13,24 @@
 	<title>中草药基础知识搜索系统</title>
 	
 	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css">
-	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
-	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/recipe/css/recipe.css">
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
+	<link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/recipe/css/jquery-ui.css">
 	
 	<!-- js -->
-	<script type="text/javascript" src="resources/common/d3.min.js"></script>
-	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
-	<script type="text/javascript" src="resources/recipe/js/graph_recipe.js"></script>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=contextPath%>/resources/recipe/js/jquery-ui.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=contextPath%>/resources/common/d3.min.js"></script>
+	<script type="text/javascript" src="<%=contextPath%>/resources/recipe/js/graph_recipe.js"></script>
 	
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#container').easyTabs({defaultContent:1});
-			
-			var recipeName = $("#front_input").val();
+		$(function(){
+			var recipeName = "安崩汤";
 			if(recipeName != ''){
-				var url = "recipe/search?q=" + recipeName;
+				var url = "<%=contextPath%>/recipe/search?q=" + recipeName;
 				d3.json(url, function(error, root) { 
 					if(error){
 						$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
@@ -36,50 +38,71 @@
 						$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 					}
 					else{
-						graph("#graph1", root.drug, 300, 1, 1);
-						graph("#graph2", root.zucheng, 300, 1, 0);
+						graph("#graph-left", root.drug, 500, 1, 1);
+						graph("#graph-right", root.zucheng, 500, 1, 0);
 						$("#zc_chuchu").text("出自" + root.chuchu_zc);
 						graph("#graph3", root.symptom, 450, 0, 1);
 					}
 				});
 			}
+		})
+		// $(document).ready(function(){
+		// 	$('#container').easyTabs({defaultContent:1});
 			
-			$("#search_cf").submit(function(){
-				var value = $("#front_input").val();
-				$("svg").remove();
-				$("#zc_chuchu").empty();
-				$(".errorhit").empty();
-				if(value != ''){
-					var url = "recipe/search?q=" + value;
-					d3.json(url, function(error, root) { 
-						if(error){
-							$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-							$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-							$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-						}
-						else{
-							graph("#graph1", root.drug, 300, 1);
-							graph("#graph2", root.zucheng, 300, 1);
-							$("#zc_chuchu").text("出自" + root.chuchu_zc);
-							graph("#graph3", root.symptom, 500, 0);
-						}
-					});
-				}
-				return false;
-			});
+		// 	var recipeName = $("#front_input").val();
+		// 	if(recipeName != ''){
+		// 		var url = "recipe/search?q=" + recipeName;
+		// 		d3.json(url, function(error, root) { 
+		// 			if(error){
+		// 				$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+		// 				$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+		// 				$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+		// 			}
+		// 			else{
+		// 				graph("#graph1", root.drug, 300, 1, 1);
+		// 				graph("#graph2", root.zucheng, 300, 1, 0);
+		// 				$("#zc_chuchu").text("出自" + root.chuchu_zc);
+		// 				graph("#graph3", root.symptom, 450, 0, 1);
+		// 			}
+		// 		});
+		// 	}
 			
-			$("#front_input").autocomplete({
-				autoFocus: true,
-				minLength: 1,
-				source: function(request, response) {
-					var url = "recipe/hint?q=" + request.term;
-					$.get(url, function(data, status){
-						response(data);
-					});
-				 }
-			});
+		// 	$("#search_cf").submit(function(){
+		// 		var value = $("#front_input").val();
+		// 		$("svg").remove();
+		// 		$("#zc_chuchu").empty();
+		// 		$(".errorhit").empty();
+		// 		if(value != ''){
+		// 			var url = "recipe/search?q=" + value;
+		// 			d3.json(url, function(error, root) { 
+		// 				if(error){
+		// 					$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+		// 					$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+		// 					$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+		// 				}
+		// 				else{
+		// 					graph("#graph1", root.drug, 300, 1);
+		// 					graph("#graph2", root.zucheng, 300, 1);
+		// 					$("#zc_chuchu").text("出自" + root.chuchu_zc);
+		// 					graph("#graph3", root.symptom, 500, 0);
+		// 				}
+		// 			});
+		// 		}
+		// 		return false;
+		// 	});
 			
-        });
+		// 	$("#front_input").autocomplete({
+		// 		autoFocus: true,
+		// 		minLength: 1,
+		// 		source: function(request, response) {
+		// 			var url = "recipe/hint?q=" + request.term;
+		// 			$.get(url, function(data, status){
+		// 				response(data);
+		// 			});
+		// 		 }
+		// 	});
+			
+  //       });
 	</script>
 </head>
 
@@ -100,87 +123,29 @@
 			        </ul>
 			    </div>
 			</div>
-		<div class=logoSearch>
-			<div class="logoSearch_L2">
-				<div class="logo">
-					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
+	</div>
+		
+
+	<div class="container" style="min-height:700px">
+		
+			<ul class="nav nav-tabs analysis-result-nav">
+				<li role="presentation" class="active"><a>相关中药</a></li>
+				<li role="presentation"><a>相关疾病</a></li>
+			</ul>
+			<div class="analysis-result">
+				<div class="analysis-result-left" style="float:left;width:50%">
+					<div id="graph-left">
+					</div>
+
+				</div>
+				<div class="analysis-result-rights" style="float:left;width:50%">
+					<div id="graph-right">
+					</div>
 				</div>
 			</div>
-		</div>
+   		
 	</div>
 
-	<div class="bg_heise">
-		<div class="imgFrame">
-			<a href="recipehome"><img src="resources/recipe/image/r_122.png" /></a>
-		</div>
-		
-		<div class="logoSearch_L2">
-			<form id="search_cf" class="search cf" >
-				<input id="front_input" class="text" type="text" maxLength="20" value="${recipeName}"> 
-				<input class="button" id="front_btn" type="submit" value=""> <br>
-			</form>
-		</div>
-		
-		<div id="container">
-			<ul class="tabs">
-				<li><a href="#component">相关中药</a></li>
-		  		<li><a href="#attending">相关疾病</a></li>
-		 	</ul>
-	
-	    	<div id="main_content">
-		    	<div id="component">
-		    		<div class="graph">
-		    			<div class="graph_head">从医案中分析出的相关关系</div>
-		    			<div id="graph1"></div>
-		    			<div id="separate"></div>
-		    			<div class="graph_head">方剂组成成分</div>
-		    			<div id="zc_chuchu"></div>
-		    			<div id="graph2"></div>
-		    		</div>
-		    		<div id="descpt1">
-    					<table>
-    					 	<caption>图示说明</caption>
-    						<tbody>
-    							<tr>
-    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle></svg></td>
-    								<td>从医案中分析与方剂相关，同时又是方剂知识库中方剂的组成的中药</td>
-    							</tr>
-    							<tr>
-    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle></svg></td>
-    								<td>从医案中分析与方剂相关，但不是方剂知识库中方剂的组成的中药</td>
-    							</tr>
-    							<tr>
-    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle></svg></td>
-    								<td>方剂知识库中方剂的组成，但在医案中暂未分析出与方剂相关的中药</td>
-    							</tr>
-    						</tbody>
-    					</table>
-    				</div>
-		     	</div>
-	     
-	     		<div id="attending">
-	    			<div id="graph3"></div>
-	    			<div id="descpt2">
-    					<div>图示说明</div>
-    					<svg>
-    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
-    						<text x="45" y="29">从医案中分析与方剂相关的疾病</text>
-    					</svg>
-    				</div>
-	     		</div>
-	    	</div>
-    		
-		    <div id="sidebar">
-		    	<div class="alt_container">
-					<h2>相关医案</h2>
-					<div class="alt_page_navigation"></div>	
-					<div class="alt_info_text"></div>
-					<ul class="alt_content"></ul>
-				</div>    
-		    </div>
-	    	<div class="clearfix"></div>
-   		</div>
-	</div>
 
 	<!-- footer -->
 	<div>

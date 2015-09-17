@@ -19,9 +19,9 @@ public class RecipeController{
 	@Autowired
 	private RecipeService recipeService;
 	
-	@RequestMapping("/analysishome")
-	public String index(){
-		return "analysishome";
+	@RequestMapping("/recipe/result")
+	public String result(){
+		return "recipe";
 	}
 	
 	@RequestMapping("/recipehome")
