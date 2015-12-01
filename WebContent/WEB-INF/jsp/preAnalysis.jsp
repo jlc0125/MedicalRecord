@@ -12,7 +12,7 @@ String contextPath=request.getContextPath();
 
 <html dir="ltr" xml:lang="en-gb" xmlns="http://www.w3.org/1999/xhtml" lang="en-gb">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>中草药基础知识搜索系统</title>
+<title>医案系统</title>
 <head>
 <!-- js -->
 <script src="<%=contextPath%>/resources/common/jquery_1_8_3.js"></script>

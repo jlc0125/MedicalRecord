@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/Analysis")
+@RequestMapping("/analysis")
 public class BZZZAnalysisController {
 	@Autowired
 	BZNaiveBayesService bzs;

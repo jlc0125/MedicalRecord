@@ -12,7 +12,7 @@ String contextPath=request.getContextPath();
 	lang="en-gb">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>中草药基础知识搜索系统</title>
+<title>医案系统</title>
 <!-- js -->
 <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -30,6 +30,15 @@ String contextPath=request.getContextPath();
     text-align: center;
   }
 </style>
+
+<script type="text/javascript">
+  $(function(){
+    $(".function-image").on("click", function(){
+      // console.log($(this).attr("name"));
+      window.location.href="<%=contextPath%>/" + $(this).attr("name");
+    })
+  })
+</script>
 
 
 	
@@ -57,6 +66,12 @@ String contextPath=request.getContextPath();
 			    </div>
 			</div>
 		</div>
+		<div class=logoSearch>
+			<div class="logoSearch_L2">
+				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
 		
 	</div>
 	
@@ -80,7 +95,7 @@ String contextPath=request.getContextPath();
           </div>
         </div>
         <div class="item">
-          <img src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
+          <img id="search" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
           <div class="container">
             <div class="carousel-caption">
               <h1>分类浏览</h1>
@@ -119,23 +134,23 @@ String contextPath=request.getContextPath();
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-3">
-          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/search-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle function-image" name="search" src="<%=contextPath%>/resources/search/Images/newPic/search-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
           <h2 class="img-title">医案搜索</h2>
           
           
         </div><!-- /.col-lg-3 -->
         <div class="col-lg-3">
-          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle function-image" name="browse" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
           <h2 class="img-title">分类浏览</h2>
           
         </div><!-- /.col-lg-3 -->
         <div class="col-lg-3">
-          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle function-image" name="analysishome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
           <h2 class="img-title">医案分析</h2>
           
         </div><!-- /.col-lg-3 -->
         <div class="col-lg-3">
-          <img class="img-circle" src="<%=contextPath%>/resources/search/Images/newPic/read-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle function-image" name="book" src="<%=contextPath%>/resources/search/Images/newPic/read-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
           <h2 class="img-title">医书阅读</h2>
           
         </div><!-- /.col-lg-3 -->

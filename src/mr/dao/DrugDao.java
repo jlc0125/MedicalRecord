@@ -63,15 +63,15 @@ public class DrugDao {
 		String[] res = null;
 		String sql = "select drug from drug where name=?";
 		String tmp = (String)jdbcTemplate.queryForObject(sql, new String[]{name}, java.lang.String.class);
-		if(tmp != null && tmp != ""){
+		if(tmp != null && !tmp.equals("")){
 			res = tmp.split(" ");
 		}
 		return res;
 	}
 	
 	public List abbrBeginWith(String abbr){
-		String sql = "select name,pinci from drug where abbr like '" + abbr + "%' order by abbr";
-		return jdbcTemplate.queryForList(sql); 
+		String sql = "select name,pinci from drug where abbr like ? order by abbr";
+		return jdbcTemplate.queryForList(sql, new Object[]{abbr + "%"}); 
 	}
 	
 	public List pinciSearch(int freq){
@@ -82,8 +82,8 @@ public class DrugDao {
 	}
 	
 	public TempNode[] symptomSearchDrug(String symptomName){
-		String sql = "select drug,drug_pinci from symptom where name= '" + symptomName + "'";
-		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
+		String sql = "select drug,drug_pinci from symptom where name=?";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, new Object[]{symptomName}); 
 		 if(rows.isEmpty())
 			 return null;
 		 else {
@@ -106,8 +106,8 @@ public class DrugDao {
 	}
 	
 	public TempNode[] recipeSearchDrug(String recipeName){
-		String sql = "select drug,drug_pinci from recipe where name= '" + recipeName + "'";
-		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
+		String sql = "select drug,drug_pinci from recipe where name= ?";
+		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql,new Object[]{recipeName}); 
 		 if(rows.isEmpty())
 			 return null;
 		 else {

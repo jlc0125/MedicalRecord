@@ -56,7 +56,7 @@ public class MedicalRecordDao {
 						HashMap<Integer,Double> tfidfMap=new HashMap<Integer,Double>();
 						//String转map，待处理
 						try{
-							if(tfidfStr!=""){
+							if(!tfidfStr.equals("")){
 								String[] pares=tfidfStr.trim().split(" ");
 								for(String pare:pares){
 									tfidfMap.put(Integer.parseInt(pare.split(":")[0]),Double.parseDouble(pare.split(":")[1]));

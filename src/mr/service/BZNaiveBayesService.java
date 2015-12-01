@@ -75,7 +75,7 @@ public class BZNaiveBayesService {
 		if (id==-1) return records;
 		BZNaiveBayes bz=bDao.getById(id);
 		String recordsCol=bz.getRecords();
-		if(recordsCol==null||recordsCol==""){
+		if(recordsCol==null||recordsCol.equals("")){
 			return records;
 		}
 		String[] recordsStr=recordsCol.split(" ");

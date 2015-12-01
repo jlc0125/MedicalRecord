@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>中草药基础知识搜索系统</title>
+	<title>医案系统</title>
 	
 	<!-- js -->
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>

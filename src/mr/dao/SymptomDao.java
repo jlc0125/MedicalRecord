@@ -63,7 +63,7 @@ public class SymptomDao {
 		String[] res = null;
 		String sql = "select symptom from symptom where name=?";
 		String tmp = (String)jdbcTemplate.queryForObject(sql, new String[]{name}, java.lang.String.class);
-		if(tmp != null && tmp != ""){
+		if(tmp != null && !tmp.equals("")){
 			res = tmp.split(" ");
 		}
 		return res;

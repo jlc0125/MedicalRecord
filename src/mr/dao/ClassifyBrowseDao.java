@@ -51,8 +51,8 @@ public class ClassifyBrowseDao {
 	//根据第一分类获得第二分类
 	public List getSecCategoryList(String FirCateId){
 		String sql = "select * from second_category "
-				+ " where cate_id like '" + FirCateId + "%'";
-		List cateList = jdbcTemplate.queryForList(sql);
+				+ " where cate_id like ?";
+		List cateList = jdbcTemplate.queryForList(sql, new Object[] {FirCateId + "%"});
 		return cateList;
 	}
 	//根据分类名获得第二分类信息

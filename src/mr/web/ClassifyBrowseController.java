@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/Browse")
+@RequestMapping("/browse")
 public class ClassifyBrowseController {
 	
 	@Autowired

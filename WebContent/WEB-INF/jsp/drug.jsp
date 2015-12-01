@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>中草药基础知识搜索系统</title>
+	<title>医案系统</title>
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
