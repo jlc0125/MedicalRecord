@@ -23,10 +23,15 @@ public class SymptomController {
 	public String home(Model model){
 		return "symptomhome";
 	}
+
+	@RequestMapping("/symptom")
+	public String syptomPage(Model model){
+		return "symptom";
+	}
 	
 	@ResponseBody
-	@RequestMapping("/symptom")
-	public TempNode[] symptom(@RequestParam(value="q", required=false)String name, int option, Model model){
+	@RequestMapping("/symptom/data")
+	public TempNode[] symptomData(@RequestParam(value="q", required=false)String name, int option, Model model){
 		
 		if(name!=null && name!=""){
 			try {

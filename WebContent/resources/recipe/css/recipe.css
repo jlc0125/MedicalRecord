@@ -68,7 +68,7 @@ body {
     width: 670px;
     padding-right: 8px;
     float: left;
-    height: 15px;
+    height: 37px;
     color: #000000;
     border-top: #e2c7b9 1px solid;
     border-right: #e2c7b9 1px;
@@ -83,7 +83,7 @@ body {
 	background-image:url(../image/fx_btn.png); 
 	backgound-position: 0px 0px; 
 	float: left; 
-	height: 37px; 
+	height: 37px;
 }
 
 .logoSearch_L2 .search input.button:hover {
@@ -91,7 +91,7 @@ body {
 }
 
 #container {
-	width: 960px;
+	width: 80%;
 	padding-top: 10px;
 	margin: 0px auto;
 }
@@ -99,11 +99,15 @@ body {
 #main_content {
 	background-color: #fff;
 	float: left;
-	padding: 20px;
+	/*padding: 20px;*/
+	width: 100%;
 }
 
 .tabs {
-	width: 857px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    width: 11.5%;
+	/*width: 857px;*/
+	margin: 0 !important;
 	height: 35px;
 	background-color: rgba(64, 64, 64, 0.05);
 }
@@ -134,19 +138,22 @@ body {
 }
 
 .graph {
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 	margin-bottom: 18px; 
-	width: 490px;
-	height: 592px;
+	width: 60%;
+	height: 800px;
 	float: left;
 	text-align:center;
 }
 
 #graph1 {
-	height: 280px;
+	height: 45%;
 }
 
 #graph2 {
-	height: 280px;
+	height: 45%;
 }
 
 .graph_head {
@@ -164,9 +171,22 @@ body {
 }
 
 #graph3 {
-	width: 575px;
+	/*width: 575px;
 	height: 500px;
+	text-align:center;*/
+
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+	margin-bottom: 18px; 
+	width: 60%;
+	height: 800px;
+	float: left;
 	text-align:center;
+}
+
+#graph3 svg{
+	margin-top: 20%;
 }
 
 #descpt1 {
@@ -209,12 +229,13 @@ body {
 }
 
 #sidebar  {
-	padding: 10px; 
-	margin-bottom: 18px; 
+	/*padding: 10px; */
+	/*margin-bottom: 18px; */
+	margin-left: 10%;
 	float: left;
-	width: 222px;
+	width: 20%;
 	height: 630px;
-	background: #eee; 
+	/*background: #eee; */
 }
 
 .rootnode circle {
@@ -255,11 +276,11 @@ body {
 	stroke-width: 2.5px;
  }
 
-.alt_container{
+/*.alt_container{
 	width: 222px;
 	margin: 5px 0;
 }
-
+*/
 .alt_container h2{
 	text-align: center;
 	font-style: bold;
@@ -301,4 +322,28 @@ body {
 
 .alt_content li:nth-child(odd) {
 	background: #FFD9BF;
+}
+
+
+
+
+
+
+.right-list{
+	padding: 0 !important;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	min-height: 800px;
+	overflow: auto;
+}
+
+
+.right-list ol li{
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+	
+}
+.right-list ol .odd{
+	background-color: #E5EBF1;
 }

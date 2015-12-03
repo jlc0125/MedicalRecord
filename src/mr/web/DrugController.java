@@ -23,10 +23,15 @@ public class DrugController {
 	public String home(Model model){
 		return "drughome";
 	}
+
+	@RequestMapping("/drug")
+	public String drugPage(){
+		return "drug";
+	}
 	
 	@ResponseBody
-	@RequestMapping("/drug")
-	public TempNode[] drug(@RequestParam(value="q", required=false)String name,  int option){
+	@RequestMapping("/drug/data")
+	public TempNode[] drugData(@RequestParam(value="q", required=false)String name,  int option){
 		if(name!=null && name!=""){
 			try {
 				

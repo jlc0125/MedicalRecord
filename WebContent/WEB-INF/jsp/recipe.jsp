@@ -13,20 +13,30 @@
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/nav_header.css"></link>
 	<link rel="stylesheet" type="text/css" href="resources/commonpages/css/footer.css"></link>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	
 	<!-- js -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="resources/common/d3.min.js"></script>
-	<script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script>
+
+	<!-- // <script type="text/javascript" src="resources/common/jquery_1_8_3.js"></script> -->
 	<script type="text/javascript" src="resources/recipe/js/easyTabs.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/graph_recipe.js"></script>
 	
 	<script type="text/javascript">
+        function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+                if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
 		$(document).ready(function(){
 			$('#container').easyTabs({defaultContent:1});
 			
-			var recipeName = $("#front_input").val();
+			// var recipeName = $("#front_input").val();
+            var recipeName = decodeURI(getUrlParam('name'));
 			if(recipeName != ''){
 				var url = "recipe/search?q=" + recipeName;
 				d3.json(url, function(error, root) { 
@@ -109,7 +119,7 @@
 		</div>
 	</div>
 
-	<div class="bg_heise">
+	
 		<div class="imgFrame">
 			<a href="recipehome"><img src="resources/recipe/image/r_122.png" /></a>
 		</div>
@@ -120,7 +130,7 @@
 				<input class="button" id="front_btn" type="submit" value=""> <br>
 			</form>
 		</div>
-		
+
 		<div id="container">
 			<ul class="tabs">
 				<li><a href="#component">相关中药</a></li>
@@ -136,8 +146,37 @@
 		    			<div class="graph_head">方剂组成成分</div>
 		    			<div id="zc_chuchu"></div>
 		    			<div id="graph2"></div>
-		    		</div>
-		    		<div id="descpt1">
+                        <!-- <div id="descpt1">
+                            <table>
+                                <caption>图示说明</caption>
+                                <tbody>
+                                    <tr>
+                                        <td><svg><circle cx="6" cy="12" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle></svg></td>
+                                        <td>从医案中分析与方剂相关，同时又是方剂知识库中方剂的组成的中药</td>
+                                    </tr>
+                                    <tr>
+                                        <td><svg><circle cx="6" cy="12" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle></svg></td>
+                                        <td>从医案中分析与方剂相关，但不是方剂知识库中方剂的组成的中药</td>
+                                    </tr>
+                                    <tr>
+                                        <td><svg><circle cx="6" cy="12" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle></svg></td>
+                                        <td>方剂知识库中方剂的组成，但在医案中暂未分析出与方剂相关的中药</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+ 		    		</div>
+                    <div id="sidebar">
+                        <div class="alt_container right-list">
+                            <h2>相关医案</h2>
+                            <div class="alt_page_navigation"></div> 
+                            <div class="alt_info_text"></div>
+                            <ol class="alt_content">
+                                
+                            </ol>
+                        </div>    
+                    </div>
+		    		<!-- <div id="descpt1">
     					<table>
     					 	<caption>图示说明</caption>
     						<tbody>
@@ -155,32 +194,43 @@
     							</tr>
     						</tbody>
     					</table>
-    				</div>
+    				</div> -->
 		     	</div>
 	     
 	     		<div id="attending">
 	    			<div id="graph3"></div>
-	    			<div id="descpt2">
+	    			<!-- <div id="descpt2">
     					<div>图示说明</div>
-    					<svg>
+    					<svg style="margin-top: 20%;">
     						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
     						<text x="45" y="29">从医案中分析与方剂相关的疾病</text>
     					</svg>
-    				</div>
+    				</div> -->
+                    <div id="sidebar">
+                        <div class="alt_container right-list">
+                            <h2>相关医案</h2>
+                            <div class="alt_page_navigation"></div> 
+                            <div class="alt_info_text"></div>
+                            <ol class="alt_content">
+                                
+                            </ol>
+                        </div>    
+                    </div>
 	     		</div>
 	    	</div>
     		
-		    <div id="sidebar">
+		    <!-- <div id="sidebar">
 		    	<div class="alt_container">
 					<h2>相关医案</h2>
 					<div class="alt_page_navigation"></div>	
 					<div class="alt_info_text"></div>
 					<ul class="alt_content"></ul>
 				</div>    
-		    </div>
+		    </div> -->
 	    	<div class="clearfix"></div>
    		</div>
-	</div>
+        
+	
 
 	<!-- footer -->
 	<div>

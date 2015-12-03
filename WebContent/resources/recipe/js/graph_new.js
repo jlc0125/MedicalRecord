@@ -57,7 +57,7 @@
 				}
 				$(".alt_content").html(txt);
 				if(txt != ""){
-					$(".alt_content").css("border","1px solid #DB5C04");
+					// $(".alt_content").css("border","1px solid #DB5C04");
 					
 					$('.alt_container').pajinate({
 						items_per_page : 10,

@@ -28,9 +28,16 @@ public class RecipeController{
 	public String recipehome(Model model){
 		return "recipehome";
 	}
-	@ResponseBody
+
 	@RequestMapping("/recipe")
-	public TempNode[] recipe(@RequestParam(value="q", required=false)String name, int option){
+	public String recipePage(){
+		return "recipe";
+	}
+
+	//通过疾病和中药来搜索相关方剂
+	@ResponseBody
+	@RequestMapping("/recipe/data")
+	public TempNode[] recipeData(@RequestParam(value="q", required=false)String name, int option){
 		System.out.println(option);
 		try {
 			if(option == 1){
@@ -50,6 +57,7 @@ public class RecipeController{
 		
 	}
 	
+	//通过方剂名相关方剂
 	@ResponseBody
 	@RequestMapping("/recipe/search")
 	public Object search(@RequestParam(value="q", required=false)String recipeName){

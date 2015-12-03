@@ -23,11 +23,18 @@
 	<script type="text/javascript" src="resources/recipe/js/graph_new.js"></script>
 	
 	<script type="text/javascript">
+        function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+                if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
 		$(document).ready(function(){
 			
 			$('#container').easyTabs({defaultContent:1});
 			
-			var drugName = $("#front_input").val();
+			// var drugName = $("#front_input").val();
+            // var drugName = decodeURI(getUrlParam('name'));
+            var drugName = "当归";
 			if(drugName != ''){
 				var url = "drug/search?q=" + drugName;
 				d3.json(url, function(error, root) { 
@@ -104,7 +111,7 @@
 		</div>
 	</div>
 
-	<div class="bg_heise">
+	
 		<div class="imgFrame">
 			<a href="drughome"><img src="resources/recipe/image/r_124.png" /></a>
 		</div>
@@ -126,49 +133,73 @@
 		    <div id="main_content">
 		    	<div id="component">
 		    		<div class="graph"></div>
-		    		<div class="descpt">
+                    <div id="sidebar">
+                        <div class="alt_container">
+                            <h2>相关医案</h2>
+                            <div class="alt_page_navigation"></div> 
+                            <div class="alt_info_text"></div>
+                            <ol class="alt_content"></ol>
+                        </div>    
+                    </div>
+		    		<!-- <div class="descpt">
     					<div>图示说明</div>
     					<svg>
     						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
     						<text x="45" y="29">从医案中分析与中药相关的其他中药</text>
     					</svg>
-    				</div>
+    				</div> -->
 		     	</div>
 		     
 		     	<div id="attending">
 		    		<div class="graph"></div>
-		    		<div class="descpt">
+                    <div id="sidebar">
+                        <div class="alt_container">
+                            <h2>相关医案</h2>
+                            <div class="alt_page_navigation"></div> 
+                            <div class="alt_info_text"></div>
+                            <ol class="alt_content"></ol>
+                        </div>    
+                    </div>
+		    		<!-- <div class="descpt">
     					<div>图示说明</div>
     					<svg>
     						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
     						<text x="45" y="29">从医案中分析与中药相关的疾病</text>
     					</svg>
-    				</div>
+    				</div> -->
 		     	</div>
 		     
 		     	<div id="similar">
 		    		<div class="graph"></div>
-		    		<div class="descpt">
+                    <div id="sidebar">
+                        <div class="alt_container">
+                            <h2>相关医案</h2>
+                            <div class="alt_page_navigation"></div> 
+                            <div class="alt_info_text"></div>
+                            <ol class="alt_content"></ol>
+                        </div>    
+                    </div>
+		    		<!-- <div class="descpt">
     					<div>图示说明</div>
     					<svg>
     						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
     						<text x="45" y="29">从医案中分析与中药相关的方剂</text>
     					</svg>
-    				</div>
+    				</div> -->
 				</div>
 		    </div>
     
-		    <div id="sidebar">
+		    <!-- <div id="sidebar">
 		    	<div class="alt_container">
 					<h2>相关医案</h2>
 					<div class="alt_page_navigation"></div>	
 					<div class="alt_info_text"></div>
 					<ul class="alt_content"></ul>
 				</div>    
-		    </div>
+		    </div> -->
 	    	<div class="clearfix"></div>
    		</div>
-   </div>
+   
 
 	<!-- footer -->
 	<div>

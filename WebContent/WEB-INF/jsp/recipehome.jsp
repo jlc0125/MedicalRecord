@@ -143,7 +143,7 @@
 							label = "odd";
 						}
 
-						var html = "<li class='" + label + "'>" + recipe.name +"</li>";
+						var html = "<li class='" + label + "'><a href='recipe?name=" + encodeURI(encodeURI(recipe.name)) + "'>" + recipe.name +"</a></li>";
 						
 						listContent.append(html);
 					});
@@ -171,7 +171,7 @@
 							label = "odd";
 						}
 
-						var html = "<li class='" + label + "'>" + recipe.name +"</li>";
+						var html = "<li class='" + label + "'><a href='recipe?name=" + encodeURI(encodeURI(recipe.name)) + "'>" + recipe.name +"</a></li>";
 						
 						listContent.append(html);
 					});
@@ -221,14 +221,14 @@
 		}
 
 		function search(query, option){
-			var url = "recipe?q=" + query + "&option=" + option;
+			var url = "recipe/data?q=" + query + "&option=" + option;
 			$.get(url, function(data, status){
 				$(".search-logo").css("display", "none");
 				if(!data) return;
 				console.log(data);
 				var html = "";
 				data.forEach(function(recipe){
-					html += "<tr><td>" + recipe.name + "</td><td>" + recipe.pinci + "</td></tr>";
+					html += "<tr><td><a href='recipe?name=" + encodeURI(encodeURI(recipe.name)) + "'>" + recipe.name +"</a></td><td>" + recipe.pinci + "</td></tr>";
 				});
 				$(".search-result > table > tbody").html(html);
 				$(".search-result").css("display","block");

@@ -133,7 +133,7 @@
 					var listContent = $(".right-list-content");
 					listContent.empty();
 					var count = 0;
-					data.forEach(function(recipe){
+					data.forEach(function(each){
 						count +=1;
 						var label = "";
 						if(count % 2 == 0){
@@ -143,7 +143,7 @@
 							label = "odd";
 						}
 
-						var html = "<li class='" + label + "'>" + recipe.name +"</li>";
+						var html = "<li class='" + label + "'><a href='drug?name=" + encodeURI(encodeURI(each.name)) + "'>" + each.name +"</a></li>";
 						
 						listContent.append(html);
 					});
@@ -161,7 +161,7 @@
 					if(!data) return;
 					var listContent = $(".right-list-content");
 					var count = 0;
-					data.forEach(function(recipe){
+					data.forEach(function(each){
 						count +=1;
 						var label = "";
 						if(count % 2 == 0){
@@ -171,7 +171,7 @@
 							label = "odd";
 						}
 
-						var html = "<li class='" + label + "'>" + recipe.name +"</li>";
+						var html = "<li class='" + label + "'><a href='drug?name=" + encodeURI(encodeURI(each.name)) + "'>" + each.name +"</a></li>";
 						
 						listContent.append(html);
 					});
@@ -221,14 +221,14 @@
 		}
 
 		function search(query, option){
-			var url = "drug?q=" + query + "&option=" + option;
+			var url = "drug/data?q=" + query + "&option=" + option;
 			$.get(url, function(data, status){
 				$(".search-logo").css("display", "none");
 				if(!data) return;
 				console.log(data);
 				var html = "";
-				data.forEach(function(recipe){
-					html += "<tr><td>" + recipe.name + "</td><td>" + recipe.pinci + "</td></tr>";
+				data.forEach(function(each){
+					html += "<tr><td><a href='drug?name=" + encodeURI(encodeURI(each.name)) + "'>" + each.name +"</a></td><td>" + each.pinci + "</td></tr>";
 				});
 				$(".search-result > table > tbody").html(html);
 				$(".search-result").css("display","block");
