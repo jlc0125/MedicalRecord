@@ -22,64 +22,39 @@ String contextPath=request.getContextPath();
 		
 		
 		<!-- css -->	
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
+		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
+		<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/main.css">
+		<LINK rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/common.css">
 						
 	</head>
 	<style>
-		.logoSearch {
-			WIDTH: 100%;
-			HEIGHT: 93px;
-		}
-		
-		.logoSearch_L2 {
-			MARGIN: auto;
-			width:960px
-		}
-		.logoSearch_L2 .logo {
-			FLOAT: left; 
-			PADDING-TOP: 18px; 
-			height:75px
-		}
-		#main-content{
-			font-family:"Microsoft YaHei";/* font-size:15px;text-align:center;*/ 
-			width:960px;
-			min-height:200px;
-			margin:auto;
-			margin-bottom:80px;
-			float:none
-		}
 		#adjust_search{
-			margin-left: 85%;
-			font-size: 16px;
+			margin-left: 90%;
+			font-size: 18px;
 			line-height: 1.2;
 			margin-bottom: 20px;
-			border: 1px solid #cbcbcb;
-			 border-bottom: 4px solid #b2b1b1;
 		}
 		.sub, .add{
-			cursor:pointer;
-			height:15px;
-			width:15px;
-			display:inline !important  ;
-		}
-		.table th{
-			min-width:80px;
+		cursor:pointer;
+		height:15px;
+		width:15px;
+		display:inline !important  ;
 		}
 		.table td,.table th{
 			text-align:center !important;
 			vertical-align: middle;
-			font-size:14px;
+			font-size:18px;
 		}
 		.header{
-			font-size: 18px !important;
+			font-size: 22px !important;
 			font-weight: bold !important;
 			text-align: center !important;
-			line-height: 3em !important;
+			line-height: 5em !important;
  		}
  		
  		.info{
- 			border: 1px solid #999999;
+ 			border: 1px solid;
 			border-radius: 15px;
 			margin-top: 15px;
 			margin-bottom:30px;
@@ -203,53 +178,77 @@ String contextPath=request.getContextPath();
 		        </ul>
 		    </div>
 		</div>
-	</div>
+	  </div>
 	
-	<div class=logoSearch>
-		<div class="logoSearch_L2">
-			<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></a></div>           
+		<div class=logo1>
+			<div class="logo1_L1">
+				<div class="logo">
+	    	    	<a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A>
+	    	    </div>
+		    </div>
+			<div class="logo1_L2">
+				<div class="logo">
+	    	    	<A href="../" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo_huiju.png"></A>
+	    	    </div>
+		    </div>
 		</div>
-	</div>
 		
-	<div class="clearfix"></div>
-	
-	<div class="container-fluid ">
-		<div id="main-content" class="content clearfix"> 
-           	<div id="pre_info">
-           		<div class="info">
-           			<h2 id="record_header" class="header"></h2>
-					<table id="record" class="table">
-						<tbody id="record_body"></tbody>
-					</table>
-				</div>
-           	
-				<div class="info">
-					<h2 id="classic_pre_header" class="header"></h2>
-					<table id="classic_pre" class="table">
-						<thead id="classic_pre_title"></thead>
-						<tbody id="classic_pre_body"></tbody>
-					</table>
-				</div>
-				
-				<div class="info">
-					<h2 id="med_header" class="header"></h2>
-					<table id="med" class="table">
-						<thead id="med_title"></thead>
-						<tbody id="med_body"></tbody>
-					</table>
-				</div>
-				
-				<div class="info">
-					<h2 id="adjust_pre_header" class="header"></h2>
-					<table id="adjust_pre" class="table">
-						<thead id="adjust_pre_title"></thead>
-						<tbody id="adjust_pre_body"></tbody>
-					</table>
+		<div class="sub_nav_bg">
+			<div id="sub_nav">
+				<a href="<%=contextPath%>/index"><span id="nav_qwss" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/Browse"><span id="nav_flll" class="sub_nav_span"></span></a>
+				<a href="<%=contextPath%>/analysishome"><span id="nav_zhcx" class="sub_nav_span"></span></a>
+		    </div>       
+	    </div>
+		
+		<div class="clearfix"></div>
+			
+		<div id="tab-title">	
+			<div id="front_menu">
+	    	</div>
+		</div>
+		
+		<div class="clearfix"></div>
+		<div id="underline"></div>
+		<div class="clearfix"></div>
+		
+		<div class="container-fluid ">
+				<div id="main-content" class="content clearfix"> 
+            	<div id="pre_info">
+            		<div class="info">
+            			<h2 id="record_header" class="header"></h2>
+						<table id="record" class="table">
+							<tbody id="record_body"></tbody>
+						</table>
+					</div>
+            	
+					<div class="info">
+						<h2 id="classic_pre_header" class="header"></h2>
+						<table id="classic_pre" class="table">
+							<thead id="classic_pre_title"></thead>
+							<tbody id="classic_pre_body"></tbody>
+						</table>
+					</div>
 					
-				</div>
-               </div>
-           </div>   
-	</div>		
+					<div class="info">
+						<h2 id="med_header" class="header"></h2>
+						<table id="med" class="table">
+							<thead id="med_title"></thead>
+							<tbody id="med_body"></tbody>
+						</table>
+					</div>
+					
+					<div class="info">
+						<h2 id="adjust_pre_header" class="header"></h2>
+						<table id="adjust_pre" class="table">
+							<thead id="adjust_pre_title"></thead>
+							<tbody id="adjust_pre_body"></tbody>
+						</table>
+						
+					</div>
+                </div>
+            </div>   
+		</div>		
 
 <!-- footer -->
      <div>

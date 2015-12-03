@@ -16,24 +16,41 @@ String contextPath=request.getContextPath();
 <script src="<%=contextPath%>/resources/common/ajax.js"></script>
 <script src="<%=contextPath%>/resources/search/js/search_com.js"></script>
 <script src="<%=contextPath%>/resources/search/js/seniorsearch.js"></script>
-
 <!-- exlib -->
 <script src="<%=contextPath%>/resources/exlib/md5/md5.js"></script>
-<script src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
-<script src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
+<script
+	src="<%=contextPath%>/resources/search/js/bootstrap.min.js"></script>
+<script
+	src="<%=contextPath%>/resources/exlib/simple_pagination/jquery.simplePagination.js"></script>
+
 
 <!-- css -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel=stylesheet type=text/css href="<%=contextPath%>/resources/search/css/browse.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/exlib/bootstrap/css/bootstrap-responsive.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/search/css/common.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/search/css/index.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/search/css/SubHeadAndFoot_index.css">
+<link rel=stylesheet type=text/css
+	href="<%=contextPath%>/resources/search/css/fengleiliulang.css">
 </HEAD>
 
 <BODY onload="initClassify()">
 	<div class=top>
-	     <div>   
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
-		    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
-			<div id="common_nav">
+	     <div>
+	        
+
+    
+    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
+    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
+    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+	<div id="common_nav">
 			    <div class="cf" id="common_nav_L2">
 			        <ul>
 			            <li>
@@ -51,24 +68,42 @@ String contextPath=request.getContextPath();
 	     </div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
-				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></a></div>           
+				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A>
+	            </div>           
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
 
-	<div id="main-content">
-		<ul id="navlist" class="nav nav-tabs">
-		    <li><a href="#" id="classify_wordfrequency">按词频浏览</a></li>
-		 	<li><a href="#" id="classify_medicalclassify">按疾病分类浏览</a></li>
-		 	<li><a href="#" id="classify_discriminate">按辨证分类浏览</a></li>
-		 	<li><a href="#" id="classify_therapy">按治则和治法分类浏览</a></li>
-		</ul>
-	
-		<div>
-			<table id="main-table">
+
+	<div class="bg_heise">
+		<div class="clearfix">
+			<div class="imgFrame2">
+				<img src="<%=contextPath%>/resources/search/Images/2_08.png" />
+			</div>
+		</div>
+
+		<div class="UnderSearchBarTabs1">
+				<a id="href_A" href="<%=contextPath%>/index"></a> <a id="href_B" href="<%=contextPath%>/Browse"></a>
+				<a id="href_C" href="<%=contextPath%>/analysishome"></a>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="imgFrame3">
+			<div id="menu_flll">
+				<div id="navcontainer">
+					<ul id="navlist">
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="main-content">
+			<table id="mian-table">
 			</table>
    		</div>
-	</div>
+
 
 	<!-- footer -->
 	<div>
