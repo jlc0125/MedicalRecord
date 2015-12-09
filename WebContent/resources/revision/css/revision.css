@@ -1,0 +1,123 @@
+.logoSearch {
+	WIDTH: 100%;
+	HEIGHT: 93px;
+}
+
+.logoSearch_L2 {
+	MARGIN: auto;
+	width:960px
+}
+.logoSearch_L2 .logo {
+	FLOAT: left; 
+	PADDING-TOP: 18px; 
+	height:75px
+}
+
+#main-content{
+	font-family:"Microsoft YaHei";/* font-size:15px;text-align:center;*/ 
+	width:960px;
+	min-height:200px;
+	margin:auto;
+	margin-bottom:80px;
+	float:none
+}
+.clearfix:after { 
+	content:"."; 
+	display:block; 
+	height:0; 
+	clear:both; 
+	visibility:hidden
+	}
+.clearfix { 
+ 	*height:1%;
+ }
+ 
+#list { 
+ 	margin: 0 auto; 
+ 	text-align: left; 
+ 	width: 750px;
+ }
+.box { 
+ 	border-top: 1px solid #b2b1b1; 
+ 	position: relative;  
+ 	width: 750px; 
+ 	padding: 20px 0
+ }
+.box:hover .close { 
+	display: block;
+}
+
+.content { 
+	float: left; 
+	width: 730px; 
+	padding-left: 15px;
+}
+.main { 
+	margin-bottom: 10px;
+}
+.title { 
+	font-weight: bold; 
+	font-size:15px;
+}
+.txt { 
+	margin-bottom: 10px;
+}
+.user { 
+	color: #369;
+}
+.type{
+	font-size:14px;
+	color: #369;
+}
+.pic { 
+	margin-right: 5px; 
+	width: 200px; 
+	border: 1px solid #eee;
+}
+.info { 
+	height: 20px; 
+	line-height: 19px; 
+	font-size: 12px; 
+	margin: 0 0 10px 0;
+}
+.info .time { 
+	color: #ccc; 
+	float: left; 
+	height: 20px; 
+	padding-left: 20px;
+	 background: url("../Images/bg1.jpg") no-repeat left top;
+}
+.info .praise { 
+	color: #369; 
+	float: right; 
+	height: 20px; 
+	padding-left: 18px; 
+	/* background: url("Images/bg2.jpg") no-repeat left top; */
+}
+.info .praise:hover { 
+	text-decoration: underline; 
+	/* background: url("../Images/bg3.jpg") no-repeat left top; */
+}
+.info .dispraise { 
+	color: #369; 
+	float: right; 
+	height: 20px; 
+	padding-left: 18px; 
+	/* background: url("Images/bg2.jpg") no-repeat left top; */
+}
+.info .dispraise:hover { 
+	text-decoration: underline; 
+	/* background: url("../Images/bg4.jpg") no-repeat left top; */
+}
+/* .praises-total { 
+	margin: 0 0 10px 0; 
+	height: 20px; 
+	background: url("../Images/praise.png") no-repeat 5px 5px rgb(247, 247, 247); 
+	padding: 5px 0 5px 25px; 
+	line-height: 19px;
+} */
+.rs_pagincation{
+  text-align:center;
+  margin-bottom:20px;
+  padding-left:100px;
+}
