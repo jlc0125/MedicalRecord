@@ -18,12 +18,12 @@ public class PreAnalysisController {
 	
 	@RequestMapping()
 	public String preAnalysisPage(){
-		return "recordPreAnalysis";
+		return "record_pre_analysis";
 	}
 	
 	@RequestMapping("home")
 	public String homePage(){
-		return "preAnalysis";
+		return "pre_search";
 	}
 	
 	@RequestMapping("retval")

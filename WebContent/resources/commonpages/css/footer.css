@@ -1,35 +1,69 @@
 @CHARSET "UTF-8";
 
+.cf:before {
+	display: table; content: ""
+}
+.cf:after {
+	display: table; content: ""
+}
+.cf:after {
+	clear: both
+}
+.cf {
+	zoom: 1
+}
+.clearfix {
+	clear: both
+}
+
 .footer {
-	background-color: #333;
+	margin-top:10px;
+	background-color: transparent;
+	color: #626262;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	line-height: 18px;
 }
 .footer dd{
 	margin-left:0;
 }
 
+.footer a:link{
+	color: #626262;
+}
+
+.footer a:visited{
+	color: #626262;
+}
+
 .footer_L2 {
 	margin: auto;
 	width: 960px;
-	color: #898989;
-	padding-top: 32px
+	/*color: #898989;*/
+	padding-top: 20px;
+	border-top: #555 1px solid;
 }
 
 .footer_L2 A {
-	color: #898989;
+	/*color: #898989;*/
 	text-decoration: none;
 }
 
 .footer_L2 A:hover {
-	color: #fff
+	/*color: #fff*/
+	color: #9d752a;
 }
 
 .footer_about {
-	margin-bottom: 20px
+	margin-bottom: 20px;
 }
 
 .footer_about DL {
-	width: 200px;
-	margin-right: 8px;
+	width: 100px;
+}
+
+.dlLeft:not(#dlLeft-first){
+	margin-left: 180px;
 }
 
 .footer_about .dlLeft {
@@ -114,7 +148,9 @@
 
 .footer_copy_right P {
 	text-align: right;
-	line-height: 21px
+	line-height: 21px;
+	margin: auto auto auto;
+	padding-bottom: 0px;
 }
 
 .footer_copy .join A {

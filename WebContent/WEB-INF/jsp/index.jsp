@@ -20,6 +20,7 @@ String contextPath=request.getContextPath();
 
 <!-- css -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/search/css/browse.css">
 <link href="<%=contextPath%>/resources/carousel.css" rel="stylesheet">
 
 <style type="text/css">
@@ -28,6 +29,9 @@ String contextPath=request.getContextPath();
   }
   .img-title{
     text-align: center;
+  }
+  .function-image{
+    cursor: pointer;
   }
 </style>
 
@@ -87,7 +91,7 @@ String contextPath=request.getContextPath();
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="<%=contextPath%>/resources/search/Images/newPic/search-bg.jpg"/>
+          <img class="function-image" name="search" src="<%=contextPath%>/resources/search/Images/newPic/search-bg.jpg"/>
           <div class="container">
             <div class="carousel-caption">
               <h1>医案搜索</h1>
@@ -95,7 +99,7 @@ String contextPath=request.getContextPath();
           </div>
         </div>
         <div class="item">
-          <img id="search" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
+          <img class="function-image" name="browse" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
           <div class="container">
             <div class="carousel-caption">
               <h1>分类浏览</h1>
@@ -103,7 +107,7 @@ String contextPath=request.getContextPath();
           </div>
         </div>
         <div class="item">
-          <img src="<%=contextPath%>/resources/search/Images/newPic/analysis-bg.jpg"/>
+          <img class="function-image" name="recipehome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-bg.jpg"/>
           <div class="container">
             <div class="carousel-caption">
               <h1>医案分析</h1>
@@ -111,7 +115,7 @@ String contextPath=request.getContextPath();
           </div>
         </div>
         <div class="item">
-          <img src="<%=contextPath%>/resources/search/Images/newPic/read-bg.jpg"/>
+          <img class="function-image" name="book" src="<%=contextPath%>/resources/search/Images/newPic/read-bg.jpg"/>
           <div class="container">
             <div class="carousel-caption">
               <h1>医书阅读</h1>
@@ -135,17 +139,16 @@ String contextPath=request.getContextPath();
       <div class="row">
         <div class="col-lg-3">
           <img class="img-circle function-image" name="search" src="<%=contextPath%>/resources/search/Images/newPic/search-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
-          <h2 class="img-title">医案搜索</h2>
-          
-          
+          <h2 class="img-title">医案搜索</h2> 
         </div><!-- /.col-lg-3 -->
+
         <div class="col-lg-3">
           <img class="img-circle function-image" name="browse" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
           <h2 class="img-title">分类浏览</h2>
           
         </div><!-- /.col-lg-3 -->
         <div class="col-lg-3">
-          <img class="img-circle function-image" name="analysishome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle function-image" name="recipehome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
           <h2 class="img-title">医案分析</h2>
           
         </div><!-- /.col-lg-3 -->
@@ -204,78 +207,111 @@ String contextPath=request.getContextPath();
 
 
     </div><!-- /.container -->
-    <!-- footer -->
-     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
+
+<!-- 统计信息 -->
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push([ 'trackPageView' ]);
+  _paq.push([ 'enableLinkTracking' ]);
+  (function() {
+    var u = (("https:" == document.location.protocol) ? "https" : "http")
+        + "://www.ckcest.zju.edu.cn/piwik//";
+    _paq.push([ 'setTrackerUrl', u + 'piwik.php' ]);
+    _paq.push([ 'setSiteId', 1 ]);
+    var d = document, g = d.createElement('script'), s = d
+        .getElementsByTagName('script')[0];
+    g.type = 'text/javascript';
+    g.defer = true;
+    g.async = true;
+    g.src = u + 'piwik.js';
+    s.parentNode.insertBefore(g, s);
+  })();
+
+</script>
+<noscript><p><img src="http://www.ckcest.zju.edu.cn/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+
+    <noscript><p><img src="http://www.ckcest.zju.edu.cn/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+    
+    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">
            <div class=footer_L2>
                <div class="footer_about cf">
-                   <dl class=dlLeft>
-                       <dt>中草药专业知识服务系统</dt>
+               
+                   <dl class=dlLeft id="dlLeft-first">
+                       <dt>法律声明</dt>
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">关于我们</a>
+                           <a href="${initParam.base}/user/agreementpage" rel="nofollow" target="_blank">注册服务条款</a>
                        </dd>
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">加入我们</a>
-                       </dd>
-                       <dd>
-                           <a href="" target="_blank">网站地图</a>
+                           <a href="${initParam.base}/" target="_blank">首页</a>
                        </dd>
                    </dl>
 
                    <dl class=dlLeft>
-                       <dt>服务与支持</dt>
+                       <dt>帮助中心</dt>
                        <dd>
-                           <a href="/tcm/user/agreementpage" rel="nofollow" target="_blank">注册服务条款</a>
+                           <a href="javascript:window.open('${initParam.base}/user/FAQ')" rel="nofollow" target="_blank">常见问题</a>
                        </dd>
                        <dd>
-                           <a href="/tcm/user/feedback" rel="nofollow" target="_blank">意见反馈</a>
+                           <a href="${initParam.base}/user/getmanual" rel="nofollow" target="_blank">操作指南</a>
                        </dd>
+                       <!-- 
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">版权申明</a>
+                           <a href="" target="_blank">版权申明</a>
                        </dd>
+                       -->
                    </dl>
 
                    <dl class=dlLeft>
-                       <dt>用户中心</dt>
+                       <dt>支持我们</dt>
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">常见问题</a>
+                           <a href="${initParam.base}/user/feedback" rel="nofollow" target="_blank">意见反馈</a>
                        </dd>
                        <dd>
-                           <a href="/tcm/user/loginpage" rel="nofollow" target="_blank">登录</a>
-                           <a href="/tcm/user/registerpage" rel="nofollow" target="_blank">注册</a>
+                           <a href="${initParam.base}/user/join_us" rel="nofollow" target="_blank">加入我们</a>
                        </dd>
                    </dl>
 
 
                    <dl class="dlLeft">
-                       <dt>联系我们</dt>
-                       <dd>邮政信箱：北京8068信箱</dd>
+                       <!-- <dd>邮政信箱：北京8068信箱</dd>
                        <dd>邮编：100088</dd>
-                       <dd>服务热线：010-0000000</dd>
+                       <dd>服务热线：010-0000000</dd> -->
+                       <dt>关于我们</dt>
+                       <dd  class="aboutus-item"><a href="javascript:void(0);" class="#">项目简介</a></dd>
+                       <dd  class="aboutus-item"><a href="javascript:void(0);" class="#contact_us">联系我们</a></dd>
                    </dl>
                </div>
 
                <div class=footer_links>
                    <span class=footer_links_title>友情链接：</span> 
                    <span class=footer_links_list> 
-                       <a href="" target="_blank">药典</a> 
-                       <a href="" target="_blank">中医论坛</a> 
-                       <a href="" target="_blank">中草药知识库</a>
-                       <a href="" target="_blank">中医养生</a> 
-                       <a href="" target="_blank">方剂库</a>
-                       <a href="" target="_blank">药剂库</a> 
-                       <a href="" target="_blank">中药知识大全</a>
+                       <a href="http://www.cae.cn/cae/html/main/index.html" target="_blank">中国工程院</a> 
+                       <a href="http://www.satcm.gov.cn/" target="_blank">国家中医药管理局</a>
+                       <a href="http://www.catcm.ac.cn/" target="_blank">中国中医科学院</a> 
+                       <a href="http://www.sfda.gov.cn/WS01/CL0001/" target="_blank">国家食品药品监督管理总局</a>
+                       <a href="http://www.cma.org.cn/" target="_blank">中华医学会</a> 
                    </span>
                </div>
-
+               
                <div class=footer_copy>
                    <div class=footer_copy_right>
                        <p>地址：北京市西城区冰窖口胡同2号</p>
-                       <p>Copyright ? 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
+                       <p>Copyright © 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
+                       <p><a href="http://www.imicams.ac.cn/" target="_blank">中国医学科学院医学信息研究所</a>创办并维护</p>
                    </div>
                </div>
+               
+               <script type="text/javascript">
+          $('.aboutus-item').click(function(){
+            window.open("${initParam.base}/user/aboutuspage"+$(this).children().first().attr("class"));
+          })
+        </script>
+               
            </div>
        </div>
-	</div>
 </body>
 </html>

@@ -130,7 +130,7 @@ String contextPath=request.getContextPath();
 			var title="";
 			title+="<h2>"+data.recordTitle+"</h2>";
 			$("#doctor").html(doctor);
-			$("#title").html(title);
+			$("#title").prepend(title);
 			$("#content").html(body);
 			$("#reference").html(reference);
 			
@@ -210,36 +210,209 @@ String contextPath=request.getContextPath();
 		function getSimRecordsError(){
 			alert("getSimRecordsError");
 		}
+
+
+
+
+        //revision
+        $(function(){
+            
+            function showBombBox(){
+               
+                var height = $("body").height();
+                $(".mask").css("height",height);
+                $(".mask").show();
+                $(".bomb-box").show();
+                
+            }
+
+            function hideBombBox(){
+                $(".bomb-box").hide();
+                $(".mask").hide();
+            }
+
+            $(".revision-span").click(function(){
+               
+                showBombBox();
+                $("body").click(function(event){
+                    var toElement = event.toElement;
+                    if(toElement == $(".revision-span")[0]){
+                        return;
+                    }
+                
+                    var x = event.clientX;
+                    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+                    var y = event.clientY + scrollY;
+                    var top = $(".bomb-box").offset().top;
+                    var left = $(".bomb-box").offset().left;
+                    var width = $(".bomb-box").width();
+                    var height = $(".bomb-box").height();
+                    // console.log([x,y,top,left,width,height]);
+                    if(x < left || y < top || x > left + width || y > top + height){
+                        hideBombBox();
+                        $("body").unbind();
+                    }
+                })
+
+            });
+            
+            
+
+
+            $(".revision-btn").click(function(){
+                hideBombBox();
+                var id = getUrlParam("recordId");
+                var title = $(".rec-adivise-div input").val();
+                var comment = $(".rec-comment-div textarea").val();
+                dataJson = {
+                    t : title,
+                    c: comment,
+                    id : id
+                }
+
+                url = "revision/record_title";
+                $.ajax({
+                  type: "GET",
+                  url: url,
+                  data: dataJson,
+                  success: successCB,
+                  error: errorCB,
+                  dataType:"text"
+                });
+            })
+
+            function successCB(data){
+                console.log("success");
+            }
+
+            function errorCB(){
+                alert("revision error");
+            }
+
+        })
+
+
+
+
+
+
 		</script>
 		
 		
 		
 						
 	</head>
+
+    <style type="text/css">
+        .revision-span{
+            cursor: pointer;
+        }
+        .mask{
+            display:none;
+            width:100%;
+            position:absolute;
+            background:black;
+            z-index:10;
+            top:0;
+            left:0;
+            opacity:0.4;
+        }
+
+        .bomb-box {
+            display:none;
+            background:#fff;
+            position:absolute;
+            top:320px;
+            left:500px;
+            z-index:20;
+            width:800px;
+            height:600px;
+            background: aliceblue;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .revision-advise{
+            text-align: center;padding-top: 3%;
+        }
+
+        .rec-advise-div{
+            height: 20%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+        }
+        .rec-advise-div p{
+            font-size:20px;
+        }
+
+        .rec-advise-div input{
+            width: 80%;
+            margin-left: 10%;
+            height: 50%;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .rec-comment-div{
+            height: 40%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+        }
+
+        .rec-comment-div p{
+            font-size:20px;
+        }
+
+        .rec-comment-div textarea{
+            width: 80%;  
+            margin-left: 10%;
+            height: 65%;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+    </style>
+
+
 	<body>
-	     <div>
+    	<div class="mask"></div>
+        <div class="bomb-box">
+            
+                <h2 class="revision-advise">信息反馈</h2>
+                <div class="rec-advise-div" >
+                    <p>推荐标题</p>
+                    <input>
+                </div>
+                <div class = "rec-comment-div">
+                    <p>推荐理由</p>
+                    <textarea></textarea>
+                </div>
+                <button class="btn btn-primary revision-btn" style="margin-left: 80%;">提交</button>
+
+            
+        </div>
 	        
 
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
-    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
-    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
-	<div id="common_nav">
-			    <div class="cf" id="common_nav_L2">
-			        <ul>
-			            <li>
-			                <a title="注册" href="http://zcy.ckcest.cn/tcm/user/registerpage" rel="nofollow">注册</a>
-			            </li>
-		                <li>
-		                    <a title="登录" href="http://zcy.ckcest.cn/tcm/user/loginpage" rel="nofollow">登录</a>
-		                </li>
-			            <li><a title="帮助中心" href="javascript:void(0);" rel="nofollow">帮助中心</a></li>
-			            <li><a title="知识中心首页" href="http://www.ckcest.cn" rel="nofollow">知识中心首页</a></li>
-			            <li><a class="current" title="中草药系统首页"  href="http://zcy.ckcest.cn/tcm/" rel="nofollow">中草药系统首页</a></li>
-			        </ul>
-			    </div>
-			</div>
-	     </div>
-	
+        <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
+        <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
+        <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+    	<div id="common_nav">
+		    <div class="cf" id="common_nav_L2">
+		        <ul>
+		            <li>
+		                <a title="注册" href="http://zcy.ckcest.cn/tcm/user/registerpage" rel="nofollow">注册</a>
+		            </li>
+	                <li>
+	                    <a title="登录" href="http://zcy.ckcest.cn/tcm/user/loginpage" rel="nofollow">登录</a>
+	                </li>
+		            <li><a title="帮助中心" href="javascript:void(0);" rel="nofollow">帮助中心</a></li>
+		            <li><a title="知识中心首页" href="http://www.ckcest.cn" rel="nofollow">知识中心首页</a></li>
+		            <li><a class="current" title="中草药系统首页"  href="http://zcy.ckcest.cn/tcm/" rel="nofollow">中草药系统首页</a></li>
+		        </ul>
+		    </div>
+		</div>
 		
 		
 		<div class="sub_nav_bg">
@@ -266,6 +439,7 @@ String contextPath=request.getContextPath();
 					<div class="span12">
 						<div id="content_container" class="container-fluid">
 							<div id="title">
+                               <span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%">标题有错误？</span>
 							</div>
 							<div id="doctor">
 							</div>
@@ -285,79 +459,111 @@ String contextPath=request.getContextPath();
 		
 
 <!-- footer -->
-     <div>
-	
+     <!-- 统计信息 -->
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push([ 'trackPageView' ]);
+  _paq.push([ 'enableLinkTracking' ]);
+  (function() {
+    var u = (("https:" == document.location.protocol) ? "https" : "http")
+        + "://www.ckcest.zju.edu.cn/piwik//";
+    _paq.push([ 'setTrackerUrl', u + 'piwik.php' ]);
+    _paq.push([ 'setSiteId', 1 ]);
+    var d = document, g = d.createElement('script'), s = d
+        .getElementsByTagName('script')[0];
+    g.type = 'text/javascript';
+    g.defer = true;
+    g.async = true;
+    g.src = u + 'piwik.js';
+    s.parentNode.insertBefore(g, s);
+  })();
+
+</script>
+<noscript><p><img src="http://www.ckcest.zju.edu.cn/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+
+    <noscript><p><img src="http://www.ckcest.zju.edu.cn/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+    
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/footer.css"></link>
     <div class="footer" style="margin-bottom:0px;">
            <div class=footer_L2>
                <div class="footer_about cf">
-                   <dl class=dlLeft>
-                       <dt>中草药专业知识服务系统</dt>
+               
+                   <dl class=dlLeft id="dlLeft-first">
+                       <dt>法律声明</dt>
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">关于我们</a>
+                           <a href="${initParam.base}/user/agreementpage" rel="nofollow" target="_blank">注册服务条款</a>
                        </dd>
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">加入我们</a>
-                       </dd>
-                       <dd>
-                           <a href="" target="_blank">网站地图</a>
+                           <a href="${initParam.base}/" target="_blank">首页</a>
                        </dd>
                    </dl>
 
                    <dl class=dlLeft>
-                       <dt>服务与支持</dt>
+                       <dt>帮助中心</dt>
                        <dd>
-                           <a href="/tcm/user/agreementpage" rel="nofollow" target="_blank">注册服务条款</a>
+                           <a href="javascript:window.open('${initParam.base}/user/FAQ')" rel="nofollow" target="_blank">常见问题</a>
                        </dd>
                        <dd>
-                           <a href="/tcm/user/feedback" rel="nofollow" target="_blank">意见反馈</a>
+                           <a href="${initParam.base}/user/getmanual" rel="nofollow" target="_blank">操作指南</a>
                        </dd>
+                       <!-- 
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">版权申明</a>
+                           <a href="" target="_blank">版权申明</a>
                        </dd>
+                       -->
                    </dl>
 
                    <dl class=dlLeft>
-                       <dt>用户中心</dt>
+                       <dt>支持我们</dt>
                        <dd>
-                           <a href="" rel="nofollow" target="_blank">常见问题</a>
+                           <a href="${initParam.base}/user/feedback" rel="nofollow" target="_blank">意见反馈</a>
                        </dd>
                        <dd>
-                           <a href="/tcm/user/loginpage" rel="nofollow" target="_blank">登录</a>
-                           <a href="/tcm/user/registerpage" rel="nofollow" target="_blank">注册</a>
+                           <a href="${initParam.base}/user/join_us" rel="nofollow" target="_blank">加入我们</a>
                        </dd>
                    </dl>
 
 
                    <dl class="dlLeft">
-                       <dt>联系我们</dt>
-                       <dd>邮政信箱：北京8068信箱</dd>
+                       <!-- <dd>邮政信箱：北京8068信箱</dd>
                        <dd>邮编：100088</dd>
-                       <dd>服务热线：010-0000000</dd>
+                       <dd>服务热线：010-0000000</dd> -->
+                       <dt>关于我们</dt>
+                       <dd  class="aboutus-item"><a href="javascript:void(0);" class="#">项目简介</a></dd>
+                       <dd  class="aboutus-item"><a href="javascript:void(0);" class="#contact_us">联系我们</a></dd>
                    </dl>
                </div>
 
                <div class=footer_links>
                    <span class=footer_links_title>友情链接：</span> 
                    <span class=footer_links_list> 
-                       <a href="" target="_blank">药典</a> 
-                       <a href="" target="_blank">中医论坛</a> 
-                       <a href="" target="_blank">中草药知识库</a>
-                       <a href="" target="_blank">中医养生</a> 
-                       <a href="" target="_blank">方剂库</a>
-                       <a href="" target="_blank">药剂库</a> 
-                       <a href="" target="_blank">中药知识大全</a>
+                       <a href="http://www.cae.cn/cae/html/main/index.html" target="_blank">中国工程院</a> 
+                       <a href="http://www.satcm.gov.cn/" target="_blank">国家中医药管理局</a>
+                       <a href="http://www.catcm.ac.cn/" target="_blank">中国中医科学院</a> 
+                       <a href="http://www.sfda.gov.cn/WS01/CL0001/" target="_blank">国家食品药品监督管理总局</a>
+                       <a href="http://www.cma.org.cn/" target="_blank">中华医学会</a> 
                    </span>
                </div>
-
+               
                <div class=footer_copy>
                    <div class=footer_copy_right>
                        <p>地址：北京市西城区冰窖口胡同2号</p>
-                       <p>Copyright ? 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
+                       <p>Copyright © 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
+                       <p><a href="http://www.imicams.ac.cn/" target="_blank">中国医学科学院医学信息研究所</a>创办并维护</p>
                    </div>
                </div>
+               
+               <script type="text/javascript">
+          $('.aboutus-item').click(function(){
+            window.open("${initParam.base}/user/aboutuspage"+$(this).children().first().attr("class"));
+          })
+        </script>
+               
            </div>
        </div>
-     </div>
 
-</BODY></HTML>
+</body>
+</html>
