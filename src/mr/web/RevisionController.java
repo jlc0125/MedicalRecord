@@ -45,8 +45,9 @@ public class RevisionController {
 		revisionService.addRevision(revision);
 	}
 	
-	@RequestMapping(value="/revision")
+	@RequestMapping(value="")
 	public String browsePage(){
+		System.out.println("ok............................");
 		return "revisionList";
 	}
 	

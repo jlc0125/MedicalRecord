@@ -85,7 +85,7 @@ function initRevision(){
 
 	var data = JSON.stringify(dataJson);
 	var methodType = "POST";
-	var url = "./revisionlist";
+	var url = "./revision/revisionlist";
 	var contentType = "application/json;charset=utf-8";
 
 	ajaxFunc(methodType, url, data, contentType, getRevisionSuccessCB, getRevisionErrorCB);
@@ -176,7 +176,7 @@ function setAgree(newTotal,rvsId){
 
 	var data = JSON.stringify(dataJson);
 	var methodType = "POST";
-	var url = "./setagree?agree="+newTotal+"&id="+rvsId;
+	var url = "./revision/setagree?agree="+newTotal+"&id="+rvsId;
 	var contentType = "text";
 
 	ajaxFunc(methodType, url, data, contentType,setAgreeSuccessCB, setAgreeErrorCB);
@@ -197,7 +197,7 @@ function setDisagree(newTotal,rvsId){
 
 	var data = JSON.stringify(dataJson);
 	var methodType = "POST";
-	var url = "./setdisagree?disagree="+newTotal+"&id="+rvsId;
+	var url = "./revision/setdisagree?disagree="+newTotal+"&id="+rvsId;
 	var contentType = "text";
 
 	ajaxFunc(methodType, url, data, contentType,setDisagreeSuccessCB, setDisagreeErrorCB);

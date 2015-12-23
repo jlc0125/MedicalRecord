@@ -62,8 +62,8 @@ String contextPath=request.getContextPath();
 			<div class="box clearfix">
 				<div class="content">
 					<div class="main">
-						<p class="title">339#麻黄治愈阳虚</p>
-						<p class="txt">“xx治愈xx”这个医案不属于阴虚，属于阳虚。</p>
+						<p class="title"><span class="id">ID:1&nbsp;</span>339#麻黄治愈阳虚</p>
+						<p class="txt">“麻黄治愈阴虚”这个医案不属于阴虚，属于阳虚。</p>
 						<p class="type">
 							类型: <span class="typename">医案标题修改</span>
 						</p>
@@ -85,8 +85,8 @@ String contextPath=request.getContextPath();
 			<div class="box clearfix">
 				<div class="content">
 					<div class="main">
-						<p class="title">医书阅读的功能很好</p>
-						<p class="txt">医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好</p>
+						<p class="title"><span class="id">ID:2&nbsp;</span>麻黄/阴虚</p>
+						<p class="txt">麻黄不能治疗阴虚</p>
 						<p class="type">
 							类型: <span class="typename">相关关系删除</span>
 						</p>
@@ -107,10 +107,10 @@ String contextPath=request.getContextPath();
 			<div class="box clearfix">
 				<div class="content">
 					<div class="main">
-						<p class="title">医书阅读的功能很好</p>
-						<p class="txt">医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好医书阅读的功能很好</p>
+						<p class="title"><span class="id">ID:3&nbsp;</span>医案分类错了</p>
+						<p class="txt">“六君子汤治愈发热恶寒”没有表里辨证</p>
 						<p class="type">
-							类型: <span class="typename">相关关系删除</span>
+							类型: <span class="typename">医案分类错误</span>
 						</p>
 					</div>
 					<div class="info clearfix">

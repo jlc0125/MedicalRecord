@@ -49,7 +49,7 @@ public class ClassifyBrowseController {
 	
 	@RequestMapping(value="result")
 	public String searchPage(){
-		return "searchResult";
+		return "record_search_result";
 	}
 
 }
