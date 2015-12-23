@@ -51,5 +51,5 @@ public class ClassifyBrowseController {
 	public String searchPage(){
 		return "searchResult";
 	}
-	
+
 }

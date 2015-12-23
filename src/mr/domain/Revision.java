@@ -3,23 +3,26 @@ package mr.domain;
 import java.util.Date;
 
 public class Revision {
-	private long id;
-	private int type;
+	private int revisionId;
+	private int revisionType;
 	private String advise;
 	private String comment;
+	private int agree;
+	private int disagree;
 	private int state;
 	private Date createDate;
-	public long getId() {
-		return id;
+
+	public int getRevisionId() {
+		return revisionId;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setRevisionId(int revisionId) {
+		this.revisionId = revisionId;
 	}
-	public int getType() {
-		return type;
+	public int getRevisionType() {
+		return revisionType;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setRevisionType(int revisionType) {
+		this.revisionType = revisionType;
 	}
 	public String getAdvise() {
 		return advise;
@@ -33,6 +36,20 @@ public class Revision {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	public int getAgree() {
+		return agree;
+	}
+	public void setAgree(int agree) {
+		this.agree = agree;
+	}
+	public int getDisagree() {
+		return disagree;
+	}
+	public void setDisagree(int disagree) {
+		this.disagree = disagree;
+	}
+
 	public int getState() {
 		return state;
 	}
@@ -45,6 +62,4 @@ public class Revision {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	
-
 }
