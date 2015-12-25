@@ -290,7 +290,10 @@
 					search(query,option);
 				}
 			})
-
+			
+ 			$(".fenxi").on("click", function(){
+			    window.location.href="/MedicalRecord/" + $(this).attr("name");;
+			}) 
 
         });
 	</script>
@@ -318,14 +321,32 @@
 	</div>
 	<div class="col-md-2" stype="height:100%">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation">
-				<div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=方剂分析');height:233px"></div>
+			<li>
+				<!-- <div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=方剂分析');height:233px"></div> -->
+				<figure class="fenxi" name="recipehome">
+					<img src="/MedicalRecord/resources/image/icon/fjfx.jpg">
+					<figcaption>
+						<h2>方剂分析</h2>
+					</figcaption>
+				</figure>
 			</li>
-			<li role="presentation" class="active">
-				<div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=中药分析');height:233px"></div>
+			<li>
+				<!-- <div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=中药分析');height:233px"></div> -->
+				<figure class="fenxi" name="drughome">
+					<img src="/MedicalRecord/resources/image/icon/zyfx.jpg">
+					<figcaption>
+						<h2>中药分析</h2>
+					</figcaption>
+				</figure>
 			</li>
-			<li role="presentation" class="active">
-				<div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=疾病分析');height:233px"></div>
+			<li class="active">
+				<!-- <div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=疾病分析');height:233px"></div> -->
+				<figure class="fenxi" name="symptomhome">
+					<img src="/MedicalRecord/resources/image/icon/jbfx.png">
+					<figcaption>
+						<h2>疾病分析</h2>
+					</figcaption>
+				</figure>
 			</li>
 		</ul>
 		

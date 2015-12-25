@@ -376,3 +376,58 @@ body {
 	width: 200px;
 	text-align: center;
 }
+
+
+/*
+*
+*add by lzr
+*
+*/
+figure{
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	height:240px;
+	cursor:pointer;
+}
+figcaption{
+	position:absolute;
+	top:0px;
+	left:0px;
+	color:#fff;
+	font-family:"微软雅黑";
+	font-size:20px;
+}
+figure img{
+	opacity:0.9;
+	transition:all 0.3s;
+}
+figcaption h2{
+	transition:all 0.3s;
+}
+.fenxi{
+	background:#000;
+}
+.fenxi figcaption {
+	padding:35%
+}
+.fenxi figcaption h2{
+	text-aligh:center;
+	transform:translate(-200px,0px)
+}
+.fenxi:hover figcaption h2{
+	transform:translate(0px,0px)
+}
+.fenxi:hover img{
+	transform:translate(-30px,0px);
+	opacity:0.5;
+}
+.active figure figcaption h2{
+	transform:translate(0px,0px)
+}
+.active figure img{
+	transform:translate(-30px,0px);
+	opacity:0.5;
+}
+
+
