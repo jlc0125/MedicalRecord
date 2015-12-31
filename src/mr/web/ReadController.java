@@ -17,7 +17,7 @@ public class ReadController {
 	@Autowired
 	private BookCommentService bcService;
 
-	@RequestMapping("")
+	@RequestMapping("/{bookId}")
 	public String readPage(){
 		return "test";
 	}

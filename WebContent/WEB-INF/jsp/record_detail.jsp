@@ -262,13 +262,14 @@ String contextPath=request.getContextPath();
             $(".revision-btn").click(function(){
                 hideBombBox();
                 var id = getUrlParam("recordId");
-                var title = $(".rec-adivise-div input").val();
+                var title = $(".rec-advise-div input").val();
                 var comment = $(".rec-comment-div textarea").val();
                 dataJson = {
                     t : title,
                     c: comment,
                     id : id
                 }
+                console.log(dataJson);
 
                 url = "revision/record_title";
                 $.ajax({
