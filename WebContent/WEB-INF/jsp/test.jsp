@@ -105,6 +105,14 @@ String contextPath=request.getContextPath();
 		    .short-comm dt{
 		    	font-weight: normal;!important
 		    }
+		    .book-type ul { list-style:none; }
+			.book-type ul li { float:left; display:inline; padding-left:29px;}
+			.book-type ul li a { float:left; display:inline;  }
+			.book-type:after{
+				clear:both;
+			}
+			.book-type ul li a.active,
+			.book-type ul li a:hover { color:#d91d2a;font-weight:bold; }
 		</style>
 
 
@@ -134,9 +142,24 @@ String contextPath=request.getContextPath();
 			
 		</div>
 
-    	
+    	<div class="basic-information">
+    		<div class="book-name col-md-6">
+					
+            </div>
+			<div class="book-type col-md-6">
+				<ul>
+                	<li><a id="pic" class="active" href="#">图片</a></li>
+                	<li><a id="text" href="#">文本</a></li>
+                	<li><a id="pic-text" href="#">图片&文本</a></li>
+            	</ul>
+            </div>
+    	</div>
+    	<div class="pic-board  showup">
 		<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
-			<div class="col-md-1"></div>
+			
+			<div class="col-md-1">
+				
+			</div>
 			<div class="col-md-8" style="">
 				<div id="flip" class="container" >
 									
@@ -187,6 +210,77 @@ String contextPath=request.getContextPath();
 			</div>
 			<div class="short-comm" style="overflow:auto;height:650px; margin-left:10%">
 			</div>
+		</div>
+		</div>
+		<div class="text-board " style="height:900px;display:none;min-width:">
+			<div class="col-md-2" ></div>
+			<div class="col-md-8" style="height:100%;">
+				<iframe id="text-book-iframe" src="http://zcy.ckcest.cn/DocAssist/learning/book#/book/59" width="100%" height="100%" frameborder="0"></iframe>
+			</div>
+			<div class="col-md-2" ></div>
+		</div>
+		<div class="pic-text-board" style="display:none;height:2500px;" >
+			<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
+			
+			<div class="col-md-1">
+				
+			</div>
+			<div class="col-md-8" style="">
+				<div id="flip" class="container" >
+									
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="catalog right-list">
+					<p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
+					<ol class="right-list-content" style="list-style-type:none; padding:0px">
+						<li class="odd"><a href="read?page=4">郁证</a></li>
+						<li class="even"><a href="read?page=17">瘀症</a></li>
+						<li class="odd"><a>厥证</a></li>
+						<li class="even"><a>脱症</a></li>
+						<li class="odd"><a>水肿</a></li>
+						<li class="even"><a>汗症</a></li>
+						<li class="odd"><a>痰饮</a></li>
+						<li class="even"><a>消渴</a></li>
+						<li class="odd"><a>积聚</a></li>
+						<li class="even"><a>虚劳</a></li>
+						<li class="odd"><a>内伤发热</a></li>
+						<li class="even"><a>麻木</a></li>
+						<li class="odd"><a>咳血</a></li>
+						<li class="even"><a>吐血</a></li>
+						<li class="odd"><a>衄血</a></li>
+						<li class="even"><a>下血</a></li>
+						<li class="odd"><a>溺血</a></li>
+						<li class="even"><a>便血</a></li>
+						<li class="odd"><a>尿血</a></li>
+						<li class="even"><a>紫斑</a></li>
+						<li class="odd"><a>痛痹</a></li>
+						<li class="even"><a></a></li>
+						<li class="odd"><a>臁疮</a></li>
+						<li class="even"><a>火热</a></li>
+						<li class="odd"><a>痰</a></li>
+						<li class="even"><a></a></li>
+						<li class="odd"><a>积块</a></li>
+						<li class="even"><a>虚损</a></li>
+
+
+					</ol>
+				</div>
+			</div>
+		</div>
+			<div class ="comm" style = "width:100%; border-top-style: solid">
+				<div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
+					<textarea class="comm-input" style="width:100%;height:100px"></textarea>
+					<button class="btn btn-primary comm-input-btn" style="margin-left: 96.5%" >评论</button>
+				</div>
+				<div class="short-comm" style="overflow:auto;height:650px; margin-left:10%">
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<iframe id="text-book-iframe" src="http://zcy.ckcest.cn/DocAssist/learning/book#/book/59" width="100%" height="700px" frameborder="0"></iframe>
+			</div>
+			<div class="col-md-2"></div>
 		</div>
 		<!-- footer -->
 		<!-- 统计信息 -->
@@ -337,7 +431,33 @@ String contextPath=request.getContextPath();
 			$(function(){
 				setLayout();
 				getComment();
-			})
+				$(".book-type a").click(function(){
+					$(".active").removeClass("active");
+					$(this).addClass("active");
+					var type = $(this).attr("id");
+					switch(type){
+					case "pic":
+						$(".showup").hide();
+						$(".showup").removeClass("showup");
+						$(".pic-board").show();
+						$(".pic-board").addClass("showup");
+						break;
+					case "text":
+						$(".showup").hide();
+						$(".showup").removeClass("showup");
+						$(".text-board").show();
+						$(".text-board").addClass("showup");
+						break;
+					case "pic-text":
+						$(".showup").hide();
+						$(".showup").removeClass("showup");
+						$(".pic-text-board").show();
+						$(".pic-text-board").addClass("showup");
+						break;
+					}
+					
+				})
+			});
 
 			window.onpopstate = function(event){
 				getComment();
