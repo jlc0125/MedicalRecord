@@ -1,4 +1,3 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -61,11 +60,11 @@ String contextPath=request.getContextPath();
 				</dd>
 			</dl>
 		</script>
-
+		
 		<script id="catalogTmpl" type="text/x-jquery-tmpl">
             <li style="{{= style}}"><a href="?page={{= pageNo}}">{{html title}}</a></li>
         </script>
-		
+        
 		<style type="text/css">
 			.right-list{
 				padding: 0 !important;
@@ -147,21 +146,21 @@ String contextPath=request.getContextPath();
 			
 		</div>
 
-    	<div class="basic-information">
-    		<div class="book-name col-md-6">
-					
+    	<div class="basic-information" style="height:70px">
+    		<div class="book-name col-md-6" style="text-align:center;">
+				<h2 id="book-title"></h2>
             </div>
-			<div class="book-type col-md-6">
+			<div class="book-type col-md-6" style="text-align:center;margin-top:40px">
 				<ul>
-                	<li><a id="pic" class="active" href="#">图片</a></li>
-                	<li><a id="text" href="#">文本</a></li>
-                	<li><a id="pic-text" href="#">图片&文本</a></li>
+                	<li><a id="pic" class="active" href="javascript:void(0);">图片</a></li>
+                	<li><a id="text" href="javascript:void(0);">文本</a></li>
+                	<li><a id="pic-text" href="javascript:void(0);">图片&文本</a></li>
             	</ul>
             </div>
     	</div>
     	<div class="pic-board  showup">
 		<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
-		<div class="col-md-3">
+			<div class="col-md-3">
                 <div class="catalog right-list">
                     <p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
                     <ol class="catalog-content right-list-content" style="list-style-type:none; padding:0px">
@@ -172,13 +171,15 @@ String contextPath=request.getContextPath();
                 </div>
             </div>
 			
-
 			<div class="col-md-8" style="">
 				<div id="flip" class="container" >
 									
 				</div>
 			</div>
-		
+			<div class="col-md-1">
+				
+			</div>
+		</div>
 		<div class ="comm" style = "width:100%; border-top-style: solid">
 			<div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
 				<textarea class="comm-input" style="width:100%;height:100px"></textarea>
@@ -191,57 +192,30 @@ String contextPath=request.getContextPath();
 		<div class="text-board " style="height:900px;display:none;min-width:">
 			<div class="col-md-2" ></div>
 			<div class="col-md-8" style="height:100%;">
-				<iframe id="text-book-iframe" src="http://zcy.ckcest.cn/DocAssist/learning/book#/book/59" width="100%" height="100%" frameborder="0"></iframe>
+				<iframe id="text-book-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
 			</div>
 			<div class="col-md-2" ></div>
 		</div>
 		<div class="pic-text-board" style="display:none;height:2500px;" >
 			<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
-			
-			<div class="col-md-1">
-				
-			</div>
+			<div class="col-md-3">
+                <div class="catalog right-list">
+                    <p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
+                    <ol class="catalog-content right-list-content" style="list-style-type:none; padding:0px">
+                        
+
+
+                    </ol>
+                </div>
+            </div>
+
 			<div class="col-md-8" style="">
 				<div id="flip" class="container" >
 									
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="catalog right-list">
-					<p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
-					<ol class="right-list-content" style="list-style-type:none; padding:0px">
-						<li class="odd"><a href="read?page=4">郁证</a></li>
-						<li class="even"><a href="read?page=17">瘀症</a></li>
-						<li class="odd"><a>厥证</a></li>
-						<li class="even"><a>脱症</a></li>
-						<li class="odd"><a>水肿</a></li>
-						<li class="even"><a>汗症</a></li>
-						<li class="odd"><a>痰饮</a></li>
-						<li class="even"><a>消渴</a></li>
-						<li class="odd"><a>积聚</a></li>
-						<li class="even"><a>虚劳</a></li>
-						<li class="odd"><a>内伤发热</a></li>
-						<li class="even"><a>麻木</a></li>
-						<li class="odd"><a>咳血</a></li>
-						<li class="even"><a>吐血</a></li>
-						<li class="odd"><a>衄血</a></li>
-						<li class="even"><a>下血</a></li>
-						<li class="odd"><a>溺血</a></li>
-						<li class="even"><a>便血</a></li>
-						<li class="odd"><a>尿血</a></li>
-						<li class="even"><a>紫斑</a></li>
-						<li class="odd"><a>痛痹</a></li>
-						<li class="even"><a></a></li>
-						<li class="odd"><a>臁疮</a></li>
-						<li class="even"><a>火热</a></li>
-						<li class="odd"><a>痰</a></li>
-						<li class="even"><a></a></li>
-						<li class="odd"><a>积块</a></li>
-						<li class="even"><a>虚损</a></li>
-
-
-					</ol>
-				</div>
+			<div class="col-md-1">
+				
 			</div>
 		</div>
 			<div class ="comm" style = "width:100%; border-top-style: solid">
@@ -254,7 +228,7 @@ String contextPath=request.getContextPath();
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<iframe id="text-book-iframe" src="http://zcy.ckcest.cn/DocAssist/learning/book#/book/59" width="100%" height="700px" frameborder="0"></iframe>
+				<iframe id="text-book-iframe" src="" width="100%" height="700px" frameborder="0"></iframe>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -367,7 +341,7 @@ String contextPath=request.getContextPath();
 		
 		<script type="text/javascript">
 			
-			function getBook(){
+	function getBook(){
                 var currUrl = window.location.href;
                 var tmpList = currUrl.split('?')[0].split('/')
                 var bookId = tmpList[tmpList.length - 1]
@@ -417,8 +391,18 @@ String contextPath=request.getContextPath();
 				}
 				$container.flips({bookId:bookId, pagesCount:pageNum, current: page , batchSize:20});
 			}
+
+
+
+			// var $container 	= $( '#flip' );
+			// $container.flips({pagesCount:100, nextPage:0, batchSize:20});
+
+			// $container.on("DOMSubtreeModified",setLayout);
 				
 			$(function(){
+				var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
+				var daId = window.History.getState().url.queryStringToJSON().da_id;
+				var textBookSrc = textBookpre+daId;
 				setLayout();
 				getComment();
 				$(".book-type a").click(function(){
@@ -446,7 +430,31 @@ String contextPath=request.getContextPath();
 						break;
 					}
 					
-				})
+				});
+				var type = window.History.getState().url.queryStringToJSON().type;
+				switch(type){
+				case 1:
+					$("pic").click();
+					$("#text").unbind();
+					$("#text").css("color","gray");
+					$("#pic-text").unbind();
+					$("#pic-text").css("color","gray");
+					break;
+				case 2:
+					$("#text-book-iframe").attr("src",textBookSrc);
+					$("#text").click();
+					$("#pic").unbind();
+					$("#pic").css("color","gray");
+					$("#pic-text").unbind();
+					$("#pic-text").css("color","gray");
+					break;
+				case 3:
+					$("#pic-text").click();
+					break;
+				}
+				var bookTitle = getUrlParam("title");
+				bookTitle = decodeURI(bookTitle);
+				$("#book-title").html(bookTitle);
 			});
 
 			window.onpopstate = function(event){
@@ -460,7 +468,7 @@ String contextPath=request.getContextPath();
 					page : parseInt(window.History.getState().url.queryStringToJSON().page)
 				}
 
-				url = "read/get_comment";
+				url = "get_comment";
 				$.ajax({
 				  type: "GET",
 				  url: url,
@@ -477,7 +485,7 @@ String contextPath=request.getContextPath();
 					data.forEach(function(record){
 						comment = {
 							userName: "内测用户",
-							userProfile: "resources/profile/1.jpg",
+							userProfile: "/MedicalRecord/resources/profile/1.jpg",
 							content: record.content
 						}
 
@@ -499,7 +507,7 @@ String contextPath=request.getContextPath();
 					page : parseInt(window.History.getState().url.queryStringToJSON().page)
 				}
 
-				url = "read/post_comment";
+				url = "post_comment";
 				$.ajax({
 				  type: "POST",
 				  url: url,
@@ -521,9 +529,14 @@ String contextPath=request.getContextPath();
 			}
 
 			$(".comm-input-btn").on("click",postComment);
-			
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+				var r = window.location.search.substr(1).match(reg); // 匹配目标参数
+				if (r != null)
+					return r[2];
+				return null; // 返回参数值
+			}
 				
 		</script>
     </body>
-
 </html>
