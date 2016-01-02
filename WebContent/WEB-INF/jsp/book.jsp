@@ -16,6 +16,7 @@ String contextPath=request.getContextPath();
 	<!-- js -->
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/MedicalRecord/resources/test/js/jquery.tmpl.min.js"></script>
 	<!-- exlib -->
 	
 	<!-- css -->
@@ -43,10 +44,78 @@ String contextPath=request.getContextPath();
 			padding: 10px;
 			font-size: 0;
 		}
-		.hglpic{}
 	</style>
-		
-		
+
+    <script id="bookTmpl" type="text/x-jquery-tmpl">
+          <div class="product" style="width:150px;float:left;">
+                <div class="product-iWrap" style="width:150px;float:left;">
+                    <!--Image-->
+                    <div class="hglpic">
+                        <a href="read/{{= id}}?page=0" target="_blank" style="color:#0064A9;">
+                            <abbr title="点击查看图书">
+                                <img class="bookimg" src="<%=contextPath%>/resources/book/{{= id}}/cover.jpg" alt="Loading failure">
+                            </abbr>
+                        </a>
+                    </div>
+
+                    <!--Title-->
+                    <p class="productTitle" style="text-align:left;margin-left:6px;margin-right:6px;">
+                    <a href="read/{{= id}}?page=0" target="_blank" style="color:#0064A9;">
+                        <abbr title="{{= title}}">{{= title}}</abbr>
+                    </a>
+                    </p>
+
+                    <!--Author-->
+                    <p class="productAuthor" style="text-align:left;margin-left:6px;margin-right:6px;">
+                    <span style="display:inline-block;TEXT-ALIGN:left;" onmouseover="this.className='authorEffect'" onmouseout="this.className=''">
+                        <font size="2">
+                            <abbr title="{{= author}}">{{= author}}</abbr>
+                        </font>
+                    </span>
+                    </p>
+
+                    <!--Press-->
+                    <p class="productPress" style="text-align:left;margin-left:6px;margin-right:6px;">
+                    <span style="display:inline-block;text-align:left; "> 
+                        <font size="2">
+                            <abbr title="{{= publisher}}">{{= publisher}}</abbr>
+                        </font>
+                    </span>
+                    </p>
+                </div>
+            </div>
+    </script>
+	
+	
+    <script type="text/javascript">
+        function getBook(){
+                url = "/MedicalRecord/book/get_all";
+                $.ajax({
+                  type: "GET",
+                  url: url,
+                  data: {},
+                  success: successCB,
+                  error: errorCB,
+                  dataType:"text"
+                });
+
+                function successCB(data){
+                    data=eval('(' + data + ')');
+                    for(var i = 0; i < data.length; i++){
+                        $('#bookTmpl').tmpl(data[i]).appendTo($('.view'));
+                    }
+                }
+
+                function errorCB(){
+                    console.log("get book error");
+                }
+            }
+
+        $(function(){
+            getBook()
+        })
+
+    </script>
 </head>
 
 <BODY>
@@ -75,157 +144,6 @@ String contextPath=request.getContextPath();
 
 	<div class="container" style="min-height:700px">
 		<div class="view" style="margin-bottom:40px;width:1006px;background-color:white;float:left;">
-			<div class="product" style="width:150px;float:left;">
-				<div class="product-iWrap" style="width:150px;float:left;">
-					<!--Image-->
-					<div class="hglpic">
-						<a href="read?id=1" target="_blank" style="color:#0064A9;">
-							<abbr title="点击查看图书">
-								<img class="bookimg" src="<%=contextPath%>/resources/book/1/cover.jpg" alt="Loading failure">
-							</abbr>
-						</a>
-					</div>
-
-					<!--Title-->
-					<p class="productTitle" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<a href="read/" target="_blank" style="color:#0064A9;">
-						<abbr title="气血及津液病类">气血及津液病类</abbr>
-					</a>
-					</p>
-
-					<!--Author-->
-					<p class="productAuthor" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;TEXT-ALIGN:left;" onmouseover="this.className='authorEffect'" onmouseout="this.className=''">
-						<font size="2">
-							<abbr title="鲁兆麟">鲁兆麟</abbr>
-						</font>
-					</span>
-					</p>
-
-					<!--Press-->
-					<p class="productPress" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;text-align:left; "> 
-						<font size="2">
-							<abbr title="中国建材工业出版社">中国建材工业出版社</abbr>
-						</font>
-					</span>
-					</p>
-				</div>
-			</div>
-
-			<div class="product" style="width:150px;float:left;">
-				<div class="product-iWrap" style="width:150px;float:left;">
-					<!--Image-->
-					<div class="hglpic">
-						<a href="read?id=1" target="_blank" style="color:#0064A9;">
-							<abbr title="点击查看图书">
-								<img class="bookimg" src="<%=contextPath%>/resources/book/1/cover.jpg" alt="Loading failure">
-							</abbr>
-						</a>
-					</div>
-
-					<!--Title-->
-					<p class="productTitle" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<a href="read/" target="_blank" style="color:#0064A9;">
-						<abbr title="气血及津液病类">气血及津液病类</abbr>
-					</a>
-					</p>
-
-					<!--Author-->
-					<p class="productAuthor" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;TEXT-ALIGN:left;" onmouseover="this.className='authorEffect'" onmouseout="this.className=''">
-						<font size="2">
-							<abbr title="鲁兆麟">鲁兆麟</abbr>
-						</font>
-					</span>
-					</p>
-
-					<!--Press-->
-					<p class="productPress" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;text-align:left; "> 
-						<font size="2">
-							<abbr title="中国建材工业出版社">中国建材工业出版社</abbr>
-						</font>
-					</span>
-					</p>
-				</div>
-			</div>
-
-			<div class="product" style="width:150px;float:left;">
-				<div class="product-iWrap" style="width:150px;float:left;">
-					<!--Image-->
-					<div class="hglpic">
-						<a href="read?id=1" target="_blank" style="color:#0064A9;">
-							<abbr title="点击查看图书">
-								<img class="bookimg" src="<%=contextPath%>/resources/book/1/cover.jpg" alt="Loading failure">
-							</abbr>
-						</a>
-					</div>
-
-					<!--Title-->
-					<p class="productTitle" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<a href="read/" target="_blank" style="color:#0064A9;">
-						<abbr title="气血及津液病类">气血及津液病类</abbr>
-					</a>
-					</p>
-
-					<!--Author-->
-					<p class="productAuthor" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;TEXT-ALIGN:left;" onmouseover="this.className='authorEffect'" onmouseout="this.className=''">
-						<font size="2">
-							<abbr title="鲁兆麟">鲁兆麟</abbr>
-						</font>
-					</span>
-					</p>
-
-					<!--Press-->
-					<p class="productPress" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;text-align:left; "> 
-						<font size="2">
-							<abbr title="中国建材工业出版社">中国建材工业出版社</abbr>
-						</font>
-					</span>
-					</p>
-				</div>
-			</div>
-
-			<div class="product" style="width:150px;float:left;">
-				<div class="product-iWrap" style="width:150px;float:left;">
-					<!--Image-->
-					<div class="hglpic">
-						<a href="read?id=1" target="_blank" style="color:#0064A9;">
-							<abbr title="点击查看图书">
-								<img class="bookimg" src="<%=contextPath%>/resources/book/1/cover.jpg" alt="Loading failure">
-							</abbr>
-						</a>
-					</div>
-
-					<!--Title-->
-					<p class="productTitle" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<a href="read/" target="_blank" style="color:#0064A9;">
-						<abbr title="气血及津液病类">气血及津液病类</abbr>
-					</a>
-					</p>
-
-					<!--Author-->
-					<p class="productAuthor" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;TEXT-ALIGN:left;" onmouseover="this.className='authorEffect'" onmouseout="this.className=''">
-						<font size="2">
-							<abbr title="鲁兆麟">鲁兆麟</abbr>
-						</font>
-					</span>
-					</p>
-
-					<!--Press-->
-					<p class="productPress" style="text-align:left;margin-left:6px;margin-right:6px;">
-					<span style="display:inline-block;text-align:left; "> 
-						<font size="2">
-							<abbr title="中国建材工业出版社">中国建材工业出版社</abbr>
-						</font>
-					</span>
-					</p>
-				</div>
-			</div>
 		</div>
 	</div>
 

@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -60,6 +61,10 @@ String contextPath=request.getContextPath();
 				</dd>
 			</dl>
 		</script>
+
+		<script id="catalogTmpl" type="text/x-jquery-tmpl">
+            <li style="{{= style}}"><a href="?page={{= pageNo}}">{{html title}}</a></li>
+        </script>
 		
 		<style type="text/css">
 			.right-list{
@@ -156,53 +161,24 @@ String contextPath=request.getContextPath();
     	</div>
     	<div class="pic-board  showup">
 		<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
+		<div class="col-md-3">
+                <div class="catalog right-list">
+                    <p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
+                    <ol class="catalog-content right-list-content" style="list-style-type:none; padding:0px">
+                        
+
+
+                    </ol>
+                </div>
+            </div>
 			
-			<div class="col-md-1">
-				
-			</div>
+
 			<div class="col-md-8" style="">
 				<div id="flip" class="container" >
 									
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="catalog right-list">
-					<p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
-					<ol class="right-list-content" style="list-style-type:none; padding:0px">
-						<li class="odd"><a href="read?page=4">郁证</a></li>
-						<li class="even"><a href="read?page=17">瘀症</a></li>
-						<li class="odd"><a>厥证</a></li>
-						<li class="even"><a>脱症</a></li>
-						<li class="odd"><a>水肿</a></li>
-						<li class="even"><a>汗症</a></li>
-						<li class="odd"><a>痰饮</a></li>
-						<li class="even"><a>消渴</a></li>
-						<li class="odd"><a>积聚</a></li>
-						<li class="even"><a>虚劳</a></li>
-						<li class="odd"><a>内伤发热</a></li>
-						<li class="even"><a>麻木</a></li>
-						<li class="odd"><a>咳血</a></li>
-						<li class="even"><a>吐血</a></li>
-						<li class="odd"><a>衄血</a></li>
-						<li class="even"><a>下血</a></li>
-						<li class="odd"><a>溺血</a></li>
-						<li class="even"><a>便血</a></li>
-						<li class="odd"><a>尿血</a></li>
-						<li class="even"><a>紫斑</a></li>
-						<li class="odd"><a>痛痹</a></li>
-						<li class="even"><a></a></li>
-						<li class="odd"><a>臁疮</a></li>
-						<li class="even"><a>火热</a></li>
-						<li class="odd"><a>痰</a></li>
-						<li class="even"><a></a></li>
-						<li class="odd"><a>积块</a></li>
-						<li class="even"><a>虚损</a></li>
-
-
-					</ol>
-				</div>
-			</div>
-		</div>
+		
 		<div class ="comm" style = "width:100%; border-top-style: solid">
 			<div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
 				<textarea class="comm-input" style="width:100%;height:100px"></textarea>
@@ -391,42 +367,56 @@ String contextPath=request.getContextPath();
 		
 		<script type="text/javascript">
 			
-			var batchStart = 0;
-			var batchEnd = 1;
-			var count = 0;
-			// var setLayout = function(){
-			// 	var currentPage = parseInt(window.History.getState().url.queryStringToJSON().page);
-			// 	var $container 	= $( '#flip' );
-			// 	if(currentPage%10 > 8) {
-					
-			// 		if(Math.floor(currentPage/10) == batchEnd - 1){
-			// 			console.log('---------main--------');
-			// 			console.log(Math.floor(currentPage/10), batchEnd);
-			// 			batchEnd ++;
-			// 			$container.flips({pagesCount:100, nextPage:(batchEnd-1)*20-1, batchSize:20});		
-						
-			// 		}
-			// 		else{
-			// 			return false;
-			// 		}
-			// 	}
+			function getBook(){
+                var currUrl = window.location.href;
+                var tmpList = currUrl.split('?')[0].split('/')
+                var bookId = tmpList[tmpList.length - 1]
 
-			// }
 
-			var setLayout = function(page){
+                dataJson = {
+                    bid : bookId
+                }
+
+                url = "/MedicalRecord/book/get";
+                $.ajax({
+                  type: "GET",
+                  url: url,
+                  data: dataJson,
+                  success: successCB,
+                  error: errorCB,
+                  dataType:"text"
+                });
+
+                function successCB(data){
+                    data=eval('(' + data + ')');
+                    console.log(data);
+                    pageNum = data.pageNum;
+                    bookId = data.id;
+                    console.log('-------------------bid');
+                    console.log(bookId);
+                    catalog = eval('(' + data.catalog + ')');
+                    // catalog = [{"pageNo":4,"title":"郁证"}, {"pageNo":17,"title":"瘀证"}];
+                    for(var i = 0; i < catalog.length; i++){
+                        if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
+                        $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
+                    }
+                    setLayout(bookId, pageNum);
+                }
+
+                function errorCB(){
+                    console.log("get book error");
+                }
+            }
+
+
+			var setLayout = function(bookId,pageNum, page){
+                // console.log(pageNum);
 				var $container 	= $( '#flip' );
 				if(!page){
 					var page = parseInt(window.History.getState().url.queryStringToJSON().page);
 				}
-				$container.flips({pagesCount:100, current: page , batchSize:20});
+				$container.flips({bookId:bookId, pagesCount:pageNum, current: page , batchSize:20});
 			}
-
-
-
-			// var $container 	= $( '#flip' );
-			// $container.flips({pagesCount:100, nextPage:0, batchSize:20});
-
-			// $container.on("DOMSubtreeModified",setLayout);
 				
 			$(function(){
 				setLayout();
@@ -535,4 +525,5 @@ String contextPath=request.getContextPath();
 				
 		</script>
     </body>
+
 </html>

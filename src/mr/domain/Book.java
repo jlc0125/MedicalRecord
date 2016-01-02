@@ -8,6 +8,7 @@ public class Book {
 	private int pageNum;
 	private String imgLoc;
 	private String catalog;
+
 	private int type;
 	private int da_id;
 	

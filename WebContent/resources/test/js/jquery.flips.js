@@ -50,8 +50,8 @@
 			this.currentPage	= this.options.current;
 			// this.currentBatch = this.currentPage/10;
 			this.nextPage = Math.floor(this.currentPage/10) * 20;
-			console.log("nextPage = " + this.nextPage)
 			this.batchSize = this.options.batchSize;
+			this.bookId = this.options.bookId;
 
 			
 			this._validateOpts();
@@ -155,7 +155,7 @@
 			
 			if( this.History.getState().url.queryStringToJSON().page !== page ) {
 					
-				this.History.pushState( null, null, 'read?page=' + page );
+				this.History.pushState( null, null, '?page=' + page );
 				
 			}
 			
@@ -189,11 +189,11 @@
 						theClass				: 'page page-' + (i + 1) + ' cover',
 						// theContentFront: $page.html(),
 						theContentFront			: 	"<div>\
-														<img src='/MedicalRecord/resources/book/1/" + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						// theContentBack			: ( i !== this.pagesCount ) ? this.$pages.eq( i + 1 ).html() : '',
 						theContentBack     		:  "<div>\
-														<img src='/MedicalRecord/resources/book/1/" + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						theStyle				: 'z-index: ' + zIndex + ';left:' + (this.windowProp.width/2-this.windowProp.border) + 'px;',
 						theContentStyleFront	: 'width:600px;',
@@ -208,11 +208,11 @@
 						theClass				: 'page page-' + (i + 1),
 						// theContentFront: $page.html(),
 						theContentFront			: 	"<div>\
-														<img src='/MedicalRecord/resources/book/1/" + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						// theContentBack			: ( i !== this.pagesCount ) ? this.$pages.eq( i + 1 ).html() : '',
 						theContentBack     		:  "<div>\
-														<img src='/MedicalRecord/resources/book/1/" + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						theStyle				: 'z-index: ' + zIndex + ';left:' + (this.windowProp.width/2-this.windowProp.border) + 'px;',
 						theContentStyleFront	: 'width:600px;',
@@ -268,8 +268,6 @@
 		_initTouchSwipe		: function() {
 			
 			var _self = this;
-			console.log("~~~~~~~~~~~~~~~~~")
-			console.log(this.$el)
 			
 			this.$el.swipe( {
 				threshold			: 0,
