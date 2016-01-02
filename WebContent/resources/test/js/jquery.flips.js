@@ -166,9 +166,7 @@
 			
 			for( var i = this.nextPage; i < this.nextPage + this.batchSize; i+=2 ) {
 			
-				// var	$page 		= this.$pages.eq( i ),
-				// console.log('---------_layout---------');
-				// console.log(this.nextPage);
+
 
 				var page1 = "00000000" + (i + 1);
 					page1 = page1.substring(page1.length-8, page1.length);
@@ -177,11 +175,7 @@
 
 				console.log("page1 = " + page1)
 				console.log("page2 = " + page2)
-				// console.log("tttttttttttttttest")
-				// console.log(this.currentPage)
-				// console.log(i)
-				// console.log(this.currentPage > i/2 ? (this.pagesCount + i/2):( this.pagesCount - i/2 ))
-
+				
 				if(i == 0){
 					var zIndex = this.currentPage > i/2 ? (this.pagesCount + i/2):( this.pagesCount - i/2 )
 					pageData	= {
@@ -221,37 +215,14 @@
 					
 				}
 				
-				// if( i === 0 ) {
-				
-				// 	pageData.theClass += ' cover';
-				
-				// }
-				// else {
-					
-					
-					
-				// 	if( i === this.pagesCount - 2 ) {
-					
-				// 		pageData.theClass += ' cover-back';
-					
-				// 	}
-				
-				// }
-				// console.log('333333333');
-				// console.log(pageData);
-				// console.log('-----------pageData------------');
-				// console.log(pageData);
+
 				$( '#pageTmpl' ).tmpl( pageData ).appendTo( this.$el );
-				// console.log('222222222');
-				// console.log(this.$el);
-			
+
 			}
 			
-			// this.$pages.remove();
 			this.$flipPages		= this.$el.children( 'div.page' );
 			this.flipPagesCount	= this.$flipPages.length;
-			// console.log("~~~~~~~~~~")
-			// console.log(this.$flipPages)
+	
 
 			
 			this._adjustLayout( ( this.state === undefined ) ? this.currentPage : this.state );

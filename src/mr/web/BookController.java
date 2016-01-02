@@ -33,4 +33,16 @@ public class BookController {
 	public List<Book> getAllBook(){
 		return bookService.getAll();
 	}
+	
+	@RequestMapping(value="/search")
+	@ResponseBody
+	public List<Book> searchBook(@RequestParam("q") String keyword){
+		return bookService.search(keyword);
+	}
+	
+	@RequestMapping(value="/pinyin_filter")
+	@ResponseBody
+	public List<Book> filteBook(@RequestParam("c") char c){
+		return bookService.filter(c);
+	}
 }

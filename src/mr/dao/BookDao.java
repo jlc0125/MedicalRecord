@@ -58,4 +58,28 @@ public class BookDao {
 		});
 		return result;
 	}
+	
+	public List<Book> search(String keyword){
+		final List<Book> result = new ArrayList<Book>();
+		String sqlStr="select * from book where title like ?";
+		jdbcTemplate.query(sqlStr,
+				new Object[] {"%"+keyword+"%"},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						Book book = new Book();
+						book.setId(rs.getLong("id"));
+						book.setAuthor(rs.getString("author"));
+						book.setImgLoc(rs.getString("img_loc"));
+						book.setPageNum(rs.getInt("page_num"));
+						book.setPublisher(rs.getString("publisher"));
+						book.setTitle(rs.getString("title"));
+						book.setCatalog(rs.getString("catalog"));
+						book.setDa_id(rs.getInt("da_id"));
+						book.setType(rs.getInt("type"));
+						result.add(book);
+					}
+		});
+		return result;
+	}
 }

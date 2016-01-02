@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 String contextPath=request.getContextPath();
 %>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 
 <html dir="ltr" xml:lang="en-gb" xmlns="http://www.w3.org/1999/xhtml"
@@ -21,9 +20,34 @@ String contextPath=request.getContextPath();
 	
 	<!-- css -->
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/search/css/browse.css">
 	
 	
 	<style type="text/css">
+        .book-filter{
+            margin-top: 50px;
+        }
+
+        .book-search{
+            margin-top: 50px;
+        }
+        .book-search .btn{
+            height: 46px;
+            line-height: 40px;
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+            width: 80px;
+        }
+
+        .book-search input{
+            line-height: 20px;
+            width: 200px;
+            padding: 10px 9px 10px 7px;
+            vertical-align: middle;
+            font-size: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
 		.product{
 			position: relative;
 			float: left;
@@ -53,7 +77,7 @@ String contextPath=request.getContextPath();
                     <div class="hglpic">
                         <a href="read/{{= id}}?page=0" target="_blank" style="color:#0064A9;">
                             <abbr title="点击查看图书">
-                                <img class="bookimg" src="<%=contextPath%>/resources/book/{{= id}}/cover.jpg" alt="Loading failure">
+                                <img class="bookimg" src="{{= imgSrc}}" onerror="javascript:this.src='<%=contextPath%>/resources/book/none-cover.jpg'">
                             </abbr>
                         </a>
                     </div>
@@ -88,12 +112,37 @@ String contextPath=request.getContextPath();
 	
 	
     <script type="text/javascript">
-        function getBook(){
+        function checkImgExists(imgurl) {  
+          var ImgObj = new Image(); //判断图片是否存在  
+          ImgObj.src = imgurl;  
+          //没有图片，则返回-1  
+          if (ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0)) {  
+            return true;  
+          } else {  
+            return false;
+          }  
+        } 
+        function getBook(keyword,type){
+            if(type == "filter"){
+                url = "/MedicalRecord/book/pinyin_filter";
+                dataJson = {
+                    c:keyword
+                };
+            }
+            else if(keyword == undefined || keyword ==''){
                 url = "/MedicalRecord/book/get_all";
+                dataJson = {};
+            }
+            else{
+                url = "/MedicalRecord/book/search";
+                dataJson = {
+                    q:keyword
+                };
+            }
                 $.ajax({
                   type: "GET",
                   url: url,
-                  data: {},
+                  data: dataJson,
                   success: successCB,
                   error: errorCB,
                   dataType:"text"
@@ -102,6 +151,9 @@ String contextPath=request.getContextPath();
                 function successCB(data){
                     data=eval('(' + data + ')');
                     for(var i = 0; i < data.length; i++){
+                        imgSrc = "<%=contextPath%>/resources/book/" + data[i].id + "/cover.jpg";
+    
+                        data[i].imgSrc = imgSrc;
                         $('#bookTmpl').tmpl(data[i]).appendTo($('.view'));
                     }
                 }
@@ -112,7 +164,19 @@ String contextPath=request.getContextPath();
             }
 
         $(function(){
-            getBook()
+            getBook("","search");
+            $('.book-search .btn').click(function(){
+                keyword = $('.book-search input').val();
+                $('.view').empty();
+                getBook(keyword,"search");
+            })
+
+            $(".form-control").change(function(){
+                var label = $(this).children('option:selected').val().toLowerCase();
+                $('.view').empty();
+                getBook(label,"filter");
+                
+            })
         })
 
     </script>
@@ -141,10 +205,57 @@ String contextPath=request.getContextPath();
 			</div>
 		</div>
 	</div>
+    <div class=logoSearch>
+            <div class="logoSearch_L2">
+                <div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
 
-	<div class="container" style="min-height:700px">
-		<div class="view" style="margin-bottom:40px;width:1006px;background-color:white;float:left;">
-		</div>
+	<div class="board" style="min-height:700px; width = 100%">
+        <div class="col-md-2">
+            <div class="book-search">
+                <h3>搜索图书</h3>
+                <input>
+                <button class="btn btn-primary">搜索</button>
+            </div>
+            <div class="book-filter">
+                <h3>按字母序浏览</h3>
+                <select class="form-control">
+                    <option value=""></option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                    <option value="J">J</option>
+                    <option value="K">K</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                    <option value="N">N</option>
+                    <option value="O">O</option>
+                    <option value="P">P</option>
+                    <option value="Q">Q</option>
+                    <option value="R">R</option>
+                    <option value="S">S</option>
+                    <option value="T">T</option>
+                    <option value="U">U</option>
+                    <option value="V">V</option>
+                    <option value="W">W</option>
+                    <option value="X">X</option>
+                    <option value="Y">Y</option>
+                    <option value="Z">Z</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-8">
+    		<div class="view" style="margin-bottom:40px;width:1006px;background-color:white;float:left;">
+    		</div>
+        </div>
 	</div>
 
 	<!-- 统计信息 -->

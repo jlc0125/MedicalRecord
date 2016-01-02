@@ -366,10 +366,13 @@ String contextPath=request.getContextPath();
                     console.log(data);
                     pageNum = data.pageNum;
                     bookId = data.id;
-                    console.log('-------------------bid');
-                    console.log(bookId);
-                    catalog = eval('(' + data.catalog + ')');
-                    // catalog = [{"pageNo":4,"title":"郁证"}, {"pageNo":17,"title":"瘀证"}];
+                    if(data.catalog){
+                        catalog = eval('(' + data.catalog + ')');
+                    }
+                    else{
+                        catalog=[];
+                    }
+
                     for(var i = 0; i < catalog.length; i++){
                         if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
                         $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
