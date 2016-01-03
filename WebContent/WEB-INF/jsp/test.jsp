@@ -4,7 +4,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String contextPath=request.getContextPath();
 %>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,6 +66,11 @@ String contextPath=request.getContextPath();
         </script>
         
 		<style type="text/css">
+            .comm{
+                width:100%; 
+                border-left-style: solid;
+                padding-right: 40px;
+            }
 			.right-list{
 				padding: 0 !important;
 				box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
@@ -161,45 +165,42 @@ String contextPath=request.getContextPath();
     	</div>
     	<div class="pic-board  showup">
 		<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
-			<div class="col-md-3">
+			<div class="col-md-1">
                 <div class="catalog right-list">
                     <p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
                     <ol class="catalog-content right-list-content" style="list-style-type:none; padding:0px">
-
-                        
-
                     </ol>
                 </div>
             </div>
 			
 			<div class="col-md-8" style="">
-				<div id="flip" class="container" >
-									
-				</div>
-			</div>
-			<div class="col-md-1">
-				
-			</div>
-		</div>
-		<div class ="comm" style = "width:100%; border-top-style: solid">
-			<div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
-				<textarea class="comm-input" style="width:100%;height:100px"></textarea>
-				<button class="btn btn-primary comm-input-btn" style="margin-left: 96.5%" >评论</button>
-			</div>
-			<div class="short-comm" style="overflow:auto;height:650px; margin-left:10%">
-			</div>
-		</div>
+    				<div class="flip" class="container" >
+    									
+    				</div>
+    			</div>
+    			<div class="col-md-3">
+    				<div class ="comm" style = "width:100%; border-left-style: solid">
+                        <h1 style="text-align: center;">评论区</h1>
+                        <div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
+                            <textarea class="comm-input" style="width:100%;height:100px"></textarea>
+                            <button class="btn btn-primary comm-input-btn" style="margin-left: 96.5%" >评论</button>
+                        </div>
+                        <div class="short-comm" style="overflow:auto;height:650px; margin-left:10%">
+                        </div>
+                    </div>
+    			</div>
+    		</div>
 		</div>
 		<div class="text-board " style="height:900px;display:none;min-width:">
 			<div class="col-md-2" ></div>
 			<div class="col-md-8" style="height:100%;">
-				<iframe id="text-book-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+				<iframe class="text-book-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
 			</div>
 			<div class="col-md-2" ></div>
 		</div>
 		<div class="pic-text-board" style="display:none;height:2500px;" >
 			<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
-			<div class="col-md-3">
+			<div class="col-md-1">
                 <div class="catalog right-list">
                     <p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
                     <ol class="catalog-content right-list-content" style="list-style-type:none; padding:0px">
@@ -211,27 +212,30 @@ String contextPath=request.getContextPath();
             </div>
 
 			<div class="col-md-8" style="">
-				<div id="flip" class="container" >
+				<div class="flip" class="container" >
 									
 				</div>
 			</div>
-			<div class="col-md-1">
-				
-			</div>
+			<div class="col-md-3">
+                    <div class ="comm" >
+                        <h1 style="text-align: center;">评论区</h1>
+                        <div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
+                            <textarea class="comm-input" style="width:100%;height:100px"></textarea>
+                            <button class="btn btn-primary comm-input-btn" style="margin-left: 96.5%" >评论</button>
+                        </div>
+                        <div class="short-comm" style="overflow:auto;height:650px; margin-left:10%">
+                        </div>
+                    </div>
+                </div>
 		</div>
-			<div class ="comm" style = "width:100%; border-top-style: solid">
-				<div class="comm-input-div" style="margin-left:10%; width:80%; margin-top:2%">
-					<textarea class="comm-input" style="width:100%;height:100px"></textarea>
-					<button class="btn btn-primary comm-input-btn" style="margin-left: 96.5%" >评论</button>
-				</div>
-				<div class="short-comm" style="overflow:auto;height:650px; margin-left:10%">
-				</div>
-			</div>
+        <div class="text-book-div" style="border-top-style: solid;">
+            <h1 style="text-align: center;padding: 30px;">文本电子书籍</h1>
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<iframe id="text-book-iframe" src="" width="100%" height="700px" frameborder="0"></iframe>
+				<iframe class="text-book-iframe" src="" width="100%" height="700px" frameborder="0"></iframe>
 			</div>
 			<div class="col-md-2"></div>
+        </div>
 		</div>
 		<!-- footer -->
 		<!-- 统计信息 -->
@@ -394,11 +398,11 @@ String contextPath=request.getContextPath();
                     case 2:
                         //set text-book
                         var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
-                        var daId = data.daid
+                        var daId = data.da_id
                         var textBookSrc = textBookpre+daId;
                         var bookTitle = data.title;
                         $("#book-title").html(bookTitle);
-                        $("#text-book-iframe").attr("src",textBookSrc);
+                        $(".text-book-iframe").attr("src",textBookSrc);
                         $("#text").click();
                         $("#pic").unbind();
                         $("#pic").css("color","gray");
@@ -407,7 +411,32 @@ String contextPath=request.getContextPath();
                         break;
 
                     case 3:
+                        console.log("22222222222222222222222222222222222")
                         $("#pic-text").click();
+                        //set pic-book
+                        pageNum = data.pageNum;
+                        bookId = data.id;
+                        if(data.catalog){
+                            catalog = eval('(' + data.catalog + ')');
+                        }
+                        else{
+                            catalog=[];
+                        }
+
+                        for(var i = 0; i < catalog.length; i++){
+                            if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
+                            $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
+                        }
+                        setLayout(bookId, pageNum);
+
+                        //set text-book
+                        var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
+                        var daId = data.da_id
+                        var textBookSrc = textBookpre+daId;
+                        var bookTitle = data.title;
+                        $("#book-title").html(bookTitle);
+                        $(".text-book-iframe").attr("src",textBookSrc);
+
                         break;
                     }
 
@@ -422,7 +451,7 @@ String contextPath=request.getContextPath();
 
 			var setLayout = function(bookId,pageNum, page){
                 // console.log(pageNum);
-				var $container 	= $( '#flip' );
+				var $container 	= $( '.flip' );
 				if(!page){
 					var page = parseInt(window.History.getState().url.queryStringToJSON().page);
 				}
@@ -467,31 +496,7 @@ String contextPath=request.getContextPath();
                 
                 getComment();
                 getBook();
-    //             var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
-    //             var daId = window.History.getState().url.queryStringToJSON().da_id;
-    //             var textBookSrc = textBookpre+daId;
-				// var type = window.History.getState().url.queryStringToJSON().type;
-				// switch(type){
-				// case 1:
-				// 	$("pic").click();
-				// 	$("#text").unbind();
-				// 	$("#text").css("color","gray");
-				// 	$("#pic-text").unbind();
-				// 	$("#pic-text").css("color","gray");
-				// 	break;
-				// case 2:
-				// 	$("#text-book-iframe").attr("src",textBookSrc);
-				// 	$("#text").click();
-				// 	$("#pic").unbind();
-				// 	$("#pic").css("color","gray");
-				// 	$("#pic-text").unbind();
-				// 	$("#pic-text").css("color","gray");
-				// 	break;
-				// case 3:
-				// 	$("#pic-text").click();
-				// 	break;
-				// }
-				
+
 			});
 
 			window.onpopstate = function(event){

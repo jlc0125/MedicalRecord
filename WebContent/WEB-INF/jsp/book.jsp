@@ -24,6 +24,9 @@ String contextPath=request.getContextPath();
 	
 	
 	<style type="text/css">
+        .product-iWrap * {
+            font-size: 12px;
+        }
         .book-filter{
             margin-top: 50px;
         }
