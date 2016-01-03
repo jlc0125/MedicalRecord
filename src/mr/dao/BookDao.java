@@ -31,6 +31,8 @@ public class BookDao {
 						result.setPublisher(rs.getString("publisher"));
 						result.setTitle(rs.getString("title"));
 						result.setCatalog(rs.getString("catalog"));
+						result.setDa_id(rs.getInt("da_id"));
+						result.setType(rs.getInt("type"));
 					}
 		});
 		return result;

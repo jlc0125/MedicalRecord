@@ -155,7 +155,8 @@
 			
 			if( this.History.getState().url.queryStringToJSON().page !== page ) {
 					
-				this.History.pushState( null, null, '?page=' + page );
+				// this.History.pushState( null, null, '?page=' + page );
+				this.History.pushState( {'page':page}, null, null );
 				
 			}
 			

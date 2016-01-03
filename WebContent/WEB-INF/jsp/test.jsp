@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String contextPath=request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -164,8 +165,8 @@ String contextPath=request.getContextPath();
                 <div class="catalog right-list">
                     <p style= "    text-align: center; font-size: 20px; font-weight: bold; padding-top: 2%;">目录</p>
                     <ol class="catalog-content right-list-content" style="list-style-type:none; padding:0px">
-                        
 
+                        
 
                     </ol>
                 </div>
@@ -363,21 +364,54 @@ String contextPath=request.getContextPath();
 
                 function successCB(data){
                     data=eval('(' + data + ')');
+                    var type = data.type;
                     console.log(data);
-                    pageNum = data.pageNum;
-                    bookId = data.id;
-                    if(data.catalog){
-                        catalog = eval('(' + data.catalog + ')');
-                    }
-                    else{
-                        catalog=[];
+                    switch(type){
+                    case 1:
+                        $("pic").click();
+                        $("#text").unbind();
+                        $("#text").css("color","gray");
+                        $("#pic-text").unbind();
+                        $("#pic-text").css("color","gray");
+
+                        //set pic-book
+                        pageNum = data.pageNum;
+                        bookId = data.id;
+                        if(data.catalog){
+                            catalog = eval('(' + data.catalog + ')');
+                        }
+                        else{
+                            catalog=[];
+                        }
+
+                        for(var i = 0; i < catalog.length; i++){
+                            if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
+                            $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
+                        }
+                        setLayout(bookId, pageNum);
+                        break;
+
+                    case 2:
+                        //set text-book
+                        var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
+                        var daId = data.daid
+                        var textBookSrc = textBookpre+daId;
+                        var bookTitle = data.title;
+                        $("#book-title").html(bookTitle);
+                        $("#text-book-iframe").attr("src",textBookSrc);
+                        $("#text").click();
+                        $("#pic").unbind();
+                        $("#pic").css("color","gray");
+                        $("#pic-text").unbind();
+                        $("#pic-text").css("color","gray");
+                        break;
+
+                    case 3:
+                        $("#pic-text").click();
+                        break;
                     }
 
-                    for(var i = 0; i < catalog.length; i++){
-                        if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
-                        $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
-                    }
-                    setLayout(bookId, pageNum);
+
                 }
 
                 function errorCB(){
@@ -403,11 +437,6 @@ String contextPath=request.getContextPath();
 			// $container.on("DOMSubtreeModified",setLayout);
 				
 			$(function(){
-				var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
-				var daId = window.History.getState().url.queryStringToJSON().da_id;
-				var textBookSrc = textBookpre+daId;
-				setLayout();
-				getComment();
 				$(".book-type a").click(function(){
 					$(".active").removeClass("active");
 					$(this).addClass("active");
@@ -434,30 +463,35 @@ String contextPath=request.getContextPath();
 					}
 					
 				});
-				var type = window.History.getState().url.queryStringToJSON().type;
-				switch(type){
-				case 1:
-					$("pic").click();
-					$("#text").unbind();
-					$("#text").css("color","gray");
-					$("#pic-text").unbind();
-					$("#pic-text").css("color","gray");
-					break;
-				case 2:
-					$("#text-book-iframe").attr("src",textBookSrc);
-					$("#text").click();
-					$("#pic").unbind();
-					$("#pic").css("color","gray");
-					$("#pic-text").unbind();
-					$("#pic-text").css("color","gray");
-					break;
-				case 3:
-					$("#pic-text").click();
-					break;
-				}
-				var bookTitle = getUrlParam("title");
-				bookTitle = decodeURI(bookTitle);
-				$("#book-title").html(bookTitle);
+
+                
+                getComment();
+                getBook();
+    //             var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
+    //             var daId = window.History.getState().url.queryStringToJSON().da_id;
+    //             var textBookSrc = textBookpre+daId;
+				// var type = window.History.getState().url.queryStringToJSON().type;
+				// switch(type){
+				// case 1:
+				// 	$("pic").click();
+				// 	$("#text").unbind();
+				// 	$("#text").css("color","gray");
+				// 	$("#pic-text").unbind();
+				// 	$("#pic-text").css("color","gray");
+				// 	break;
+				// case 2:
+				// 	$("#text-book-iframe").attr("src",textBookSrc);
+				// 	$("#text").click();
+				// 	$("#pic").unbind();
+				// 	$("#pic").css("color","gray");
+				// 	$("#pic-text").unbind();
+				// 	$("#pic-text").css("color","gray");
+				// 	break;
+				// case 3:
+				// 	$("#pic-text").click();
+				// 	break;
+				// }
+				
 			});
 
 			window.onpopstate = function(event){
