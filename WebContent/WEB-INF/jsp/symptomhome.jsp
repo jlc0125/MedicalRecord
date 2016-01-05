@@ -62,31 +62,6 @@
 			padding-bottom: 50px;
     	}
     	
-    	
-		.right-list{
-			padding: 0 !important;
-			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-			height: 700px;
-			overflow: auto;
-		}
-		
-		.right-list .nav li{
-			width: 50%;
-			text-align: center;
-			font-size: 18px;
-		}
-
-		.right-list ol li{
-			text-align: center;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			font-size: 16px;
-			
-		}
-		.right-list ol .odd{
-			background-color: #E5EBF1;
-		}
-
 		.table tbody td{
 			font-family: "微软雅黑";
 			line-height: 20px;
@@ -292,7 +267,7 @@
 			})
 			
  			$(".fenxi").on("click", function(){
-			    window.location.href="/MedicalRecord/" + $(this).attr("name");;
+			    window.location.href="/MedicalRecord/" + $(this).data("name");;
 			}) 
 
         });
@@ -301,7 +276,11 @@
 
 <body>
 	<div class=top>
-		<div id="common_nav">
+		<div>
+		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
+		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
+		    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+			<div id="common_nav">
 			    <div class="cf" id="common_nav_L2">
 			        <ul>
 			            <li>
@@ -316,40 +295,17 @@
 			        </ul>
 			    </div>
 			</div>
-		
+		</div>
+		<div class=logoSearch>
+			<div class="logoSearch_L2">
+				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
 		
 	</div>
-	<div class="col-md-2" stype="height:100%">
-		<ul class="nav nav-pills nav-stacked">
-			<li>
-				<!-- <div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=方剂分析');height:233px"></div> -->
-				<figure class="fenxi" name="recipehome">
-					<img src="/MedicalRecord/resources/image/icon/fjfx.jpg">
-					<figcaption>
-						<h2>方剂分析</h2>
-					</figcaption>
-				</figure>
-			</li>
-			<li>
-				<!-- <div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=中药分析');height:233px"></div> -->
-				<figure class="fenxi" name="drughome">
-					<img src="/MedicalRecord/resources/image/icon/zyfx.jpg">
-					<figcaption>
-						<h2>中药分析</h2>
-					</figcaption>
-				</figure>
-			</li>
-			<li class="active">
-				<!-- <div class="fill" style="background-image:url('http://placehold.it/300x199&amp;text=疾病分析');height:233px"></div> -->
-				<figure class="fenxi" name="symptomhome">
-					<img src="/MedicalRecord/resources/image/icon/jbfx.png">
-					<figcaption>
-						<h2>疾病分析</h2>
-					</figcaption>
-				</figure>
-			</li>
-		</ul>
-		
+	
+	<div class="col-md-2" stype="height:100%">	
 	</div>
 
 	<div class="col-md-8" style="min-height:700px">
@@ -371,6 +327,23 @@
 			</div>
 		</div>
 
+		<div class="nav-content">
+			<ul class="nav-list">
+				<li class=" fenxi" data-name="recipehome">方剂分析</li>
+				<li class="fenxi" data-name="drughome">中药分析</li>
+				<li class="fenxi selected" data-name="symptomhome">疾病分析</li>
+			</ul>
+			<div class="main-content">
+				<ul class="nav nav-tabs right-list-nav">
+					<li role="presentation" class="active"><a>常见方剂</a></li>
+					<li role="presentation"><a>字母排序</a></li>
+				</ul>
+				<ol class="right-list-content">
+				
+				</ol>
+			</div>
+		</div>
+		
 		<div class="search-result" style="display:none">
 			<table class="table">
 				<thead>
@@ -391,18 +364,6 @@
 
 	</div>
 
-	<div class="col-md-2 right-list">
-		<!--
-		<div class="fill" style="background-image:url('http://placehold.it/1000x700&amp;text=频次排序');height:700px"></div>
-		-->
-		<ul class="nav nav-tabs right-list-nav">
-			<li role="presentation" class="active"><a>常见方剂</a></li>
-			<li role="presentation"><a>字母排序</a></li>
-		</ul>
-		<ol class="right-list-content">
-			
-		</ol>
-	</div>
 	<!-- footer -->
 	<!-- 统计信息 -->
 <!-- Piwik -->
