@@ -33,16 +33,21 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+                if (r != null) return unescape(r[2]); return null; //返回参数值
+        	}
 			$('#container').easyTabs({defaultContent:1});
 			
 			// var symptomName = $("#front_input").val();
             // var symptomName = decodeURI(getUrlParam('name'));
-            var symptomName = "发热";
+            var symptomName = decodeURI(getUrlParam('name'));
 			if(symptomName != ''){
 				var url = "symptom/search?q=" + symptomName;
 				d3.json(url, function(error, root) { 
 					if(error){
-						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + symptomName + '" 相关的结果。');
 					}
 					else{
 						graph("#component .graph", root.drug, 1);
@@ -135,7 +140,7 @@
 		<div class="logoSearch_L2">
 			<form id="search_cf" class="search cf" >
 				<input id="front_input" class="text" type="text" maxLength="20" value="${symptomName}"> 
-				<input class="button" id="front_btn" type="submit" value=""> <br>
+				<button class="btn btn-primary search-btn" id="front_btn" type="submit">分析</button>
 			</form>
 		</div>
 		

@@ -27,7 +27,7 @@ public class DrugDao {
 	private MongoClient mongoClient;
 	
 	public Object search(String name){
-		DB db = mongoClient.getDB("medrecord");
+		DB db = mongoClient.getDB("medrecord201512");
 		DBCollection coll = db.getCollection("drug");
 		DBObject doc = coll.findOne(new BasicDBObject("name", name));
 		if(doc == null)
@@ -37,7 +37,7 @@ public class DrugDao {
 	}
 	
 	public List<DBObject> searchBeginWith(String name){
-		DB db = mongoClient.getDB("medrecord");
+		DB db = mongoClient.getDB("medrecord201512");
 		DBCollection coll = db.getCollection("drug");
 		BasicDBObject cond = new BasicDBObject();
 		Pattern pattern = Pattern.compile("^"+name+".*$");
@@ -61,7 +61,7 @@ public class DrugDao {
 	
 	public String[] relate(String name){
 		String[] res = null;
-		String sql = "select drug from drug where name=?";
+		String sql = "select drug from drug201512 where name=?";
 		String tmp = (String)jdbcTemplate.queryForObject(sql, new String[]{name}, java.lang.String.class);
 		if(tmp != null && !tmp.equals("")){
 			res = tmp.split(" ");
@@ -70,19 +70,19 @@ public class DrugDao {
 	}
 	
 	public List abbrBeginWith(String abbr){
-		String sql = "select name,pinci from drug where abbr like ? order by abbr";
+		String sql = "select name,pinci from drug201512 where abbr like ? order by abbr";
 		return jdbcTemplate.queryForList(sql, new Object[]{abbr + "%"}); 
 	}
 	
 	public List pinciSearch(int freq){
-		String sql = "select name,pinci from drug order by pinci";
+		String sql = "select name,pinci from drug201512 order by pinci";
 		if(freq == 0)
 			sql += " DESC";
 		return jdbcTemplate.queryForList(sql); 
 	}
 	
 	public TempNode[] symptomSearchDrug(String symptomName){
-		String sql = "select drug,drug_pinci from symptom where name=?";
+		String sql = "select drug,drug_pinci from symptom201512 where name=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, new Object[]{symptomName}); 
 		 if(rows.isEmpty())
 			 return null;
@@ -106,7 +106,7 @@ public class DrugDao {
 	}
 	
 	public TempNode[] recipeSearchDrug(String recipeName){
-		String sql = "select drug,drug_pinci from recipe where name= ?";
+		String sql = "select drug,drug_pinci from recipe201512 where name= ?";
 		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql,new Object[]{recipeName}); 
 		 if(rows.isEmpty())
 			 return null;

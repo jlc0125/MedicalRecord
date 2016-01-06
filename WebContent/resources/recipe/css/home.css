@@ -413,7 +413,7 @@ figcaption h2{
 }
 .fenxi figcaption h2{
 	text-aligh:center;
-	transform:translate(-200px,0px)
+/* 	transform:translate(-200px,0px) */
 }
 .fenxi:hover figcaption h2{
 	transform:translate(0px,0px)
