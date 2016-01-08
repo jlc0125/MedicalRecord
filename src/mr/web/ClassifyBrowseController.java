@@ -40,6 +40,9 @@ public class ClassifyBrowseController {
 		else if(type.equals("wordfrequency")){
 			recList = mrs.recordByWF(wd);
 		}
+		else if(type.equals("therapylabel")){
+			recList = mrs.recordByZhifa(wd);
+		}
 		
 		System.out.println(wd);		
 		return recList;

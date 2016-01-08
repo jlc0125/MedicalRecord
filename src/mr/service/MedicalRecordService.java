@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -127,5 +128,8 @@ public class MedicalRecordService {
 		return mrDao.reocrdByContentContain(words);
 	}
 	
+	public List<MedicalRecord> recordByZhifa(String word){
+		return mrDao.recordByZhifa(word);
+	}
 }
 

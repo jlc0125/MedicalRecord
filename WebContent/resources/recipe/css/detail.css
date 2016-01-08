@@ -175,6 +175,9 @@ body {
     line-height:200px;
 }
 
+.errorhit{
+	line-height:200px;
+}
 
 .descpt {
 	width: 500px;
@@ -294,6 +297,6 @@ body {
 	background-color: #E5EBF1;
 }
 
-.graph svg{
+/* .graph svg{
 	margin-top : 20%;
-}
+} */

@@ -102,10 +102,20 @@
 			d3.select(this).attr("r", 4.5);
 		})
 		.on("click", function(d){
-			if(linkType == 1)  //中药
-				window.open("http://zcy.ckcest.cn/tcm/search/med?medname="+d.name);
-			else if(linkType == 2) //疾病
-				window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name);
+			if(linkType == 1){  //中药
+				if(d.id==0){
+					window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=100000&pageno=1&type=med#sub_nav");
+				}else{
+					window.open("http://zcy.ckcest.cn/tcm/search/med?medname="+d.name+"&medid="+d.id);
+				}
+			}
+			else if(linkType == 2){ //疾病
+				if(d.id==0){
+					window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=000001&pageno=1&type=dis#sub_nav");
+				}else{
+					window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name+"&disid="+d.id);
+				}
+			}
 			else //方剂
 				window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=000100&pageno=1&type=pre");
 		});

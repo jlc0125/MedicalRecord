@@ -44,7 +44,7 @@
 				var url = "drug/search?q=" + drugName;
 				d3.json(url, function(error, root) { 
 					if(error){
-						$(".graph").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + drugName + '" 相关的结果。');
+						$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + drugName + '" 相关的结果。');
 					}
 					else{
 						graph("#component .graph", root.drug, 1);
@@ -61,7 +61,7 @@
 					var url = "drug/search?q=" + value;
 					d3.json(url, function(error, root) { 
 						if(error){
-							$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$("#graph1").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
 							graph("#component .graph", root.drug, 1);
@@ -155,6 +155,7 @@
 		    	<div id="component">
 		    		<div class="graph">
                         <span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
+                    	<div id="graph1"></div>
                     </div>
                     <div id="sidebar">
                         <div class="alt_container">
