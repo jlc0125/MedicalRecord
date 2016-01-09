@@ -13,6 +13,7 @@
 	
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/reset.css">
+	<!-- <link rel="stylesheet" type="text/css" href="resources/recipe/css/recipe.css"> -->
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/detail.css">
 	<link rel="stylesheet" type="text/css" href="resources/recipe/css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="resources/recipe/css/revision.css">
@@ -38,15 +39,12 @@
 		$(document).ready(function(){
 			
 			$('#container').easyTabs({defaultContent:1});
-			
-			// var drugName = $("#front_input").val();
-            // var drugName = decodeURI(getUrlParam('name'));
-            var drugName = "当归";
+            var drugName = decodeURI(getUrlParam('name'));
 			if(drugName != ''){
 				var url = "drug/search?q=" + drugName;
 				d3.json(url, function(error, root) { 
 					if(error){
-						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$(".graph").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + drugName + '" 相关的结果。');
 					}
 					else{
 						graph("#component .graph", root.drug, 1);
@@ -128,7 +126,7 @@
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
 				<div class="logo">
-					<a href="home" target=_blank><img src="resources/recipe/image/logo.png"></a>
+					<a href="index.html" target=_blank><img src="resources/recipe/image/logo.png"></a>
 				</div>
 			</div>
 		</div>
@@ -142,7 +140,7 @@
 		<div class="logoSearch_L2">
 			<form id="search_cf" class="search cf" >
 				<input id="front_input" class="text" type="text" maxLength="20" value="${drugName}"> 
-				<input class="button" id="front_btn" type="submit" value=""> <br>
+				<button class="btn btn-primary search-btn" id="front_btn" type="submit">分析</button>
 			</form>
 		</div>
 		

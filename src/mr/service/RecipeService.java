@@ -2,6 +2,7 @@ package mr.service;
 
 import java.util.List;
 
+import mr.dao.PrescriptionDao;
 import mr.dao.RecipeDao;
 import mr.domain.TempNode;
 
@@ -15,6 +16,8 @@ import com.mongodb.DBObject;
 public class RecipeService {
 	@Autowired
 	private RecipeDao recipeDao;
+	@Autowired
+	private PrescriptionDao prescriptionDao;
 	
 	public Object search(String name){
 		return recipeDao.search(name);
@@ -38,6 +41,10 @@ public class RecipeService {
 	
 	public TempNode[] drugSearchRecipe(String drugName){
 		return recipeDao.drugSearchRecipe(drugName);
+	}
+	
+	public List<DBObject> recipePrescription(String name){
+		return prescriptionDao.recipePrescription(name);
 	}
 	
 }

@@ -27,7 +27,7 @@ public class SymptomDao {
 	private MongoClient mongoClient;
 	
 	public Object search(String name){
-		DB db = mongoClient.getDB("medrecord");
+		DB db = mongoClient.getDB("medrecord201512");
 		DBCollection coll = db.getCollection("symptom");
 		DBObject doc = coll.findOne(new BasicDBObject("name", name));
 		if(doc == null)
@@ -37,7 +37,7 @@ public class SymptomDao {
 	}
 	
 	public List<DBObject> searchBeginWith(String name){
-		DB db = mongoClient.getDB("medrecord");
+		DB db = mongoClient.getDB("medrecord201512");
 		DBCollection coll = db.getCollection("symptom");
 		BasicDBObject cond = new BasicDBObject();
 		Pattern pattern = Pattern.compile("^"+name+".*$");
@@ -61,7 +61,7 @@ public class SymptomDao {
 	
 	public String[] relate(String name){
 		String[] res = null;
-		String sql = "select symptom from symptom where name=?";
+		String sql = "select symptom from symptom201512 where name=?";
 		String tmp = (String)jdbcTemplate.queryForObject(sql, new String[]{name}, java.lang.String.class);
 		if(tmp != null && !tmp.equals("")){
 			res = tmp.split(" ");
@@ -70,19 +70,19 @@ public class SymptomDao {
 	}
 	
 	public List abbrBeginWith(String abbr){
-		String sql = "select name,pinci from symptom where abbr like '" + abbr + "%' order by abbr";
+		String sql = "select name,pinci from symptom201512 where abbr like '" + abbr + "%' order by abbr";
 		return jdbcTemplate.queryForList(sql); 
 	}
 	
 	public List pinciSearch(int freq){
-		String sql = "select name,pinci from symptom order by pinci";
+		String sql = "select name,pinci from symptom201512 order by pinci";
 		if(freq == 0)
 			sql += " DESC";
 		return jdbcTemplate.queryForList(sql); 
 	}
 	
 	public TempNode[] drugSearchSymptom(String drugName){
-		String sql = "select symptom,symptom_pinci from drug where name= '" + drugName + "'";
+		String sql = "select symptom,symptom_pinci from drug201512 where name= '" + drugName + "'";
 		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
 		 if(rows.isEmpty())
 			 return null;
@@ -106,7 +106,7 @@ public class SymptomDao {
 	}
 	
 	public TempNode[] recipeSearchSymptom(String recipeName){
-		String sql = "select symptom,symptom_pinci from recipe where name= '" + recipeName + "'";
+		String sql = "select symptom,symptom_pinci from recipe201512 where name= '" + recipeName + "'";
 		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
 		 if(rows.isEmpty())
 			 return null;

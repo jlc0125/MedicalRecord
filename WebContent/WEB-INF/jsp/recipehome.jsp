@@ -354,7 +354,7 @@
 	<div class="col-md-8" style="min-height:700px">
 		
 		<div class="search-logo center">
-			<a href="analysishome"><img src="resources/recipe/image/r_122.png" /></a>
+			<img src="resources/recipe/image/r_122.png" />
 		</div>
 		
 		<div class="search-div center">

@@ -3,6 +3,7 @@ package mr.web;
 import java.util.List;
 
 import mr.domain.TempNode;
+import mr.service.DrugService;
 import mr.service.RecipeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.mongodb.DBObject;
 public class RecipeController{
 	@Autowired
 	private RecipeService recipeService;
+	private DrugService drugService;
 	
 	@RequestMapping("/analysishome")
 	public String index(){
@@ -46,6 +48,7 @@ public class RecipeController{
 				return nodes;
 			}
 			else if(option == 2){
+				System.out.println(name);
 				TempNode[] nodes = recipeService.drugSearchRecipe(name);
 				return nodes;
 			}
@@ -64,6 +67,14 @@ public class RecipeController{
 		if(recipeName==null || recipeName=="")
 			return null;
 		return recipeService.search(recipeName);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/recipe/prescription")
+	public List<DBObject> prescription(@RequestParam(value="q", required=false)String recipeName){
+		if(recipeName==null || recipeName=="")
+			return null;
+		return recipeService.recipePrescription(recipeName);
 	}
 	
 	@ResponseBody

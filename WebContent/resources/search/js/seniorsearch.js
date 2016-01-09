@@ -282,10 +282,18 @@ function getTherSearchType(){
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
+	tempArray = new Array("消导化积","痈疡剂","清热","理血","泻下","解表","治燥","温里","祛痰","祛湿","补益","和解","治风","开窍","理气","固涩","驱虫","涌吐","安神","祛暑","表里双解","经产剂","疏肝解郁","耳鼻咽喉病方");
+	table += "<tr><td  class='c-left-text'>治疗模式：</td><td class='c-right-text'>";
+	for(var i = 0 ; i < tempArray.length; i++)
+		table += "<span class='classify_content_short'><a href='#' class='zhifa'>" + tempArray[i] + "</a></span>";
+	
 	
 	table += "</td></tr>";
 	$('.dis_type_list').live('click', function () {			
 		window.open("./browse/result?wd="+ $(this).text() +"&type=therapy");
+	});
+	$('.zhifa').live('click', function () {			
+		window.open("./browse/result?wd="+ $(this).text() +"&type=therapylabel");
 	});
 	
 	$("#main-table").html(table + "</table>");

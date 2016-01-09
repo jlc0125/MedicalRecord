@@ -224,33 +224,55 @@ public class MedicalRecordDao {
 	}
 		
 
-public List<MedicalRecord> reocrdByContentContain(String[] words){
-	final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
-	String sqlStr="select * from medicalrecord where (content like ?";
-	for(int i=1;i<words.length;i++){
-		sqlStr+=" and content like ?";
-	}
-	sqlStr+=")";
-	Object[] condition=new Object[words.length];
-	for(int i=0;i<words.length;i++){
-		condition[i]="%"+words[i]+"%";
-	}
-	
-	jdbcTemplate.query(sqlStr,condition,
-					new RowCallbackHandler(){
-				@Override
-				public void processRow(ResultSet rs) throws SQLException {
-					MedicalRecord record=new MedicalRecord();
-					record.setContent(rs.getString("content"));
-					record.setDoctorName(rs.getString("doctorName"));
-					record.setRecordId(rs.getInt("recordId"));
-					record.setRecordTitle(rs.getString("recordTitle"));
-					record.setReference(rs.getString("reference"));
-					result.add(record);
-				}
+	public List<MedicalRecord> reocrdByContentContain(String[] words){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sqlStr="select * from medicalrecord where (content like ?";
+		for(int i=1;i<words.length;i++){
+			sqlStr+=" and content like ?";
+		}
+		sqlStr+=")";
+		Object[] condition=new Object[words.length];
+		for(int i=0;i<words.length;i++){
+			condition[i]="%"+words[i]+"%";
+		}
 		
+		jdbcTemplate.query(sqlStr,condition,
+						new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						result.add(record);
+					}
+			
+			});
+		
+		return result;
+	}
+
+	//根据治法标签获得医案集
+	public List<MedicalRecord> recordByZhifa(String zhifa){
+		final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+		String sql="select * from medicalrecord where zhifa like ?";
+		jdbcTemplate.query(sql,new Object[] {"%"+zhifa+"%"},
+				new RowCallbackHandler(){
+					@Override
+					public void processRow(ResultSet rs) throws SQLException {
+						MedicalRecord record=new MedicalRecord();
+						record.setContent(rs.getString("content"));
+						record.setDoctorName(rs.getString("doctorName"));
+						record.setRecordId(rs.getInt("recordId"));
+						record.setRecordTitle(rs.getString("recordTitle"));
+						record.setReference(rs.getString("reference"));
+						record.setCfIndex(rs.getString("cfIndex"));
+						result.add(record);
+					}
+			
 		});
-	
-	return result;
+		return result;
 	}
 }

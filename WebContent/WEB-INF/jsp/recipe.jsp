@@ -32,7 +32,7 @@
 	<script type="text/javascript" src="resources/recipe/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/jquery.pajinate.min.js"></script>
 	<script type="text/javascript" src="resources/recipe/js/graph_recipe.js"></script>
-  <script type="text/javascript" src="resources/recipe/js/revision.js"></script>
+  	<script type="text/javascript" src="resources/recipe/js/revision.js"></script>
 	
 	<script type="text/javascript">
         function getUrlParam(name) {
@@ -40,26 +40,52 @@
                 var r = window.location.search.substr(1).match(reg);  //匹配目标参数
                 if (r != null) return unescape(r[2]); return null; //返回参数值
         }
+        function getPrescription(name){
+        	var url = "recipe/prescription?q=" + name;
+        	d3.json(url, function(error, root) {        		
+				if(error){
+					$("#accordion").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到 "' + name + '" 其他来源的组成。');
+				}
+				else{
+					if(root.length==0){
+						$("#accordion").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到 "' + name + '" 其他来源的组成。');
+					}else{
+						var str = "";
+						for(var i=0;i<root.length;i++){						
+							str += "<div class='panel panel-default'>"+
+					        			"<div class='panel-heading'>"+
+				            				"<p class='panel-titles'><a data-toggle='collapse' data-parent='#accordion' href='#collapse_"+i+"'>"+root[i].name+"&nbsp;"+root[i].description.chuchu+"</a></p>"+
+				        				"</div>"+
+					        			"<div id='collapse_"+i+"' class='panel-collapse collapse'>"+
+					            			"<div class='panel-body' id='pre_graph_"+i+"'></div>"+
+					        			"</div>"+
+			   			 			"</div>";						
+						}
+						$("#accordion").html(str);
+						for(var i=0;i<root.length;i++){	
+							graph("#pre_graph_"+i, root[i].description.zucheng, 300, 1, 1);
+						}
+					}
+				}
+			});
+        }
 		$(document).ready(function(){
 			$('#container').easyTabs({defaultContent:1});
 			
-			// var recipeName = $("#front_input").val();
             var recipeName = decodeURI(getUrlParam('name'));
 			if(recipeName != ''){
 				var url = "recipe/search?q=" + recipeName;
 				d3.json(url, function(error, root) { 
 					if(error){
-						$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-						$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-						$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+						$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + recipeName + '" 相关的结果。');
+						$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + recipeName + '" 相关的结果。');
 					}
 					else{
 						graph("#graph1", root.drug, 300, 1, 1);
-						graph("#graph2", root.zucheng, 300, 1, 0);
-						$("#zc_chuchu").text("出自" + root.chuchu_zc);
 						graph("#graph3", root.symptom, 450, 0, 1);
 					}
 				});
+				getPrescription(recipeName);
 			}
 			
 			$("#search_cf").submit(function(){
@@ -72,16 +98,14 @@
 					d3.json(url, function(error, root) { 
 						if(error){
 							$("#graph1").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
-							$("#graph2").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 							$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
 							graph("#graph1", root.drug, 300, 1);
-							graph("#graph2", root.zucheng, 300, 1);
-							$("#zc_chuchu").text("出自" + root.chuchu_zc);
 							graph("#graph3", root.symptom, 500, 0);
 						}
 					});
+					getPrescription(value);
 				}
 				return false;
 			});
@@ -154,7 +178,8 @@
 		<div class="logoSearch_L2">
 			<form id="search_cf" class="search cf" >
 				<input id="front_input" class="text" type="text" maxLength="20" value="${recipeName}"> 
-				<input class="button" id="front_btn" type="submit" value=""> <br>
+				<!-- <input class="button" id="front_btn" type="submit" value=""> <br> -->
+				<button class="btn btn-primary search-btn" id="front_btn" type="submit">分析</button>
 			</form>
 		</div>
 
@@ -168,12 +193,14 @@
 		    	<div id="component">
 		    		<div class="graph">
 		    			<div class="graph_head">从医案中分析出的相关关系</div>
-              <span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
+              			<span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
 		    			<div id="graph1"></div>
 		    			<div id="separate"></div>
-		    			<div class="graph_head">方剂组成成分</div>
-		    			<div id="zc_chuchu"></div>
-		    			<div id="graph2"></div>
+		    			<div class="graph_head">各来源的方剂组成</div>
+		    			<!-- <div class="graph_head">方剂组成成分</div> -->
+		    			<!-- <div id="zc_chuchu"></div> -->
+		    			<!-- <div id="graph2"></div> -->
+		    			<div class="panel-group" id="accordion"></div>
                         <!-- <div id="descpt1">
                             <table>
                                 <caption>图示说明</caption>
@@ -199,9 +226,7 @@
                             <h2>相关医案</h2>
                             <div class="alt_page_navigation"></div> 
                             <div class="alt_info_text"></div>
-                            <ol class="alt_content">
-                                
-                            </ol>
+                            <ol class="alt_content"></ol>
                         </div>    
                     </div>
 		    		<!-- <div id="descpt1">
@@ -227,8 +252,8 @@
 	     
 	     		<div id="attending">
 	    			<div id="graph3">
-              <span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
-            </div>
+              			<span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
+            		</div>
 	    			<!-- <div id="descpt2">
     					<div>图示说明</div>
     					<svg style="margin-top: 20%;">

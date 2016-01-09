@@ -59,7 +59,6 @@
 					$(".alt_content").html(txt);
 					if(txt != ""){
 						// $(".alt_content").css("border","1px solid #DB5C04");
-						
 						$('.alt_container').pajinate({
 							items_per_page : 10,
 							num_page_links_to_display : 4,
@@ -109,10 +108,20 @@
 			d3.select(this).attr("r", 4.5);
 		})
 		.on("click", function(d){
-			if(is_drug)
-				window.open("http://zcy.ckcest.cn/tcm/search/med?medname="+d.name);
-			else
-				window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name);
+			if(is_drug){
+				if(d.id==0){
+					window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=100000&pageno=1&type=med#sub_nav");
+				}else{
+					window.open("http://zcy.ckcest.cn/tcm/search/med?medname="+d.name+"&medid="+d.id);
+				}
+			}
+			else{
+				if(d.id==0){
+					window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+d.name+"&range=000001&pageno=1&type=dis#sub_nav");
+				}else{
+					window.open("http://zcy.ckcest.cn/tcm/search/dis?disname="+d.name+"&disid="+d.id);
+				}
+			}
 		});
 	
 		node.append("text")
