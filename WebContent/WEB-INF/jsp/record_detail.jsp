@@ -114,8 +114,13 @@ String contextPath=request.getContextPath();
 			data=eval('(' + data + ')');
 			dataGlobal=data;
 			console.log(data);
-			content=data.content.split("|").slice(0,-1);
-			var cfIndex=data.cfIndex.split(" ");
+			content=data.content.split("|");
+			var cfIndex=[];
+			if(data.cfIndex){
+				cfIndex=data.cfIndex.split(" ");	
+			}
+			
+			
 			for(var i=0;i<cfIndex.length;i++){
 				cfIndex[i]=parseInt(cfIndex[i]);
 			}
@@ -184,11 +189,12 @@ String contextPath=request.getContextPath();
 			console.log(data);
 			var html="<table class='table'><tbody><tr><td class='recommend_head'>相关医案</td>";
 			for(var i=0;i<data.length;i++){
-				var content=data[i].content.split("|").slice(0,-1);
+				var content=data[i].content.split("|");
 				html+="<td><div class='recommend_field' record_id='"+data[i].recordId+"'><p class='recommend_title'>"+data[i].recordTitle+"</p><p class='recommend_content'>";
-				for(var j=0;j<3;j++){
-					html+=content[j];
+				if(content.length > 0){
+					html+=content[0].substring(0,10);	
 				}
+				
 				html+="...</br>";
 				html+="</p></div></td>";
 			}
