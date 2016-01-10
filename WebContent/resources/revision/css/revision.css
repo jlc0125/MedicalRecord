@@ -87,25 +87,25 @@
 	padding-left: 20px;
 	 background: url("../Images/bg1.jpg") no-repeat left top;
 }
-.info .praise { 
+.info .praise, .info .correct { 
 	color: #369; 
 	float: right; 
 	height: 20px; 
 	padding-left: 18px; 
 	/* background: url("Images/bg2.jpg") no-repeat left top; */
 }
-.info .praise:hover { 
+.info .praise:hover, .info .correct:hover { 
 	text-decoration: underline; 
 	/* background: url("../Images/bg3.jpg") no-repeat left top; */
 }
-.info .dispraise { 
+.info .dispraise, .info .uncorrect { 
 	color: #369; 
 	float: right; 
 	height: 20px; 
 	padding-left: 18px; 
 	/* background: url("Images/bg2.jpg") no-repeat left top; */
 }
-.info .dispraise:hover { 
+.info .dispraise:hover, .info .uncorrect:hover { 
 	text-decoration: underline; 
 	/* background: url("../Images/bg4.jpg") no-repeat left top; */
 }
