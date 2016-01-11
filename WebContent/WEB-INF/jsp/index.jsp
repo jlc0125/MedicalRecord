@@ -9,7 +9,7 @@ String contextPath=request.getContextPath();
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 
 <html dir="ltr" xml:lang="en-gb" xmlns="http://www.w3.org/1999/xhtml"
-	lang="en-gb">
+  lang="en-gb">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>医案系统</title>
@@ -23,48 +23,37 @@ String contextPath=request.getContextPath();
 <link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/search/css/browse.css">
 <link href="<%=contextPath%>/resources/carousel.css" rel="stylesheet">
 
-<style type="text/css">
-  .img-circle{
-    margin-left: 25%;
-  }
-  .img-title{
-    text-align: center;
-  }
-  .function-image{
-    cursor: pointer;
-  }
-</style>
 
 <script type="text/javascript">
   $(function(){
     $(".function-image").on("click", function(){
       // console.log($(this).attr("name"));
-      window.location.href="<%=contextPath%>/" + $(this).attr("name");
+      window.location.href="<%=contextPath%>/" + $(this).data("name");
     })
   })
 </script>
 
 
-	
+  
 </head>
 
 <body>
-	<div class=top>
-		<div>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
-		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
-		    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
-			<%@include file="/WEB-INF/jsp/common/header.jsp"%>
-		</div>
-		<div class=logoSearch>
-			<div class="logoSearch_L2">
-				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		
-	</div>
-	
+  <div class=top>
+    <div>
+        <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
+        <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
+        <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+        <%@include file="/WEB-INF/jsp/common/header.jsp"%>
+    </div>
+    <div class=logoSearch>
+      <div class="logoSearch_L2">
+        <div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    
+  </div>
+  
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -77,34 +66,38 @@ String contextPath=request.getContextPath();
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="function-image" name="search" src="<%=contextPath%>/resources/search/Images/newPic/search-bg.jpg"/>
+          <img class="function-image" data-name="search" src="<%=contextPath%>/resources/search/Images/newPic/search-bg.jpg"/>
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption caption1">
               <h1>医案搜索</h1>
+              <p>从中药、病症、方剂等多角度搜索相关医案</p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="function-image" name="browse" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
+          <img class="function-image" data-name="browse" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-bg.jpg"/>
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption caption1">
               <h1>分类浏览</h1>
+              <p>医案数据按照疾病、治则、辩证和词频四方面分类</p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="function-image" name="recipehome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-bg.jpg"/>
+          <img class="function-image" data-name="recipehome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-bg.jpg"/>
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption caption1">
               <h1>医案分析</h1>
+              <p>中药、疾病、方剂、辩证和治则五种角度分析医案集数据</p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="function-image" name="book" src="<%=contextPath%>/resources/search/Images/newPic/read-bg.jpg"/>
+          <img class="function-image" data-name="book" src="<%=contextPath%>/resources/search/Images/newPic/read-bg.jpg"/>
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption caption1">
               <h1>医书阅读</h1>
+              <p>提供全面、齐全的医书阅读</p>
             </div>
           </div>
         </div>
@@ -123,75 +116,27 @@ String contextPath=request.getContextPath();
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <div class="col-lg-3">
-          <img class="img-circle function-image" name="search" src="<%=contextPath%>/resources/search/Images/newPic/search-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
-          <h2 class="img-title">医案搜索</h2> 
+        <div class="col-lg-3 function-item function-image" data-name="search">
+          <i class="function-icon icon-search"></i> 
+            <h2 class="img-title">医案搜索</h2> 
         </div><!-- /.col-lg-3 -->
 
-        <div class="col-lg-3">
-          <img class="img-circle function-image" name="browse" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+        <div class="col-lg-3 function-item function-image" data-name="browse">
+          <i class="function-icon icon-classify"></i> 
           <h2 class="img-title">分类浏览</h2>
           
         </div><!-- /.col-lg-3 -->
-        <div class="col-lg-3">
-          <img class="img-circle function-image" name="recipehome" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+        <div class="col-lg-3 function-item function-image" data-name="recipehome">
+          <i class="function-icon icon-analysis"></i> 
           <h2 class="img-title">医案分析</h2>
           
         </div><!-- /.col-lg-3 -->
-        <div class="col-lg-3">
-          <img class="img-circle function-image" name="book" src="<%=contextPath%>/resources/search/Images/newPic/read-icon-clean.png" alt="Generic placeholder image" width="140" height="140">
+        <div class="col-lg-3 function-item function-image" data-name="book">
+         <i class="function-icon icon-read"></i>  
           <h2 class="img-title">医书阅读</h2>
           
         </div><!-- /.col-lg-3 -->
       </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading"><span class="text-muted">多角度搜索</span></h2>
-          <p class="lead">从中药、病症、方剂等多角度搜索相关医案</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="<%=contextPath%>/resources/search/Images/newPic/search-icon.png" alt="医案搜索" style="width:40%;height:40%">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading"><span class="text-muted">多层面分类</span></h2>
-          <p class="lead">医案数据按照疾病、治则、辩证和词频四方面分类</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="<%=contextPath%>/resources/search/Images/newPic/classify-browse-icon.png" style="width:40%;height:40%" alt="Generic placeholder image" >
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading"><span class="text-muted">多方面分析</span></h2>
-          <p class="lead">中药、疾病、方剂、辩证和治则五种角度分析医案集数据</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="<%=contextPath%>/resources/search/Images/newPic/analysis-icon.png" style="width:40%;height:40%" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-      
-      
-
-      <!-- /END THE FEATURETTES -->
-
-
-
     </div><!-- /.container -->
 
 <!-- 统计信息 -->

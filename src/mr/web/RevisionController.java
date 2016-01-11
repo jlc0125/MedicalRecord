@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/revision")
 public class RevisionController {
 	
 	@Autowired
 	RevisionService revisionService;
-	
-	@RequestMapping("/record_title")
+	@RequestMapping("/revision/record_title")
 	@ResponseBody
 	public void recordTitle(@RequestParam("id") long id, @RequestParam("t") String title, @RequestParam("c") String comment){
 		Revision revision = new Revision();
@@ -33,7 +31,7 @@ public class RevisionController {
 		revisionService.addRevision(revision);
 	}
 	
-	@RequestMapping("/association_rule")
+	@RequestMapping("/revision/association_rule")
 	@ResponseBody
 	public void associationRule(@RequestParam("e1") String entity1, @RequestParam("e2") String entity2, @RequestParam("c") String comment){
 		Revision revision = new Revision();
@@ -45,10 +43,16 @@ public class RevisionController {
 		revisionService.addRevision(revision);
 	}
 	
-	@RequestMapping(value="")
+	@RequestMapping(value="/revision")
 	public String browsePage(){
 		System.out.println("ok............................");
 		return "revisionList";
+	}
+	
+	@RequestMapping(value="/revision_professor")
+	public String browseProfessorPage(){
+		System.out.println("ok............................");
+		return "revisionProfessorList";
 	}
 	
 	/**
@@ -59,7 +63,7 @@ public class RevisionController {
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/revisionlist")
+	@RequestMapping(value="/revision/revisionlist")
 	@ResponseBody
 	public List<Revision> getRevision(){
 		List<Revision> rvsList =new ArrayList<Revision>();
@@ -75,7 +79,7 @@ public class RevisionController {
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/setagree")
+	@RequestMapping(value="/revision/setagree")
 	@ResponseBody
 	public void setAgree(@RequestParam("agree") String agree,@RequestParam("id") String id){
 	//	System.out.println("ok............................"+id);
@@ -90,7 +94,7 @@ public class RevisionController {
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/setdisagree")
+	@RequestMapping(value="/revision/setdisagree")
 	@ResponseBody
 	public void setDisgree(@RequestParam("disagree") String disagree,@RequestParam("id") String id){
 	//	System.out.println("ok............................"+id);

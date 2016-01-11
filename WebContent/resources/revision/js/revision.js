@@ -9,7 +9,66 @@ $(function(){
 	$('.dispraise').live('click', function() {
 		dispraise($(this));
 	});
+	$('.correct').live('click', function(){
+		var el=$(this).parent().prev();
+		var type = el.children('.type').children('.typename').first().html();
+		var title = el.children('.title').children('span:not(.id)').text();
+		if(type.indexOf('医案标题') != -1){
+			title = title.split("#")[1];
+			BootstrapDialog.show({
+			  title: type,
+	          message: '将医案&nbsp<b>'+title+'</b>&nbsp更正为:<input type="text" class="form-control">',
+	          buttons: [{
+	        	  label: "确定",
+	        	  action: function(dialogRef){
+	        		  var title = dialogRef.getModalBody().find('input').val();
+	        		  dialogRef.close();
+	        	  }
+	          },{
+	        	  label: "取消",
+	        	  action: function(dialogRef){
+	        		  dialogRef.close();
+	        	  }
+	          }]
+	        });
+		} else if(type.indexOf('相关关系') != -1){
+			title = title.split("/");
+			BootstrapDialog.show({
+				  title: type,
+		          message: '将&nbsp<b>'+title[0]+'</b>&nbsp和&nbsp<b>'+title[1]+"</b>&nbsp相关关系删除",
+		          buttons: [{
+		        	  label: "确定",
+		        	  action: function(dialogRef){
+		        		  dialogRef.close();
+		        	  }
+		          },{
+		        	  label: "取消",
+		        	  action: function(dialogRef){
+		        		  dialogRef.close();
+		        	  }
+		          }]
+		        });
+		}
+		  
+	});
 	
+	$('.uncorrect').live('click', function(){
+		BootstrapDialog.show({
+			title: "关闭问题",
+			message: "请确定关闭该问题",
+			 buttons: [{
+	        	  label: "确定",
+	        	  action: function(dialogRef){
+	        		  dialogRef.close();
+	        	  }
+	          },{
+	        	  label: "取消",
+	        	  action: function(dialogRef){
+	        		  dialogRef.close();
+	        	  }
+	          }]
+	        });
+		});
 });    
 
 function praise(el) {  
@@ -212,7 +271,77 @@ function setDisagreeErrorCB(){
 }
 
 
+/*专家页面*/
+function initRevisionProfessor(){
+	var dataJson = {
+			
+	};
 
+	var data = JSON.stringify(dataJson);
+	var methodType = "POST";
+	var url = "./revision/revisionlist";
+	var contentType = "application/json;charset=utf-8";
+
+	ajaxFunc(methodType, url, data, contentType, getRevisionProfessorSuccessCB, getRevisionProfessorErrorCB);
+}
+
+function getRevisionProfessorSuccessCB(data, textStatus, jqXHR){
+	showProfessorData(data);
+}
+function getRevisionProfessorErrorCB(){
+	
+}
+function showProfessorData(data){
+	var str = "";
+	var count = data.length;
+	for(var i=(pageNo-1)*pageSize;i<pageNo*pageSize&&i<count;i++){
+		str +=  '<div class="box clearfix">'+
+					'<div class="content">'+
+						'<div class="main">'+
+							'<p class="title"><span class="id">ID:'+data[i].id+'&nbsp;</span><span>'+data[i].advise+'</span></p>'+
+							'<p class="txt">'+data[i].comment+'</p>'+
+							'<p class="type">'+
+								'类型: <span class="typename">'+getType(data[i].type)+'&nbsp&nbsp</span>'+
+								'同意人数: <span class="typename">'+data[i].agree+'&nbsp&nbsp</span>'+
+								'不同意人数: <span class="typename">'+data[i].disagree+'</span>'+
+							'</p>'+
+						'</div>'+
+						'<div class="info clearfix">'+
+							'<span class="time">'+formateDate(new Date(data[i].create_date))+'</span>'+						
+							'<a class="uncorrect" href="javascript:;">'+
+								'<span class="uncorrect-txt">关闭问题</span>'+
+							'</a>'+
+							'<a class="correct" href="javascript:;">'+
+								'<span class="correct-text">修改</span>'+
+					
+							'</a>'+
+						'</div>'+
+					'</div>'+
+				'</div>';
+		
+	}
+	$('#list').html(str);
+	
+	if (count <= pageSize){
+		$("#rvs_pagincation").hide();
+	}
+	else{
+		$("#rvs_pagincation").pagination(
+		{
+			items : parseInt(data.length),
+			itemsOnPage : pageSize,
+			cssStyle : 'light-theme',
+			hrefTextPrefix : '#',
+			onPageClick : function(pageNumber, event) {
+				pageNo=pageNumber;
+				showData(data);
+			},
+			prevText : "上一页",
+			nextText : "下一页",
+			currentPage : pageNo
+		});
+	}
+}
 
 
 
