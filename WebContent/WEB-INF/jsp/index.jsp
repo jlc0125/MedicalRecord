@@ -54,21 +54,7 @@ String contextPath=request.getContextPath();
 		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
 		    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
 		    <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
-			<div id="common_nav">
-			    <div class="cf" id="common_nav_L2">
-			        <ul>
-			            <li>
-			                <a title="注册" href="http://zcy.ckcest.cn/tcm/user/registerpage" rel="nofollow">注册</a>
-			            </li>
-		                <li>
-		                    <a title="登录" href="http://zcy.ckcest.cn/tcm/user/loginpage" rel="nofollow">登录</a>
-		                </li>
-			            <li><a title="帮助中心" href="javascript:void(0);" rel="nofollow">帮助中心</a></li>
-			            <li><a title="知识中心首页" href="http://www.ckcest.cn" rel="nofollow">知识中心首页</a></li>
-			            <li><a class="current" title="中草药系统首页"  href="http://zcy.ckcest.cn/tcm/" rel="nofollow">中草药系统首页</a></li>
-			        </ul>
-			    </div>
-			</div>
+			<%@include file="/WEB-INF/jsp/common/header.jsp"%>
 		</div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">

@@ -1,10 +1,13 @@
 package mr.web;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-
+import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,31 +17,75 @@ import mr.domain.User;
 import mr.service.UserService;
 
 @Controller
-public class LoginController{
-	
+@RequestMapping(value = "/user")
+public class LoginController {
+
 	@Autowired
 	private UserService userService;
-    
-	@RequestMapping(value = "/index")
-	public String loginPage(){
-		return "index";
-	}
-	
-	@RequestMapping(value = "/loginCheck")
-	public ModelAndView loginCheck(HttpServletRequest request,LoginCommand loginCommand){
-		boolean isValidUser = 
-			   userService.hasMatchUser(loginCommand.getUserName(),
-					                    loginCommand.getPassword());
-		if (!isValidUser) {
-			return new ModelAndView("login", "error", "用户名或密码错误。");
+
+	@RequestMapping(value = "/loginpage")
+	public void login(HttpServletRequest request, HttpServletResponse response) {
+		AttributePrincipal principal = (AttributePrincipal) request
+				.getUserPrincipal();
+		if (null != principal) {
+			Map<String, Object> attributes = principal.getAttributes();
+			String userName = (String) attributes.get("userName");
+			if (null != userName) {
+				User user = new User();
+				user.setName(userName);
+				request.getSession().setAttribute("user", user);
+			}
+			String preHref = request.getQueryString().split("=")[1];
+			try {
+				response.sendRedirect(preHref);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			User user = userService.findUserByUserName(loginCommand
-					.getUserName());
-			user.setLastIp(request.getLocalAddr());
-			user.setLastVisit(new Date());
-			userService.loginSuccess(user);
-			request.getSession().setAttribute("user", user);
-			return new ModelAndView("main");
+			String target = request.getRequestURL() + "?"
+					+ request.getQueryString();
+			try {
+				response.sendRedirect("https://sso.ckcest.cn/login?service="
+						+ target);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
+
+	@RequestMapping(value = "/logout")
+	public void logout(HttpServletRequest request, HttpServletResponse response) {
+		User user = (User) request.getSession().getAttribute("user");
+		if (null == user) {
+			String preHref = request.getQueryString().split("=")[1];
+			try {
+				response.sendRedirect(preHref);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		} else {
+			String target = request.getRequestURL() + "?" + request.getQueryString();
+			request.getSession().invalidate();
+			try {
+				response.sendRedirect("https://sso.ckcest.cn/logout?service=" + target);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	@RequestMapping(value="registpage")
+	public void regist(HttpServletRequest request,HttpServletResponse response){
+		try {
+			response.sendRedirect("http://www.ckcest.cn/portal/register");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
