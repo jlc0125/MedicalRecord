@@ -88,7 +88,7 @@
 	</div>
 	
 	<div class="imgFrame">
-		<a href="treatmentmode"><img src="resources/recipe/image/r_127.png" /></a>
+		<a href="symptomhome"><img src="resources/recipe/image/r_127.png" /></a>
 	</div>
 
   	<div id="main-content">
