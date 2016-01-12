@@ -47,9 +47,9 @@
 						$(".graph").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + drugName + '" 相关的结果。');
 					}
 					else{
-						graph("#component .graph", root.drug, 1);
-						graph("#attending .graph", root.symptom, 2);
-						graph("#similar .graph", root.recipe, 3);		
+						graph("#component .graph", root.drug, 1, 0);
+						graph("#attending .graph", root.symptom, 2, 0);
+						graph("#similar .graph", root.recipe, 3, 0);		
 					}
 				});
 			}
@@ -64,9 +64,9 @@
 							$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
-							graph("#component .graph", root.drug, 1);
-							graph("#attending .graph", root.symptom, 2);
-							graph("#similar .graph", root.recipe, 3);		
+							graph("#component .graph", root.drug, 1, 0);
+							graph("#attending .graph", root.symptom, 2, 0);
+							graph("#similar .graph", root.recipe, 3, 0);		
 						}
 					});
 				}
