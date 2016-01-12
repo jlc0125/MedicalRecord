@@ -40,7 +40,7 @@
                 var r = window.location.search.substr(1).match(reg);  //匹配目标参数
                 if (r != null) return unescape(r[2]); return null; //返回参数值
         }
-        function getPrescription(name){
+       /*  function getPrescription(name){
         	var url = "recipe/prescription?q=" + name;
         	d3.json(url, function(error, root) {        		
 				if(error){
@@ -54,7 +54,7 @@
 						for(var i=0;i<root.length;i++){						
 							str += "<div class='panel panel-default'>"+
 					        			"<div class='panel-heading'>"+
-				            				"<p class='panel-titles'><a data-toggle='collapse' data-parent='#accordion' href='#collapse_"+i+"'>"+root[i].name+"&nbsp;"+root[i].description.chuchu+"</a></p>"+
+				            				"<p class='panel-titles'><a class='pre_name' data-toggle='collapse' data-parent='#accordion' href='#collapse_"+i+"'>"+root[i].name+"&nbsp;"+root[i].description.chuchu+"</a></p>"+
 				        				"</div>"+
 					        			"<div id='collapse_"+i+"' class='panel-collapse collapse'>"+
 					            			"<div class='panel-body' id='pre_graph_"+i+"'></div>"+
@@ -63,12 +63,98 @@
 						}
 						$("#accordion").html(str);
 						for(var i=0;i<root.length;i++){	
-							graph("#pre_graph_"+i, root[i].description.zucheng, 300, 1, 1);
+							graph("#pre_graph_"+i, root[i].description.id, root[i].description.zucheng, 300, 1, 1);
 						}
 					}
 				}
 			});
+        } */
+        function getPrescription(name){
+        	var url = "recipe/prescription?q=" + name;
+        	d3.json(url, function(error, root) {        		
+				if(error){
+					$("#accordion").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到 "' + name + '" 其他来源的组成。');
+				}
+				else{
+					if(root.length==0){
+						$("#accordion").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到 "' + name + '" 其他来源的组成。');
+					}else{
+						var str = "";
+						for(var i=0;i<root.length;i++){						
+							str +="<div class='content'>"+
+				            		"<div class='title'><a>"+root[i].name+"&nbsp;"+root[i].description.chuchu+"</a></div>"+
+				        			"<div id='collapse_"+i+"' class='submenu'>"+
+				            			"<div class='panel-body' id='pre_graph_"+i+"'></div>"+
+				        			"</div>"+
+			   			 		"</div>";						
+						}
+						$("#accordion").html(str);
+						for(var i=0;i<root.length;i++){	
+							graph("#pre_graph_"+i, root[i].description.id, root[i].description.zucheng, 300, 1, 1);
+						}
+						Accordions();
+					}
+				}
+			});
         }
+        
+        function Accordions(){
+        	var Accordion = function(el, multiple) {
+				this.el = el || {};
+				this.multiple = multiple || false;
+
+				// Variables privadas
+				var links = this.el.find('.title');
+
+				// Evento
+				links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+			}
+
+			Accordion.prototype.dropdown = function(e) {
+				var $el = e.data.el;
+					$this = $(this),
+					$next = $this.next();
+
+				$next.slideToggle();
+				$this.parent().toggleClass('open');
+				PreCompare($this);
+
+				if (!e.data.multiple) {
+					$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+				};
+			}	
+
+			var accordion = new Accordion($('#accordion'), false);
+        } 
+        
+        function PreCompare(e){
+        	var pre = e.next().children('.panel-body').children('svg').children('g').find('g');//.find('g.childnode');//children("panel-body").children("svg").children("g").children(".childnode");
+        //	alert(pre.length);
+        	var recipe = $('#graph1').children('svg').children('g').find('g');
+        //	alert(recipe.length);
+        	for(var j=1;j<recipe.length;j++){
+        		$(recipe[j]).attr("class", "childnode");
+        	}
+        	for(var i=1;i<pre.length;i++){		
+        		for(var j=1;j<recipe.length;j++){
+        			if($(pre[i]).children("text").text() == $(recipe[j]).children("text").text()){
+        				$(pre[i]).attr("class", "childnode1");
+        				$(recipe[j]).attr("class", "childnode1");
+        			}
+        		}
+        	}
+        	for(var i=1;i<pre.length;i++){
+        		if($(pre[i]).attr('class')=='childnode'){
+    				$(pre[i]).attr("class", "childnode3");
+        		}
+        	}
+        	for(var j=1;j<recipe.length;j++){
+        		if($(recipe[j]).attr('class')=='childnode'){
+    				$(recipe[j]).attr("class", "childnode2");
+        		}
+        	}
+        }
+        
 		$(document).ready(function(){
 			$('#container').easyTabs({defaultContent:1});
 			
@@ -81,12 +167,14 @@
 						$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + recipeName + '" 相关的结果。');
 					}
 					else{
-						graph("#graph1", root.drug, 300, 1, 1);
-						graph("#graph3", root.symptom, 450, 0, 1);
+						graph("#graph1", 0, root.drug, 300, 1, 1);
+						graph("#graph3", 0, root.symptom, 450, 0, 1);
 					}
 				});
 				getPrescription(recipeName);
 			}
+			
+			
 			
 			$("#search_cf").submit(function(){
 				var value = $("#front_input").val();
@@ -101,8 +189,8 @@
 							$("#graph3").prepend("div").attr("class", "errorhit").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
 						}
 						else{
-							graph("#graph1", root.drug, 300, 1);
-							graph("#graph3", root.symptom, 500, 0);
+							graph("#graph1",0,  root.drug, 300, 1);
+							graph("#graph3",0,  root.symptom, 500, 0);
 						}
 					});
 					getPrescription(value);
@@ -121,8 +209,11 @@
 				 }
 			});
 			
-        });
-      
+			$('.pre_name').click(function() {
+				alert("k");
+			});
+		});
+
 	</script>
 </head>
 
@@ -181,12 +272,32 @@
 		    			<div class="graph_head">从医案中分析出的相关关系</div>
               			<span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
 		    			<div id="graph1"></div>
+		    			<div id="descpt1">
+	    					<table>
+	    					 	<caption>图示说明</caption>
+	    						<tbody>
+	    							<tr>
+	    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle></svg></td>
+	    								<td>从医案中分析与方剂相关，同时又是方剂知识库中方剂的组成的中药</td>
+	    							</tr>
+	    							<tr>
+	    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle></svg></td>
+	    								<td>从医案中分析与方剂相关，但不是方剂知识库中方剂的组成的中药</td>
+	    							</tr>
+	    							<tr>
+	    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle></svg></td>
+	    								<td>方剂知识库中方剂的组成，但在医案中暂未分析出与方剂相关的中药</td>
+	    							</tr>
+	    						</tbody>
+	    					</table>
+	    				</div>		    			
 		    			<div id="separate"></div>
 		    			<div class="graph_head">各来源的方剂组成</div>
 		    			<!-- <div class="graph_head">方剂组成成分</div> -->
 		    			<!-- <div id="zc_chuchu"></div> -->
 		    			<!-- <div id="graph2"></div> -->
-		    			<div class="panel-group" id="accordion"></div>
+		    			<!-- <div class="panel-group" id="accordion"></div> -->
+		    			<div id="accordion" class="accordion"></div>
                         <!-- <div id="descpt1">
                             <table>
                                 <caption>图示说明</caption>
@@ -214,26 +325,7 @@
                             <div class="alt_info_text"></div>
                             <ol class="alt_content"></ol>
                         </div>    
-                    </div>
-		    		<!-- <div id="descpt1">
-    					<table>
-    					 	<caption>图示说明</caption>
-    						<tbody>
-    							<tr>
-    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="red" stroke-width="1.5" fill="#fff"></circle></svg></td>
-    								<td>从医案中分析与方剂相关，同时又是方剂知识库中方剂的组成的中药</td>
-    							</tr>
-    							<tr>
-    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle></svg></td>
-    								<td>从医案中分析与方剂相关，但不是方剂知识库中方剂的组成的中药</td>
-    							</tr>
-    							<tr>
-    								<td><svg><circle cx="6" cy="12" r="4.5" stroke="#008000" stroke-width="1.5" fill="#fff"></circle></svg></td>
-    								<td>方剂知识库中方剂的组成，但在医案中暂未分析出与方剂相关的中药</td>
-    							</tr>
-    						</tbody>
-    					</table>
-    				</div> -->
+                    </div>		    		
 		     	</div>
 	     
 	     		<div id="attending">
@@ -259,15 +351,7 @@
                     </div>
 	     		</div>
 	    	</div>
-    		
-		    <!-- <div id="sidebar">
-		    	<div class="alt_container">
-					<h2>相关医案</h2>
-					<div class="alt_page_navigation"></div>	
-					<div class="alt_info_text"></div>
-					<ul class="alt_content"></ul>
-				</div>    
-		    </div> -->
+	    	
 	    	<div class="clearfix"></div>
    		</div>
         

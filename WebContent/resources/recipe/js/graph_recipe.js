@@ -1,5 +1,5 @@
 (function(window, diameter){
-	function graph(selectStr, root, diameter, is_drug, is_relate){
+	function graph(selectStr, id, root, diameter, is_drug, is_relate){
 		var tree = d3.layout.tree()
 		.size([360, diameter / 2 - 60])
 		.separation(function(a, b) {
@@ -79,7 +79,20 @@
 		.attr("class", "rootnode");
 					
 		rootNode.append("circle")
-		.attr("r", 7);
+		.attr("r", 7)
+		.on("mouseover", function(){
+			d3.select(this).attr("r", 8);
+		 })
+		.on("mouseout", function(){
+			d3.select(this).attr("r", 7);
+		})
+		.on("click", function(d){
+			if(id!=0){
+				window.open("http://zcy.ckcest.cn/tcm/search/pre?preid="+id+"&prename="+nodes[0].name);
+			}else{
+				window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+nodes[0].name+"&range=000100&pageno=1&type=pre");
+			}
+		});
 	
 		rootNode.append("text")
 		.attr("dy", "32")

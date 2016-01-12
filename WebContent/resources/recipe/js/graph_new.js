@@ -11,7 +11,7 @@
 		return [d.y, d.x / 180 * Math.PI]; 
 	});
 	
-	function graph(selectStr, root, linkType){
+	function graph(selectStr, root, linkType, type){
 		var svg = d3.select(selectStr).append("svg")
 		.attr("width", diameter)
 		.attr("height", diameter)
@@ -78,7 +78,21 @@
 		.attr("class", "rootnode");
 					
 		rootNode.append("circle")
-		.attr("r", 7);
+		.attr("r", 7)
+		.on("mouseover", function(){
+			d3.select(this).attr("r", 8);
+		 })
+		.on("mouseout", function(){
+			d3.select(this).attr("r", 7);
+		})
+		.on("click", function(d){
+			if(type == 0){  //中药
+				window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+nodes[0].name+"&range=100000&pageno=1&type=med");
+			}
+			else if(type == 1){ //疾病
+				window.open("http://zcy.ckcest.cn/tcm/search/frontsearch?keyword="+nodes[0].name+"&range=000001&pageno=1&type=dis");
+			}
+		});
 	
 		rootNode.append("text")
 		.attr("dy", "32")
