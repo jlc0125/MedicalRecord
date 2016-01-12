@@ -42,6 +42,37 @@ String contextPath=request.getContextPath();
 		margin-right: 26%;
 		margin-top: 30px;
 	}
+
+  .record_search_logo{
+    padding-top:80px;
+    padding-bottom:50px;
+  }
+  .center{
+    text-align:center;
+  }
+  #input{
+    line-height: 20px;
+    width: 580px;
+    
+    padding: 10px 9px 10px 7px;
+    vertical-align: middle;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  
+  #btn{
+    height: 46px;
+    line-height: 40px;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    width: 104px;
+  }
+
+  .bg_heise{
+    min-height: 600px;
+  }
+    
 </style>
 </HEAD>
 <script type="text/javascript">
@@ -93,13 +124,11 @@ String contextPath=request.getContextPath();
                 </div>
             </div>
 
-			<div class="alert" style="display:none">
-			  <strong>您输入的词中不包含辩证或治则词汇，请再次输入</strong> 
-			</div>
+      <div class="alert" style="display:none">
+        <strong>您输入的词中不包含辩证或治则词汇，请再次输入</strong> 
+      </div>
 			<div class="container" style="background-color: white;">
 				<ul id="nav" class="nav nav-tabs" style="display:none"></ul>
-				<div class="info"><h1 id="meds_info"></h1>
-				</div>
 				<div class="row">
 					<div class="span9">
 						<div id="meds"  >
@@ -108,9 +137,10 @@ String contextPath=request.getContextPath();
 					<div id="pieChart" class="span3">
 					</div>
 				</div>
-				<div id="search_link_div">
-					<a id="search_link"></a>
-				</div>
+
+        <div id="search_link_div">
+        	<a id="search_link"></a>
+        </div>
 <!--			
 				<div class="info"><h1 id="records_info"></h1>
 				</div>
