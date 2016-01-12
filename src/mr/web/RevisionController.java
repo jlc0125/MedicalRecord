@@ -100,4 +100,5 @@ public class RevisionController {
 	//	System.out.println("ok............................"+id);
 		revisionService.setDisagree(Integer.parseInt(disagree), Integer.parseInt(id));		
 	}
+	
 }

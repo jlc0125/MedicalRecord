@@ -39,10 +39,10 @@ public class BZZZAnalysisController {
 			System.out.println("word="+word);
 			Map<String,Object> map=new HashMap<String,Object>();
 			Map<String,Float> meds=bzs.freqUsedMeds(word);
-			List<MedicalRecord> records=bzs.containRecords(word);
+//			List<MedicalRecord> records=bzs.containRecords(word);
 			map.put("meds",meds.keySet());
 			map.put("likelihood", meds.values());
-			map.put("records",records);
+//			map.put("records",records);
 			map.put("word", word);
 			result.add(map);
 		}
@@ -71,9 +71,9 @@ public class BZZZAnalysisController {
 	
 	
 	
-	@RequestMapping(value="Result")
+	@RequestMapping(value="result")
 	public String resultPage(){
-		return "analysisResult";
+		return "analysis_result";
 	}
 	
 }

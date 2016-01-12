@@ -42,7 +42,7 @@ public class BZNaiveBayesService {
 		float threshold=0.9f;
 		float cover=0.0f;
 		for(int i=pList.size()-1;i>=0;i--){
-			if (cover<threshold) result.put(mDao.getMedById(pList.get(i).medId).getName(),pList.get(i).likelihood);
+			if (cover < threshold) result.put(mDao.getMedById(pList.get(i).medId).getName(),pList.get(i).likelihood);
 			else break;
 			cover+=pList.get(i).likelihood;
 		}

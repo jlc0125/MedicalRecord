@@ -20,7 +20,7 @@ String contextPath=request.getContextPath();
 
 <!-- css -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/search/css/browse.css">
+<link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/common/css/logo.css">
 <link href="<%=contextPath%>/resources/carousel.css" rel="stylesheet">
 
 

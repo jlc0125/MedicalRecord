@@ -1,0 +1,15 @@
+.logoSearch {
+    WIDTH: 100%;
+    HEIGHT: 93px;
+    /* border-bottom-style: groove */
+}
+
+.logoSearch_L2 {
+    MARGIN: auto;
+    width:960px
+}
+.logoSearch_L2 .logo {
+    FLOAT: left; 
+    PADDING-TOP: 18px; 
+    height:75px
+}
