@@ -13,6 +13,12 @@
 	height:75px
 }
 
+.professor{
+	float:right;
+	margin-right: 10%;
+	margin-top: 3%;
+}
+
 #main-content{
 	font-family:"Microsoft YaHei";/* font-size:15px;text-align:center;*/ 
 	width:960px;
@@ -58,6 +64,9 @@
 .title { 
 	font-weight: bold; 
 	font-size:15px;
+}
+.title a{
+	color:#2196F3;
 }
 .txt { 
 	margin-bottom: 10px;

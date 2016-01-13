@@ -87,5 +87,10 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping(value="/error")
+	public String browsePage(){
+		return "common/error";
+	}
 
 }

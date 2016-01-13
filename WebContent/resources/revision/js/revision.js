@@ -12,9 +12,9 @@ $(function(){
 	$('.correct').live('click', function(){
 		var el=$(this).parent().prev();
 		var type = el.children('.type').children('.typename').first().html();
-		var title = el.children('.title').children('span:not(.id)').text();
+		var title = el.children('.title').text();
 		if(type.indexOf('医案标题') != -1){
-			title = title.split("#")[1];
+			title = title.split(":")[1];
 			BootstrapDialog.show({
 			  title: type,
 	          message: '将医案&nbsp<b>'+title+'</b>&nbsp更正为:<input type="text" class="form-control">',
@@ -32,7 +32,7 @@ $(function(){
 	          }]
 	        });
 		} else if(type.indexOf('相关关系') != -1){
-			title = title.split("/");
+			title = title.split(":")[1].split("/");
 			BootstrapDialog.show({
 				  title: type,
 		          message: '将&nbsp<b>'+title[0]+'</b>&nbsp和&nbsp<b>'+title[1]+"</b>&nbsp相关关系删除",
@@ -69,7 +69,12 @@ $(function(){
 	          }]
 	        });
 		});
+	
+	$('.professor').live('click', function(){
+		window.open('/MedicalRecord/revision_professor'); 
+	});
 });    
+
 
 function praise(el) {  
 	var dispraise = el.prev().children('.dispraise_txt').html();
@@ -79,7 +84,7 @@ function praise(el) {
         var praisesTotal = el.children('.praises-total');
         var oldTotal = parseInt(praisesTotal.attr('total'));
         var newTotal;
-        var rvsId = el.parent('.info').prev().children('.title').children('.id').html().split("ID:")[1];
+        var rvsId = el.parent('.info').prev().children('.title').attr("id");
         
         if (txt == '同意') {
             newTotal = oldTotal + 1;
@@ -112,7 +117,7 @@ function dispraise(el) {
         var dispraisesTotal = el.children('.dispraises-total');
         var oldTotal = parseInt(dispraisesTotal.attr('dis-total'));
         var newTotal;
-        var rvsId = el.parent('.info').prev().children('.title').children('.id').html().split("ID:")[1];
+        var rvsId = el.parent('.info').prev().children('.title').attr("id");
         
         if (txt == '不同意') {
             newTotal = oldTotal + 1;
@@ -160,7 +165,7 @@ function showData(data){
 		str +=  '<div class="box clearfix">'+
 					'<div class="content">'+
 						'<div class="main">'+
-							'<p class="title"><span class="id">ID:'+data[i].id+'&nbsp;</span>'+data[i].advise+'</p>'+
+							'<p class="title" id='+data[i].id+'>'+getTitle(data[i].type,data[i].advise)+'</p>'+
 							'<p class="txt">'+data[i].comment+'</p>'+
 							'<p class="type">'+
 								'类型: <span class="typename">'+getType(data[i].type)+'</span>'+
@@ -215,6 +220,17 @@ function getType(type){
 	}else if(type == '2'){
 		return '相关关系删除';
 	}		
+}
+
+function getTitle(type,title){
+	var str="";
+	if(type == "1"){
+		var tmp = title.split("#");
+		str = "<a href = '/MedicalRecord/record_detail?recordId="+tmp[0]+"'>"+tmp[0]+"号医案</a>标题改为:"+tmp[1];
+	}else if(type == "2"){
+		str = "删除关系对:"+title;
+	}
+	return str;
 }
 
 //格式化日期
@@ -298,7 +314,7 @@ function showProfessorData(data){
 		str +=  '<div class="box clearfix">'+
 					'<div class="content">'+
 						'<div class="main">'+
-							'<p class="title"><span class="id">ID:'+data[i].id+'&nbsp;</span><span>'+data[i].advise+'</span></p>'+
+							'<p class="title" id='+data[i].id+'>'+getTitle(data[i].type,data[i].advise)+'</p>'+
 							'<p class="txt">'+data[i].comment+'</p>'+
 							'<p class="type">'+
 								'类型: <span class="typename">'+getType(data[i].type)+'&nbsp&nbsp</span>'+
