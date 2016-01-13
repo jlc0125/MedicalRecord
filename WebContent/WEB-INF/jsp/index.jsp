@@ -124,17 +124,21 @@ String contextPath=request.getContextPath();
         <div class="col-lg-3 function-item function-image" data-name="browse">
           <i class="function-icon icon-classify"></i> 
           <h2 class="img-title">分类浏览</h2>
-          
         </div><!-- /.col-lg-3 -->
-        <div class="col-lg-3 function-item function-image" data-name="recipehome">
+        
+        <div class="col-lg-3 function-item function-image" data-name="analysis_all">
           <i class="function-icon icon-analysis"></i> 
-          <h2 class="img-title">医案分析</h2>
-          
+          <h2 class="img-title">医案分析</h2>          
         </div><!-- /.col-lg-3 -->
+        
         <div class="col-lg-3 function-item function-image" data-name="book">
-         <i class="function-icon icon-read"></i>  
-          <h2 class="img-title">医书阅读</h2>
-          
+        	<i class="function-icon icon-read"></i>  
+          	<h2 class="img-title">医书阅读</h2>          
+        </div><!-- /.col-lg-3 -->
+        
+        <div class="col-lg-3 function-item function-image" data-name="revision">
+        	<i class="function-icon icon-revision"></i>  
+          	<h2 class="img-title">错误修正</h2>          
         </div><!-- /.col-lg-3 -->
       </div><!-- /.row -->
     </div><!-- /.container -->

@@ -90,8 +90,8 @@ body {
 .marketing .function-item {
 	border: 1px solid #bad6e1;
 	border-radius: 2px; 
-	width: 20%;
-	margin: 0 2%;
+	width: 17%;
+	margin: 0 1%;
 	text-align: center;
 }
 .function-item:hover {
@@ -120,9 +120,12 @@ body {
 .icon-read {
 	background-position: 0 -210px;
 }
+.icon-revision {
+	background-position: 0 -280px;
+}
 
 .img-title{
-
+	font-size: 26px;
   
 }
 
