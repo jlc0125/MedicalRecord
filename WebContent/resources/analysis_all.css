@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+body {
+	background-color: #f5f7f9;
+}
+.main-container {
+	margin-bottom: 100px;
+	
+}
+.fieldset {
+	margin: 40px 0;
+}
+.fieldset h4 {
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+.fieldset p {
+	font-size: 20px;
+	color: #999999;
+}
+//功能模块
+.function-list {
+    margin: 20px 0;
+    overflow: hidden;
+}
+.function-list .function-item {
+    width: 270px;
+    height: 230px;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    float: left;
+    margin-left: -1px;
+    text-align: center;
+    list-style-type: none;
+}
+.function-list li:hover {
+    background-color: #eef4fe;
+}
+.function-list .left {
+    margin-left: 0px;
+}
+.function-list .bottom {
+    margin-top: -1px;
+}
+.function-list a {
+    display: block;
+    height: 192px;
+    padding: 40px 0 0;
+}
+a:hover {
+	text-decoration: none;
+}
+.function-list i {
+    display: block;
+}
+.function-list strong {
+    color: #404040;
+    font-size: 20px;
+}
+.function-list p {
+    color: #b8b8b8;
+    width: 170px;
+    padding: 15px 0px;
+    margin: 0 auto;
+}
+.function-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0px auto 35px;
+    background-image: url(./search/Images/newPic/index_icon.png);
+}
+.icon-recipe {
+	background-position: -70px 0;
+}
+.icon-drug {
+	background-position: -70px -70px;
+}
+.icon-symptom {
+	background-position: -70px -140px;
+}
+.icon-bzzz {
+	background-position: -70px -210px;
+}
+.icon-treatment {
+	background-position: -70px -280px;
+}
