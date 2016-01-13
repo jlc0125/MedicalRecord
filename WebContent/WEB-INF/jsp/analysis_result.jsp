@@ -72,6 +72,12 @@ String contextPath=request.getContextPath();
   .bg_heise{
     min-height: 600px;
   }
+  #meds th{
+    text-align: center !important;
+  } 
+  #meds table{
+    margin-bottom: 0px !important; 
+  }
     
 </style>
 </HEAD>
@@ -95,7 +101,7 @@ String contextPath=request.getContextPath();
 		</div>
 		</div>
 	<div class="bg_heise">
-		<div id="content" >
+	
 			<!-- <div class="logoSearch_L2" style="height:100px">
 				<div id="search" class="search cf" style="height: 50px !important;">
 					<INPUT id="input" class=text  name=q> 
@@ -127,36 +133,21 @@ String contextPath=request.getContextPath();
       <div class="alert" style="display:none">
         <strong>您输入的词中不包含辩证或治则词汇，请再次输入</strong> 
       </div>
-			<div class="container" style="background-color: white;">
-				<ul id="nav" class="nav nav-tabs" style="display:none"></ul>
-				<div class="row">
-					<div class="span9">
-						<div id="meds"  >
-						</div>
-					</div>
-					<div id="pieChart" class="span3">
-					</div>
-				</div>
-
-        <div id="search_link_div">
-        	<a id="search_link"></a>
+      <div class="col-md-2"></div>
+			<div class="col-md-8 content" style="display:none">
+        <ul id="nav" class="nav nav-tabs"></ul>
+        <div style="border: 1px solid #ddd;">
+          <div id="meds" style="text-align: center;border-bottom: 1px solid #ddd !important;">
+          </div>
+          
+          <div id="pieChart" class="span3" style="padding-left:40%;width:20%">
+          </div>
+          <div id="search_link_div">
+            <a id="search_link"></a>
+          </div>
         </div>
-<!--			
-				<div class="info"><h1 id="records_info"></h1>
-				</div>
-				<div class="row">
-					<div class="span12">
-						<div id="records">
-							<table id="records_table" class="table">
-								<thead id="records_head"></thead>
-								<tbody id="records_body"></tbody>
-							</table>
-						</div>
-					</div>
-				</div>
--->
 			</div>
-		</div>
+		
 	</div>
 	
 

@@ -18,9 +18,7 @@ $(function(){
             function(){
                 var keyword=$("#input").val();
                 var type;
-                if($("#bz_opt")[0].checked) type="bz";
-                else if ($("#zz_opt")[0].checked) type="zz";
-                else type="bz";
+                type = getType();
                 $.ajax({
                       type: 'POST',
                       url: "./"+type,
@@ -32,9 +30,6 @@ $(function(){
                       dataType:"text"
                     });
             });
-    $(".med_checkbox").click(function(){
-        generateLink();
-    });
     /*
     $(window).scroll(function(){
         if(dataAll){
@@ -49,6 +44,13 @@ $(function(){
     });
     */
 });
+
+function getType(){
+    if($("#bz_opt")[0].checked) type="bz";
+    else if ($("#zz_opt")[0].checked) type="zz";
+    else type="bz";
+    return type;
+}
 
 function success(data,textStatus,jqXHR){
     
@@ -65,11 +67,11 @@ function success(data,textStatus,jqXHR){
     }
     var list="";
     for(var i=0;i<dataAll.length;i++){
-        if(i==0) list+="<li class='active'><a id='nav"+i+"' onclick='init("+i+")'>"+dataAll[i].word+"</a></li>";
+        if(i==0) list+="<li class='active nav'><a id='"+i+"'>"+dataAll[i].word+"</a></li>";
         else list+="<li><a id='nav"+i+"' onclick='init("+i+")'>"+dataAll[i].word+"</a></li>";
     }
     console.log(list);
-    $("#nav").show();
+    $(".content").show();
     $("#nav").html(list);
     $("#nav li").each(function(){
         $(this).click(function(){
@@ -78,7 +80,15 @@ function success(data,textStatus,jqXHR){
             generateLink();
         });
     });
+     $("#nav li a").each(function(){
+        var id = parseInt($(this).attr("id"));
+        $(this).click(function(){
+            init(id);
+        });
+    });
+
     init(0);
+
 }
 
 function error(){
@@ -125,6 +135,9 @@ function init(index){
     });
     $("#meds_info").html("相关中药");
     $("#meds").html(medsTable);
+    $(".med_checkbox").click(function(){
+        generateLink();
+    });
     
     paintPie(pieData);
     generateLink();
@@ -143,6 +156,7 @@ function seachForRecord(){
 
 function generateLink(){
     var keywordList=getKeywordList();
+    console.log(keywordList);
     var keyword=keywordList.join("、")
     $("#search_link").html("查看<span style='color:red'>"+keyword+"</span>相关医案");
     $("#search_link").attr("href","../search/result?wd="+keyword+"&type=content");
@@ -165,15 +179,21 @@ function getKeywordList(){
 
 
 function paintPie(data){
+    var title = "";
+    var type = getType();
+    if (type == "bz") title = "辩证";
+    else title = "治则";
+ 
+    var name = $(".active a").text();
     pie = new d3pie("pieChart", {
         "header": {
             "title": {
-                "text": "辩证分析",
+                "text": title + "分析",
                 "fontSize": 24,
                 "font": "open sans"
             },
             "subtitle": {
-                "text": "辩证"+$("#input").val()+"常用的药材",
+                "text": title + name +"常用的药材",
                 "color": "#999999",
                 "fontSize": 12,
                 "font": "open sans"

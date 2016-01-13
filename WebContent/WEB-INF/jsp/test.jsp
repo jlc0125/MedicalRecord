@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String contextPath=request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -66,11 +67,14 @@ String contextPath=request.getContextPath();
         </script>
         
 		<style type="text/css">
-            .comm{
-                width:100%; 
-                border-left-style: solid;
-                padding-right: 40px;
-            }
+      .content{
+        border-top: 1px solid #ddd;
+      }
+      .comm{
+          width:100%; 
+          border-left-style: solid;
+          padding-right: 40px;
+      }
 			.right-list{
 				padding: 0 !important;
 				box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
@@ -114,9 +118,13 @@ String contextPath=request.getContextPath();
 		    .short-comm dt{
 		    	font-weight: normal;!important
 		    }
-		    .book-type ul { list-style:none; }
-			.book-type ul li { float:left; display:inline; padding-left:29px;}
-			.book-type ul li a { float:left; display:inline;  }
+	    .book-type ul { 
+        list-style:none; 
+        text-align: right;
+        padding-right: 20px;
+      }
+			.book-type ul li { }
+			.book-type ul li a { }
 			.book-type:after{
 				clear:both;
 			}
@@ -137,11 +145,11 @@ String contextPath=request.getContextPath();
 			
 		</div>
 
-    	<div class="basic-information" style="height:70px">
-    		<div class="book-name col-md-6" style="text-align:center;">
-				<h2 id="book-title"></h2>
-            </div>
-			<div class="book-type col-md-6" style="text-align:center;margin-top:40px">
+    	<div class="basic-information">
+    		<div class="book-name" style="text-align:center;">
+				    <h2 id="book-title"></h2>
+        </div>
+			<div class="book-type" >
 				<ul>
                 	<li><a id="pic" class="active" href="javascript:void(0);">图片</a></li>
                 	<li><a id="text" href="javascript:void(0);">文本</a></li>
@@ -149,7 +157,8 @@ String contextPath=request.getContextPath();
             	</ul>
             </div>
     	</div>
-    	<div class="pic-board  showup">
+    <div class = "content">
+    <div class="pic-board  showup">
 		<div class="board" style="width:1920px;  height:900px;  padding-top:2%">
 			<div class="col-md-1">
                 <div class="catalog right-list">
@@ -223,6 +232,7 @@ String contextPath=request.getContextPath();
 			<div class="col-md-2"></div>
         </div>
 		</div>
+  </div>
 		<!-- footer -->
 		<!-- 统计信息 -->
 <!-- Piwik -->
@@ -356,8 +366,11 @@ String contextPath=request.getContextPath();
                     data=eval('(' + data + ')');
                     var type = data.type;
                     console.log(data);
+                    var bookTitle = data.title;
+                    $("#book-title").html(bookTitle);
                     switch(type){
                     case 1:
+
                         $("pic").click();
                         $("#text").unbind();
                         $("#text").css("color","gray");
@@ -375,6 +388,9 @@ String contextPath=request.getContextPath();
                         }
 
                         for(var i = 0; i < catalog.length; i++){
+                          console.log(catalog[i]);
+                          console.log(Math.floor(catalog[i].pageNo/2));
+                            catalog[i].pageNo = Math.floor(catalog[i].pageNo/2);
                             if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
                             $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
                         }
@@ -386,8 +402,7 @@ String contextPath=request.getContextPath();
                         var textBookpre = "http://zcy.ckcest.cn/DocAssist/learning/book#/book/";
                         var daId = data.da_id
                         var textBookSrc = textBookpre+daId;
-                        var bookTitle = data.title;
-                        $("#book-title").html(bookTitle);
+                        
                         $(".text-book-iframe").attr("src",textBookSrc);
                         $("#text").click();
                         $("#pic").unbind();
@@ -397,7 +412,7 @@ String contextPath=request.getContextPath();
                         break;
 
                     case 3:
-                        console.log("22222222222222222222222222222222222")
+                        
                         $("#pic-text").click();
                         //set pic-book
                         pageNum = data.pageNum;
@@ -410,6 +425,7 @@ String contextPath=request.getContextPath();
                         }
 
                         for(var i = 0; i < catalog.length; i++){
+                            catalog[i].pageNo = Math.floor(catalog[i].pageNo/2);
                             if(i%2 == 0) catalog[i]["style"] = "background-color: #E5EBF1;";
                             $( '#catalogTmpl' ).tmpl(catalog[i]).appendTo($(".catalog-content"));
                         }

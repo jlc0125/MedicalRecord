@@ -24,6 +24,7 @@ public class RecommendService {
 	}
 	
 	public List<MedicalRecord> simRecords(int recordId,int size){
+		
 		List<Integer> recordIds=mrsDao.getSimRecord(recordId, size);
 		List<MedicalRecord> retval=new ArrayList<MedicalRecord>();
 		for(int id:recordIds){

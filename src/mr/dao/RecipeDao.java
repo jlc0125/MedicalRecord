@@ -72,7 +72,7 @@ public class RecipeDao {
 	}
 	
 	public TempNode[] symptomSearchRecipe(String symptomName){
-		String sql = "select recipe,recipe_pinci from symptom201512 where name= '" + symptomName + "'";
+		String sql = "select recipe,recipe_pinci from symptom where name= '" + symptomName + "'";
 		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
 		 if(rows.isEmpty())
 			 return null;
