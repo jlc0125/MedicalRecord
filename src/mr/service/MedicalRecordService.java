@@ -131,5 +131,9 @@ public class MedicalRecordService {
 	public List<MedicalRecord> recordByZhifa(String word){
 		return mrDao.recordByZhifa(word);
 	}
+	
+	public List<MedicalRecord> recordByFirstCategory(String word){
+		return mrDao.recordByFirstCategory(word);
+	}
 }
 

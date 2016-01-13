@@ -307,42 +307,49 @@ function getMCSearchType(){
 	tempArray = new Array("外感病","肺系病","脾胃病证","肾系病","心系病","肝胆病证","气血津液病证","经络肢体病证","中毒","杂病");
 	table = "";
 	table += "<table id='main-table'><th class='c-left'></th><th class='c-right'></th>"
-		  +	"<tr><td  class='c-left-text'>内科：</td><td class='c-right-text'>";
+		  +	"<tr><td  class='c-left-text first_category' title='点击查看相关医案'>内科：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("疮疡","疖","痈","疽","疗","痰核瘰疬","乳房疾病","肛肠疾病","小便异常","男科疾病","肿瘤","其它外科疾病","皮肤病");
-	table += "<tr><td  class='c-left-text'>外科：</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text first_category' title='点击查看相关医案'>外科：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("骨折","关节脱位","软组织损伤","内伤");
-	table += "<tr><td  class='c-left-text'>骨科：</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text first_category' title='点击查看相关医案'>骨科：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("月经病","带下病","妊娠病","临产","妇科杂病");
-	table += "<tr><td  class='c-left-text'>妇科：</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text first_category' title='点击查看相关医案'>妇科：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("眼睑病","白睛病","黑睛病","内障病","其它");
-	table += "<tr><td  class='c-left-text'>眼科：</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text first_category' title='点击查看相关医案'>眼科：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("耳病","鼻病","咽喉病","口腔病");
-	table += "<tr><td  class='c-left-text'>耳鼻喉科：</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text first_category' title='点击查看相关医案'>耳鼻喉科：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	
 	table += "</td></tr>";
+	
+	
+	$('.first_category').live('click', function () {			
+		window.open("./browse/result?wd="+ $(this).text().replace("：", "") +"&type=medicalclassify_first");
+	});
+
 	$('.dis_type_list').live('click', function () {			
 		window.open("./browse/result?wd="+ $(this).text() +"&type=medicalclassify");
 	});
 	
 	$("#main-table").html(table + "</table>");
+	
 }
 
 /*

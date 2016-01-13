@@ -129,7 +129,7 @@ String contextPath=request.getContextPath();
 			var doctor="<h3><a target='_blank' href='/MedicalRecord/doctor?id="+data.doctorId+"'>"+data.doctorName+"</a></h3>";
 			var body="";
 			for (var i=0;i<content.length;i++){
-				if(cfIndex.indexOf(i)!=-1) body+="<p class='chufang'>"+content[i]+"</p>";
+				if(cfIndex.indexOf(i)!=-1) body+="<p class='chufang' title='点击进行处方分析'>"+content[i]+"</p>";
 				else body+="<p>"+content[i]+"</p>";
 			}
 			var reference="<br/><br/><a href='/MedicalRecord/search/result?wd="+data.reference+"&type=reference'>出自"+data.reference+"</a><br/><br/>"
@@ -147,7 +147,12 @@ String contextPath=request.getContextPath();
 				highLight(hlWords);
 			}
 			
+/* 			$(".chufang").tooltip({
+			      title:"点击进行处方分析",
+			      placement:'bottom'
+			}); */
 			$(document).on("click",".chufang",function(){
+				
 				var url="/MedicalRecord/pre_analysis?pre="+$(this).text()+"&recordId="+dataGlobal["recordId"]+"&recordTitle="+dataGlobal["recordTitle"]
 				window.open(url);
 			});

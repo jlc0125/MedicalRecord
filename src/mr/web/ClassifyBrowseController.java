@@ -43,7 +43,9 @@ public class ClassifyBrowseController {
 		else if(type.equals("therapylabel")){
 			recList = mrs.recordByZhifa(wd);
 		}
-		
+		else if(type.equals("medicalclassify_first")){
+			recList = mrs.recordByFirstCategory(wd);
+		}
 		System.out.println(wd);		
 		return recList;
 	}

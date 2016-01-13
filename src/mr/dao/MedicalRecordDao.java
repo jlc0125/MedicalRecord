@@ -275,4 +275,28 @@ public class MedicalRecordDao {
 		});
 		return result;
 	}
+	
+	//根据第一分类名称获得医案集
+		public List<MedicalRecord> recordByFirstCategory(String firstCateName){
+			Category cate = cgDao.getFirCategory(firstCateName);
+			String cateId = cate.getCateId();
+			final List<MedicalRecord> result=new ArrayList<MedicalRecord>();
+			String sql="select * from medicalrecord where category like ? order by recordId asc LIMIT 100";
+			jdbcTemplate.query(sql,new Object[] {cateId+"%"},
+					new RowCallbackHandler(){
+						@Override
+						public void processRow(ResultSet rs) throws SQLException {
+							MedicalRecord record=new MedicalRecord();
+							record.setContent(rs.getString("content"));
+							record.setDoctorName(rs.getString("doctorName"));
+							record.setRecordId(rs.getInt("recordId"));
+							record.setRecordTitle(rs.getString("recordTitle"));
+							record.setReference(rs.getString("reference"));
+							record.setCfIndex(rs.getString("cfIndex"));
+							result.add(record);
+						}
+				
+			});
+			return result;
+		}
 }
