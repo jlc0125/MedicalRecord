@@ -45,13 +45,11 @@ public class RevisionController {
 	
 	@RequestMapping(value="/revision")
 	public String browsePage(){
-		System.out.println("ok............................");
 		return "revisionList";
 	}
 	
 	@RequestMapping(value="/revision_professor")
 	public String browseProfessorPage(){
-		System.out.println("ok............................");
 		return "revisionProfessorList";
 	}
 	

@@ -38,7 +38,8 @@ String contextPath=request.getContextPath();
 	     </div>
 		<div class=logoSearch>
 			<div class="logoSearch_L2">
-				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></a></div>           
+				<div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></a></div>  
+				<button class="btn btn-success professor">专家评价入口</button>         
 			</div>
 		</div>
 	</div>

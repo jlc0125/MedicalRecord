@@ -21,6 +21,19 @@
 		p:viewClass="org.springframework.web.servlet.view.JstlView" 
 		p:prefix="/WEB-INF/jsp/"
 		p:suffix=".jsp" />
+		
+		
+	<!-- 注册拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/revision"/>
+			<bean class="mr.interceptor.UserLoginInterceptor"></bean>
+		</mvc:interceptor>	
+		<mvc:interceptor>
+			<mvc:mapping path="/revision_professor"/>
+			<bean class="mr.interceptor.UserLevelInterceptor"></bean>
+		</mvc:interceptor>		
+	</mvc:interceptors>
 	
 	<!-- jackson来处理map转json -->
 	
