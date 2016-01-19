@@ -184,11 +184,11 @@
 						theClass				: 'page page-' + (i + 1) + ' cover',
 						// theContentFront: $page.html(),
 						theContentFront			: 	"<div>\
-														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='http://zcy.ckcest.cn/zcypics/medical_record/books/" + this.bookId + '/' + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						// theContentBack			: ( i !== this.pagesCount ) ? this.$pages.eq( i + 1 ).html() : '',
 						theContentBack     		:  "<div>\
-														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='http://zcy.ckcest.cn/zcypics/medical_record/books/" + this.bookId + '/' + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						theStyle				: 'z-index: ' + zIndex + ';left:' + (this.windowProp.width/2-this.windowProp.border) + 'px;',
 						theContentStyleFront	: 'width:600px;',
@@ -203,11 +203,11 @@
 						theClass				: 'page page-' + (i + 1),
 						// theContentFront: $page.html(),
 						theContentFront			: 	"<div>\
-														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='http://zcy.ckcest.cn/zcypics/medical_record/books/" + this.bookId + '/' + page1 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						// theContentBack			: ( i !== this.pagesCount ) ? this.$pages.eq( i + 1 ).html() : '',
 						theContentBack     		:  "<div>\
-														<img src='/MedicalRecord/resources/book/" + this.bookId + '/' + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
+														<img src='http://zcy.ckcest.cn/zcypics/medical_record/books/" + this.bookId + '/' + page2 +".jpg' style='width:" + (this.windowProp.width/2) + "px;height:800px'>\
 													</div>",
 						theStyle				: 'z-index: ' + zIndex + ';left:' + (this.windowProp.width/2-this.windowProp.border) + 'px;',
 						theContentStyleFront	: 'width:600px;',

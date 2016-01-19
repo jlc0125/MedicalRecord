@@ -80,7 +80,7 @@ String contextPath=request.getContextPath();
                     <div class="hglpic">
                         <a href="read/{{= id}}?page=0" target="_blank" style="color:#0064A9;">
                             <abbr title="点击查看图书">
-                                <img class="bookimg" src="{{= imgSrc}}" onerror="javascript:this.src='<%=contextPath%>/resources/book/none-cover.jpg'">
+                                <img class="bookimg" src="{{= imgSrc}}" onerror="javascript:this.src='http://zcy.ckcest.cn/zcypics/medical_record/books/none-cover.jpg'">
                             </abbr>
                         </a>
                     </div>
@@ -154,7 +154,7 @@ String contextPath=request.getContextPath();
                 function successCB(data){
                     data=eval('(' + data + ')');
                     for(var i = 0; i < data.length; i++){
-                        imgSrc = "<%=contextPath%>/resources/book/" + data[i].id + "/cover.jpg";
+                        imgSrc = "http://zcy.ckcest.cn/zcypics/medical_record/books/" + data[i].id + "/cover.jpg";
     
                         data[i].imgSrc = imgSrc;
                         $('#bookTmpl').tmpl(data[i]).appendTo($('.view'));
