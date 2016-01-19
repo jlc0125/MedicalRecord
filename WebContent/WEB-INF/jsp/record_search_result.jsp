@@ -22,12 +22,10 @@ String contextPath=request.getContextPath();
 	<!-- css -->
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet"  href="<%=contextPath%>/resources/exlib/simple_pagination/simplePagination.css">
+    <link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/common/css/logo.css">
 	<style type="text/css">
 		#front_search_table{
 			box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-		}
-		.row{
-			margin-top:100px;
 		}
 		
 		body{
@@ -204,8 +202,21 @@ String contextPath=request.getContextPath();
 	
 </head>
 <body>
-
-	<nav class="navbar navbar-default navbar-fixed-top">
+    <div class=top>
+        <div>
+            <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/css/nav_header.css"></link>
+            <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
+            <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
+            <%@include file="/WEB-INF/jsp/common/header.jsp"%>
+        </div>
+        <div class=logoSearch>
+          <div class="logoSearch_L2">
+            <div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+    </div>
+	<!-- <nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 		    <div class="navbar-header">
 		      <div class="navbar-brand glyphicon glyphicon-search" href="#">
@@ -217,7 +228,7 @@ String contextPath=request.getContextPath();
 			  </div>
 			  <button type="submit" class="btn btn-default">搜索</button>
 			</form>
-		</div><!-- /.container-fluid -->
+		</div><!-- /.container-fluid --> -->
 	</nav>
 	
 	

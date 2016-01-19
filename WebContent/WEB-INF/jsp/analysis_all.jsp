@@ -68,14 +68,14 @@
 					</a>
 				</li>
 				<li class="function-item">
-					<a href="<%=contextPath%>/bzzz/result">
+					<a href="<%=contextPath%>/treatmentmode">
 						<i class="function-icon icon-bzzz"></i>
 						<strong>治疗模式分析</strong>
 						<p>分析治疗模式</p>
 					</a>
 				</li>
 				<li class="function-item left bottom">
-					<a href="<%=contextPath%>/treatmentmode">
+					<a href="<%=contextPath%>/bzzz/result">
 						<i class="function-icon icon-treatment"></i>
 						<strong>辩证治则分析</strong>
 						<p>辩证治则分析</p>

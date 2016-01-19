@@ -19,7 +19,7 @@ String contextPath=request.getContextPath();
 		
 		<!-- css -->
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" type=text/css href="<%=contextPath%>/resources/common/css/logo.css">
 		
 		<style>
 		.container-fluid{
@@ -412,7 +412,12 @@ String contextPath=request.getContextPath();
         <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/commonpages/dropdown/dropdown.css"></link>
         <script src="<%=contextPath%>/resources/commonpages/js/nav_header.js"></script>
     	<%@include file="/WEB-INF/jsp/common/header.jsp"%>
-		
+		<div class=logoSearch>
+          <div class="logoSearch_L2">
+            <div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
 		
 		<div class="sub_nav_bg">
 			<div id="sub_nav">

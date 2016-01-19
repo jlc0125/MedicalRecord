@@ -9,6 +9,11 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
   </listener>
+  
+  <listener>  
+    <listener-class>mr.listener.ContextListener</listener-class>  
+  </listener>  
+  
   <servlet>
     <servlet-name>mr</servlet-name>
     <servlet-class>
