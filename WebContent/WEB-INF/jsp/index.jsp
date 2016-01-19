@@ -33,7 +33,18 @@ String contextPath=request.getContextPath();
   })
 </script>
 
-
+<style type="text/css">
+.top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+}
+.logoSearch {
+	background-color: rgba(255,255,255,0.8);
+}
+</style>
   
 </head>
 
@@ -47,7 +58,7 @@ String contextPath=request.getContextPath();
     </div>
     <div class=logoSearch>
       <div class="logoSearch_L2">
-        <div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/logo.png"></A></div>
+        <div class="logo"><a href="index.html" target=_blank><IMG src="<%=contextPath%>/resources/search/Images/newPic/logo.png"></A></div>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -113,7 +124,8 @@ String contextPath=request.getContextPath();
     </div><!-- /.carousel -->
     
      <div class="container marketing">
-
+     <div class="title">系统功能</div>
+	
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-3 function-item function-image" data-name="search">
@@ -135,11 +147,20 @@ String contextPath=request.getContextPath();
         	<i class="function-icon icon-read"></i>  
           	<h2 class="img-title">医书阅读</h2>          
         </div><!-- /.col-lg-3 -->
+      </div><!-- /.row -->
         
-        <div class="col-lg-3 function-item function-image" data-name="revision">
-        	<i class="function-icon icon-revision"></i>  
-          	<h2 class="img-title">错误修正</h2>          
-        </div><!-- /.col-lg-3 -->
+      <div class="title">更多功能</div>
+        <div class="row">
+	        <div class="col-lg-3 function-item function-image" data-name="revision">
+	        	<i class="function-icon icon-revision"></i>  
+	          	<h2 class="img-title">错误修正</h2>          
+	        </div><!-- /.col-lg-3 -->
+	        <!-- 
+	         <div class="col-lg-3 function-item">
+	        	<i class="function-icon icon-add"></i>  
+	          	<h2 class="img-title">待开发……</h2>          
+	        </div><!-- /.col-lg-3 -->
+	         
       </div><!-- /.row -->
     </div><!-- /.container -->
 

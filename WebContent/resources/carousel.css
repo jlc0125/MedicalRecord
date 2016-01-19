@@ -60,20 +60,37 @@ body {
   height: 500px;
 }
 .carousel-caption.caption1{
-	bottom: 60px;
-	left: 15%;
-	width: 450px;
-	text-align: left;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	background-color: rgba(0,0,0,0.5);
-	padding: 5px 5px;
 }
-
+.caption1 h1 {
+	text-align: center;
+	margin: 200px auto 0;
+}
+.caption1 p {
+	text-align: center;
+}
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
 /* Center align the text within the three columns below the carousel */
 .marketing {
 	margin-bottom: 100px;
+}
+.marketing .title{
+	text-align: center;
+	width: 150px;
+	height: 50px;
+	background-color: #337AB7;
+	color: white;
+	font-size: 26px;
+	line-height: 50px;
+	border-radius: 4px;
+	margin: 30px 0;
+	
 }
 .marketing .col-lg-4 {
   margin-bottom: 20px;
@@ -90,7 +107,7 @@ body {
 .marketing .function-item {
 	border: 1px solid #bad6e1;
 	border-radius: 2px; 
-	width: 17%;
+	width: 23%;
 	margin: 0 1%;
 	text-align: center;
 }
@@ -123,7 +140,9 @@ body {
 .icon-revision {
 	background-position: 0 -280px;
 }
-
+.icon-add {
+	background-position: 0 -350px;
+}
 .img-title{
 	font-size: 26px;
   
