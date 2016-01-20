@@ -317,39 +317,23 @@
                                 </tbody>
                             </table>
                         </div> -->
- 		    		</div>
-                    <div id="sidebar">
-                        <div class="alt_container right-list">
-                            <h2>相关医案</h2>
-                            <div class="alt_page_navigation"></div> 
-                            <div class="alt_info_text"></div>
-                            <ol class="alt_content"></ol>
-                        </div>    
-                    </div>		    		
+ 		    		</div>    		
 		     	</div>
 	     
 	     		<div id="attending">
 	    			<div id="graph3">
               			<span class="glyphicon glyphicon-pencil revision-span" aria-hidden="true" style="display:block;margin-left:80%;margin-top:10px;cursor:pointer">关系有错误？</span>
             		</div>
-	    			<!-- <div id="descpt2">
-    					<div>图示说明</div>
-    					<svg style="margin-top: 20%;">
-    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
-    						<text x="45" y="29">从医案中分析与方剂相关的疾病</text>
-    					</svg>
-    				</div> -->
-                    <div id="sidebar">
-                        <div class="alt_container right-list">
-                            <h2>相关医案</h2>
-                            <div class="alt_page_navigation"></div> 
-                            <div class="alt_info_text"></div>
-                            <ol class="alt_content">
-                                
-                            </ol>
-                        </div>    
-                    </div>
 	     		</div>
+	     		
+	     		<div id="sidebar">
+                    <div class="alt_container right-list">
+                        <h2>相关医案</h2>
+                        <div class="alt_page_navigation"></div> 
+                        <div class="alt_info_text"></div>
+                        <ol class="alt_content"></ol>
+                    </div>    
+                </div>		
 	    	</div>
 	    	
 	    	<div class="clearfix"></div>

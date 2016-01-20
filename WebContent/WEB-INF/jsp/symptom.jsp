@@ -140,14 +140,14 @@
     		<div id="main_content">
     			<div id="attending">
     				<div class="graph"></div>
-                    <div id="sidebar">
+                   <!--  <div id="sidebar">
                         <div class="alt_container">
                             <h2>相关医案</h2>
                             <div class="alt_page_navigation"></div> 
                             <div class="alt_info_text"></div>
                             <ol class="alt_content"></ol>
                         </div>    
-                    </div>
+                    </div> -->
     				<!-- <div class="descpt">
     					<div>图示说明</div>
     					<svg>
@@ -159,51 +159,23 @@
      
 	    		<div id="component">
 	    			<div class="graph"></div>
-                    <div id="sidebar">
-                        <div class="alt_container">
-                            <h2>相关医案</h2>
-                            <div class="alt_page_navigation"></div> 
-                            <div class="alt_info_text"></div>
-                            <ol class="alt_content"></ol>
-                        </div>    
-                    </div>
-	    			<!-- <div class="descpt">
-    					<div>图示说明</div>
-    					<svg>
-    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
-    						<text x="45" y="29">从医案中分析与疾病相关的中药</text>
-    					</svg>
-    				</div> -->
 	     		</div>
      
 	     		<div id="similar">
 	    			<div class="graph"></div>
-                    <div id="sidebar">
-                        <div class="alt_container">
-                            <h2>相关医案</h2>
-                            <div class="alt_page_navigation"></div> 
-                            <div class="alt_info_text"></div>
-                            <ol class="alt_content"></ol>
-                        </div>    
-                    </div>
-	    			<!-- <div class="descpt">
-    					<div>图示说明</div>
-    					<svg>
-    						<circle cx="30" cy="25" r="4.5" stroke="steelblue" stroke-width="1.5" fill="#fff"></circle>
-    						<text x="45" y="29">从医案中分析与疾病相关的方剂</text>
-    					</svg>
-    				</div> -->
 				</div>
+				
+				<div id="sidebar">
+		    		<div class="alt_container">
+						<h2>相关医案</h2>
+						<div class="alt_page_navigation"></div>	
+						<div class="alt_info_text"></div>
+						<ol class="alt_content"></ol>
+					</div>    
+		    	</div>				
     		</div>
     	
-	    	<!-- <div id="sidebar">
-	    		<div class="alt_container">
-					<h2>相关医案</h2>
-					<div class="alt_page_navigation"></div>	
-					<div class="alt_info_text"></div>
-					<ul class="alt_content"></ul>
-				</div>    
-	    	</div> -->
+	    	
 	    	<div class="clearfix"></div>
    		</div>
 	
