@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>错误404 - 页面未找到</title>
+<title>权限不够</title>
 <style type="text/css">
     body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, textarea, p, blockquote, th, td, img {margin:0; padding:0;}
     dl, dt, dd, ul, ol, li {list-style:none; list-style-position:outside;}

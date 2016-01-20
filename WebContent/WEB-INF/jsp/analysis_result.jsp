@@ -244,7 +244,6 @@ String contextPath=request.getContextPath();
                    <div class=footer_copy_right>
                        <p>地址：北京市西城区冰窖口胡同2号</p>
                        <p>Copyright © 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
-                       <p><a href="http://www.imicams.ac.cn/" target="_blank">中国医学科学院医学信息研究所</a>创办并维护</p>
                    </div>
                </div>
                

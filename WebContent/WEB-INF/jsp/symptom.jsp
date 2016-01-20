@@ -47,7 +47,7 @@
 				var url = "symptom/search?q=" + symptomName;
 				d3.json(url, function(error, root) { 
 					if(error){
-						$(".graph").prepend("div").text('很抱歉，没有找到与 "' + symptomName + '" 相关的结果。');
+						$(".graph").append("<div class='errorhit'>很抱歉，没有找到与 " + drugName + " 相关的结果。</div>");
 					}
 					else{
 						graph("#component .graph", root.drug, 1, 1);
@@ -64,7 +64,7 @@
 					var url = "symptom/search?q=" + value;
 					d3.json(url, function(error, root) { 
 						if(error){
-							$(".graph").prepend("div").text('很抱歉，没有找到与 "' + value + '" 相关的结果。');
+							$(".graph").append("<div class='errorhit'>很抱歉，没有找到与 " + drugName + " 相关的结果。</div>");
 						}
 						else{
 							graph("#component .graph", root.drug, 1, 1);
@@ -302,7 +302,6 @@
                    <div class=footer_copy_right>
                        <p>地址：北京市西城区冰窖口胡同2号</p>
                        <p>Copyright © 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
-                       <p><a href="http://www.imicams.ac.cn/" target="_blank">中国医学科学院医学信息研究所</a>创办并维护</p>
                    </div>
                </div>
                

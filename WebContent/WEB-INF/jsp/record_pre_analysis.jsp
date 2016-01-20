@@ -157,7 +157,7 @@ String contextPath=request.getContextPath();
 		var classicTableHead="<tr><th>经方名称</th><th>经方组成</th></tr>";
 		var classicTableBody="<tr>";
 		for (var i=0;i<data["经方"].length;i++){
-			classicTableBody+="<td><a href='../../DocAssist/pre/prescription?id="+data["经方"][i]["prescription_id"]+"'>"+data["经方"][i]["name"]+"</a></td><td>"+data["经方"][i]["dosage"]+"</td></tr>";
+			classicTableBody+="<td><a href='../../DocAssist/pre/prescription?id="+data["经方"][i]["id"]+"'>"+data["经方"][i]["name"]+"</a></td><td>"+data["经方"][i]["dosage"]+"</td></tr>";
 		}
 		jQuery("#classic_pre_header").html("经方分析");
 		jQuery("#classic_pre_title").html(classicTableHead);
@@ -331,7 +331,6 @@ String contextPath=request.getContextPath();
                    <div class=footer_copy_right>
                        <p>地址：北京市西城区冰窖口胡同2号</p>
                        <p>Copyright © 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
-                       <p><a href="http://www.imicams.ac.cn/" target="_blank">中国医学科学院医学信息研究所</a>创办并维护</p>
                    </div>
                </div>
                

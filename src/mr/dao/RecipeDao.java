@@ -60,19 +60,19 @@ public class RecipeDao {
 	}
 	
 	public List abbrBeginWith(String abbr){
-		String sql = "select name,pinci from recipe where abbr like '" + abbr + "%' order by abbr";
+		String sql = "select name,pinci from recipe201512 where abbr like '" + abbr + "%' order by abbr";
 		return jdbcTemplate.queryForList(sql); 
 	}
 	
 	public List pinciSearch(int freq){
-		String sql = "select name,pinci from recipe order by pinci";
+		String sql = "select name,pinci from recipe201512 order by pinci";
 		if(freq == 0)
 			sql += " DESC";
 		return jdbcTemplate.queryForList(sql); 
 	}
 	
 	public TempNode[] symptomSearchRecipe(String symptomName){
-		String sql = "select recipe,recipe_pinci from symptom where name= '" + symptomName + "'";
+		String sql = "select recipe,recipe_pinci from symptom201512 where name= '" + symptomName + "'";
 		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
 		 if(rows.isEmpty())
 			 return null;
@@ -96,7 +96,7 @@ public class RecipeDao {
 	}
 	
 	public TempNode[] drugSearchRecipe(String drugName){
-		String sql = "select recipe,recipe_pinci from drug where name= '" + drugName + "'";
+		String sql = "select recipe,recipe_pinci from drug201512 where name= '" + drugName + "'";
 		 List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql); 
 		 if(rows.isEmpty())
 			 return null;

@@ -218,32 +218,32 @@ function getDiscSearchType(){
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("太阳病辨证","阳明病辨证","少阳病辨证","太阴病辨证","少阴病辨证","厥阴病辨证")
-	table += "<tr><td  class='c-left-text'>六经辨证:</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text'>六经辨证：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("卫分证辨证","气分证辨证","营分证辨证","血分证辨证","三焦辨证")
-	table += "<tr><td  class='c-left-text'>卫气营血辨证:</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text'>卫气营血辨证：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("上焦病辨证","中焦病辨证","下焦病辨证")
-	table += "<tr><td  class='c-left-text'>三焦辨证:</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text'>三焦辨证：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("气病辨证","血病辨证","气血同病辨证","津液病辨证")
-	table += "<tr><td  class='c-left-text'>气血津液辨证:</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text'>气血津液辨证：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("六淫病辨证","疫疠病辨证","七情病辨证","饮食劳伤辨证","外伤辨证")
-	table += "<tr><td  class='c-left-text'>病因辨证:</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text'>病因辨证：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	
 	tempArray = new Array("发热","恶寒","头痛","眩晕","烦躁","失眠","心悸","喘","哮鸣","咳血","呕吐","腹泻","便血","心下痞","胃脘痛","皮肤发黄","便秘","腹满腹痛","咽喉痛","吐血","小便不利","骨关节痛","手足逆冷","汗出")
-	table += "<tr><td  class='c-left-text'>症状辨证:</td><td class='c-right-text'>";
+	table += "<tr><td  class='c-left-text'>症状辨证：</td><td class='c-right-text'>";
 	for(var i = 0 ; i < tempArray.length; i++)
 		table += "<span class='classify_content_short'><a href='#' class='dis_type_list'>" + tempArray[i] + "</a></span>";
 	

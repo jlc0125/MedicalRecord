@@ -312,7 +312,7 @@
     <div class="col-md-8" style="min-height:700px">
         
         <div class="search-logo center">
-            <a href="analysishome"><img src="resources/recipe/image/r_122.png" /></a>
+            <a href="analysishome"><img src="resources/recipe/image/r_124.png" /></a>
         </div>
         
         <div class="search-div center">
@@ -353,7 +353,7 @@
         <div class="fill" style="background-image:url('http://placehold.it/1000x700&amp;text=频次排序');height:700px"></div>
         -->
         <ul class="nav nav-tabs right-list-nav">
-            <li role="presentation" class="active"><a>常见方剂</a></li>
+            <li role="presentation" class="active"><a>常见中药</a></li>
             <li role="presentation"><a>字母排序</a></li>
         </ul>
         <ol class="right-list-content">
@@ -454,7 +454,6 @@
                        <div class=footer_copy_right>
                            <p>地址：北京市西城区冰窖口胡同2号</p>
                            <p>Copyright © 2008 中国工程院 ICP备案号:京ICP备05023557号</p>
-                           <p><a href="http://www.imicams.ac.cn/" target="_blank">中国医学科学院医学信息研究所</a>创办并维护</p>
                        </div>
                    </div>
                    
